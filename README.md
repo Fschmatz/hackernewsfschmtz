@@ -1,16 +1,11 @@
-# hackernewsfschmtz
+# HackerNews Fschmtz
 
-app para usar o websitio HackerNews
+Aplicativo usado para visualizar Top Stories do site https://news.ycombinator.com/news, 
+todos os links são abertos externamente via Chrome.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+Criado com o Android em mente, não foi testado para IOS.
 
-A few resources to get you started if this is your first Flutter project:
+APK compartilhado nos releases.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="https://user-images.githubusercontent.com/21291813/105647184-95fbd200-5e82-11eb-8bba-a0f9af63b9b2.png" width="45%"></img> <img src="https://user-images.githubusercontent.com/21291813/105647186-985e2c00-5e82-11eb-87cd-c3ca9d908be7.png" width="45%"></img> 
