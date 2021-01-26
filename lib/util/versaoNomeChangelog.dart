@@ -1,7 +1,7 @@
 class versaoNomeChangelog{
 
   //se mudar o nome do App não esquecer de alterar, no manifesto
-  static String versaoApp = "2.1";
+  static String versaoApp = "2.2";
   static String nomeApp = "HackerNews Fschmtz";
 
   //1espaço acima, nenhum embaixo
@@ -9,18 +9,24 @@ class versaoNomeChangelog{
   
 Versão Atual:  
 
-2.1
-- StatelessWidget para Story
-- Removido BouncePhysics
+2.2
+- Hide AppBar
+- Correções
+- RichText + TextSpan
 ''';
 
   static String changelogsAntigos = '''
+
+2.1
+- StatelessWidget para Story
+- Removido BouncePhysics
 
 2.0
 - LazyLoadScrollView implementado
 - Removido ScrollListener 
   (Obs.: Flutter tem problemas de performance,
-  com ScrollListener no Listview.builder/separated)
+  com ScrollListener no Listview.builder/separated
+  e uso do Physics)
   
 1.9
 - Corrigida a animação do BottomLoading

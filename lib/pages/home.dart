@@ -9,6 +9,7 @@ import 'package:hackernewsfschmtz/configs/configs.dart';
 import 'package:hackernewsfschmtz/pages/containerInkStory.dart';
 import 'package:hackernewsfschmtz/pages/loading.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
+import 'package:scroll_app_bar/scroll_app_bar.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -18,14 +19,24 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<Story> _stories = List<Story>();
   bool carregando = true;
-  bool isScrollingDown = false;
   bool loadMaisStoriesScroll = false;
+
+  //Appbar Hide
+  ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     _getTopStoriesInicial();
   }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _scrollController.removeListener(() {});
+    super.dispose();
+  }
+
 
   //get noticias
   void _getTopStoriesInicial() async {
@@ -39,7 +50,7 @@ class _HomeState extends State<Home> {
       _stories = stories;
     });
 
-    Timer(const Duration(milliseconds: 8000), () {
+    Timer(const Duration(milliseconds: 7000), () {
       _getTopStoriesSecundario();
     });
   }
@@ -51,7 +62,7 @@ class _HomeState extends State<Home> {
       return Story.fromJSON(json);
     }).toList();
     setState(() {
-      carregando = false;
+      //carregando = false;
       _stories = stories;
       Navigator.of(context).pop();
     });
@@ -124,23 +135,24 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            toolbarHeight: 52,
+        appBar: ScrollAppBar(
+            controller: _scrollController,
+            //toolbarHeight: 55,
             elevation: 0,
             title: Text("HN Fschmtz"),
             actions: <Widget>[
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 14, 0),
+                padding: const EdgeInsets.fromLTRB(0, 0, 13, 0),
                 child: IconButton(
                     icon: Icon(
                       Icons.refresh_outlined,
                       size: 24,
                     ),
                     onPressed: () {
-
-                      setState(() {
-                        carregando = true;
-                      });
+                      //scroll to top
+                      _scrollController.animateTo(0,
+                          duration: Duration(milliseconds: 600),
+                          curve: Curves.fastOutSlowIn);
 
                       _getTopStoriesRefresh();
                       _showAlertDialogLoading(context);
@@ -165,32 +177,33 @@ class _HomeState extends State<Home> {
               ),
             ]
         ),
-        body: AnimatedSwitcher(
-          duration: Duration(milliseconds: 700),
-          child: carregando
-              ? Loading()
-              : LazyLoadScrollView(
-            onEndOfPage: () => _getMaisTopStories(),
-            child: ListView.builder(
-              //physics: BouncingScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: _stories.length,
-              itemBuilder: (context, index) {
-                return ContainerInkStory(  // teste stateless
-                    contador: index,
-                    launchBrowser: _launchBrowser,
-                    story: new Story(
-                      storyId: _stories[index].storyId,
-                      title: _stories[index].title,
-                      url: _stories[index].url,
-                    )
-                );
-
-              },
+        body: Snap(
+          controller: _scrollController.appBar,
+          child: AnimatedSwitcher(
+            duration: Duration(milliseconds: 700),
+            child: carregando
+                ? Loading()
+                : LazyLoadScrollView(
+              onEndOfPage: () => _getMaisTopStories(),
+              child: ListView.builder(
+                controller: _scrollController,
+                shrinkWrap: true,
+                itemCount: _stories.length,
+                itemBuilder: (context, index) {
+                  return ContainerInkStory(
+                      contador: index,
+                      launchBrowser: _launchBrowser,
+                      story: new Story(
+                        storyId: _stories[index].storyId,
+                        title: _stories[index].title,
+                        url: _stories[index].url,
+                      )
+                  );
+                },
+              ),
             ),
           ),
         ),
-
 
         bottomNavigationBar: loadMaisStoriesScroll
             ? PreferredSize(

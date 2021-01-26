@@ -18,14 +18,22 @@ class ContainerInkStory extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.fromLTRB(18, 8, 18, 0),
+            padding: EdgeInsets.fromLTRB(18, 10, 18, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(story.title,
-                    style: TextStyle(
-                      fontSize: 18,
-                    )),
+                RichText(
+                  text: TextSpan(children: <TextSpan>[
+                    TextSpan(
+                        text: "${1 + contador}. ",
+                        style: TextStyle(fontSize: 18,
+                            color: Theme.of(context).accentColor)),
+                    TextSpan(
+                        text: story.title,
+                        style: TextStyle(
+                          fontSize: 18)),
+                  ]),
+                ),
                 SizedBox(
                   height: 4,
                 ),
@@ -43,15 +51,8 @@ class ContainerInkStory extends StatelessWidget {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(19, 0, 0, 0),
-                child: Text("${1 + contador}",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Theme.of(context).accentColor)),
-              ),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.end,
