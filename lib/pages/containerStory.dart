@@ -7,19 +7,17 @@ class ContainerStory extends StatefulWidget {
   Story story;
   int contador;
   Function(String) launchBrowser;
-  Function(TapDownDetails) getTopStoriesNoTapDown;
 
   @override
   _ContainerStoryState createState() => _ContainerStoryState();
 
-  ContainerStory({Key key,this.story, this.launchBrowser,this.contador,this.getTopStoriesNoTapDown}) : super(key: key);
+  ContainerStory({Key key,this.story, this.launchBrowser,this.contador}) : super(key: key);
 }
 
 class _ContainerStoryState extends State<ContainerStory> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTapDown: widget.getTopStoriesNoTapDown,
       onTap: () {
         widget.launchBrowser(widget.story.url);
       },

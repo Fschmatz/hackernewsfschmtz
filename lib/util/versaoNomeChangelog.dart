@@ -1,7 +1,7 @@
 class versaoNomeChangelog{
 
   //se mudar o nome do App não esquecer de alterar, no manifesto
-  static String versaoApp = "1.7";
+  static String versaoApp = "1.8";
   static String nomeApp = "HackerNews Fschmtz";
 
   //1espaço acima, nenhum embaixo
@@ -9,11 +9,19 @@ class versaoNomeChangelog{
   
 Versão Atual: 
 
-1.7
-- Bottom ProgressBar para Scroll
+1.8
+- Timer getTopStoriesSecundario
+- Correções
 ''';
 
   static String changelogsAntigos = '''
+
+1.7b
+- Implementado getTopStoriesSecundario
+- Removido TapDown
+
+1.7
+- Bottom ProgressBar para Scroll
 
 1.6
 - Separadas as classes da Home

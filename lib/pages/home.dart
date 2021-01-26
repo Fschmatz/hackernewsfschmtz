@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -34,8 +35,8 @@ class _HomeState extends State<Home> {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        _getMaisTopStories();
         loadMaisStoriesScroll = true;
+        _getMaisTopStories();
       }
     });
 
@@ -81,6 +82,10 @@ class _HomeState extends State<Home> {
       carregando = false;
       _stories = stories;
     });
+
+    Timer(const Duration(milliseconds: 8000), () {
+      _getTopStoriesSecundario();
+    });
   }
 
   void _getTopStoriesRefresh() async {
@@ -96,31 +101,21 @@ class _HomeState extends State<Home> {
       _stories = stories;
       Navigator.of(context).pop();
     });
+
+    Timer(const Duration(milliseconds: 8000), () {
+      _getTopStoriesSecundario();
+    });
   }
 
-  void _getTopStoriesNoTapDown(TapDownDetails details) async {
-    if (tapDown1 == false) {
-      final responses = await Webservice().getTopStories(_stories.length + 15);
-      final stories = responses.map((response) {
-        final json = jsonDecode(response.body);
-        return Story.fromJSON(json);
-      }).toList();
-      setState(() {
-        tapDown1 = true;
-        _stories = stories;
-      });
-    }
-    if (tapDown2 == false && _stories.length > 20) {
-      final responses = await Webservice().getTopStories(_stories.length + 15);
-      final stories = responses.map((response) {
-        final json = jsonDecode(response.body);
-        return Story.fromJSON(json);
-      }).toList();
-      setState(() {
-        tapDown2 = true;
-        _stories = stories;
-      });
-    }
+  void _getTopStoriesSecundario() async {
+    final responses = await Webservice().getTopStories(_stories.length + 15);
+    final stories = responses.map((response) {
+      final json = jsonDecode(response.body);
+      return Story.fromJSON(json);
+    }).toList();
+    setState(() {
+      _stories = stories;
+    });
   }
 
   void _getMaisTopStories() async {
@@ -169,93 +164,88 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          child: Column(children: <Widget>[
-        AnimatedContainer(
-          height: _showAppbar ? 55.0 : 0.0,
-          duration: Duration(milliseconds: 300),
-          child: AppBar(
-            elevation: 0,
-            title: Text("HN Fschmtz"),
-            actions: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 14, 0),
-                child: IconButton(
-                    //color: Theme.of(context).hintColor,
-                    icon: Icon(
-                      Icons.refresh_outlined,
-                      size: 24,
-                    ),
-                    onPressed: () {
-                      _getTopStoriesRefresh();
-                      _showAlertDialogLoading(context);
+        body: SafeArea(
+            child: Column(children: <Widget>[
+          AnimatedContainer(
+            height: _showAppbar ? 55.0 : 0.0,
+            duration: Duration(milliseconds: 300),
+            child: AppBar(
+              elevation: 0,
+              title: Text("HN Fschmtz"),
+              actions: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 14, 0),
+                  child: IconButton(
+                      //color: Theme.of(context).hintColor,
+                      icon: Icon(
+                        Icons.refresh_outlined,
+                        size: 24,
+                      ),
+                      onPressed: () {
+                        _getTopStoriesRefresh();
+                        _showAlertDialogLoading(context);
 
-                      //scroll to top
-                      _scrollController.animateTo(0,
-                          duration: Duration(milliseconds: 600),
-                          curve: Curves.fastOutSlowIn);
-                    }),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                child: IconButton(
-                    //color: Theme.of(context).hintColor,
-                    icon: Icon(
-                      Icons.settings,
-                      size: 24,
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) => Configs(),
-                            fullscreenDialog: true,
-                          ));
-                    }),
-              ),
-            ],
+                        //scroll to top
+                        _scrollController.animateTo(0,
+                            duration: Duration(milliseconds: 600),
+                            curve: Curves.fastOutSlowIn);
+                      }),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                  child: IconButton(
+                      //color: Theme.of(context).hintColor,
+                      icon: Icon(
+                        Icons.settings,
+                        size: 24,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => Configs(),
+                              fullscreenDialog: true,
+                            ));
+                      }),
+                ),
+              ],
+            ),
           ),
-        ),
-        Expanded(
-          child: AnimatedSwitcher(
-            duration: Duration(milliseconds: 700),
-            child: carregando
-                ? Loading()
-                : ListView.separated(
-                    separatorBuilder: (context, index) => Divider(
-                      color: Colors.black, //.withOpacity(0.7)
+          Expanded(
+            child: AnimatedSwitcher(
+              duration: Duration(milliseconds: 700),
+              child: carregando
+                  ? Loading()
+                  : ListView.separated(
+                      separatorBuilder: (context, index) => Divider(
+                        color: Colors.black, //.withOpacity(0.7)
+                      ),
+                      physics: AlwaysScrollableScrollPhysics(),
+                      controller: _scrollController,
+                      shrinkWrap: true,
+                      itemCount: _stories.length,
+                      itemBuilder: (context, index) {
+                        return ContainerStory(
+                            contador: index,
+                            launchBrowser: _launchBrowser,
+                            story: new Story(
+                              storyId: _stories[index].storyId,
+                              title: _stories[index].title,
+                              url: _stories[index].url,
+                            ));
+                      },
                     ),
-                    physics: AlwaysScrollableScrollPhysics(),
-                    controller: _scrollController,
-                    shrinkWrap: true,
-                    itemCount: _stories.length,
-                    itemBuilder: (context, index) {
-                      return ContainerStory(
-                          getTopStoriesNoTapDown: _getTopStoriesNoTapDown,
-                          contador: index,
-                          launchBrowser: _launchBrowser,
-                          story: new Story(
-                            storyId: _stories[index].storyId,
-                            title: _stories[index].title,
-                            url: _stories[index].url,
-                          ));
-                    },
-                  ),
+            ),
           ),
-        ),
-      ])),
-
-      bottomSheet: loadMaisStoriesScroll ?
-      PreferredSize(
-        preferredSize: Size.fromHeight(5.0),
-        child: LinearProgressIndicator(
-          backgroundColor: Theme.of(context).accentColor.withOpacity(0.3),//Colors.red.withOpacity(0.3),
-          //valueColor: new AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
-         // value: 0.25,
-        ),
-      )
-       :
-        SizedBox.shrink()
-    );
+        ])),
+        bottomSheet: loadMaisStoriesScroll
+            ? PreferredSize(
+                preferredSize: Size.fromHeight(5.0),
+                child: LinearProgressIndicator(
+                  backgroundColor:
+                      Theme.of(context).accentColor.withOpacity(0.3),
+                ),
+              )
+            : SizedBox.shrink());
   }
 }
