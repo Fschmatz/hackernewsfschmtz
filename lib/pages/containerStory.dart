@@ -94,6 +94,7 @@ class _ContainerStoryState extends State<ContainerStory> {
               ),
             ],
           ),
+          Divider(thickness: 1,color: Colors.black38,)
         ],
       ),
     );

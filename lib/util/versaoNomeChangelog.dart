@@ -1,7 +1,7 @@
 class versaoNomeChangelog{
 
   //se mudar o nome do App não esquecer de alterar, no manifesto
-  static String versaoApp = "1.8";
+  static String versaoApp = "2.0";
   static String nomeApp = "HackerNews Fschmtz";
 
   //1espaço acima, nenhum embaixo
@@ -9,12 +9,22 @@ class versaoNomeChangelog{
   
 Versão Atual: 
 
-1.8
-- Timer getTopStoriesSecundario
-- Correções
+2.0
+- LazyLoadScrollView implementado
+- Removido ScrollListener 
+  (Obs.: Flutter tem problemas de performance,
+   com ScrollListener no Listview.builder/separated)
 ''';
 
   static String changelogsAntigos = '''
+
+1.9
+- Corrigida a animação do BottomLoading
+- Bouncing Physics
+
+1.8
+- Timer getTopStoriesSecundario
+- Correções
 
 1.7b
 - Implementado getTopStoriesSecundario

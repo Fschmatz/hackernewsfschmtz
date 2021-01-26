@@ -8,6 +8,7 @@ import 'package:hackernewsfschmtz/classes/webservice.dart';
 import 'package:hackernewsfschmtz/configs/configs.dart';
 import 'package:hackernewsfschmtz/pages/containerStory.dart';
 import 'package:hackernewsfschmtz/pages/loading.dart';
+import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:share/share.dart';
 import 'package:skeleton_text/skeleton_text.dart';
 
@@ -19,10 +20,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<Story> _stories = List<Story>();
   bool carregando = true;
-  ScrollController _scrollController = ScrollController();
-  bool tapDown1 = false;
-  bool tapDown2 = false;
-  bool _showAppbar = true;
   bool isScrollingDown = false;
   bool loadMaisStoriesScroll = false;
 
@@ -30,43 +27,6 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     _getTopStoriesInicial();
-
-    //scroll noticias
-    _scrollController.addListener(() {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
-        loadMaisStoriesScroll = true;
-        _getMaisTopStories();
-      }
-    });
-
-    //topbar
-    _scrollController.addListener(() {
-      if (_scrollController.position.userScrollDirection ==
-          ScrollDirection.reverse) {
-        if (!isScrollingDown) {
-          isScrollingDown = true;
-          _showAppbar = false;
-          setState(() {});
-        }
-      }
-
-      if (_scrollController.position.userScrollDirection ==
-          ScrollDirection.forward) {
-        if (isScrollingDown) {
-          isScrollingDown = false;
-          _showAppbar = true;
-          setState(() {});
-        }
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    _scrollController.removeListener(() {});
-    super.dispose();
   }
 
   //get noticias
@@ -77,8 +37,6 @@ class _HomeState extends State<Home> {
       return Story.fromJSON(json);
     }).toList();
     setState(() {
-      tapDown1 = false;
-      tapDown2 = false;
       carregando = false;
       _stories = stories;
     });
@@ -95,14 +53,12 @@ class _HomeState extends State<Home> {
       return Story.fromJSON(json);
     }).toList();
     setState(() {
-      tapDown1 = false;
-      tapDown2 = false;
       carregando = false;
       _stories = stories;
       Navigator.of(context).pop();
     });
 
-    Timer(const Duration(milliseconds: 8000), () {
+    Timer(const Duration(milliseconds: 7000), () {
       _getTopStoriesSecundario();
     });
   }
@@ -119,6 +75,10 @@ class _HomeState extends State<Home> {
   }
 
   void _getMaisTopStories() async {
+    //animacao
+    setState(() {
+      loadMaisStoriesScroll = true;
+    });
     final responses = await Webservice().getTopStories(_stories.length + 10);
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
@@ -164,88 +124,86 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-            child: Column(children: <Widget>[
-          AnimatedContainer(
-            height: _showAppbar ? 55.0 : 0.0,
-            duration: Duration(milliseconds: 300),
-            child: AppBar(
-              elevation: 0,
-              title: Text("HN Fschmtz"),
-              actions: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 14, 0),
-                  child: IconButton(
-                      //color: Theme.of(context).hintColor,
-                      icon: Icon(
-                        Icons.refresh_outlined,
-                        size: 24,
-                      ),
-                      onPressed: () {
-                        _getTopStoriesRefresh();
-                        _showAlertDialogLoading(context);
-
-                        //scroll to top
-                        _scrollController.animateTo(0,
-                            duration: Duration(milliseconds: 600),
-                            curve: Curves.fastOutSlowIn);
-                      }),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                  child: IconButton(
-                      //color: Theme.of(context).hintColor,
-                      icon: Icon(
-                        Icons.settings,
-                        size: 24,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) => Configs(),
-                              fullscreenDialog: true,
-                            ));
-                      }),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: AnimatedSwitcher(
-              duration: Duration(milliseconds: 700),
-              child: carregando
-                  ? Loading()
-                  : ListView.separated(
-                      separatorBuilder: (context, index) => Divider(
-                        color: Colors.black, //.withOpacity(0.7)
-                      ),
-                      physics: AlwaysScrollableScrollPhysics(),
-                      controller: _scrollController,
-                      shrinkWrap: true,
-                      itemCount: _stories.length,
-                      itemBuilder: (context, index) {
-                        return ContainerStory(
-                            contador: index,
-                            launchBrowser: _launchBrowser,
-                            story: new Story(
-                              storyId: _stories[index].storyId,
-                              title: _stories[index].title,
-                              url: _stories[index].url,
-                            ));
-                      },
+        appBar: AppBar(
+            toolbarHeight: 52,
+            elevation: 0,
+            title: Text("HN Fschmtz"),
+            actions: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 14, 0),
+                child: IconButton(
+                    icon: Icon(
+                      Icons.refresh_outlined,
+                      size: 24,
                     ),
+                    onPressed: () {
+
+                      setState(() {
+                        carregando = true;
+                      });
+
+                      _getTopStoriesRefresh();
+                      _showAlertDialogLoading(context);
+
+                    }),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                child: IconButton(
+                    icon: Icon(
+                      Icons.settings,
+                      size: 24,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) => Configs(),
+                            fullscreenDialog: true,
+                          ));
+                    }),
+              ),
+            ]
+        ),
+        body: AnimatedSwitcher(
+          duration: Duration(milliseconds: 700),
+          child: carregando
+              ? Loading()
+              : LazyLoadScrollView(
+            onEndOfPage: () => _getMaisTopStories(),
+            child: ListView.builder(
+              physics: BouncingScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: _stories.length,
+              itemBuilder: (context, index) {
+                return ContainerStory(
+                    contador: index,
+                    launchBrowser: _launchBrowser,
+                    story: new Story(
+                      storyId: _stories[index].storyId,
+                      title: _stories[index].title,
+                      url: _stories[index].url,
+                    )
+                );
+              },
             ),
           ),
-        ])),
-        bottomSheet: loadMaisStoriesScroll
+        ),
+
+
+        bottomNavigationBar: loadMaisStoriesScroll
             ? PreferredSize(
-                preferredSize: Size.fromHeight(5.0),
-                child: LinearProgressIndicator(
-                  backgroundColor:
-                      Theme.of(context).accentColor.withOpacity(0.3),
-                ),
-              )
-            : SizedBox.shrink());
+          preferredSize: Size.fromHeight(5.0),
+          child: LinearProgressIndicator(
+            backgroundColor:
+            Theme.of(context).accentColor.withOpacity(0.3),
+          ),
+        )
+            : SizedBox.shrink()
+    );
   }
 }
+
+
+
+

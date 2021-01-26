@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 //CLARO
     ThemeData light = ThemeData(
     brightness: Brightness.light,
-    primaryColor: Color(0xFFF9F9FF),
+    primaryColor: Color(0xFFF1F1F4),
     accentColor: Color(0xFFCB6539),
 
     scaffoldBackgroundColor: Color(0xFFF9F9FF),

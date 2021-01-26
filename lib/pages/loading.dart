@@ -9,10 +9,7 @@ class Loading extends StatefulWidget {
 class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      separatorBuilder: (context, index) => Divider(
-        color: Colors.black,//.withOpacity(0.7)
-      ),
+    return ListView.builder(
       scrollDirection: Axis.vertical,
       physics: NeverScrollableScrollPhysics(),
       itemCount: 7,
@@ -29,7 +26,7 @@ class _LoadingState extends State<Loading> {
                       children: [
                         SkeletonAnimation(
                           shimmerColor: index % 2 != 0 ? Colors.grey : Colors.white38,
-                          shimmerDuration: 2800,
+                          shimmerDuration: 2900,
                           borderRadius: BorderRadius.circular(4),
                           child: Text("   ",
                               style: TextStyle(
@@ -43,7 +40,7 @@ class _LoadingState extends State<Loading> {
                           visible: index % 2 == 0,
                           child: SkeletonAnimation(
                             shimmerColor: index % 2 != 0 ? Colors.grey : Colors.white38,
-                            shimmerDuration: 2850,
+                            shimmerDuration: 2950,
                             borderRadius: BorderRadius.circular(4),
                             child: Text("   ",
                                 style: TextStyle(
@@ -56,7 +53,7 @@ class _LoadingState extends State<Loading> {
                         ),
                         SkeletonAnimation(
                           shimmerColor: index % 2 != 0 ? Colors.grey : Colors.white38,
-                          shimmerDuration: 2890,
+                          shimmerDuration: 2990,
                           borderRadius: BorderRadius.circular(4),
                           child: Text("   ",
                               maxLines: 2,
@@ -98,6 +95,7 @@ class _LoadingState extends State<Loading> {
                       ),
                     ],
                   ),
+                  Divider(thickness: 1,color: Colors.black38,)
                 ],
               ),
             ),
