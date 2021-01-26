@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hackernewsfschmtz/pages/topArticleList.dart';
+import 'package:hackernewsfschmtz/pages/home.dart';
 import 'package:hackernewsfschmtz/util/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +15,7 @@ Future<void> main() async {
 
         return MaterialApp(
           theme: notifier.darkTheme ? dark : light,
-          home: TopArticleList(),
+          home: Home(),
         );
       },
     ),

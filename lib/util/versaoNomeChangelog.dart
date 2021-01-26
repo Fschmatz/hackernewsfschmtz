@@ -1,7 +1,7 @@
 class versaoNomeChangelog{
 
   //se mudar o nome do App não esquecer de alterar, no manifesto
-  static String versaoApp = "1.4";
+  static String versaoApp = "1.7";
   static String nomeApp = "HackerNews Fschmtz";
 
   //1espaço acima, nenhum embaixo
@@ -9,12 +9,27 @@ class versaoNomeChangelog{
   
 Versão Atual: 
 
-1.4
-- Correções
-- AnimatedSwitcher
+1.7
+- Bottom ProgressBar para Scroll
 ''';
 
   static String changelogsAntigos = '''
+
+1.6
+- Separadas as classes da Home
+- Dialog Loading do Refresh
+- Removido Gesture Detector pela Performance
+
+1.5b
+- Corrigido o erro do link Null
+
+1.5
+- SkeletonAnimation
+- Correções
+
+1.4
+- Correções
+- AnimatedSwitcher
 
 1.3
 - TopBar Hide/Unhide
