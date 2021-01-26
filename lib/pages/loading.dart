@@ -95,7 +95,7 @@ class _LoadingState extends State<Loading> {
                       ),
                     ],
                   ),
-                  Divider(thickness: 1,color: Colors.black38,)
+                  Container(child: Divider(thickness: 1,color: Colors.black38,))
                 ],
               ),
             ),

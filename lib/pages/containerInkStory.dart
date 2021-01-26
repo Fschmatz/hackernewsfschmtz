@@ -2,24 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:share/share.dart';
 
-class ContainerStory extends StatefulWidget {
-
+class ContainerInkStory extends StatelessWidget {
   Story story;
   int contador;
   Function(String) launchBrowser;
 
-  @override
-  _ContainerStoryState createState() => _ContainerStoryState();
+  ContainerInkStory({Key key,this.story, this.launchBrowser,this.contador}) : super(key: key);
 
-  ContainerStory({Key key,this.story, this.launchBrowser,this.contador}) : super(key: key);
-}
-
-class _ContainerStoryState extends State<ContainerStory> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        widget.launchBrowser(widget.story.url);
+        launchBrowser(story.url);
       },
       child: Column(
         children: [
@@ -28,7 +22,7 @@ class _ContainerStoryState extends State<ContainerStory> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(widget.story.title,
+                Text(story.title,
                     style: TextStyle(
                       fontSize: 18,
                     )),
@@ -38,8 +32,8 @@ class _ContainerStoryState extends State<ContainerStory> {
 
                 //AS VEZES PODE SER NULO
                 Visibility(
-                  visible: widget.story.url != null,
-                  child: Text(widget.story.url.toString(),
+                  visible: story.url != null,
+                  child: Text(story.url.toString(),
                       maxLines: 2,
                       style: TextStyle(
                           fontSize: 12,
@@ -53,7 +47,7 @@ class _ContainerStoryState extends State<ContainerStory> {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(19, 0, 0, 0),
-                child: Text("${1 + widget.contador}",
+                child: Text("${1 + contador}",
                     style: TextStyle(
                         fontSize: 18,
                         color: Theme.of(context).accentColor)),
@@ -69,7 +63,7 @@ class _ContainerStoryState extends State<ContainerStory> {
                         size: 20,
                       ),
                       onPressed: () {
-                        Share.share(widget.story.url);
+                        Share.share(story.url);
                       }),
                   SizedBox(
                     width: 10,
@@ -81,9 +75,9 @@ class _ContainerStoryState extends State<ContainerStory> {
                         size: 20,
                       ),
                       onPressed: () {
-                        widget.launchBrowser(
+                        launchBrowser(
                             'https://news.ycombinator.com/item?id=' +
-                                widget.story
+                                story
                                     .storyId
                                     .toString());
                       }),
@@ -94,7 +88,7 @@ class _ContainerStoryState extends State<ContainerStory> {
               ),
             ],
           ),
-          Divider(thickness: 1,color: Colors.black38,)
+          Container(child: Divider(thickness: 1,color: Colors.black38,))
         ],
       ),
     );

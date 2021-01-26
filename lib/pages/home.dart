@@ -6,11 +6,9 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:hackernewsfschmtz/classes/webservice.dart';
 import 'package:hackernewsfschmtz/configs/configs.dart';
-import 'package:hackernewsfschmtz/pages/containerStory.dart';
+import 'package:hackernewsfschmtz/pages/containerInkStory.dart';
 import 'package:hackernewsfschmtz/pages/loading.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
-import 'package:share/share.dart';
-import 'package:skeleton_text/skeleton_text.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -75,19 +73,21 @@ class _HomeState extends State<Home> {
   }
 
   void _getMaisTopStories() async {
-    //animacao
-    setState(() {
-      loadMaisStoriesScroll = true;
-    });
-    final responses = await Webservice().getTopStories(_stories.length + 10);
-    final stories = responses.map((response) {
-      final json = jsonDecode(response.body);
-      return Story.fromJSON(json);
-    }).toList();
-    setState(() {
-      loadMaisStoriesScroll = false;
-      _stories = stories;
-    });
+    if(_stories.length > 20) {
+      //animacao
+      setState(() {
+        loadMaisStoriesScroll = true;
+      });
+      final responses = await Webservice().getTopStories(_stories.length + 10);
+      final stories = responses.map((response) {
+        final json = jsonDecode(response.body);
+        return Story.fromJSON(json);
+      }).toList();
+      setState(() {
+        loadMaisStoriesScroll = false;
+        _stories = stories;
+      });
+    }
   }
 
   //Chrome Tabs
@@ -172,11 +172,11 @@ class _HomeState extends State<Home> {
               : LazyLoadScrollView(
             onEndOfPage: () => _getMaisTopStories(),
             child: ListView.builder(
-              physics: BouncingScrollPhysics(),
+              //physics: BouncingScrollPhysics(),
               shrinkWrap: true,
               itemCount: _stories.length,
               itemBuilder: (context, index) {
-                return ContainerStory(
+                return ContainerInkStory(  // teste stateless
                     contador: index,
                     launchBrowser: _launchBrowser,
                     story: new Story(
@@ -185,6 +185,7 @@ class _HomeState extends State<Home> {
                       url: _stories[index].url,
                     )
                 );
+
               },
             ),
           ),
