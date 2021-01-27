@@ -1,7 +1,7 @@
 class versaoNomeChangelog{
 
   //se mudar o nome do App não esquecer de alterar, no manifesto
-  static String versaoApp = "2.2";
+  static String versaoApp = "2.2b";
   static String nomeApp = "HackerNews Fschmtz";
 
   //1espaço acima, nenhum embaixo
@@ -9,10 +9,9 @@ class versaoNomeChangelog{
   
 Versão Atual:  
 
-2.2
+2.2b
 - Hide AppBar
 - Correções
-- RichText + TextSpan
 ''';
 
   static String changelogsAntigos = '''
