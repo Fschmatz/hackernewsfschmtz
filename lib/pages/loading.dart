@@ -20,7 +20,7 @@ class _LoadingState extends State<Loading> {
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.fromLTRB(18, 8, 18, 0),
+                    padding: EdgeInsets.fromLTRB(18, 10, 18, 0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [

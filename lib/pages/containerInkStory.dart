@@ -13,12 +13,17 @@ class ContainerInkStory extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        launchBrowser(story.url);
+        if (story.url != null){
+          launchBrowser(story.url);
+        } else {
+          // PARA ABRIR COMENTARIOS QUANDO HOUVER UM ASK HN
+          launchBrowser('https://news.ycombinator.com/item?id='+story.storyId.toString());
+        }
       },
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.fromLTRB(18, 8, 18, 0),
+            padding: EdgeInsets.fromLTRB(18, 10, 18, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -75,11 +80,7 @@ class ContainerInkStory extends StatelessWidget {
                         size: 20,
                       ),
                       onPressed: () {
-                        launchBrowser(
-                            'https://news.ycombinator.com/item?id=' +
-                                story
-                                    .storyId
-                                    .toString());
+                        launchBrowser('https://news.ycombinator.com/item?id='+story.storyId.toString());
                       }),
                   SizedBox(
                     width: 8,

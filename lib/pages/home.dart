@@ -50,7 +50,7 @@ class _HomeState extends State<Home> {
       _stories = stories;
     });
 
-    Timer(const Duration(milliseconds: 7000), () {
+    Timer(const Duration(milliseconds: 5000), () {
       _getTopStoriesSecundario();
     });
   }
@@ -67,13 +67,13 @@ class _HomeState extends State<Home> {
       Navigator.of(context).pop();
     });
 
-    Timer(const Duration(milliseconds: 7000), () {
+    Timer(const Duration(milliseconds: 5000), () {
       _getTopStoriesSecundario();
     });
   }
 
   void _getTopStoriesSecundario() async {
-    final responses = await Webservice().getTopStories(_stories.length + 15);
+    final responses = await Webservice().getTopStories(30);
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
@@ -138,7 +138,7 @@ class _HomeState extends State<Home> {
         appBar: ScrollAppBar(
             controller: _scrollController,
             //toolbarHeight: 55,
-            elevation: 0,
+            elevation: 1,
             title: Text("HN Fschmtz"),
             actions: <Widget>[
               Padding(
