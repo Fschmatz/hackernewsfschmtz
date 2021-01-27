@@ -84,7 +84,7 @@ class _HomeState extends State<Home> {
   }
 
   void _getMaisTopStories() async {
-    if(_stories.length > 20) {
+    if(_stories.length > 25) {
       //animacao
       setState(() {
         loadMaisStoriesScroll = true;
@@ -137,8 +137,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
         appBar: ScrollAppBar(
             controller: _scrollController,
-            //toolbarHeight: 55,
-            elevation: 1,
+            elevation: 0,
             title: Text("HN Fschmtz"),
             actions: <Widget>[
               Padding(

@@ -23,7 +23,7 @@ class ContainerInkStory extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.fromLTRB(18, 10, 18, 0),
+            padding: EdgeInsets.fromLTRB(18, 12, 18, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
