@@ -20,14 +20,12 @@ class _HomeState extends State<Home> {
   List<Story> _stories = List<Story>();
   bool carregando = true;
   bool loadMaisStoriesScroll = false;
-
-  //Appbar Hide
   ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
-    super.initState();
     _getTopStoriesInicial();
+    super.initState();
   }
 
   @override
@@ -48,9 +46,10 @@ class _HomeState extends State<Home> {
     setState(() {
       carregando = false;
       _stories = stories;
+      print(_stories.length.toString());
     });
 
-    Timer(const Duration(milliseconds: 5000), () {
+    Timer(const Duration(milliseconds: 6000), () {
       _getTopStoriesSecundario();
     });
   }
@@ -62,44 +61,55 @@ class _HomeState extends State<Home> {
       return Story.fromJSON(json);
     }).toList();
     setState(() {
-      //carregando = false;
       _stories = stories;
       Navigator.of(context).pop();
     });
 
-    Timer(const Duration(milliseconds: 5000), () {
+    Timer(const Duration(milliseconds: 6000), () {
       _getTopStoriesSecundario();
     });
   }
 
+
+  //USADO PRO TIMER
   void _getTopStoriesSecundario() async {
-    final responses = await Webservice().getTopStories(30);
+    final responses = await Webservice().getTopStoriesTimerSecundario(15, 15);
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
     }).toList();
     setState(() {
-      _stories = stories;
+      _stories += stories;
+      print(_stories.length.toString());
     });
   }
 
-  void _getMaisTopStories() async {
-    if(_stories.length > 25) {
-      //animacao
+  //USADO PRO SCROLL
+  void _getMaisTopStoriesScrolling() async {
+    //if(_stories.length > 25) {
+    if(loadMaisStoriesScroll == false ) {
+      //liga animacao bottom
       setState(() {
         loadMaisStoriesScroll = true;
       });
-      final responses = await Webservice().getTopStories(_stories.length + 10);
+
+      final responses = await Webservice().getTopStoriesScrolling(_stories.length, 10);
       final stories = responses.map((response) {
         final json = jsonDecode(response.body);
         return Story.fromJSON(json);
       }).toList();
       setState(() {
         loadMaisStoriesScroll = false;
-        _stories = stories;
+        _stories += stories;
+        print(_stories.length.toString());
       });
     }
   }
+
+  void PrintTeste(){
+    print ("oi do print TESTe");
+  }
+
 
   //Chrome Tabs
   _launchBrowser(String url) async {
@@ -132,6 +142,9 @@ class _HomeState extends State<Home> {
         });
   }
 
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -150,12 +163,11 @@ class _HomeState extends State<Home> {
                     onPressed: () {
                       //scroll to top
                       _scrollController.animateTo(0,
-                          duration: Duration(milliseconds: 600),
+                          duration: Duration(milliseconds: 700),
                           curve: Curves.fastOutSlowIn);
 
                       _getTopStoriesRefresh();
                       _showAlertDialogLoading(context);
-
                     }),
               ),
               Padding(
@@ -183,7 +195,7 @@ class _HomeState extends State<Home> {
             child: carregando
                 ? Loading()
                 : LazyLoadScrollView(
-              onEndOfPage: () => _getMaisTopStories(),
+              onEndOfPage: () => _getMaisTopStoriesScrolling(), //PrintTeste(), //
               child: ListView.builder(
                 controller: _scrollController,
                 shrinkWrap: true,

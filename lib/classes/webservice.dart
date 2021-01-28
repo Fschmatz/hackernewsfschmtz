@@ -12,7 +12,6 @@ class Webservice {
   }
 
   Future<List<Response>> getTopStories(int quantidade) async {
-
     final response = await http.get(UrlHelper.urlForTopStories());
     if (response.statusCode == 200) {
       Iterable storyIds = jsonDecode(response.body);
@@ -24,4 +23,28 @@ class Webservice {
     }
   }
 
+  Future<List<Response>> getTopStoriesTimerSecundario(int valorSkip,int quantidade) async {
+    final response = await http.get(UrlHelper.urlForTopStories());
+    if (response.statusCode == 200) {
+      Iterable storyIds = jsonDecode(response.body);
+      return Future.wait(storyIds.skip(valorSkip).take(quantidade).map((storyId) {
+        return _getStory(storyId);
+      }));
+    } else {
+      throw Exception("Sem resposta");
+    }
+  }
+
+  Future<List<Response>> getTopStoriesScrolling(int valorSkip,int quantidade) async {
+    final response = await http.get(UrlHelper.urlForTopStories());
+    if (response.statusCode == 200) {
+      Iterable storyIds = jsonDecode(response.body);
+      return Future.wait(storyIds.skip(valorSkip).take(quantidade).map((storyId) {
+        return _getStory(storyId);
+      }));
+    } else {
+      throw Exception("Sem resposta");
+    }
+  }
 }
+
