@@ -30,9 +30,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 //ESCURO
     ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Color(0xFF1A1B1D),//primaryColor: Color(0xFF1A1B1E),
+    primaryColor: Color(0xFF1A1B1E),//primaryColor: Color(0xFF1A1B1E),
     accentColor: Color(0xFFCB6539),
-    scaffoldBackgroundColor: Color(0xFF202123), //0xFF202124
+    scaffoldBackgroundColor: Color(0xFF202124), //0xFF202124
 
     cardTheme: CardTheme(
       color: Color(0xFF252629),

@@ -39,7 +39,7 @@ class Changelog extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Versões Anteriores: ",
+                  "Previous Versions: ",
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     fontSize: 18,

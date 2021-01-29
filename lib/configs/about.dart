@@ -9,7 +9,7 @@ class About extends StatelessWidget {
     return Scaffold(
 
         appBar: AppBar(
-          title: Text("Sobre"),
+          title: Text("About"),
           centerTitle: true,
           elevation: 0.0,
         ),
@@ -40,9 +40,10 @@ class About extends StatelessWidget {
 
                 Text( '''                     
                 
-MARTELADO E REFEITO DO ZERO: 
-0 X POR ENQUANTO !!!
-(Esse Rendeu!!!)       
+HAMMERED AND REDONE:
+0 Times !!!
+( This is The Way! )  
+     
       ''',
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -53,14 +54,9 @@ MARTELADO E REFEITO DO ZERO:
 
                 Text( '''                     
                                 
- Aplicativo criado utilizando 
-o Flutter e a linguagem Dart,
-usado para testes e aprendizado.       
-                     
- Este aplicativo um dia terá 
-seu código disponibilizado 
-gratuitamente no GitHub e 
-talvez adicionado ao F-Droid. 
+Application created using
+Flutter and the Dart language,
+used for testing and learning.
             
       ''',
                   textAlign: TextAlign.center,

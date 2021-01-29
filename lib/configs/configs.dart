@@ -26,7 +26,7 @@ class _ConfigsState extends State<Configs> {
     return Scaffold(
 
         appBar: AppBar(
-          title: Text("Configurações"),
+          title: Text("Settings"),
           centerTitle: true,
           elevation: 0.0,
         ),
@@ -69,7 +69,7 @@ class _ConfigsState extends State<Configs> {
                       leading: Icon(Icons.text_snippet_outlined),
                       trailing: Icon(Icons.keyboard_arrow_right),
                       title: Text(
-                        "Sobre",
+                        "About",
                         style: TextStyle(fontSize: 18),
                       ),
                       onTap: () {
@@ -107,7 +107,7 @@ class _ConfigsState extends State<Configs> {
                 height: 40.0,
               ),
               Text(
-                "Opções: ",
+                "Options: ",
                 style: TextStyle(fontSize: 21),
               ),
               SizedBox(
@@ -117,7 +117,7 @@ class _ConfigsState extends State<Configs> {
               ListTile(
                 contentPadding: const EdgeInsets.all(0),
                 title: Text(
-                  "Tema Escuro",
+                  "Dark Theme",
                   style: TextStyle(fontSize: 18),
                 ),
                 trailing: Consumer<ThemeNotifier>(

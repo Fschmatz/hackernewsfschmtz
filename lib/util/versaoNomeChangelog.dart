@@ -1,7 +1,7 @@
 class versaoNomeChangelog{
 
   //se mudar o nome do App não esquecer de alterar, no manifesto
-  static String versaoApp = "2.4";
+  static String versaoApp = "2.6";
   static String nomeApp = "HackerNews Fschmtz";
 
   //1espaço acima, nenhum embaixo
@@ -9,111 +9,120 @@ class versaoNomeChangelog{
   
 Versão Atual:  
 
-2.4
-- Skip
-- Correções
+2.6
+- App in English
+- TimeAgo
+- Fixes
 ''';
 
   static String changelogsAntigos = '''
 
+2.5
+- Score and Number of Comments on Home
+- Fixes
+
+2.4
+- Skip
+- Fixes
+
 2.3b
-- Correções
-- Ask HN agora abre os comentários
+- Fixes
+- Ask HN now opens the comments
 
 2.2b
 - Hide AppBar
-- Correções
+- Fixes
 
 2.1
-- StatelessWidget para Story
-- Removido BouncePhysics
+- StatelessWidget for Story
+- Removed BouncePhysics
 
 2.0
-- LazyLoadScrollView implementado
-- Removido ScrollListener 
-  (Obs.: Flutter tem problemas de performance,
-  com ScrollListener no Listview.builder/separated
-  e uso do Physics)
+- LazyLoadScrollView implemented
+- Removed ScrollListener
+  (Note: Flutter has performance problems,
+  with ScrollListener in Listview.builder / separated
+  and use of Physics)
   
 1.9
-- Corrigida a animação do BottomLoading
+- Fixed BottomLoading animation
 - Bouncing Physics
 
 1.8
-- Timer getTopStoriesSecundario
-- Correções
+- Timer Secondary getTopStories
+- Fixes
 
 1.7b
-- Implementado getTopStoriesSecundario
-- Removido TapDown
+- Implemented Secondary getTopStories 
+- Removed TapDown
 
 1.7
-- Bottom ProgressBar para Scroll
+- Bottom ProgressBar for Scroll
 
 1.6
-- Separadas as classes da Home
-- Dialog Loading do Refresh
-- Removido Gesture Detector pela Performance
+- Home classes separated
+- Refresh Dialog Loading
+- Removed Gesture Detector for Performance
 
 1.5b
-- Corrigido o erro do link Null
+- Fixed Null link error
 
 1.5
 - SkeletonAnimation
-- Correções
+- Fixes
 
 1.4
-- Correções
+- Fixes
 - AnimatedSwitcher
 
 1.3
-- TopBar Hide/Unhide
-- Correções
-- Novo Ícone
+- TopBar Hide / Unhide
+- Fixes
+- New Icon
 
 1.2
-- Mudanças de Layout
-- Card Removido
-- Correções
+- Layout Changes
+- Card Removed
+- Fixes
   
 1.1
 - ScrollController
-- Correções
+- Fixes
 
 1.0
-- Correções
+- Fixes
 
 0.9b
-- Correções
-- Mudanças no Card
+- Fixes
+- Card changes
 
 0.8
-- Correções
+- Fixes
 - Chrome Custom Tabs
 
 0.7
-- Correções
-- Testes com LazyLoading
+- Fixes
+- Tests with LazyLoading
 
 0.6
-- Abrir links no browser
+- Open links in the browser
 
 0.5
-- Novo Card
+- New Card
 - Flutter Share
 
 0.4
-- Correções
+- Fixes
 
 0.3
-- Correções
-- Add Internet ao manifesto
+- Fixes
+- Add Internet to the manifest
 
 0.2
-- Correções
+- Fixes
 
 0.1
-- Inicio do Projeto                                   
+- Project Start                                  
 
 ''';
 

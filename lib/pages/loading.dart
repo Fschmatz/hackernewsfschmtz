@@ -25,23 +25,25 @@ class _LoadingState extends State<Loading> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         SkeletonAnimation(
-                          shimmerColor: index % 2 != 0 ? Colors.grey : Colors.white38,
-                          shimmerDuration: 2900,
-                          borderRadius: BorderRadius.circular(4),
+                          gradientColor: Colors.white38,
+                          shimmerColor: Colors.grey.withOpacity(0.2),
+                          shimmerDuration: 3100,
+                          borderRadius: BorderRadius.circular(2),
                           child: Text("   ",
                               style: TextStyle(
                                 fontSize: 18,
                               )),
                         ),
                         SizedBox(
-                          height: 4,
+                          height: 6,
                         ),
                         Visibility(
                           visible: index % 2 == 0,
                           child: SkeletonAnimation(
-                            shimmerColor: index % 2 != 0 ? Colors.grey : Colors.white38,
-                            shimmerDuration: 2950,
-                            borderRadius: BorderRadius.circular(4),
+                            gradientColor: Colors.white38,
+                            shimmerColor: Colors.grey.withOpacity(0.4),
+                            shimmerDuration: 3120,
+                            borderRadius: BorderRadius.circular(2),
                             child: Text("   ",
                                 style: TextStyle(
                                   fontSize: 17,
@@ -49,12 +51,13 @@ class _LoadingState extends State<Loading> {
                           ),
                         ),
                         SizedBox(
-                          height: 4,
+                          height: 6,
                         ),
                         SkeletonAnimation(
-                          shimmerColor: index % 2 != 0 ? Colors.grey : Colors.white38,
-                          shimmerDuration: 2990,
-                          borderRadius: BorderRadius.circular(4),
+                          gradientColor: Colors.white38,
+                          shimmerColor: Colors.grey.withOpacity(0.5),
+                          shimmerDuration: 3160,
+                          borderRadius: BorderRadius.circular(2),
                           child: Text("   ",
                               maxLines: 2,
                               style: TextStyle(
@@ -64,9 +67,22 @@ class _LoadingState extends State<Loading> {
                       ],
                     ),
                   ),
+                  SizedBox(height: 10,),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(17, 0, 0, 0),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.arrow_upward_outlined,
+                              color: Theme.of(context).accentColor,
+                              size: 18,
+                            ),
+                          ],
+                        ),
+                      ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -74,7 +90,7 @@ class _LoadingState extends State<Loading> {
                           IconButton(
                             color: Theme.of(context).hintColor,
                             icon: Icon(
-                              Icons.share_outlined,
+                              Icons.comment_outlined,
                               size: 20,
                             ),
                           ),
@@ -84,10 +100,11 @@ class _LoadingState extends State<Loading> {
                           IconButton(
                             color: Theme.of(context).hintColor,
                             icon: Icon(
-                              Icons.comment_outlined,
+                              Icons.share_outlined,
                               size: 20,
                             ),
                           ),
+
                           SizedBox(
                             width: 8,
                           ),
@@ -99,10 +116,11 @@ class _LoadingState extends State<Loading> {
                 ],
               ),
             ),
-
           ],
         );
       },
     );
   }
 }
+
+//ANTIGO  shimmerColor: index % 2 != 0 ? Colors.grey : Colors.white38,

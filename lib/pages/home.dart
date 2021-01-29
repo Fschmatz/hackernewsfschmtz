@@ -46,7 +46,6 @@ class _HomeState extends State<Home> {
     setState(() {
       carregando = false;
       _stories = stories;
-      print(_stories.length.toString());
     });
 
     Timer(const Duration(milliseconds: 6000), () {
@@ -80,13 +79,11 @@ class _HomeState extends State<Home> {
     }).toList();
     setState(() {
       _stories += stories;
-      print(_stories.length.toString());
     });
   }
 
   //USADO PRO SCROLL
   void _getMaisTopStoriesScrolling() async {
-    //if(_stories.length > 25) {
     if(loadMaisStoriesScroll == false ) {
       //liga animacao bottom
       setState(() {
@@ -101,15 +98,9 @@ class _HomeState extends State<Home> {
       setState(() {
         loadMaisStoriesScroll = false;
         _stories += stories;
-        print(_stories.length.toString());
       });
     }
   }
-
-  void PrintTeste(){
-    print ("oi do print TESTe");
-  }
-
 
   //Chrome Tabs
   _launchBrowser(String url) async {
@@ -151,7 +142,7 @@ class _HomeState extends State<Home> {
         appBar: ScrollAppBar(
             controller: _scrollController,
             elevation: 0,
-            title: Text("HN Fschmtz"),
+            title: Text("HackerNews Fschmtz"), //Text("HN Fschmtz")
             actions: <Widget>[
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 13, 0),
@@ -208,6 +199,9 @@ class _HomeState extends State<Home> {
                         storyId: _stories[index].storyId,
                         title: _stories[index].title,
                         url: _stories[index].url,
+                        score: _stories[index].score,
+                        commentsCount: _stories[index].commentsCount,
+                        time: _stories[index].time,
                       )
                   );
                 },

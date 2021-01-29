@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:share/share.dart';
+import 'package:intl/intl.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class ContainerInkStory extends StatelessWidget {
   Story story;
   int contador;
   Function(String) launchBrowser;
 
-  ContainerInkStory({Key key,this.story, this.launchBrowser,this.contador}) : super(key: key);
+  ContainerInkStory({Key key, this.story, this.launchBrowser, this.contador})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    String timeAgo = timeago.format(DateTime.fromMillisecondsSinceEpoch(story.time * 1000));
+
     return InkWell(
       onTap: () {
-        if (story.url != null){
+        if (story.url != null) {
           launchBrowser(story.url);
         } else {
           // PARA ABRIR COMENTARIOS QUANDO HOUVER UM ASK HN
-          launchBrowser('https://news.ycombinator.com/item?id='+story.storyId.toString());
+          launchBrowser('https://news.ycombinator.com/item?id=' +
+              story.storyId.toString());
         }
       },
       child: Column(
@@ -27,12 +34,28 @@ class ContainerInkStory extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(story.title,
-                    style: TextStyle(
-                      fontSize: 18,
-                    )),
+                RichText(
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: "${1 + contador}. ",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: Theme.of(context).accentColor)),
+                      TextSpan(
+                          text: story.title,
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Theme.of(context)
+                                  .primaryTextTheme
+                                  .bodyText1
+                                  .color)),
+                    ],
+                  ),
+                ),
                 SizedBox(
-                  height: 4,
+                  height: 8,
                 ),
 
                 //AS VEZES PODE SER NULO
@@ -41,58 +64,100 @@ class ContainerInkStory extends StatelessWidget {
                   child: Text(story.url.toString(),
                       maxLines: 2,
                       style: TextStyle(
-                          fontSize: 12,
-                          color: Theme.of(context).hintColor)),
+                          fontSize: 12, color: Theme.of(context).hintColor)),
                 ),
               ],
             ),
+          ),
+          SizedBox(
+            height: 8,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(19, 0, 0, 0),
-                child: Text("${1 + contador}",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Theme.of(context).accentColor)),
+                padding: const EdgeInsets.fromLTRB(17, 0, 0, 0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.arrow_upward_outlined,
+                      color: Theme.of(context).accentColor,
+                      size: 18,
+                    ),
+                    Text(" ${story.score} Points",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Theme.of(context).accentColor)),
+                    SizedBox(width: 15),
+                    Text(timeAgo,
+                        style: TextStyle(
+                            fontSize: 16, color: Theme.of(context).hintColor)),
+                  ],
+                ),
               ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                      color: Theme.of(context).hintColor,
-                      icon: Icon(
-                        Icons.share_outlined,
-                        size: 20,
-                      ),
-                      onPressed: () {
-                        Share.share(story.url);
-                      }),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  IconButton(
-                      color: Theme.of(context).hintColor,
-                      icon: Icon(
-                        Icons.comment_outlined,
-                        size: 20,
-                      ),
-                      onPressed: () {
-                        launchBrowser('https://news.ycombinator.com/item?id='+story.storyId.toString());
-                      }),
-                  SizedBox(
-                    width: 8,
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 6, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    MaterialButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.comment_outlined,
+                              size: 20,
+                              color: Theme.of(context).hintColor,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Visibility(
+                              visible: story.commentsCount != null,
+                              child: Text(story.commentsCount.toString(),
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Theme.of(context).hintColor,
+                                  )),
+                            ),
+                          ],
+                        ),
+                        onPressed: () {
+                          launchBrowser(
+                              'https://news.ycombinator.com/item?id=' +
+                                  story.storyId.toString());
+                        }),
+                    MaterialButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        minWidth: 0,
+                        child: Icon(
+                          Icons.share_outlined,
+                          size: 20,
+                          color: Theme.of(context).hintColor,
+                        ),
+                        onPressed: () {
+                          Share.share(story.url);
+                        }),
+                    /*SizedBox(
+                      width: 15,
+                    ),*/
+                  ],
+                ),
               ),
             ],
           ),
-          Container(child: Divider(thickness: 1,color: Colors.black38,))
+          Container(
+              child: Divider(
+            thickness: 1,
+            color: Colors.black38,
+          ))
         ],
       ),
     );
   }
 }
-
