@@ -28,7 +28,7 @@ class _LoadingState extends State<Loading> {
                           gradientColor: Colors.white38,
                           shimmerColor: Colors.grey.withOpacity(0.2),
                           shimmerDuration: 3100,
-                          borderRadius: BorderRadius.circular(2),
+                          borderRadius: BorderRadius.circular(5),
                           child: Text("   ",
                               style: TextStyle(
                                 fontSize: 18,
@@ -43,7 +43,7 @@ class _LoadingState extends State<Loading> {
                             gradientColor: Colors.white38,
                             shimmerColor: Colors.grey.withOpacity(0.4),
                             shimmerDuration: 3120,
-                            borderRadius: BorderRadius.circular(2),
+                            borderRadius: BorderRadius.circular(5),
                             child: Text("   ",
                                 style: TextStyle(
                                   fontSize: 17,
@@ -57,7 +57,7 @@ class _LoadingState extends State<Loading> {
                           gradientColor: Colors.white38,
                           shimmerColor: Colors.grey.withOpacity(0.5),
                           shimmerDuration: 3160,
-                          borderRadius: BorderRadius.circular(2),
+                          borderRadius: BorderRadius.circular(5),
                           child: Text("   ",
                               maxLines: 2,
                               style: TextStyle(
@@ -68,48 +68,88 @@ class _LoadingState extends State<Loading> {
                     ),
                   ),
                   SizedBox(height: 10,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(17, 0, 0, 0),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.arrow_upward_outlined,
-                              color: Theme.of(context).accentColor,
-                              size: 18,
-                            ),
-                          ],
-                        ),
-                      ),
                       Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          IconButton(
-                            color: Theme.of(context).hintColor,
-                            icon: Icon(
-                              Icons.comment_outlined,
-                              size: 20,
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(17, 0, 0, 0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Icon(
+                                  Icons.text_snippet_outlined, //article
+                                  color: Theme.of(context).accentColor,
+                                  size: 18,
+                                ),
+                                SizedBox(width: 30,),
+                                Icon(
+                                  Icons.arrow_upward_outlined,
+                                  color: Theme.of(context).accentColor,
+                                  size: 18,
+                                ),
+                              ],
                             ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          IconButton(
-                            color: Theme.of(context).hintColor,
-                            icon: Icon(
-                              Icons.share_outlined,
-                              size: 20,
-                            ),
-                          ),
-
-                          SizedBox(
-                            width: 8,
                           ),
                         ],
                       ),
+
+                      //SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(19, 0, 0, 0),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SkeletonAnimation(
+                                gradientColor: Colors.white38,
+                                shimmerColor: Colors.grey.withOpacity(0.5),
+                                shimmerDuration: 3160,
+                                borderRadius: BorderRadius.circular(5),
+                                child: Text("                               ",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        color: Theme.of(context).hintColor)),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  MaterialButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.comment_outlined,
+                                            size: 20,
+                                            color: Theme.of(context).hintColor,
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+
+                                        ],
+                                      ),
+                                      ),
+                                  MaterialButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      minWidth: 0,
+                                      child: Icon(
+                                        Icons.share_outlined,
+                                        size: 20,
+                                        color: Theme.of(context).hintColor,
+                                      ),
+                                      ),
+                                  SizedBox(
+                                    width: 6,
+                                  ),
+                                ],
+                              ),
+                            ]),
+                      )
                     ],
                   ),
                   Container(child: Divider(thickness: 1,color: Colors.black38,))

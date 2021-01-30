@@ -6,6 +6,7 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:hackernewsfschmtz/classes/webservice.dart';
 import 'package:hackernewsfschmtz/configs/configs.dart';
+import 'package:hackernewsfschmtz/db/lidosDao.dart';
 import 'package:hackernewsfschmtz/pages/containerInkStory.dart';
 import 'package:hackernewsfschmtz/pages/loading.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
@@ -22,10 +23,38 @@ class _HomeState extends State<Home> {
   bool loadMaisStoriesScroll = false;
   ScrollController _scrollController = ScrollController();
 
+
+  //LOGICA DB
+  List<Map<String, dynamic>> mapIdLidos = new List();
+  final dbLidos = lidosDao.instance;
+  List<int> listaIdsLidos = new List();
+
   @override
   void initState() {
     _getTopStoriesInicial();
+    _getStoryIdsLidos();
     super.initState();
+  }
+
+  Future<void> _getStoryIdsLidos() async {
+    var resposta = await dbLidos.queryAllStoriesLidosIds();
+    setState(() {
+      mapIdLidos = resposta;
+    });
+
+    int i = 0;
+    while(i < resposta.length){
+      listaIdsLidos.add(resposta[i]['idTopStory']);
+      i++;
+    }
+  }
+
+  void _markRead(int idStory) async {
+    final dbLidos = lidosDao.instance;
+    Map<String, dynamic> row = {
+      lidosDao.columnidTopStory: idStory,
+    };
+    final id = await dbLidos.insert(row);
   }
 
   @override
@@ -33,6 +62,12 @@ class _HomeState extends State<Home> {
     _scrollController.dispose();
     _scrollController.removeListener(() {});
     super.dispose();
+  }
+
+  refresh(){
+    setState(() {
+      _getStoryIdsLidos();
+    });
   }
 
 
@@ -142,7 +177,7 @@ class _HomeState extends State<Home> {
         appBar: ScrollAppBar(
             controller: _scrollController,
             elevation: 0,
-            title: Text("HackerNews Fschmtz"), //Text("HN Fschmtz")
+            title: Text("HN Fschmtz"), //Text("HN Fschmtz")
             actions: <Widget>[
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 13, 0),
@@ -158,6 +193,7 @@ class _HomeState extends State<Home> {
                           curve: Curves.fastOutSlowIn);
 
                       _getTopStoriesRefresh();
+                      _getStoryIdsLidos();
                       _showAlertDialogLoading(context);
                     }),
               ),
@@ -187,14 +223,22 @@ class _HomeState extends State<Home> {
                 ? Loading()
                 : LazyLoadScrollView(
               onEndOfPage: () => _getMaisTopStoriesScrolling(), //PrintTeste(), //
-              child: ListView.builder(
+              child: ListView.separated(
+                separatorBuilder: (BuildContext context, int index) =>
+                    Divider(
+                  thickness: 1,
+                  color: Colors.black38,
+                ),
                 controller: _scrollController,
                 shrinkWrap: true,
                 itemCount: _stories.length,
                 itemBuilder: (context, index) {
                   return ContainerInkStory(
+                      refresh: refresh,
                       contador: index,
                       launchBrowser: _launchBrowser,
+                      markRead: _markRead, //['idTopStory']
+                      lido: listaIdsLidos.contains(_stories[index].storyId) ? true : false,
                       story: new Story(
                         storyId: _stories[index].storyId,
                         title: _stories[index].title,
@@ -222,6 +266,7 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
 
 
 

@@ -5,34 +5,25 @@ import 'package:shared_preferences/shared_preferences.dart';
     ThemeData light = ThemeData(
     brightness: Brightness.light,
     primaryColor: Color(0xFFF1F1F4),
-    accentColor: Color(0xFFCB6539),
-
+    accentColor: Color(0xFF01A173),
     scaffoldBackgroundColor: Color(0xFFF9F9FF),
+
     cardTheme: CardTheme(
       color: Color(0xFFF1F1F4),
     ),
+
     dialogTheme: DialogTheme(
       backgroundColor: Color(0xFFF9F9FF),
     ),
-    inputDecorationTheme: InputDecorationTheme(
-        labelStyle: TextStyle(color: Colors.black),
-        focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Color(0xFFCB6539))),
-        enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Color(0xFF282828)))),
 
-    bottomAppBarColor: Color(0xFFE7E7EF),
-
-    bottomSheetTheme: BottomSheetThemeData(
-        modalBackgroundColor: Color(0xFFF8F8FC))
     );
 
 //ESCURO
     ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Color(0xFF1A1B1E),//primaryColor: Color(0xFF1A1B1E),
-    accentColor: Color(0xFFCB6539),
-    scaffoldBackgroundColor: Color(0xFF202124), //0xFF202124
+    primaryColor: Color(0xFF1A1B1E),
+    accentColor: Color(0xFFe68040),  //LRJ ESC Color(0xFFCB6539) e68040
+    scaffoldBackgroundColor: Color(0xFF202124),
 
     cardTheme: CardTheme(
       color: Color(0xFF252629),
@@ -41,22 +32,6 @@ import 'package:shared_preferences/shared_preferences.dart';
     dialogTheme: DialogTheme(
       backgroundColor: Color(0xFF202124),
     ),
-
-    buttonTheme: ButtonThemeData(
-      buttonColor: Color(0xFF252526),
-    ),
-
-    inputDecorationTheme: InputDecorationTheme(
-        labelStyle: TextStyle(color: Colors.white),
-        focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Color(0xFFCB6539))),
-        enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Color(0xFF282828)))),
-
-    bottomAppBarColor: Color(0xFF181819),
-    bottomSheetTheme:
-      BottomSheetThemeData(modalBackgroundColor: Color(0xFF202124)) //0xFF252529
-
     );
 
 class ThemeNotifier extends ChangeNotifier {
