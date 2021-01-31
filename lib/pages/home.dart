@@ -138,7 +138,7 @@ class _HomeState extends State<Home> {
   }
 
   //Chrome Tabs
-  _launchBrowser(String url) async {
+  _launchBrowser(String url){
     FlutterWebBrowser.openWebPage(
       url: url,
       customTabsOptions: CustomTabsOptions(
@@ -237,7 +237,7 @@ class _HomeState extends State<Home> {
                       refresh: refresh,
                       contador: index,
                       launchBrowser: _launchBrowser,
-                      markRead: _markRead, //['idTopStory']
+                      markRead: _markRead,
                       lido: listaIdsLidos.contains(_stories[index].storyId) ? true : false,
                       story: new Story(
                         storyId: _stories[index].storyId,

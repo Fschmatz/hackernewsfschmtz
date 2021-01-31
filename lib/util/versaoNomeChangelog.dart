@@ -1,7 +1,7 @@
 class versaoNomeChangelog{
 
   //se mudar o nome do App não esquecer de alterar, no manifesto
-  static String versaoApp = "2.8";
+  static String versaoApp = "2.9";
   static String nomeApp = "HackerNews Fschmtz";
 
   //1espaço acima, nenhum embaixo
@@ -9,12 +9,15 @@ class versaoNomeChangelog{
   
 Versão Atual:  
 
-2.8
-- Mark as Read
-- Database (only 40 rows)
+2.9
+- Fixes
 ''';
 
   static String changelogsAntigos = '''
+
+2.8
+- Mark as Read
+- Database (only 40 rows)
 
 2.7
 - Fixes

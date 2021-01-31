@@ -12,7 +12,7 @@ class _LoadingState extends State<Loading> {
     return ListView.builder(
       scrollDirection: Axis.vertical,
       physics: NeverScrollableScrollPhysics(),
-      itemCount: 7,
+      itemCount: 6,
       itemBuilder: (BuildContext context, int index) {
         return Row(
           children: [
@@ -20,7 +20,8 @@ class _LoadingState extends State<Loading> {
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.fromLTRB(18, 12, 18, 0),
+                    //padding: EdgeInsets.fromLTRB(18, 12, 18, 0),
+                    padding: EdgeInsets.fromLTRB(18, 15, 18, 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [

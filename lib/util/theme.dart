@@ -26,7 +26,7 @@ import 'package:shared_preferences/shared_preferences.dart';
     scaffoldBackgroundColor: Color(0xFF202124),
 
     cardTheme: CardTheme(
-      color: Color(0xFF252629),
+      color: Color(0xFF242528),//0xFF252629
     ),
 
     dialogTheme: DialogTheme(

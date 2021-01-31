@@ -32,16 +32,20 @@ class ContainerInkStory extends StatelessWidget {
           launchBrowser(story.url);
 
           //DB
-          markRead(story.storyId);
-          refresh();
+          if(!lido){
+            markRead(story.storyId);
+            refresh();
+          }
         } else {
           // PARA ABRIR COMENTARIOS QUANDO HOUVER UM ASK HN
           launchBrowser('https://news.ycombinator.com/item?id=' +
               story.storyId.toString());
 
           //DB
-          markRead(story.storyId);
-          refresh();
+          if(!lido){
+            markRead(story.storyId);
+            refresh();
+          }
         }
       },
       child: Column(
@@ -53,10 +57,9 @@ class ContainerInkStory extends StatelessWidget {
               children: [
                 Text(story.title,
                     style: TextStyle(
-                        fontSize: 18,
-
-                        color: lido ? Theme.of(context).hintColor :
-                        Theme.of(context).primaryTextTheme.bodyText1.color
+                        fontSize: 17,
+                        color: lido ? Theme.of(context).disabledColor :
+                        Theme.of(context).textTheme.headline6.color
                            )),
 
                 SizedBox(
@@ -69,7 +72,9 @@ class ContainerInkStory extends StatelessWidget {
                   child: Text(story.url.toString(),
                       maxLines: 2,
                       style: TextStyle(
-                          fontSize: 12, color: Theme.of(context).hintColor)),
+                          fontSize: 12,
+                          color: lido ? Theme.of(context).disabledColor :
+                          Theme.of(context).hintColor)),
                 ),
               ],
             ),
