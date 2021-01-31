@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:hackernewsfschmtz/classes/webservice.dart';
 import 'package:hackernewsfschmtz/configs/configs.dart';
@@ -23,7 +22,6 @@ class _HomeState extends State<Home> {
   bool loadMaisStoriesScroll = false;
   ScrollController _scrollController = ScrollController();
 
-
   //LOGICA DB
   List<Map<String, dynamic>> mapIdLidos = new List();
   final dbLidos = lidosDao.instance;
@@ -41,20 +39,11 @@ class _HomeState extends State<Home> {
     setState(() {
       mapIdLidos = resposta;
     });
-
     int i = 0;
     while(i < resposta.length){
       listaIdsLidos.add(resposta[i]['idTopStory']);
       i++;
     }
-  }
-
-  void _markRead(int idStory) async {
-    final dbLidos = lidosDao.instance;
-    Map<String, dynamic> row = {
-      lidosDao.columnidTopStory: idStory,
-    };
-    final id = await dbLidos.insert(row);
   }
 
   @override
@@ -64,12 +53,11 @@ class _HomeState extends State<Home> {
     super.dispose();
   }
 
-  refresh(){
+  refreshLidos(){
     setState(() {
       _getStoryIdsLidos();
     });
   }
-
 
   //get noticias
   void _getTopStoriesInicial() async {
@@ -137,18 +125,7 @@ class _HomeState extends State<Home> {
     }
   }
 
-  //Chrome Tabs
-  _launchBrowser(String url){
-    FlutterWebBrowser.openWebPage(
-      url: url,
-      customTabsOptions: CustomTabsOptions(
-        addDefaultShareMenuItem: true,
-        instantAppsEnabled: true,
-        showTitle: true,
-        urlBarHidingEnabled: true,
-      ),
-    );
-  }
+
 
   //LOADING DO REFRESH
   Future<Null> _showAlertDialogLoading(BuildContext context) async {
@@ -167,9 +144,6 @@ class _HomeState extends State<Home> {
           );
         });
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -222,7 +196,7 @@ class _HomeState extends State<Home> {
             child: carregando
                 ? Loading()
                 : LazyLoadScrollView(
-              onEndOfPage: () => _getMaisTopStoriesScrolling(), //PrintTeste(), //
+              onEndOfPage: () => _getMaisTopStoriesScrolling(),
               child: ListView.separated(
                 separatorBuilder: (BuildContext context, int index) =>
                     Divider(
@@ -234,11 +208,8 @@ class _HomeState extends State<Home> {
                 itemCount: _stories.length,
                 itemBuilder: (context, index) {
                   return ContainerInkStory(
-                      refresh: refresh,
                       contador: index,
-                      launchBrowser: _launchBrowser,
-                      markRead: _markRead,
-                      lido: listaIdsLidos.contains(_stories[index].storyId) ? true : false,
+                      refreshLidos: refreshLidos,
                       story: new Story(
                         storyId: _stories[index].storyId,
                         title: _stories[index].title,
@@ -246,6 +217,7 @@ class _HomeState extends State<Home> {
                         score: _stories[index].score,
                         commentsCount: _stories[index].commentsCount,
                         time: _stories[index].time,
+                        lido: listaIdsLidos.contains(_stories[index].storyId) ? true : false,
                       )
                   );
                 },

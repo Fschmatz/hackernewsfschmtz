@@ -11,7 +11,7 @@ class About extends StatelessWidget {
         appBar: AppBar(
           title: Text("About"),
           centerTitle: true,
-          elevation: 0.0,
+          elevation: 0,
         ),
 
         body: Container(

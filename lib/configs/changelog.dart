@@ -8,7 +8,7 @@ class Changelog extends StatelessWidget {
         appBar: AppBar(
           title: Text("Changelog"),
           centerTitle: true,
-          elevation: 0.0,
+          elevation: 0,
         ),
         body: ListView(children: <Widget>[
           Card(

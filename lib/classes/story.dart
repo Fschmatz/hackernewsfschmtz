@@ -6,9 +6,10 @@ class Story {
   final int score;
   final int commentsCount;
   final int time; //UnixTime
+  bool lido;
 
 
-  Story({this.title,this.url,this.storyId,this.commentsCount,this.score,this.time});
+  Story({this.title,this.url,this.storyId,this.commentsCount,this.score,this.time,this.lido});
 
   factory Story.fromJSON(Map<String,dynamic> json) {
     return Story(

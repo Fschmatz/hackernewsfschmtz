@@ -12,7 +12,7 @@ class _LoadingState extends State<Loading> {
     return ListView.builder(
       scrollDirection: Axis.vertical,
       physics: NeverScrollableScrollPhysics(),
-      itemCount: 6,
+      itemCount: 5,
       itemBuilder: (BuildContext context, int index) {
         return Row(
           children: [

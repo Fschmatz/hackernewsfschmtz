@@ -1,50 +1,83 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:share/share.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:hackernewsfschmtz/db/lidosDao.dart';
 
-class ContainerInkStory extends StatelessWidget {
+
+class ContainerInkStory extends StatefulWidget {
+  @override
+  _ContainerInkStoryState createState() => _ContainerInkStoryState();
+
   Story story;
   int contador;
-  Function(String) launchBrowser;
-  Function(int) markRead;
-  bool lido;
-  Function() refresh;
+  Function() refreshLidos;
 
   ContainerInkStory(
       {Key key,
-      this.story,
-      this.launchBrowser,
-      this.contador,
-      this.lido,
-      this.markRead,
-      this.refresh})
+        this.story,
+        this.contador,
+        this.refreshLidos})
       : super(key: key);
+}
+
+class _ContainerInkStoryState extends State<ContainerInkStory> {
+
+  final dbLidos = lidosDao.instance;
+  String timeAgo = " ";
+
+  void _markRead(int idStory) async {
+    final dbLidos = lidosDao.instance;
+    Map<String, dynamic> row = {
+      lidosDao.columnidTopStory: idStory,
+    };
+    final id = await dbLidos.insert(row);
+    print("id->  $id");
+  }
+
+  @override
+  void initState() {
+    timeAgo =
+    timeago.format(DateTime.fromMillisecondsSinceEpoch(widget.story.time * 1000));
+    super.initState();
+  }
+
+  //Chrome Tabs
+  _launchBrowser(String url){
+    FlutterWebBrowser.openWebPage(
+      url: url,
+      customTabsOptions: CustomTabsOptions(
+        addDefaultShareMenuItem: true,
+        instantAppsEnabled: true,
+        showTitle: true,
+        urlBarHidingEnabled: true,
+      ),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    String timeAgo =
-        timeago.format(DateTime.fromMillisecondsSinceEpoch(story.time * 1000));
-
     return InkWell(
       onTap: () {
-        if (story.url != null) {
-          launchBrowser(story.url);
+        if (widget.story.url != null) {
+          _launchBrowser(widget.story.url);
 
           //DB
-          if(!lido){
-            markRead(story.storyId);
-            refresh();
+          if(!widget.story.lido){
+            _markRead(widget.story.storyId);
+            widget.refreshLidos();
           }
         } else {
           // PARA ABRIR COMENTARIOS QUANDO HOUVER UM ASK HN
-          launchBrowser('https://news.ycombinator.com/item?id=' +
-              story.storyId.toString());
+          _launchBrowser('https://news.ycombinator.com/item?id=' +
+              widget.story.storyId.toString());
 
           //DB
-          if(!lido){
-            markRead(story.storyId);
-            refresh();
+          if(!widget.story.lido){
+            _markRead(widget.story.storyId);
+            widget.refreshLidos();
           }
         }
       },
@@ -55,12 +88,12 @@ class ContainerInkStory extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(story.title,
+                Text(widget.story.title,
                     style: TextStyle(
                         fontSize: 17,
-                        color: lido ? Theme.of(context).disabledColor :
+                        color: widget.story.lido ? Theme.of(context).disabledColor :
                         Theme.of(context).textTheme.headline6.color
-                           )),
+                    )),
 
                 SizedBox(
                   height: 8,
@@ -68,12 +101,12 @@ class ContainerInkStory extends StatelessWidget {
 
                 //AS VEZES PODE SER NULO
                 Visibility(
-                  visible: story.url != null,
-                  child: Text(story.url.toString(),
+                  visible: widget.story.url != null,
+                  child: Text(widget.story.url.toString(),
                       maxLines: 2,
                       style: TextStyle(
                           fontSize: 12,
-                          color: lido ? Theme.of(context).disabledColor :
+                          color: widget.story.lido ? Theme.of(context).disabledColor :
                           Theme.of(context).hintColor)),
                 ),
               ],
@@ -97,7 +130,7 @@ class ContainerInkStory extends StatelessWidget {
                           color: Theme.of(context).accentColor,
                           size: 18,
                         ),
-                        Text(" ${1 + contador}    ",
+                        Text(" ${1 + widget.contador}    ",
                             style: TextStyle(
                                 fontSize: 15,
                                 color: Theme.of(context).accentColor)),
@@ -106,7 +139,7 @@ class ContainerInkStory extends StatelessWidget {
                           color: Theme.of(context).accentColor,
                           size: 18,
                         ),
-                        Text(" ${story.score} Points",
+                        Text(" ${widget.story.score} Points",
                             style: TextStyle(
                                 fontSize: 15,
                                 color: Theme.of(context).accentColor)),
@@ -125,7 +158,8 @@ class ContainerInkStory extends StatelessWidget {
                       Text(timeAgo,
                           style: TextStyle(
                               fontSize: 15,
-                              color: Theme.of(context).hintColor)),
+                              color: widget.story.lido ? Theme.of(context).disabledColor :
+                              Theme.of(context).textTheme.headline6.color)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -144,23 +178,23 @@ class ContainerInkStory extends StatelessWidget {
                                     width: 10,
                                   ),
                                   Visibility(
-                                    visible: story.commentsCount != null,
+                                    visible: widget.story.commentsCount != null,
                                     maintainState: true,
-                                    child: story.commentsCount != 0
-                                        ? Text(story.commentsCount.toString(),
-                                            style: TextStyle(
-                                              fontSize: 15.2,
-                                              color:
-                                                  Theme.of(context).hintColor,
-                                            ))
+                                    child: widget.story.commentsCount != 0
+                                        ? Text(widget.story.commentsCount.toString(),
+                                        style: TextStyle(
+                                          fontSize: 15.2,
+                                          color:
+                                          Theme.of(context).hintColor,
+                                        ))
                                         : SizedBox.shrink(),
                                   ),
                                 ],
                               ),
                               onPressed: () {
-                                launchBrowser(
+                                _launchBrowser(
                                     'https://news.ycombinator.com/item?id=' +
-                                        story.storyId.toString());
+                                        widget.story.storyId.toString());
                               }),
                           MaterialButton(
                               shape: RoundedRectangleBorder(
@@ -173,7 +207,7 @@ class ContainerInkStory extends StatelessWidget {
                                 color: Theme.of(context).hintColor,
                               ),
                               onPressed: () {
-                                Share.share(story.url);
+                                Share.share(widget.story.url);
                               }),
                           SizedBox(
                             width: 6,
@@ -187,5 +221,6 @@ class ContainerInkStory extends StatelessWidget {
         ],
       ),
     );
+
   }
 }

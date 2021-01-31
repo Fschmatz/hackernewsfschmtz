@@ -1,23 +1,28 @@
 class versaoNomeChangelog{
 
   //se mudar o nome do App não esquecer de alterar, no manifesto
-  static String versaoApp = "2.9";
+  static String versaoApp = "3.0";
   static String nomeApp = "HackerNews Fschmtz";
 
-  //1espaço acima, nenhum embaixo
+  //1 espaço acima, nenhum embaixo
   static String changelogUltimaVersao = '''  
   
 Versão Atual:  
 
-2.9
-- Fixes
+3.0
+- Small Fixes
+- Small Colors Changes Read/Unread
 ''';
 
   static String changelogsAntigos = '''
 
+2.9
+- Fixes
+- StatefulWidget for Story
+
 2.8
 - Mark as Read
-- Database (only 40 rows)
+- Database Read (Only 40 Rows)
 
 2.7
 - Fixes
@@ -28,7 +33,8 @@ Versão Atual:
 - Fixes
 
 2.5
-- Score and Number of Comments on Home
+- Score on Home
+- Number of Comments on Home
 - Fixes
 
 2.4
@@ -134,6 +140,7 @@ Versão Atual:
 0.1
 - Project Start                                  
 
+      (ಠ‿ಠ)  
 ''';
 
 }

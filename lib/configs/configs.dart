@@ -28,7 +28,7 @@ class _ConfigsState extends State<Configs> {
         appBar: AppBar(
           title: Text("Settings"),
           centerTitle: true,
-          elevation: 0.0,
+          elevation: 0,
         ),
 
         body: Stack(
