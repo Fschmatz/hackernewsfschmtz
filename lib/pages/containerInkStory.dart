@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
+import 'package:hackernewsfschmtz/pages/storyContainer/buttons.dart';
+import 'package:hackernewsfschmtz/pages/storyContainer/pointsPosition.dart';
+import 'package:hackernewsfschmtz/pages/storyContainer/storyContainer.dart';
 import 'package:share/share.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:hackernewsfschmtz/db/lidosDao.dart';
@@ -70,6 +73,7 @@ class _ContainerInkStoryState extends State<ContainerInkStory> {
             widget.refreshLidos();
           }
         } else {
+
           // PARA ABRIR COMENTARIOS QUANDO HOUVER UM ASK HN
           _launchBrowser('https://news.ycombinator.com/item?id=' +
               widget.story.storyId.toString());
@@ -83,139 +87,17 @@ class _ContainerInkStoryState extends State<ContainerInkStory> {
       },
       child: Column(
         children: [
-          Container(
-            padding: EdgeInsets.fromLTRB(18, 12, 18, 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(widget.story.title,
-                    style: TextStyle(
-                        fontSize: 17,
-                        color: widget.story.lido ? Theme.of(context).disabledColor :
-                        Theme.of(context).textTheme.headline6.color
-                    )),
+          StoryContainer(story: widget.story),
 
-                SizedBox(
-                  height: 8,
-                ),
-
-                //AS VEZES PODE SER NULO
-                Visibility(
-                  visible: widget.story.url != null,
-                  child: Text(widget.story.url.toString(),
-                      maxLines: 2,
-                      style: TextStyle(
-                          fontSize: 12,
-                          color: widget.story.lido ? Theme.of(context).disabledColor :
-                          Theme.of(context).hintColor)),
-                ),
-              ],
-            ),
-          ),
           SizedBox(
             height: 17,
           ),
+
           Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(17, 0, 0, 0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.text_snippet_outlined, //article
-                          color: Theme.of(context).accentColor,
-                          size: 18,
-                        ),
-                        Text(" ${1 + widget.contador}    ",
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Theme.of(context).accentColor)),
-                        Icon(
-                          Icons.arrow_upward_outlined,
-                          color: Theme.of(context).accentColor,
-                          size: 18,
-                        ),
-                        Text(" ${widget.story.score} Points",
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Theme.of(context).accentColor)),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+              PointsPosition(contador: widget.contador,story: widget.story,),
 
-              //SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(19, 0, 0, 0),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(timeAgo,
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: widget.story.lido ? Theme.of(context).disabledColor :
-                              Theme.of(context).textTheme.headline6.color)),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          MaterialButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.comment_outlined,
-                                    size: 20,
-                                    color: Theme.of(context).hintColor,
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Visibility(
-                                    visible: widget.story.commentsCount != null,
-                                    maintainState: true,
-                                    child: widget.story.commentsCount != 0
-                                        ? Text(widget.story.commentsCount.toString(),
-                                        style: TextStyle(
-                                          fontSize: 15.2,
-                                          color:
-                                          Theme.of(context).hintColor,
-                                        ))
-                                        : SizedBox.shrink(),
-                                  ),
-                                ],
-                              ),
-                              onPressed: () {
-                                _launchBrowser(
-                                    'https://news.ycombinator.com/item?id=' +
-                                        widget.story.storyId.toString());
-                              }),
-                          MaterialButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              minWidth: 0,
-                              child: Icon(
-                                Icons.share_outlined,
-                                size: 20,
-                                color: Theme.of(context).hintColor,
-                              ),
-                              onPressed: () {
-                                Share.share(widget.story.url);
-                              }),
-                          SizedBox(
-                            width: 6,
-                          ),
-                        ],
-                      ),
-                    ]),
-              )
+              Buttons(timeAgo: timeAgo,story: widget.story,launchBrowser: _launchBrowser,)
             ],
           ),
         ],

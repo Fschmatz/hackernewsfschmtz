@@ -20,7 +20,6 @@ class _LoadingState extends State<Loading> {
               child: Column(
                 children: [
                   Container(
-                    //padding: EdgeInsets.fromLTRB(18, 12, 18, 0),
                     padding: EdgeInsets.fromLTRB(18, 15, 18, 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -95,8 +94,6 @@ class _LoadingState extends State<Loading> {
                           ),
                         ],
                       ),
-
-                      //SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(19, 0, 0, 0),
                         child: Row(
@@ -153,7 +150,7 @@ class _LoadingState extends State<Loading> {
                       )
                     ],
                   ),
-                  Container(child: Divider(thickness: 1,color: Colors.black38,))
+                  Container(child: Divider(thickness: 1,color: Colors.black,))
                 ],
               ),
             ),
@@ -163,5 +160,3 @@ class _LoadingState extends State<Loading> {
     );
   }
 }
-
-//ANTIGO  shimmerColor: index % 2 != 0 ? Colors.grey : Colors.white38,

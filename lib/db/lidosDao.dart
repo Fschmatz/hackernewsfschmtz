@@ -3,13 +3,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 
-
 class lidosDao {
-
-  //TESTE
-  int idTopStory;
-  lidosDao(this.idTopStory);
-  //TESTE
 
   static final _databaseName = "HN.db";
   static final _databaseVersion = 1;

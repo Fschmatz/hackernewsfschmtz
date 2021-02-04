@@ -61,7 +61,7 @@ class _HomeState extends State<Home> {
 
   //get noticias
   void _getTopStoriesInicial() async {
-    final responses = await Webservice().getTopStories(15);
+    final responses = await Webservice().getTopStories(15); // Anterior 15
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
@@ -125,9 +125,7 @@ class _HomeState extends State<Home> {
     }
   }
 
-
-
-  //LOADING DO REFRESH
+  //ANIMACAO LOADING DO REFRESH
   Future<Null> _showAlertDialogLoading(BuildContext context) async {
     return await showDialog<Null>(
         context: context,
@@ -192,7 +190,7 @@ class _HomeState extends State<Home> {
         body: Snap(
           controller: _scrollController.appBar,
           child: AnimatedSwitcher(
-            duration: Duration(milliseconds: 700),
+            duration: Duration(milliseconds: 650),
             child: carregando
                 ? Loading()
                 : LazyLoadScrollView(
@@ -200,9 +198,9 @@ class _HomeState extends State<Home> {
               child: ListView.separated(
                 separatorBuilder: (BuildContext context, int index) =>
                     Divider(
-                  thickness: 1,
-                  color: Colors.black38,
-                ),
+                      thickness: 1,
+                      color: Colors.black,
+                    ),
                 controller: _scrollController,
                 shrinkWrap: true,
                 itemCount: _stories.length,
@@ -238,6 +236,8 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
+
 
 
 
