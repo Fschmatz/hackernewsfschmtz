@@ -2,18 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:share/share.dart';
 
-class Buttons extends StatelessWidget {
+class TimeButtons extends StatelessWidget {
 
   Story story;
-  String timeAgo = " ";
   Function(String) launchBrowser;
 
-  Buttons(
+  TimeButtons(
       {Key key,
         this.story,
-        this.timeAgo,
         this.launchBrowser,
-        })
+      })
       : super(key: key);
 
   @override
@@ -23,7 +21,7 @@ class Buttons extends StatelessWidget {
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(timeAgo,
+            Text(story.timeAgo,
                 style: TextStyle(
                     fontSize: 15,
                     color: story.lido ? Theme.of(context).disabledColor :
@@ -39,10 +37,10 @@ class Buttons extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.comment_outlined,
-                          size: 20,
+                          size: 19,
                           color: Theme.of(context).hintColor,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Visibility(
@@ -51,7 +49,7 @@ class Buttons extends StatelessWidget {
                           child: story.commentsCount != 0
                               ? Text(story.commentsCount.toString(),
                               style: TextStyle(
-                                fontSize: 15.2,
+                                fontSize: 15,
                                 color:
                                 Theme.of(context).hintColor,
                               ))
@@ -77,7 +75,7 @@ class Buttons extends StatelessWidget {
                     onPressed: () {
                       Share.share(story.url);
                     }),
-                SizedBox(
+                const SizedBox(
                   width: 6,
                 ),
               ],
@@ -86,3 +84,4 @@ class Buttons extends StatelessWidget {
     );
   }
 }
+

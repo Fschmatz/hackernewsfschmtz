@@ -15,7 +15,7 @@ class About extends StatelessWidget {
         ),
 
         body: Container(
-          padding: EdgeInsets.fromLTRB(6,0,6,5),
+          padding: const EdgeInsets.fromLTRB(6,0,6,5),
           child: ListView(
               children: <Widget>[
 

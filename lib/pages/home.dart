@@ -6,7 +6,7 @@ import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:hackernewsfschmtz/classes/webservice.dart';
 import 'package:hackernewsfschmtz/configs/configs.dart';
 import 'package:hackernewsfschmtz/db/lidosDao.dart';
-import 'package:hackernewsfschmtz/pages/containerInkStory.dart';
+import 'package:hackernewsfschmtz/pages/containerStory.dart';
 import 'package:hackernewsfschmtz/pages/loading.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
@@ -20,48 +20,44 @@ class _HomeState extends State<Home> {
   List<Story> _stories = List<Story>();
   bool carregando = true;
   bool loadMaisStoriesScroll = false;
-  ScrollController _scrollController = ScrollController();
+  ScrollController _scrollController;
 
   //LOGICA DB
   List<Map<String, dynamic>> mapIdLidos = new List();
-  final dbLidos = lidosDao.instance;
   List<int> listaIdsLidos = new List();
 
   @override
   void initState() {
-    _getTopStoriesInicial();
+    _scrollController = ScrollController();
     _getStoryIdsLidos();
+    _getTopStoriesInicial();
     super.initState();
   }
 
   Future<void> _getStoryIdsLidos() async {
-    var resposta = await dbLidos.queryAllStoriesLidosIds();
-    setState(() {
-      mapIdLidos = resposta;
-    });
-    int i = 0;
-    while(i < resposta.length){
-      listaIdsLidos.add(resposta[i]['idTopStory']);
-      i++;
-    }
+      final dbLidos = lidosDao.instance;
+      var resposta = await dbLidos.queryAllStoriesLidosIds();
+      setState(() {
+        mapIdLidos = resposta;
+      });
+      for(int i = 0; i < resposta.length; i++) {
+        listaIdsLidos.add(resposta[i]['idTopStory']);
+      }
+  }
+
+  void refreshIdLidos(){
+    _getStoryIdsLidos();
   }
 
   @override
   void dispose() {
     _scrollController.dispose();
-    _scrollController.removeListener(() {});
     super.dispose();
-  }
-
-  refreshLidos(){
-    setState(() {
-      _getStoryIdsLidos();
-    });
   }
 
   //get noticias
   void _getTopStoriesInicial() async {
-    final responses = await Webservice().getTopStories(15); // Anterior 15
+    final responses = await Webservice().getTopStories(15);
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
@@ -76,6 +72,7 @@ class _HomeState extends State<Home> {
     });
   }
 
+  //BOTAO REFRESH
   void _getTopStoriesRefresh() async {
     final responses = await Webservice().getTopStories(15);
     final stories = responses.map((response) {
@@ -91,7 +88,6 @@ class _HomeState extends State<Home> {
       _getTopStoriesSecundario();
     });
   }
-
 
   //USADO PRO TIMER
   void _getTopStoriesSecundario() async {
@@ -112,7 +108,6 @@ class _HomeState extends State<Home> {
       setState(() {
         loadMaisStoriesScroll = true;
       });
-
       final responses = await Webservice().getTopStoriesScrolling(_stories.length, 10);
       final stories = responses.map((response) {
         final json = jsonDecode(response.body);
@@ -120,7 +115,7 @@ class _HomeState extends State<Home> {
       }).toList();
       setState(() {
         loadMaisStoriesScroll = false;
-        _stories += stories;
+        _stories.addAll(stories);
       });
     }
   }
@@ -149,7 +144,7 @@ class _HomeState extends State<Home> {
         appBar: ScrollAppBar(
             controller: _scrollController,
             elevation: 0,
-            title: Text("HN Fschmtz"), //Text("HN Fschmtz")
+            title: Text("HN Fschmtz"),
             actions: <Widget>[
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 13, 0),
@@ -190,35 +185,35 @@ class _HomeState extends State<Home> {
         body: Snap(
           controller: _scrollController.appBar,
           child: AnimatedSwitcher(
-            duration: Duration(milliseconds: 650),
+            duration: Duration(milliseconds: 550),
             child: carregando
                 ? Loading()
                 : LazyLoadScrollView(
               onEndOfPage: () => _getMaisTopStoriesScrolling(),
-              child: ListView.separated(
-                separatorBuilder: (BuildContext context, int index) =>
-                    Divider(
-                      thickness: 1,
-                      color: Colors.black,
-                    ),
+              scrollOffset: 125,
+              child: SingleChildScrollView(
                 controller: _scrollController,
-                shrinkWrap: true,
-                itemCount: _stories.length,
-                itemBuilder: (context, index) {
-                  return ContainerInkStory(
-                      contador: index,
-                      refreshLidos: refreshLidos,
-                      story: new Story(
-                        storyId: _stories[index].storyId,
-                        title: _stories[index].title,
-                        url: _stories[index].url,
-                        score: _stories[index].score,
-                        commentsCount: _stories[index].commentsCount,
-                        time: _stories[index].time,
-                        lido: listaIdsLidos.contains(_stories[index].storyId) ? true : false,
-                      )
-                  );
-                },
+                physics: AlwaysScrollableScrollPhysics(),
+                child: ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: _stories.length,
+                  itemBuilder: (context, index) {
+                    return ContainerStory(
+                        contador: index,
+                        refreshIdLidos: refreshIdLidos,
+                        story: new Story(
+                          storyId: _stories[index].storyId,
+                          title: _stories[index].title,
+                          url: _stories[index].url,
+                          score: _stories[index].score,
+                          commentsCount: _stories[index].commentsCount,
+                          time: _stories[index].time,
+                          lido: listaIdsLidos.contains(_stories[index].storyId) ? true : false,
+                        )
+                    );
+                  },
+                ),
               ),
             ),
           ),
@@ -226,13 +221,13 @@ class _HomeState extends State<Home> {
 
         bottomNavigationBar: loadMaisStoriesScroll
             ? PreferredSize(
-          preferredSize: Size.fromHeight(5.0),
+          preferredSize: Size.fromHeight(4.0),
           child: LinearProgressIndicator(
             backgroundColor:
             Theme.of(context).accentColor.withOpacity(0.3),
           ),
         )
-            : SizedBox.shrink()
+            : const SizedBox.shrink()
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:hackernewsfschmtz/classes/urlHelper.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';

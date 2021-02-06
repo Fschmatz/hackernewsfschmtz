@@ -20,7 +20,7 @@ class _LoadingState extends State<Loading> {
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.fromLTRB(18, 15, 18, 10),
+                    padding: const EdgeInsets.fromLTRB(18, 15, 18, 20),//(18, 15, 18, 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -34,7 +34,7 @@ class _LoadingState extends State<Loading> {
                                 fontSize: 18,
                               )),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 6,
                         ),
                         Visibility(
@@ -50,7 +50,7 @@ class _LoadingState extends State<Loading> {
                                 )),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 6,
                         ),
                         SkeletonAnimation(
@@ -67,7 +67,7 @@ class _LoadingState extends State<Loading> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   Column(
                     children: [
                       Row(
@@ -123,7 +123,7 @@ class _LoadingState extends State<Loading> {
                                             size: 20,
                                             color: Theme.of(context).hintColor,
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
 
@@ -141,7 +141,7 @@ class _LoadingState extends State<Loading> {
                                         color: Theme.of(context).hintColor,
                                       ),
                                       ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 6,
                                   ),
                                 ],
@@ -150,7 +150,7 @@ class _LoadingState extends State<Loading> {
                       )
                     ],
                   ),
-                  Container(child: Divider(thickness: 1,color: Colors.black,))
+                  //Container(child: Divider(thickness: 1,color: Colors.black,))
                 ],
               ),
             ),

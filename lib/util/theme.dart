@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 //CLARO
     ThemeData light = ThemeData(
     brightness: Brightness.light,
-    primaryColor: Color(0xFFEAEAEE), //mais esc 0xFFF1F1F4
+    primaryColor: Color(0xFFEAEAF2), //mais esc 0xFFEAEAEE
     accentColor: Color(0xFF01A173),
     scaffoldBackgroundColor: Color(0xFFF9F9FF),
 
@@ -21,9 +21,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 //ESCURO
     ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Color(0xFF18191C),// cza escuro anterior 0xFF1A1B1E
+    primaryColor: Color(0xFF212125),// cza escuro anterior 0xFF18191C
     accentColor: Color(0xFFe68040),  //LRJ ESC Color(0xFFCB6539) e68040
-    scaffoldBackgroundColor: Color(0xFF202124),
+    scaffoldBackgroundColor: Color(0xFF1C1C1F),
 
     cardTheme: CardTheme(
       color: Color(0xFF242529),//0xFF252629

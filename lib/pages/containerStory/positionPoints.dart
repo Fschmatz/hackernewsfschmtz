@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 
-class PointsPosition extends StatelessWidget {
+class PositionPoints extends StatelessWidget {
 
   Story story;
   int contador;
 
-  PointsPosition(
+  PositionPoints(
       {Key key,
         this.story,
         this.contador})
       : super(key: key);
 
+  //anterior 18 15 18 15
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -47,3 +48,4 @@ class PointsPosition extends StatelessWidget {
     );
   }
 }
+
