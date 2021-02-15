@@ -16,7 +16,8 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
+
   List<Story> _stories = List<Story>();
   bool carregando = true;
   bool loadMaisStoriesScroll = false;
@@ -25,6 +26,9 @@ class _HomeState extends State<Home> {
   //LOGICA DB
   List<Map<String, dynamic>> mapIdLidos = new List();
   List<int> listaIdsLidos = new List();
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -165,7 +169,7 @@ class _HomeState extends State<Home> {
                     }),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                padding: const EdgeInsets.fromLTRB(0, 0, 2, 0), //8
                 child: IconButton(
                     icon: Icon(
                       Icons.settings,
@@ -185,12 +189,12 @@ class _HomeState extends State<Home> {
         body: Snap(
           controller: _scrollController.appBar,
           child: AnimatedSwitcher(
-            duration: Duration(milliseconds: 550),
+            duration: Duration(milliseconds: 650),
             child: carregando
                 ? Loading()
                 : LazyLoadScrollView(
               onEndOfPage: () => _getMaisTopStoriesScrolling(),
-              scrollOffset: 125,
+              scrollOffset: 100,
               child: SingleChildScrollView(
                 controller: _scrollController,
                 physics: AlwaysScrollableScrollPhysics(),

@@ -18,7 +18,7 @@ class ContainerStory extends StatefulWidget {
       : super(key: key);
 }
 
-class _ContainerStoryState extends State<ContainerStory> {
+class _ContainerStoryState extends State<ContainerStory>{
 
   void _markRead(int idStory) async {
     final dbLidos = lidosDao.instance;
@@ -39,26 +39,61 @@ class _ContainerStoryState extends State<ContainerStory> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        StoryUrl(
-          story: widget.story,
-          launchBrowser: _launchBrowser,
-          markRead: _markRead,
-          refreshIdLidos: widget.refreshIdLidos,
+    return Card(
+      margin: const EdgeInsets.fromLTRB(15, 8, 15, 8),
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+        side: BorderSide(
+          color: Colors.grey.withOpacity(0.3),
+          width: 1,
         ),
-        PositionPoints(
-          contador: widget.contador,
-          story: widget.story,
+      ),
+      child: InkWell(
+        customBorder: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
         ),
-        TimeButtons(
-          story: widget.story,
-          launchBrowser: _launchBrowser,
+
+        onTap: () {
+          if (widget.story.url != null) {
+            _launchBrowser(widget.story.url);
+
+            //DB
+            if (!widget.story.lido) {
+              _markRead(widget.story.storyId);
+              widget.refreshIdLidos();
+            }
+          } else {
+            // PARA ABRIR COMENTARIOS QUANDO HOUVER UM ASK/SHOW HN
+            _launchBrowser('https://news.ycombinator.com/item?id=' +
+                widget.story.storyId.toString());
+
+            //DB
+            if (!widget.story.lido) {
+              _markRead(widget.story.storyId);
+              widget.refreshIdLidos();
+            }
+          }
+        },
+
+        child: Column(
+          children: [
+            StoryUrl(
+              story: widget.story,
+              markRead: _markRead,
+              refreshIdLidos: widget.refreshIdLidos,
+            ),
+            PositionPoints(
+              contador: widget.contador,
+              story: widget.story,
+            ),
+            TimeButtons(
+              story: widget.story,
+              launchBrowser: _launchBrowser,
+            ),
+          ],
         ),
-        const SizedBox(
-          height: 10,
-        ),
-      ],
+      ),
     );
   }
 }

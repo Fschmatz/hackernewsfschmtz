@@ -62,8 +62,13 @@ class _ConfigsState extends State<Configs> {
                 children: <Widget>[
 
                   Card(
+                    elevation: 0,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      side: BorderSide(
+                        color: Colors.grey.withOpacity(0.3),
+                        width: 1,
+                      ),
                     ),
                     child: ListTile(
                       leading: Icon(Icons.text_snippet_outlined),
@@ -83,8 +88,13 @@ class _ConfigsState extends State<Configs> {
                   SizedBox(height: 10,),
 
                   Card(
+                    elevation: 0,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      side: BorderSide(
+                        color: Colors.grey.withOpacity(0.3),
+                        width: 1,
+                      ),
                     ),
                     child: ListTile(
                       leading: Icon(Icons.text_snippet_outlined),

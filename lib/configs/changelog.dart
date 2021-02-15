@@ -16,7 +16,7 @@ class Changelog extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
               side: BorderSide(
-                //color: Colors.grey.withOpacity(0.8),
+                color: Colors.grey.withOpacity(0.3),
                 width: 1,
               ),
             ),

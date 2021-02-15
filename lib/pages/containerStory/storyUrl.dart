@@ -3,80 +3,51 @@ import 'package:hackernewsfschmtz/classes/story.dart';
 
 class StoryUrl extends StatelessWidget {
   Story story;
-  Function(String) launchBrowser;
   Function(int) markRead;
   Function() refreshIdLidos;
 
   StoryUrl(
       {Key key,
         this.story,
-        this.launchBrowser,
         this.markRead,
         this.refreshIdLidos})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      customBorder: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
+    return Container(
+      padding: const EdgeInsets.fromLTRB(13, 14, 18, 0), //(18, 12, 18, 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(story.title,
+                style: TextStyle(
+                    fontSize: 17.3,
+                    color: story.lido
+                        ? Theme.of(context).disabledColor
+                        : Theme.of(context).textTheme.headline6.color)),
 
-      onTap: () {
-        if (story.url != null) {
-          launchBrowser(story.url);
+            const SizedBox(
+              height: 8,
+            ),
 
-          //DB
-          if (!story.lido) {
-            markRead(story.storyId);
-            refreshIdLidos();
-          }
-        } else {
-          // PARA ABRIR COMENTARIOS QUANDO HOUVER UM ASK HN
-          launchBrowser('https://news.ycombinator.com/item?id=' +
-              story.storyId.toString());
-
-          //DB
-          if (!story.lido) {
-            markRead(story.storyId);
-            refreshIdLidos();
-          }
-        }
-      },
-      child: Container(
-        padding: const EdgeInsets.fromLTRB(18, 12, 18, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(story.title,
+            //AS VEZES PODE SER NULO
+            Visibility(
+              visible: story.url != null,
+              child: Text(story.url.toString(),
+                  maxLines: 2,
                   style: TextStyle(
-                      fontSize: 17.6,
+                      fontSize: 12,
                       color: story.lido
                           ? Theme.of(context).disabledColor
-                          : Theme.of(context).textTheme.headline6.color)),
-
-              const SizedBox(
-                height: 8,
-              ),
-
-              //AS VEZES PODE SER NULO
-              Visibility(
-                visible: story.url != null,
-                child: Text(story.url.toString(),
-                    maxLines: 2,
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: story.lido
-                            ? Theme.of(context).disabledColor
-                            : Theme.of(context).hintColor)),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-            ],
-          ),
+                          : Theme.of(context).hintColor)),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+          ],
         ),
-    );
+      );
   }
 }
 

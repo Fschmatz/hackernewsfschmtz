@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
     scaffoldBackgroundColor: Color(0xFFF9F9FF),
 
     cardTheme: CardTheme(
-      color: Color(0xFFF1F1F4),
+      color: Color(0xFFF7F7FE),
     ),
 
     dialogTheme: DialogTheme(
@@ -21,12 +21,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 //ESCURO
     ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Color(0xFF212125),// cza escuro anterior 0xFF18191C
-    accentColor: Color(0xFFe68040),  //LRJ ESC Color(0xFFCB6539) e68040
+    primaryColor: Color(0xFF212125),
+    accentColor: Color(0xFFe68040),
     scaffoldBackgroundColor: Color(0xFF1C1C1F),
 
     cardTheme: CardTheme(
-      color: Color(0xFF242529),//0xFF252629
+      color: Color(0xFF1C1C1F),
     ),
 
     dialogTheme: DialogTheme(
