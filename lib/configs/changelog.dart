@@ -24,7 +24,7 @@ class Changelog extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.fromLTRB(18, 0, 18, 5),
               child: Text(
-                NameChangelog.changelogUltimaVersao,
+                NameChangelog.changelogCurrent,
                 style: TextStyle(
                   fontSize: 18,
                 ),
@@ -46,7 +46,7 @@ class Changelog extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  NameChangelog.changelogsAntigos,
+                  NameChangelog.changelogsOld,
                   style: TextStyle(
                     fontSize: 16,
                   ),

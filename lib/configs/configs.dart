@@ -43,9 +43,9 @@ class _ConfigsState extends State<Configs> {
                 child: ListTile(
                   title: Text(
                     "Flutter " +
-                        NameChangelog.nomeApp +
+                        NameChangelog.appName +
                         " " +
-                        NameChangelog.versaoApp,
+                        NameChangelog.appVersion,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 18, color: Colors.black),
                   ),

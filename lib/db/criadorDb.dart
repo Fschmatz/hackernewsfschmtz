@@ -14,12 +14,10 @@ class criadorDB {
 
   Future<Database> get database async {
     if (_database != null) return _database;
-    // instancia o db na primeira vez que for acessado
     _database = await initDatabase();
     return _database;
   }
 
-  // abre o banco de dados e o cria se ele não existir
   initDatabase() async { //_initDatabase();
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, _databaseName);
@@ -28,10 +26,8 @@ class criadorDB {
         onCreate: _onCreate);
   }
 
-  // Código SQL para criar o banco de dados e a tabela,
-  // só roda uma vez quando detecta banco nulo
   Future _onCreate(Database db, int version) async {
-    print("OI DO CRIADOR DE DB");
+    print("Hello !");
 
     await db.execute('''
     
@@ -51,7 +47,7 @@ class criadorDB {
 
 
 
-    //CRIA TRIGGER add 1, deleta 1
+    //TRIGGER add 1, delete 1
     await db.execute('''
     
           CREATE TRIGGER deleteNoAdd

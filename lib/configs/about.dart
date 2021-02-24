@@ -20,7 +20,7 @@ class About extends StatelessWidget {
               children: <Widget>[
 
                 SizedBox(height: 20),
-                Text(NameChangelog.nomeApp+" " + NameChangelog.versaoApp,
+                Text(NameChangelog.appName+" " + NameChangelog.appVersion,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 19,
