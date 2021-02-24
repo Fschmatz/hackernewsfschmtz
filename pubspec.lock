@@ -219,20 +219,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.3.3"
-  scroll_app_bar:
-    dependency: "direct main"
-    description:
-      name: scroll_app_bar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3"
-  scroll_bars_common:
-    dependency: transitive
-    description:
-      name: scroll_bars_common
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   share:
     dependency: "direct main"
     description:
@@ -363,7 +349,7 @@ packages:
       name: timeago
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.29"
+    version: "2.0.30"
   typed_data:
     dependency: transitive
     description:

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:hackernewsfschmtz/classes/webservice.dart';
 import 'package:hackernewsfschmtz/configs/configs.dart';
@@ -9,7 +8,6 @@ import 'package:hackernewsfschmtz/db/lidosDao.dart';
 import 'package:hackernewsfschmtz/pages/containerStory.dart';
 import 'package:hackernewsfschmtz/pages/loading.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
-import 'package:scroll_app_bar/scroll_app_bar.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -17,7 +15,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
-
   List<Story> _stories = List<Story>();
   bool carregando = true;
   bool loadMaisStoriesScroll = false;
@@ -39,17 +36,17 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   }
 
   Future<void> _getStoryIdsLidos() async {
-      final dbLidos = lidosDao.instance;
-      var resposta = await dbLidos.queryAllStoriesLidosIds();
-      setState(() {
-        mapIdLidos = resposta;
-      });
-      for(int i = 0; i < resposta.length; i++) {
-        listaIdsLidos.add(resposta[i]['idTopStory']);
-      }
+    final dbLidos = lidosDao.instance;
+    var resposta = await dbLidos.queryAllStoriesLidosIds();
+    setState(() {
+      mapIdLidos = resposta;
+    });
+    for (int i = 0; i < resposta.length; i++) {
+      listaIdsLidos.add(resposta[i]['idTopStory']);
+    }
   }
 
-  void refreshIdLidos(){
+  void refreshIdLidos() {
     _getStoryIdsLidos();
   }
 
@@ -107,12 +104,13 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   //USADO PRO SCROLL
   void _getMaisTopStoriesScrolling() async {
-    if(loadMaisStoriesScroll == false ) {
+    if (loadMaisStoriesScroll == false) {
       //liga animacao bottom
       setState(() {
         loadMaisStoriesScroll = true;
       });
-      final responses = await Webservice().getTopStoriesScrolling(_stories.length, 10);
+      final responses =
+          await Webservice().getTopStoriesScrolling(_stories.length, 10);
       final stories = responses.map((response) {
         final json = jsonDecode(response.body);
         return Story.fromJSON(json);
@@ -145,35 +143,87 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: ScrollAppBar(
-            controller: _scrollController,
-            elevation: 0,
-            title: Text("HN Fschmtz"),
-            actions: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 13, 0),
-                child: IconButton(
-                    icon: Icon(
-                      Icons.refresh_outlined,
-                      size: 24,
-                    ),
-                    onPressed: () {
-                      //scroll to top
-                      _scrollController.animateTo(0,
-                          duration: Duration(milliseconds: 700),
-                          curve: Curves.fastOutSlowIn);
-
-                      _getTopStoriesRefresh();
-                      _getStoryIdsLidos();
-                      _showAlertDialogLoading(context);
-                    }),
+      body: AnimatedSwitcher(
+        duration: Duration(milliseconds: 650),
+        child: carregando
+            ? Loading()
+            : LazyLoadScrollView(
+                onEndOfPage: () => _getMaisTopStoriesScrolling(),
+                scrollOffset: 120,
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  physics: AlwaysScrollableScrollPhysics(),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 42,
+                      ),
+                      const Text(
+                        "Hacker News", //
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w600
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        "Top Stories", //
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 15.5, color: Theme.of(context).hintColor),
+                      ),
+                      ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: _stories.length,
+                        itemBuilder: (context, index) {
+                          return ContainerStory(
+                              contador: index,
+                              refreshIdLidos: refreshIdLidos,
+                              story: new Story(
+                                storyId: _stories[index].storyId,
+                                title: _stories[index].title,
+                                url: _stories[index].url,
+                                score: _stories[index].score,
+                                commentsCount: _stories[index].commentsCount,
+                                time: _stories[index].time,
+                                lido: listaIdsLidos
+                                        .contains(_stories[index].storyId)
+                                    ? true
+                                    : false,
+                              ));
+                        },
+                      ),
+                    ],
+                  ),
+                ),
               ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+          child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Visibility(
+            visible: loadMaisStoriesScroll,
+            child: PreferredSize(
+              preferredSize: Size.fromHeight(4.0),
+              child: LinearProgressIndicator(
+                backgroundColor: Theme.of(context).accentColor.withOpacity(0.3),
+              ),
+            ),
+          ),
+          Row(
+            children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 2, 0), //8
+                padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
                 child: IconButton(
                     icon: Icon(
                       Icons.settings,
                       size: 24,
+                      color: Theme.of(context).hintColor,
                     ),
                     onPressed: () {
                       Navigator.push(
@@ -184,61 +234,29 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                           ));
                     }),
               ),
-            ]
-        ),
-        body: Snap(
-          controller: _scrollController.appBar,
-          child: AnimatedSwitcher(
-            duration: Duration(milliseconds: 650),
-            child: carregando
-                ? Loading()
-                : LazyLoadScrollView(
-              onEndOfPage: () => _getMaisTopStoriesScrolling(),
-              scrollOffset: 100,
-              child: SingleChildScrollView(
-                controller: _scrollController,
-                physics: AlwaysScrollableScrollPhysics(),
-                child: ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: _stories.length,
-                  itemBuilder: (context, index) {
-                    return ContainerStory(
-                        contador: index,
-                        refreshIdLidos: refreshIdLidos,
-                        story: new Story(
-                          storyId: _stories[index].storyId,
-                          title: _stories[index].title,
-                          url: _stories[index].url,
-                          score: _stories[index].score,
-                          commentsCount: _stories[index].commentsCount,
-                          time: _stories[index].time,
-                          lido: listaIdsLidos.contains(_stories[index].storyId) ? true : false,
-                        )
-                    );
-                  },
-                ),
-              ),
-            ),
-          ),
-        ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(28, 0, 0, 0),
+                child: IconButton(
+                    icon: Icon(
+                      Icons.refresh_outlined,
+                      size: 24,
+                      color: Theme.of(context).hintColor,
+                    ),
+                    onPressed: () {
+                      //scroll to top
+                      _scrollController.animateTo(0,
+                          duration: Duration(milliseconds: 600),
+                          curve: Curves.fastOutSlowIn);
 
-        bottomNavigationBar: loadMaisStoriesScroll
-            ? PreferredSize(
-          preferredSize: Size.fromHeight(4.0),
-          child: LinearProgressIndicator(
-            backgroundColor:
-            Theme.of(context).accentColor.withOpacity(0.3),
+                      _getTopStoriesRefresh();
+                      _getStoryIdsLidos();
+                      _showAlertDialogLoading(context);
+                    }),
+              ),
+            ],
           ),
-        )
-            : const SizedBox.shrink()
+        ],
+      )),
     );
   }
 }
-
-
-
-
-
-
-

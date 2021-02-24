@@ -42,14 +42,13 @@ class criadorDB {
           
           ''');
 
-    //CRIAR 40 ITENS FALSOS, por enquanto só 40 (suficiente?)
+
     Batch batch = db.batch();
-    int contador = 1;
-    while (contador <= 40){
-      batch.insert('lidos', {'id': contador, 'idTopStory': contador});
-      contador++;
+    for(int i = 1; i <= 35 ; i++) {
+      batch.insert('lidos', {'id': i, 'idTopStory': i});
     }
     await batch.commit(noResult: true);
+
 
 
     //CRIA TRIGGER add 1, deleta 1

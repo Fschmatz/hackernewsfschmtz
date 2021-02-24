@@ -2,37 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 //CLARO
-    ThemeData light = ThemeData(
+ThemeData light = ThemeData(
     brightness: Brightness.light,
-    primaryColor: Color(0xFFEAEAF2), //mais esc 0xFFEAEAEE
+    primaryColor: Color(0xFFEAEAF2),
     accentColor: Color(0xFF01A173),
     scaffoldBackgroundColor: Color(0xFFF9F9FF),
-
     cardTheme: CardTheme(
       color: Color(0xFFF7F7FE),
     ),
-
     dialogTheme: DialogTheme(
       backgroundColor: Color(0xFFF9F9FF),
     ),
-
-    );
+    bottomAppBarColor: Color(0xFFE8E8EF),
+    bottomSheetTheme:
+        BottomSheetThemeData(modalBackgroundColor: Color(0xFFE8E8EF)));
 
 //ESCURO
-    ThemeData dark = ThemeData(
+ThemeData dark = ThemeData(
     brightness: Brightness.dark,
     primaryColor: Color(0xFF212125),
     accentColor: Color(0xFFe68040),
     scaffoldBackgroundColor: Color(0xFF1C1C1F),
-
     cardTheme: CardTheme(
       color: Color(0xFF1C1C1F),
     ),
-
     dialogTheme: DialogTheme(
       backgroundColor: Color(0xFF202124),
     ),
-    );
+    bottomAppBarColor: Color(0xFF17171A), //0xFF212124
+    bottomSheetTheme:
+        BottomSheetThemeData(modalBackgroundColor: Color(0xFF17171A)));
 
 class ThemeNotifier extends ChangeNotifier {
   final String key = 'valorTema';

@@ -18,8 +18,7 @@ class ContainerStory extends StatefulWidget {
       : super(key: key);
 }
 
-class _ContainerStoryState extends State<ContainerStory>{
-
+class _ContainerStoryState extends State<ContainerStory> {
   void _markRead(int idStory) async {
     final dbLidos = lidosDao.instance;
     Map<String, dynamic> row = {
@@ -40,8 +39,10 @@ class _ContainerStoryState extends State<ContainerStory>{
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.fromLTRB(15, 8, 15, 8),
-      elevation: 0,
+      margin: widget.contador == 0
+          ? const EdgeInsets.fromLTRB(15, 0, 15, 8)
+          : const EdgeInsets.fromLTRB(15, 8, 15, 8),
+      elevation: 2,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(15)),
         side: BorderSide(
@@ -53,7 +54,6 @@ class _ContainerStoryState extends State<ContainerStory>{
         customBorder: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
-
         onTap: () {
           if (widget.story.url != null) {
             _launchBrowser(widget.story.url);
@@ -75,7 +75,6 @@ class _ContainerStoryState extends State<ContainerStory>{
             }
           }
         },
-
         child: Column(
           children: [
             StoryUrl(
