@@ -235,7 +235,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                     }),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(28, 0, 0, 0),
+                padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
                 child: IconButton(
                     icon: Icon(
                       Icons.refresh_outlined,
