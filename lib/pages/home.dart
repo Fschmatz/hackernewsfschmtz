@@ -58,7 +58,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   //get noticias
   void _getTopStoriesInicial() async {
-    final responses = await Webservice().getTopStories(15);
+    final responses = await Webservice().getTopStories(10);
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
@@ -67,15 +67,11 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
       carregando = false;
       _stories = stories;
     });
-
-    Timer(const Duration(milliseconds: 6000), () {
-      _getTopStoriesSecundario();
-    });
   }
 
   //BOTAO REFRESH
   void _getTopStoriesRefresh() async {
-    final responses = await Webservice().getTopStories(15);
+    final responses = await Webservice().getTopStories(10);
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
@@ -84,23 +80,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
       _stories = stories;
       Navigator.of(context).pop();
     });
-
-    Timer(const Duration(milliseconds: 6000), () {
-      _getTopStoriesSecundario();
-    });
   }
 
-  //USADO PRO TIMER
-  void _getTopStoriesSecundario() async {
-    final responses = await Webservice().getTopStoriesTimerSecundario(15, 15);
-    final stories = responses.map((response) {
-      final json = jsonDecode(response.body);
-      return Story.fromJSON(json);
-    }).toList();
-    setState(() {
-      _stories += stories;
-    });
-  }
 
   //USADO PRO SCROLL
   void _getMaisTopStoriesScrolling() async {
@@ -149,7 +130,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             ? Loading()
             : LazyLoadScrollView(
                 onEndOfPage: () => _getMaisTopStoriesScrolling(),
-                scrollOffset: 120,
+                scrollOffset: 130,
                 child: SingleChildScrollView(
                   controller: _scrollController,
                   physics: AlwaysScrollableScrollPhysics(),
@@ -211,6 +192,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             child: PreferredSize(
               preferredSize: Size.fromHeight(4.0),
               child: LinearProgressIndicator(
+                minHeight: 3,
+                valueColor: new AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor.withOpacity(0.8)),
                 backgroundColor: Theme.of(context).accentColor.withOpacity(0.3),
               ),
             ),
@@ -235,7 +218,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                     }),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+                padding: const EdgeInsets.fromLTRB(32, 0, 0, 0),
                 child: IconButton(
                     icon: Icon(
                       Icons.refresh_outlined,
@@ -245,7 +228,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                     onPressed: () {
                       //scroll to top
                       _scrollController.animateTo(0,
-                          duration: Duration(milliseconds: 600),
+                          duration: Duration(milliseconds: 800),
                           curve: Curves.fastOutSlowIn);
 
                       _getTopStoriesRefresh();

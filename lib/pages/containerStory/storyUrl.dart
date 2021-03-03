@@ -22,7 +22,7 @@ class StoryUrl extends StatelessWidget {
           children: [
             Text(story.title,
                 style: TextStyle(
-                    fontSize: 17.3,
+                    fontSize: 16.7,
                     color: story.lido
                         ? Theme.of(context).disabledColor
                         : Theme.of(context).textTheme.headline6.color)),

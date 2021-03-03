@@ -116,7 +116,7 @@ class _LoadingState extends State<Loading> {
                                       children: [
                                         Icon(
                                           Icons.text_snippet_outlined, //article
-                                          color: Theme.of(context).accentColor,
+                                          color: Theme.of(context).accentColor.withOpacity(0.9),
                                           size: 18,
                                         ),
                                         SizedBox(
@@ -124,7 +124,7 @@ class _LoadingState extends State<Loading> {
                                         ),
                                         Icon(
                                           Icons.arrow_upward_outlined,
-                                          color: Theme.of(context).accentColor,
+                                          color: Theme.of(context).accentColor.withOpacity(0.9),
                                           size: 18,
                                         ),
                                       ],

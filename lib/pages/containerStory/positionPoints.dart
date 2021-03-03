@@ -22,7 +22,7 @@ class PositionPoints extends StatelessWidget {
                 Icons.text_snippet_outlined, //article
                 color: story.lido
                     ? Theme.of(context).accentColor.withOpacity(0.5)
-                    : Theme.of(context).accentColor,
+                    : Theme.of(context).accentColor.withOpacity(0.9),
                 size: 18,
               ),
               Text(" ${1 + contador}    ",
@@ -30,12 +30,12 @@ class PositionPoints extends StatelessWidget {
                       fontSize: 15,
                       color: story.lido
                           ? Theme.of(context).accentColor.withOpacity(0.5)
-                          : Theme.of(context).accentColor)),
+                          : Theme.of(context).accentColor.withOpacity(0.9))),
               Icon(
                 Icons.arrow_upward_outlined,
                 color: story.lido
                     ? Theme.of(context).accentColor.withOpacity(0.5)
-                    : Theme.of(context).accentColor,
+                    : Theme.of(context).accentColor.withOpacity(0.9),
                 size: 18,
               ),
               Text(" ${story.score} Points",
@@ -43,7 +43,7 @@ class PositionPoints extends StatelessWidget {
                       fontSize: 15,
                       color: story.lido
                           ? Theme.of(context).accentColor.withOpacity(0.5)
-                          : Theme.of(context).accentColor)),
+                          : Theme.of(context).accentColor.withOpacity(0.9))),
             ],
           ),
         ),
