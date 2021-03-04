@@ -22,16 +22,16 @@ ThemeData dark = ThemeData(
     brightness: Brightness.dark,
     primaryColor: Color(0xFF212125),
     accentColor: Color(0xFFe68040),
-    scaffoldBackgroundColor: Color(0xFF1C1C1F),
+    scaffoldBackgroundColor: Color(0xFF202124),
     cardTheme: CardTheme(
-      color: Color(0xFF1C1C1F),
+      color: Color(0xFF202124),
     ),
     dialogTheme: DialogTheme(
       backgroundColor: Color(0xFF202124),
     ),
-    bottomAppBarColor: Color(0xFF17171A), //0xFF212124
+    bottomAppBarColor: Color(0xFF1B1C1F), //0xFF212124
     bottomSheetTheme:
-        BottomSheetThemeData(modalBackgroundColor: Color(0xFF17171A)));
+        BottomSheetThemeData(modalBackgroundColor: Color(0xFF1B1C1F)));
 
 class ThemeNotifier extends ChangeNotifier {
   final String key = 'valorTema';

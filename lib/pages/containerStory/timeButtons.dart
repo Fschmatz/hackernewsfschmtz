@@ -62,7 +62,7 @@ class TimeButtons extends StatelessWidget {
                       story.storyId.toString());
                 }),
             const SizedBox(
-              width: 20,
+              width: 25,
             ),
             IconButton(
                 icon: Icon(Icons.share_outlined),

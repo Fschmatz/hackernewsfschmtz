@@ -16,13 +16,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   List<Story> _stories = List<Story>();
-  bool carregando = true;
-  bool loadMaisStoriesScroll = false;
+  bool loading = true;
+  bool loadStoriesOnScroll = false;
+  bool getTopStoriesSecondaryIsDone = false;
   ScrollController _scrollController;
-
-  //LOGICA DB
-  List<Map<String, dynamic>> mapIdLidos = new List();
-  List<int> listaIdsLidos = new List();
+  List<int> listIdsRead = new List();
 
   @override
   bool get wantKeepAlive => true;
@@ -31,19 +29,17 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   void initState() {
     _scrollController = ScrollController();
     _getStoryIdsLidos();
-    _getTopStoriesInicial();
+    _getTopStoriesOnStartup();
     super.initState();
   }
 
   Future<void> _getStoryIdsLidos() async {
     final dbLidos = lidosDao.instance;
     var resposta = await dbLidos.queryAllStoriesLidosIds();
-    setState(() {
-      mapIdLidos = resposta;
-    });
     for (int i = 0; i < resposta.length; i++) {
-      listaIdsLidos.add(resposta[i]['idTopStory']);
+      listIdsRead.add(resposta[i]['idTopStory']);
     }
+    setState(() {});
   }
 
   void refreshIdLidos() {
@@ -56,21 +52,33 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     super.dispose();
   }
 
-  //get noticias
-  void _getTopStoriesInicial() async {
+  void _getTopStoriesOnStartup() async {
     final responses = await Webservice().getTopStories(10);
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
     }).toList();
     setState(() {
-      carregando = false;
+      loading = false;
       _stories = stories;
+    });
+    _getTopStoriesSecondary();
+  }
+
+  void _getTopStoriesSecondary() async {
+    final responses = await Webservice().getTopStoriesScrolling(10, 10);
+    final stories = responses.map((response) {
+      final json = jsonDecode(response.body);
+      return Story.fromJSON(json);
+    }).toList();
+    setState(() {
+      _stories.addAll(stories);
+      getTopStoriesSecondaryIsDone = true;
+      loadStoriesOnScroll = false;
     });
   }
 
-  //BOTAO REFRESH
-  void _getTopStoriesRefresh() async {
+  void _getTopStoriesButtonRefresh() async {
     final responses = await Webservice().getTopStories(10);
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
@@ -80,26 +88,28 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
       _stories = stories;
       Navigator.of(context).pop();
     });
+    _getTopStoriesSecondary();
   }
 
-
-  //USADO PRO SCROLL
-  void _getMaisTopStoriesScrolling() async {
-    if (loadMaisStoriesScroll == false) {
-      //liga animacao bottom
+  //SCROLLING
+  void _getMoreTopStoriesScrolling() async {
+    if (loadStoriesOnScroll == false) {
+      //bottom animation
       setState(() {
-        loadMaisStoriesScroll = true;
+        loadStoriesOnScroll = true;
       });
-      final responses =
-          await Webservice().getTopStoriesScrolling(_stories.length, 10);
-      final stories = responses.map((response) {
-        final json = jsonDecode(response.body);
-        return Story.fromJSON(json);
-      }).toList();
-      setState(() {
-        loadMaisStoriesScroll = false;
-        _stories.addAll(stories);
-      });
+      if (getTopStoriesSecondaryIsDone) {
+        final responses =
+            await Webservice().getTopStoriesScrolling(_stories.length, 10);
+        final stories = responses.map((response) {
+          final json = jsonDecode(response.body);
+          return Story.fromJSON(json);
+        }).toList();
+        setState(() {
+          loadStoriesOnScroll = false;
+          _stories.addAll(stories);
+        });
+      }
     }
   }
 
@@ -125,11 +135,11 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedSwitcher(
-        duration: Duration(milliseconds: 650),
-        child: carregando
+        duration: Duration(milliseconds: 700),
+        child: loading
             ? Loading()
             : LazyLoadScrollView(
-                onEndOfPage: () => _getMaisTopStoriesScrolling(),
+                onEndOfPage: () => _getMoreTopStoriesScrolling(),
                 scrollOffset: 130,
                 child: SingleChildScrollView(
                   controller: _scrollController,
@@ -137,15 +147,13 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                   child: Column(
                     children: [
                       const SizedBox(
-                        height: 42,
+                        height: 45,
                       ),
                       const Text(
                         "Hacker News", //
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w600
-                        ),
+                            fontSize: 22, fontWeight: FontWeight.w600),
                       ),
                       const SizedBox(
                         height: 5,
@@ -171,7 +179,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                 score: _stories[index].score,
                                 commentsCount: _stories[index].commentsCount,
                                 time: _stories[index].time,
-                                lido: listaIdsLidos
+                                lido: listIdsRead
                                         .contains(_stories[index].storyId)
                                     ? true
                                     : false,
@@ -188,12 +196,12 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         mainAxisSize: MainAxisSize.min,
         children: [
           Visibility(
-            visible: loadMaisStoriesScroll,
+            visible: loadStoriesOnScroll,
             child: PreferredSize(
               preferredSize: Size.fromHeight(4.0),
               child: LinearProgressIndicator(
-                minHeight: 3,
-                valueColor: new AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor.withOpacity(0.8)),
+                valueColor: new AlwaysStoppedAnimation<Color>(
+                    Theme.of(context).accentColor.withOpacity(0.8)),
                 backgroundColor: Theme.of(context).accentColor.withOpacity(0.3),
               ),
             ),
@@ -218,7 +226,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                     }),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(32, 0, 0, 0),
+                padding: const EdgeInsets.fromLTRB(35, 0, 0, 0),
                 child: IconButton(
                     icon: Icon(
                       Icons.refresh_outlined,
@@ -228,10 +236,10 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                     onPressed: () {
                       //scroll to top
                       _scrollController.animateTo(0,
-                          duration: Duration(milliseconds: 800),
+                          duration: Duration(milliseconds: 850),
                           curve: Curves.fastOutSlowIn);
 
-                      _getTopStoriesRefresh();
+                      _getTopStoriesButtonRefresh();
                       _getStoryIdsLidos();
                       _showAlertDialogLoading(context);
                     }),

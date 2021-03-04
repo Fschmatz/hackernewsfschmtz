@@ -169,7 +169,7 @@ class _LoadingState extends State<Loading> {
                                                       .hintColor,
                                                 ),
                                                 const SizedBox(
-                                                  width: 10,
+                                                  width: 40,
                                                 ),
                                               ],
                                             ),
