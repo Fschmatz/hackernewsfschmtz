@@ -1,18 +1,21 @@
 class NameChangelog{
 
-  static String appVersion = "2.2.1";
+  static String appVersion = "2.2.2";
   static String appName = "HackerNews Fschmtz";
 
   static String changelogCurrent = '''  
   
 Current version:  
 
-2.2.1
-- Changed Timers to Functions to end cases of double articles
-- Small UI Changes  
+2.2.2
+- HotFix
 ''';
 
   static String changelogsOld = '''
+
+2.2.1
+- Changed Timers to Functions to end cases of double articles
+- Small UI Changes  
 
 2.1.0
 - Removed Timers

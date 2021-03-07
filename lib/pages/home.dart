@@ -206,11 +206,28 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               ),
             ),
           ),
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
-                child: IconButton(
+          Padding(
+            padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                    icon: Icon(
+                      Icons.refresh_outlined,
+                      size: 24,
+                      color: Theme.of(context).hintColor,
+                    ),
+                    onPressed: () {
+                      //scroll to top
+                      _scrollController.animateTo(0,
+                          duration: Duration(milliseconds: 900),
+                          curve: Curves.fastOutSlowIn);
+
+                      _getTopStoriesButtonRefresh();
+                      _getStoryIdsLidos();
+                      _showAlertDialogLoading(context);
+                    }),
+                IconButton(
                     icon: Icon(
                       Icons.settings,
                       size: 24,
@@ -224,27 +241,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                             fullscreenDialog: true,
                           ));
                     }),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(35, 0, 0, 0),
-                child: IconButton(
-                    icon: Icon(
-                      Icons.refresh_outlined,
-                      size: 24,
-                      color: Theme.of(context).hintColor,
-                    ),
-                    onPressed: () {
-                      //scroll to top
-                      _scrollController.animateTo(0,
-                          duration: Duration(milliseconds: 850),
-                          curve: Curves.fastOutSlowIn);
-
-                      _getTopStoriesButtonRefresh();
-                      _getStoryIdsLidos();
-                      _showAlertDialogLoading(context);
-                    }),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       )),
