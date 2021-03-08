@@ -23,7 +23,7 @@ class _LoadingState extends State<Loading> {
           height: 5,
         ),
         Text(
-          "Top Stories", //
+          " ", //
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 15.5, color: Theme.of(context).hintColor),
         ),

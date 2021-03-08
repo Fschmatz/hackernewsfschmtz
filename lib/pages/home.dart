@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:hackernewsfschmtz/classes/articlePage.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:hackernewsfschmtz/classes/webservice.dart';
 import 'package:hackernewsfschmtz/configs/configs.dart';
@@ -15,21 +16,30 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
-  List<Story> _stories = List<Story>();
+  //List<Story> _stories = List<Story>();
+  List<Story> _stories = [];
+  List<ArticlePage> listArticlePages = new ArticlePage().getArticlePages();
   bool loading = true;
   bool loadStoriesOnScroll = false;
   bool getTopStoriesSecondaryIsDone = false;
   ScrollController _scrollController;
-  List<int> listIdsRead = new List();
+  List<int> listIdsRead = [];
+  String articleType;
+  String pageName;
 
   @override
   bool get wantKeepAlive => true;
 
   @override
   void initState() {
+
+    //always start with TopStories
+    articleType = listArticlePages[0].maskLink;
+    pageName = listArticlePages[0].name;
+
     _scrollController = ScrollController();
     _getStoryIdsLidos();
-    _getTopStoriesOnStartup();
+    _getStoriesOnStartup();
     super.initState();
   }
 
@@ -52,8 +62,16 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     super.dispose();
   }
 
-  void _getTopStoriesOnStartup() async {
-    final responses = await Webservice().getTopStories(10);
+  Future<void> changeArticlePage(ArticlePage article){
+    setState(() {
+      loading = true;
+      pageName = article.name;
+      articleType = article.maskLink;
+    });
+  }
+
+  void _getStoriesOnStartup() async {
+    final responses = await Webservice().getTopStories(articleType,10);
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
@@ -62,11 +80,11 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
       loading = false;
       _stories = stories;
     });
-    _getTopStoriesSecondary();
+    _getStoriesSecondary();
   }
 
-  void _getTopStoriesSecondary() async {
-    final responses = await Webservice().getTopStoriesScrolling(10, 10);
+  void _getStoriesSecondary() async {
+    final responses = await Webservice().getTopStoriesScrolling(articleType,10, 10);
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
@@ -78,8 +96,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     });
   }
 
-  void _getTopStoriesButtonRefresh() async {
-    final responses = await Webservice().getTopStories(10);
+  void _getStoriesButtonRefresh() async {
+    final responses = await Webservice().getTopStories(articleType,10);
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
@@ -88,11 +106,11 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
       _stories = stories;
       Navigator.of(context).pop();
     });
-    _getTopStoriesSecondary();
+    _getStoriesSecondary();
   }
 
   //SCROLLING
-  void _getMoreTopStoriesScrolling() async {
+  void _getMoreStoriesScrolling() async {
     if (loadStoriesOnScroll == false) {
       //bottom animation
       setState(() {
@@ -100,7 +118,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
       });
       if (getTopStoriesSecondaryIsDone) {
         final responses =
-            await Webservice().getTopStoriesScrolling(_stories.length, 10);
+            await Webservice().getTopStoriesScrolling(articleType,_stories.length, 10);
         final stories = responses.map((response) {
           final json = jsonDecode(response.body);
           return Story.fromJSON(json);
@@ -131,16 +149,60 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         });
   }
 
+  void openBottomSheet() {
+    showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: const Radius.circular(15.0),
+              topRight: const Radius.circular(15.0)),
+        ),
+        isScrollControlled: true,
+        context: context,
+        builder: (BuildContext bc) {
+          return Wrap(children: [
+
+
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+              child: ListView.separated(
+                separatorBuilder: (BuildContext context, int index) =>
+                const Divider(
+                  thickness: 1.2,
+                ),
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: listArticlePages.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      changeArticlePage(listArticlePages[index]);
+                      _getStoriesOnStartup();
+                    },
+                    leading: Icon(Icons.article_outlined,color: Theme.of(context).hintColor),
+                    title: Text(
+                      listArticlePages[index].name,
+                      style: TextStyle(fontSize: 17),
+                    ),
+                    trailing: Icon(Icons.keyboard_arrow_right,color: Theme.of(context).hintColor),
+                  );
+                },
+              ),
+            ),
+          ]);
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedSwitcher(
-        duration: Duration(milliseconds: 700),
+        duration: Duration(milliseconds: 720),
         child: loading
             ? Loading()
             : LazyLoadScrollView(
-                onEndOfPage: () => _getMoreTopStoriesScrolling(),
-                scrollOffset: 130,
+                onEndOfPage: () => _getMoreStoriesScrolling(),
+                scrollOffset: 100,
                 child: SingleChildScrollView(
                   controller: _scrollController,
                   physics: AlwaysScrollableScrollPhysics(),
@@ -159,7 +221,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                         height: 5,
                       ),
                       Text(
-                        "Top Stories", //
+                        pageName,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 15.5, color: Theme.of(context).hintColor),
@@ -170,6 +232,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                         itemCount: _stories.length,
                         itemBuilder: (context, index) {
                           return ContainerStory(
+                            key: UniqueKey(),
                               contador: index,
                               refreshIdLidos: refreshIdLidos,
                               story: new Story(
@@ -213,7 +276,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               children: [
                 IconButton(
                     icon: Icon(
-                      Icons.refresh_outlined,
+                      Icons.refresh,
                       size: 24,
                       color: Theme.of(context).hintColor,
                     ),
@@ -223,9 +286,18 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                           duration: Duration(milliseconds: 900),
                           curve: Curves.fastOutSlowIn);
 
-                      _getTopStoriesButtonRefresh();
+                      _getStoriesButtonRefresh();
                       _getStoryIdsLidos();
                       _showAlertDialogLoading(context);
+                    }),
+                IconButton(
+                    icon: Icon(
+                      Icons.menu,
+                      //size: 24,
+                      color: Theme.of(context).hintColor,
+                    ),
+                    onPressed: () {
+                      openBottomSheet();
                     }),
                 IconButton(
                     icon: Icon(

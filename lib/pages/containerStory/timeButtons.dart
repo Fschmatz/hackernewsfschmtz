@@ -80,7 +80,7 @@ class TimeButtons extends StatelessWidget {
                   }
                 }),
             const SizedBox(
-              width: 12,
+              width: 2,
             )
           ],
         ),
