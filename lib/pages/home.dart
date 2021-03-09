@@ -16,7 +16,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
-  //List<Story> _stories = List<Story>();
   List<Story> _stories = [];
   List<ArticlePage> listArticlePages = new ArticlePage().getArticlePages();
   bool loading = true;
@@ -32,7 +31,6 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   @override
   void initState() {
-
     //always start with TopStories
     articleType = listArticlePages[0].maskLink;
     pageName = listArticlePages[0].name;
@@ -62,7 +60,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     super.dispose();
   }
 
-  Future<void> changeArticlePage(ArticlePage article){
+  Future<void> changeArticlePage(ArticlePage article) {
     setState(() {
       loading = true;
       pageName = article.name;
@@ -71,7 +69,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   }
 
   void _getStoriesOnStartup() async {
-    final responses = await Webservice().getTopStories(articleType,10);
+    final responses = await Webservice().getTopStories(articleType, 10);
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
@@ -84,7 +82,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   }
 
   void _getStoriesSecondary() async {
-    final responses = await Webservice().getTopStoriesScrolling(articleType,10, 10);
+    final responses =
+        await Webservice().getTopStoriesScrolling(articleType, 10, 10);
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
@@ -97,7 +96,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   }
 
   void _getStoriesButtonRefresh() async {
-    final responses = await Webservice().getTopStories(articleType,10);
+    final responses = await Webservice().getTopStories(articleType, 10);
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
@@ -117,8 +116,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         loadStoriesOnScroll = true;
       });
       if (getTopStoriesSecondaryIsDone) {
-        final responses =
-            await Webservice().getTopStoriesScrolling(articleType,_stories.length, 10);
+        final responses = await Webservice()
+            .getTopStoriesScrolling(articleType, _stories.length, 10);
         final stories = responses.map((response) {
           final json = jsonDecode(response.body);
           return Story.fromJSON(json);
@@ -131,7 +130,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     }
   }
 
-  //ANIMACAO LOADING DO REFRESH
+  //ANIMATION LOADING REFRESH
   Future<Null> _showAlertDialogLoading(BuildContext context) async {
     return await showDialog<Null>(
         context: context,
@@ -160,13 +159,11 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         context: context,
         builder: (BuildContext bc) {
           return Wrap(children: [
-
-
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+              padding: const EdgeInsets.fromLTRB(0, 12, 0, 12),
               child: ListView.separated(
                 separatorBuilder: (BuildContext context, int index) =>
-                const Divider(
+                    const Divider(
                   thickness: 1.2,
                 ),
                 physics: NeverScrollableScrollPhysics(),
@@ -179,12 +176,14 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                       changeArticlePage(listArticlePages[index]);
                       _getStoriesOnStartup();
                     },
-                    leading: Icon(Icons.article_outlined,color: Theme.of(context).hintColor),
+                    leading: Icon(Icons.article_outlined,
+                        color: Theme.of(context).hintColor),
                     title: Text(
                       listArticlePages[index].name,
-                      style: TextStyle(fontSize: 17),
+                      style: TextStyle(fontSize: 17.5),
                     ),
-                    trailing: Icon(Icons.keyboard_arrow_right,color: Theme.of(context).hintColor),
+                    trailing: Icon(Icons.keyboard_arrow_right,
+                        color: Theme.of(context).hintColor),
                   );
                 },
               ),
@@ -197,7 +196,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedSwitcher(
-        duration: Duration(milliseconds: 720),
+        duration: Duration(milliseconds: 700),
         child: loading
             ? Loading()
             : LazyLoadScrollView(
@@ -232,7 +231,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                         itemCount: _stories.length,
                         itemBuilder: (context, index) {
                           return ContainerStory(
-                            key: UniqueKey(),
+                              key: UniqueKey(),
                               contador: index,
                               refreshIdLidos: refreshIdLidos,
                               story: new Story(
@@ -283,7 +282,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                     onPressed: () {
                       //scroll to top
                       _scrollController.animateTo(0,
-                          duration: Duration(milliseconds: 900),
+                          duration: Duration(milliseconds: 950),
                           curve: Curves.fastOutSlowIn);
 
                       _getStoriesButtonRefresh();

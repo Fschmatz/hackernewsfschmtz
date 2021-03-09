@@ -67,6 +67,7 @@ class TimeButtons extends StatelessWidget {
             IconButton(
                 icon: Icon(Icons.share_outlined),
                 iconSize: 20,
+                splashRadius: 26,
                 color: story.lido
                     ? Theme.of(context).disabledColor
                     : Theme.of(context).hintColor,

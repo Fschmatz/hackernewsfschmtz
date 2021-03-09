@@ -7,7 +7,6 @@ class PositionPoints extends StatelessWidget {
 
   PositionPoints({Key key, this.story, this.contador}) : super(key: key);
 
-  //anterior 18 15 18 15
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -19,7 +18,7 @@ class PositionPoints extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Icon(
-                Icons.text_snippet_outlined, //article
+                Icons.text_snippet_outlined,
                 color: story.lido
                     ? Theme.of(context).accentColor.withOpacity(0.5)
                     : Theme.of(context).accentColor.withOpacity(0.9),
@@ -51,5 +50,3 @@ class PositionPoints extends StatelessWidget {
     );
   }
 }
-
-//Theme.of(context).accentColor

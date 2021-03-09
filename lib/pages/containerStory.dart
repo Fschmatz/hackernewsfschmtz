@@ -64,7 +64,7 @@ class _ContainerStoryState extends State<ContainerStory> {
               widget.refreshIdLidos();
             }
           } else {
-            // PARA ABRIR COMENTARIOS QUANDO HOUVER UM ASK/SHOW HN
+            // IF ASK/SHOW HN
             _launchBrowser('https://news.ycombinator.com/item?id=' +
                 widget.story.storyId.toString());
 

@@ -7,19 +7,17 @@ class About extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-
         appBar: AppBar(
           title: Text("About"),
           centerTitle: true,
           elevation: 0,
         ),
-
         body: Container(
           padding: const EdgeInsets.fromLTRB(6,0,6,5),
           child: ListView(
               children: <Widget>[
 
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(NameChangelog.appName+" " + NameChangelog.appVersion,
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -27,7 +25,7 @@ class About extends StatelessWidget {
                     fontWeight: FontWeight.bold
                   ),
                 ),
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
 
                 CircleAvatar(
                   radius: 55,

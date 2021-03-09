@@ -13,24 +13,19 @@ class Configs extends StatefulWidget {
 }
 
 class _ConfigsState extends State<Configs> {
-
-
   @override
   void initState() {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
         appBar: AppBar(
           title: Text("Settings"),
           centerTitle: true,
           elevation: 0,
         ),
-
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(17.0),
           child: Column(
@@ -49,13 +44,11 @@ class _ConfigsState extends State<Configs> {
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 18, color: Colors.black),
                   ),
-
                 ),
               ),
               SizedBox(
                 height: 40.0,
               ),
-
               Card(
                 elevation: 0,
                 shape: RoundedRectangleBorder(
@@ -80,8 +73,9 @@ class _ConfigsState extends State<Configs> {
                   },
                 ),
               ),
-              SizedBox(height: 10,),
-
+              SizedBox(
+                height: 10,
+              ),
               Card(
                 elevation: 0,
                 shape: RoundedRectangleBorder(
@@ -119,7 +113,6 @@ class _ConfigsState extends State<Configs> {
               SizedBox(
                 height: 15.0,
               ),
-
               ListTile(
                 contentPadding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                 title: Text(
@@ -135,8 +128,6 @@ class _ConfigsState extends State<Configs> {
                       }),
                 ),
               ),
-
-
               SizedBox(
                 height: 15.0,
               ),
@@ -145,4 +136,3 @@ class _ConfigsState extends State<Configs> {
         ));
   }
 }
-

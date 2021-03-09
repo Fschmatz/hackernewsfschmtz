@@ -12,7 +12,7 @@ class _LoadingState extends State<Loading> {
     return Column(
       children: [
         const SizedBox(
-          height: 42,
+          height: 45,
         ),
         const Text(
           "Hacker News", //
@@ -116,7 +116,9 @@ class _LoadingState extends State<Loading> {
                                       children: [
                                         Icon(
                                           Icons.text_snippet_outlined, //article
-                                          color: Theme.of(context).accentColor.withOpacity(0.9),
+                                          color: Theme.of(context)
+                                              .accentColor
+                                              .withOpacity(0.9),
                                           size: 18,
                                         ),
                                         SizedBox(
@@ -124,7 +126,9 @@ class _LoadingState extends State<Loading> {
                                         ),
                                         Icon(
                                           Icons.arrow_upward_outlined,
-                                          color: Theme.of(context).accentColor.withOpacity(0.9),
+                                          color: Theme.of(context)
+                                              .accentColor
+                                              .withOpacity(0.9),
                                           size: 18,
                                         ),
                                       ],
@@ -196,7 +200,6 @@ class _LoadingState extends State<Loading> {
                               )
                             ],
                           ),
-                          //Container(child: Divider(thickness: 1,color: Colors.black,))
                         ],
                       ),
                     ),

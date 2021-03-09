@@ -21,15 +21,15 @@ class Webservice {
     }
   }
 
-  Future<List<Response>> getTopStoriesScrolling(String storyType,int valorSkip,int quantidade) async {
+  Future<List<Response>> getTopStoriesScrolling(String storyType,int valorSkip,int quant) async {
     final response = await http.get(UrlHelper.urlStories(storyType));
     if (response.statusCode == 200) {
       Iterable storyIds = jsonDecode(response.body);
-      return Future.wait(storyIds.skip(valorSkip).take(quantidade).map((storyId) {
+      return Future.wait(storyIds.skip(valorSkip).take(quant).map((storyId) {
         return _getStory(storyId);
       }));
     } else {
-      throw Exception("Sem resposta");
+      throw Exception("Nothing");
     }
   }
 }
