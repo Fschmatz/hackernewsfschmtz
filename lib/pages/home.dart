@@ -161,31 +161,63 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
           return Wrap(children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 12, 0, 12),
-              child: ListView.separated(
-                separatorBuilder: (BuildContext context, int index) =>
-                    const Divider(
-                  thickness: 1.2,
-                ),
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: listArticlePages.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                      changeArticlePage(listArticlePages[index]);
-                      _getStoriesOnStartup();
-                    },
-                    leading: Icon(Icons.article_outlined,
-                        color: Theme.of(context).hintColor),
-                    title: Text(
-                      listArticlePages[index].name,
-                      style: TextStyle(fontSize: 17.5),
+              child: Column(
+                children: [
+                  Card(
+                    margin: const EdgeInsets.fromLTRB(90, 10, 90, 10),
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      side: BorderSide(
+                        color: Colors.grey.withOpacity(0.3),
+                        width: 1,
+                      ),
                     ),
-                    trailing: Icon(Icons.keyboard_arrow_right,
-                        color: Theme.of(context).hintColor),
-                  );
-                },
+                    child:ListTile(
+                      dense: true,
+                      title:  Text(
+                        "Hacker News", //
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 17.5, ),
+                      ),
+                      subtitle:Text(
+                        "news.ycombinator.com",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Theme.of(context).hintColor),
+                      ),
+                    )
+                  ),
+                  const SizedBox(height: 10,),
+                  ListView.separated(
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const Divider(
+                      thickness: 1.2,
+                    ),
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: listArticlePages.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                          changeArticlePage(listArticlePages[index]);
+                          _getStoriesOnStartup();
+                        },
+                        leading: Icon(Icons.article_outlined,
+                            color: Theme.of(context).hintColor),
+                        title: Text(
+                          listArticlePages[index].name,
+                          style: TextStyle(fontSize: 17.5),
+                        ),
+                        trailing: Icon(Icons.keyboard_arrow_right,
+                            color: Theme.of(context).hintColor),
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
           ]);
@@ -201,7 +233,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             ? Loading()
             : LazyLoadScrollView(
                 onEndOfPage: () => _getMoreStoriesScrolling(),
-                scrollOffset: 100,
+                scrollOffset: 5,
                 child: SingleChildScrollView(
                   controller: _scrollController,
                   physics: AlwaysScrollableScrollPhysics(),
@@ -223,7 +255,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                         pageName,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 15.5, color: Theme.of(context).hintColor),
+                            fontSize: 16, color: Theme.of(context).hintColor),
                       ),
                       ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
