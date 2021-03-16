@@ -68,7 +68,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     });
   }
 
-  void _getStoriesOnStartup() async {
+  //LOAD STORIES STARTUP
+  Future<void> _getStoriesOnStartup() async {
     final responses = await Webservice().getTopStories(articleType, 10);
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
@@ -81,7 +82,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     _getStoriesSecondary();
   }
 
-  void _getStoriesSecondary() async {
+  //LOAD STORIES SECONDARY
+  Future<void> _getStoriesSecondary() async {
     final responses =
         await Webservice().getTopStoriesScrolling(articleType, 10, 10);
     final stories = responses.map((response) {
@@ -95,23 +97,10 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     });
   }
 
-  void _getStoriesButtonRefresh() async {
-    final responses = await Webservice().getTopStories(articleType, 10);
-    final stories = responses.map((response) {
-      final json = jsonDecode(response.body);
-      return Story.fromJSON(json);
-    }).toList();
-    setState(() {
-      _stories = stories;
-      Navigator.of(context).pop();
-    });
-    _getStoriesSecondary();
-  }
-
-  //SCROLLING
-  void _getMoreStoriesScrolling() async {
+  //LOAD STORIES SCROLLING
+  Future<void> _getMoreStoriesScrolling() async {
     if (loadStoriesOnScroll == false) {
-      //bottom animation
+      //bottom animation start
       setState(() {
         loadStoriesOnScroll = true;
       });
@@ -130,24 +119,6 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     }
   }
 
-  //ANIMATION LOADING REFRESH
-  Future<Null> _showAlertDialogLoading(BuildContext context) async {
-    return await showDialog<Null>(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return SimpleDialog(
-            elevation: 0.0,
-            backgroundColor: Colors.transparent,
-            children: <Widget>[
-              Center(
-                child: CircularProgressIndicator(),
-              )
-            ],
-          );
-        });
-  }
-
   void openBottomSheet() {
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
@@ -164,6 +135,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               child: Column(
                 children: [
                   Card(
+                    color: Theme.of(context).bottomAppBarColor,
                     margin: const EdgeInsets.fromLTRB(90, 10, 90, 10),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
@@ -190,7 +162,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                       ),
                     )
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 14,),
                   ListView.separated(
                     separatorBuilder: (BuildContext context, int index) =>
                         const Divider(
@@ -312,19 +284,19 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                       color: Theme.of(context).hintColor,
                     ),
                     onPressed: () {
-                      //scroll to top
-                      _scrollController.animateTo(0,
-                          duration: Duration(milliseconds: 950),
-                          curve: Curves.fastOutSlowIn);
 
-                      _getStoriesButtonRefresh();
+                      //START ANIMATION
+                      setState(() {
+                        loading = true;
+                      });
+
+                      _getStoriesOnStartup();
                       _getStoryIdsLidos();
-                      _showAlertDialogLoading(context);
                     }),
                 IconButton(
                     icon: Icon(
                       Icons.menu,
-                      //size: 24,
+                      size: 26,
                       color: Theme.of(context).hintColor,
                     ),
                     onPressed: () {

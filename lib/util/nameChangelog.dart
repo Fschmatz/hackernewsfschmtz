@@ -1,18 +1,22 @@
 class NameChangelog{
 
-  static String appVersion = "3.1.0";
+  static String appVersion = "3.1.1";
   static String appName = "HackerNews Fschmtz";
 
   static String changelogCurrent = '''  
   
 Current version:  
 
-3.1.0
-- Small UI Changes
-- Small Fixes
+3.1.1
+- Bug Fix
+
 ''';
 
   static String changelogsOld = '''
+
+3.1.0
+- Small UI Changes
+- Small Fixes
 
 3.0.1
 - Small Changes
