@@ -58,7 +58,7 @@ class _LoadingState extends State<Loading> {
                                 SkeletonAnimation(
                                   gradientColor: Colors.white38,
                                   shimmerColor: Colors.grey.withOpacity(0.2),
-                                  shimmerDuration: 3100,
+                                  shimmerDuration: 3300,
                                   borderRadius: BorderRadius.circular(5),
                                   child: Text("   ",
                                       style: TextStyle(
@@ -73,7 +73,7 @@ class _LoadingState extends State<Loading> {
                                   child: SkeletonAnimation(
                                     gradientColor: Colors.white38,
                                     shimmerColor: Colors.grey.withOpacity(0.4),
-                                    shimmerDuration: 3120,
+                                    shimmerDuration: 3320,
                                     borderRadius: BorderRadius.circular(5),
                                     child: Text("   ",
                                         style: TextStyle(
@@ -87,7 +87,7 @@ class _LoadingState extends State<Loading> {
                                 SkeletonAnimation(
                                   gradientColor: Colors.white38,
                                   shimmerColor: Colors.grey.withOpacity(0.5),
-                                  shimmerDuration: 3160,
+                                  shimmerDuration: 3360,
                                   borderRadius: BorderRadius.circular(5),
                                   child: Text("   ",
                                       maxLines: 2,
@@ -146,7 +146,7 @@ class _LoadingState extends State<Loading> {
                                         gradientColor: Colors.white38,
                                         shimmerColor:
                                             Colors.grey.withOpacity(0.5),
-                                        shimmerDuration: 3160,
+                                        shimmerDuration: 3360,
                                         borderRadius: BorderRadius.circular(5),
                                         child: Text(
                                             "                               ",

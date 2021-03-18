@@ -179,13 +179,22 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                           _getStoriesOnStartup();
                         },
                         leading: Icon(Icons.article_outlined,
-                            color: Theme.of(context).hintColor),
+                            color: listArticlePages[index].name.compareTo(pageName).isEven
+                            ? Theme.of(context).accentColor.withOpacity(0.9)
+                            :  Theme.of(context).hintColor,
+                           ),
                         title: Text(
                           listArticlePages[index].name,
-                          style: TextStyle(fontSize: 17.5),
+                          style: TextStyle(color: listArticlePages[index].name.compareTo(pageName).isEven
+                                                  ? Theme.of(context).accentColor.withOpacity(0.9)
+                                                  : Theme.of(context).textTheme.headline6.color,
+                              fontSize: 17.5),
                         ),
-                        trailing: Icon(Icons.keyboard_arrow_right,
-                            color: Theme.of(context).hintColor),
+                        trailing: Visibility(
+                          visible: listArticlePages[index].name.compareTo(pageName).isOdd,
+                          child: Icon(Icons.keyboard_arrow_right,
+                              color: Theme.of(context).hintColor),
+                        ),
                       );
                     },
                   ),
@@ -296,7 +305,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                 IconButton(
                     icon: Icon(
                       Icons.menu,
-                      size: 26,
+                      size: 25,
                       color: Theme.of(context).hintColor,
                     ),
                     onPressed: () {
