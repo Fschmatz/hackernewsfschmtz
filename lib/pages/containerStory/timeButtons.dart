@@ -19,7 +19,7 @@ class TimeButtons extends StatelessWidget {
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Text(story.timeAgo,
             style: TextStyle(
-                fontSize: 15,
+                fontSize: 14.5,
                 color: story.lido
                     ? Theme.of(context).disabledColor
                     : Theme.of(context).hintColor)),
@@ -34,7 +34,7 @@ class TimeButtons extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.comment_outlined,
-                      size: 19,
+                      size: 17.5,
                       color: story.lido
                           ? Theme.of(context).disabledColor
                           : Theme.of(context).hintColor,
@@ -48,7 +48,7 @@ class TimeButtons extends StatelessWidget {
                       child: story.commentsCount != 0
                           ? Text(story.commentsCount.toString(),
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 14.5,
                                 color: story.lido
                                     ? Theme.of(context).disabledColor
                                     : Theme.of(context).hintColor,
@@ -66,7 +66,7 @@ class TimeButtons extends StatelessWidget {
             ),
             IconButton(
                 icon: Icon(Icons.share_outlined),
-                iconSize: 20,
+                iconSize: 19,
                 splashRadius: 26,
                 color: story.lido
                     ? Theme.of(context).disabledColor

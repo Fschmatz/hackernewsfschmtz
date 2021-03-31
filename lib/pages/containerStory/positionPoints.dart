@@ -24,7 +24,7 @@ class PositionPoints extends StatelessWidget {
                     : Theme.of(context).accentColor.withOpacity(0.9),
                 size: 18,
               ),
-              Text(" ${1 + contador}    ",
+              Text(" ${1 + contador}     ",
                   style: TextStyle(
                       fontSize: 15,
                       color: story.lido

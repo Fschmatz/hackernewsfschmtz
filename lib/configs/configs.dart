@@ -100,17 +100,17 @@ class _ConfigsState extends State<Configs> {
                   },
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40.0,
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
                 child: Text(
                   "Options: ",
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 19.5),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15.0,
               ),
               ListTile(
@@ -128,9 +128,7 @@ class _ConfigsState extends State<Configs> {
                       }),
                 ),
               ),
-              SizedBox(
-                height: 15.0,
-              ),
+
             ],
           ),
         ));

@@ -12,32 +12,41 @@ class _LoadingState extends State<Loading> {
     return Column(
       children: [
         const SizedBox(
-          height: 45,
+          height: 40,
         ),
-        const Text(
-          "Hacker News", //
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Text(
-          " ", //
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 15.5, color: Theme.of(context).hintColor),
+        Align(
+          alignment: Alignment.topLeft,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(27, 0, 0, 0),
+            child: RichText(
+              text: TextSpan(
+                children: <TextSpan>[
+                  TextSpan(
+                      text: 'HN  ',
+                      style:
+                          TextStyle(fontSize: 21, fontWeight: FontWeight.w700)),
+                  TextSpan(
+                      text: " ",
+                      style: TextStyle(
+                          color: Theme.of(context).hintColor,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600)),
+                ],
+              ),
+            ),
+          ),
         ),
         Expanded(
           child: ListView.builder(
             physics: NeverScrollableScrollPhysics(),
-            itemCount: 4,
+            itemCount: 5,
             shrinkWrap: true,
             itemBuilder: (BuildContext context, int index) {
               return Card(
                 margin: index == 0
                     ? const EdgeInsets.fromLTRB(15, 0, 15, 8)
                     : const EdgeInsets.fromLTRB(15, 8, 15, 8),
-                elevation: 0,
+                elevation: 2,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15)),
                   side: BorderSide(
@@ -62,11 +71,11 @@ class _LoadingState extends State<Loading> {
                                   borderRadius: BorderRadius.circular(5),
                                   child: Text("   ",
                                       style: TextStyle(
-                                        fontSize: 18,
+                                        fontSize: 16.5,
                                       )),
                                 ),
                                 const SizedBox(
-                                  height: 6,
+                                  height: 8,
                                 ),
                                 Visibility(
                                   visible: index % 2 == 0,
@@ -77,7 +86,7 @@ class _LoadingState extends State<Loading> {
                                     borderRadius: BorderRadius.circular(5),
                                     child: Text("   ",
                                         style: TextStyle(
-                                          fontSize: 17,
+                                          fontSize: 16.5,
                                         )),
                                   ),
                                 ),
@@ -92,7 +101,7 @@ class _LoadingState extends State<Loading> {
                                   child: Text("   ",
                                       maxLines: 2,
                                       style: TextStyle(
-                                          fontSize: 11,
+                                          fontSize: 12,
                                           color: Theme.of(context).hintColor)),
                                 ),
                               ],
@@ -115,7 +124,7 @@ class _LoadingState extends State<Loading> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Icon(
-                                          Icons.text_snippet_outlined, //article
+                                          Icons.text_snippet_outlined,
                                           color: Theme.of(context)
                                               .accentColor
                                               .withOpacity(0.9),
@@ -151,7 +160,7 @@ class _LoadingState extends State<Loading> {
                                         child: Text(
                                             "                               ",
                                             style: TextStyle(
-                                                fontSize: 15,
+                                                fontSize: 14,
                                                 color: Theme.of(context)
                                                     .hintColor)),
                                       ),
@@ -168,7 +177,7 @@ class _LoadingState extends State<Loading> {
                                               children: [
                                                 Icon(
                                                   Icons.comment_outlined,
-                                                  size: 20,
+                                                  size: 17.5,
                                                   color: Theme.of(context)
                                                       .hintColor,
                                                 ),
@@ -186,7 +195,7 @@ class _LoadingState extends State<Loading> {
                                             minWidth: 0,
                                             child: Icon(
                                               Icons.share_outlined,
-                                              size: 20,
+                                              size: 19,
                                               color:
                                                   Theme.of(context).hintColor,
                                             ),

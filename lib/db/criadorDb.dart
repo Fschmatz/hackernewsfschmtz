@@ -40,7 +40,7 @@ class criadorDB {
 
 
     Batch batch = db.batch();
-    for(int i = 1; i <= 35 ; i++) {
+    for(int i = 1; i <= 50 ; i++) {
       batch.insert('lidos', {'id': i, 'idTopStory': i});
     }
     await batch.commit(noResult: true);

@@ -22,13 +22,13 @@ class StoryUrl extends StatelessWidget {
           children: [
             Text(story.title,
                 style: TextStyle(
-                    fontSize: 16.6,
+                    fontSize: 16.5,
                     color: story.lido
                         ? Theme.of(context).disabledColor
                         : Theme.of(context).textTheme.headline6.color)),
 
             const SizedBox(
-              height: 8,
+              height: 10,
             ),
 
             //AS VEZES PODE SER NULO
@@ -37,7 +37,7 @@ class StoryUrl extends StatelessWidget {
               child: Text(story.url.toString(),
                   maxLines: 2,
                   style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 12.5,
                       color: story.lido
                           ? Theme.of(context).disabledColor
                           : Theme.of(context).hintColor)),

@@ -135,34 +135,35 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               child: Column(
                 children: [
                   Card(
-                    color: Theme.of(context).bottomAppBarColor,
-                    margin: const EdgeInsets.fromLTRB(90, 10, 90, 10),
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      side: BorderSide(
-                        color: Colors.grey.withOpacity(0.3),
-                        width: 1,
+                      color: Theme.of(context).bottomAppBarColor,
+                      margin: const EdgeInsets.fromLTRB(90, 10, 90, 10),
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        side: BorderSide(
+                          color: Colors.grey.withOpacity(0.3),
+                          width: 1,
+                        ),
                       ),
-                    ),
-                    child:ListTile(
-                      dense: true,
-                      title:  Text(
-                        "Hacker News", //
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 17.5, ),
-                      ),
-                      subtitle:Text(
-                        "news.ycombinator.com",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Theme.of(context).hintColor),
-                      ),
-                    )
+                      child: ListTile(
+                        dense: true,
+                        title: Text(
+                          "Hacker News", //
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 17.5,
+                          ),
+                        ),
+                        subtitle: Text(
+                          "news.ycombinator.com",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 15, color: Theme.of(context).hintColor),
+                        ),
+                      )),
+                  const SizedBox(
+                    height: 14,
                   ),
-                  const SizedBox(height: 14,),
                   ListView.separated(
                     separatorBuilder: (BuildContext context, int index) =>
                         const Divider(
@@ -178,20 +179,33 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                           changeArticlePage(listArticlePages[index]);
                           _getStoriesOnStartup();
                         },
-                        leading: Icon(Icons.article_outlined,
-                            color: listArticlePages[index].name.compareTo(pageName).isEven
-                            ? Theme.of(context).accentColor.withOpacity(0.9)
-                            :  Theme.of(context).hintColor,
-                           ),
+                        leading: Icon(
+                          Icons.article_outlined,
+                          color: listArticlePages[index]
+                                  .name
+                                  .compareTo(pageName)
+                                  .isEven
+                              ? Theme.of(context).accentColor.withOpacity(0.9)
+                              : Theme.of(context).hintColor,
+                        ),
                         title: Text(
                           listArticlePages[index].name,
-                          style: TextStyle(color: listArticlePages[index].name.compareTo(pageName).isEven
-                                                  ? Theme.of(context).accentColor.withOpacity(0.9)
-                                                  : Theme.of(context).textTheme.headline6.color,
-                              fontSize: 17.5),
+                          style: TextStyle(
+                              color: listArticlePages[index]
+                                      .name
+                                      .compareTo(pageName)
+                                      .isEven
+                                  ? Theme.of(context)
+                                      .accentColor
+                                      .withOpacity(0.9)
+                                  : Theme.of(context).textTheme.headline6.color,
+                              fontSize: 17),
                         ),
                         trailing: Visibility(
-                          visible: listArticlePages[index].name.compareTo(pageName).isOdd,
+                          visible: listArticlePages[index]
+                              .name
+                              .compareTo(pageName)
+                              .isOdd,
                           child: Icon(Icons.keyboard_arrow_right,
                               color: Theme.of(context).hintColor),
                         ),
@@ -209,7 +223,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedSwitcher(
-        duration: Duration(milliseconds: 700),
+        duration: Duration(milliseconds: 650),
         child: loading
             ? Loading()
             : LazyLoadScrollView(
@@ -221,22 +235,34 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                   child: Column(
                     children: [
                       const SizedBox(
-                        height: 45,
+                        height: 40,
                       ),
-                      const Text(
-                        "Hacker News", //
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.w600),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        pageName,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 16, color: Theme.of(context).hintColor),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(27, 0, 0, 0),
+                          child: RichText(
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: 'HN  ',
+                                    style: TextStyle(
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .headline6
+                                            .color,
+                                        fontSize: 21,
+                                        fontWeight: FontWeight.w700)),
+                                TextSpan(
+                                    text: pageName,
+                                    style: TextStyle(
+                                        color: Theme.of(context).hintColor,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600)),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                       ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
@@ -288,12 +314,11 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               children: [
                 IconButton(
                     icon: Icon(
-                      Icons.refresh,
+                      Icons.refresh_outlined,
                       size: 24,
                       color: Theme.of(context).hintColor,
                     ),
                     onPressed: () {
-
                       //START ANIMATION
                       setState(() {
                         loading = true;
@@ -304,7 +329,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                     }),
                 IconButton(
                     icon: Icon(
-                      Icons.menu,
+                      Icons.menu_outlined,
                       size: 25,
                       color: Theme.of(context).hintColor,
                     ),
@@ -313,7 +338,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                     }),
                 IconButton(
                     icon: Icon(
-                      Icons.settings,
+                      Icons.settings_outlined,
                       size: 24,
                       color: Theme.of(context).hintColor,
                     ),
