@@ -17,4 +17,4 @@ Links and comments are opened externally via the browser.
 Created with Android in mind, it has not been tested for IOS.
 <br><br>
 
-<img src="https://user-images.githubusercontent.com/21291813/111875490-d2c2e180-8978-11eb-803f-008b1a757b46.png" width="40%"></img> <img src="https://user-images.githubusercontent.com/21291813/111875493-d6566880-8978-11eb-9984-222780ebff94.png" width="40%"></img> 
+<img src="https://user-images.githubusercontent.com/21291813/113222077-a81c3700-925c-11eb-81ca-89e6eaa619a6.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/21291813/113222086-aa7e9100-925c-11eb-9c38-ed2099c8326e.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/21291813/113222101-aeaaae80-925c-11eb-820e-ea4b53be6391.png" width="30%"></img> 
