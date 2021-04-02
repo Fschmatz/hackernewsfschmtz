@@ -4,6 +4,9 @@ import 'package:skeleton_text/skeleton_text.dart';
 class Loading extends StatefulWidget {
   @override
   _LoadingState createState() => _LoadingState();
+
+  String pageName;
+  Loading({Key key,this.pageName}) : super(key: key);
 }
 
 class _LoadingState extends State<Loading> {
@@ -23,10 +26,15 @@ class _LoadingState extends State<Loading> {
                 children: <TextSpan>[
                   TextSpan(
                       text: 'HN  ',
-                      style:
-                          TextStyle(fontSize: 21, fontWeight: FontWeight.w700)),
+                      style: TextStyle(
+                          color: Theme.of(context)
+                              .textTheme
+                              .headline6
+                              .color,
+                          fontSize: 21,
+                          fontWeight: FontWeight.w700)),
                   TextSpan(
-                      text: " ",
+                      text: widget.pageName,
                       style: TextStyle(
                           color: Theme.of(context).hintColor,
                           fontSize: 20,
@@ -177,7 +185,7 @@ class _LoadingState extends State<Loading> {
                                               children: [
                                                 Icon(
                                                   Icons.comment_outlined,
-                                                  size: 17.5,
+                                                  size: 18,
                                                   color: Theme.of(context)
                                                       .hintColor,
                                                 ),
@@ -195,7 +203,7 @@ class _LoadingState extends State<Loading> {
                                             minWidth: 0,
                                             child: Icon(
                                               Icons.share_outlined,
-                                              size: 19,
+                                              size: 20,
                                               color:
                                                   Theme.of(context).hintColor,
                                             ),

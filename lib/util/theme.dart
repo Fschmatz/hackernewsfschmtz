@@ -21,7 +21,7 @@ ThemeData light = ThemeData(
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
     primaryColor: Color(0xFF202124),
-    accentColor: Color(0xFFEF9D51),//Color(0xFFe68040) DarkOrange
+    accentColor: Color(0xFFFF965b),//Color(0xFFe68040) DarkOrange
     scaffoldBackgroundColor: Color(0xFF202124),
     cardTheme: CardTheme(
       color: Color(0xFF202124),

@@ -66,10 +66,14 @@ class _ConfigsState extends State<Configs> {
                     style: TextStyle(fontSize: 18),
                   ),
                   onTap: () {
+
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => About()),
-                    );
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (BuildContext context) => About(),
+                          fullscreenDialog: true,
+                        ));
+
                   },
                 ),
               ),
@@ -94,9 +98,11 @@ class _ConfigsState extends State<Configs> {
                   ),
                   onTap: () {
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Changelog()),
-                    );
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (BuildContext context) => Changelog(),
+                          fullscreenDialog: true,
+                        ));
                   },
                 ),
               ),

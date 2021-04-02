@@ -60,7 +60,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     super.dispose();
   }
 
-  Future<void> changeArticlePage(ArticlePage article) {
+  changeArticlePage(ArticlePage article) {
     setState(() {
       loading = true;
       pageName = article.name;
@@ -85,7 +85,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   //LOAD STORIES SECONDARY
   Future<void> _getStoriesSecondary() async {
     final responses =
-        await Webservice().getTopStoriesScrolling(articleType, 10, 10);
+    await Webservice().getTopStoriesScrolling(articleType, 10, 10);
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
@@ -166,7 +166,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                   ),
                   ListView.separated(
                     separatorBuilder: (BuildContext context, int index) =>
-                        const Divider(
+                    const Divider(
                       thickness: 1.2,
                     ),
                     physics: NeverScrollableScrollPhysics(),
@@ -182,9 +182,9 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                         leading: Icon(
                           Icons.article_outlined,
                           color: listArticlePages[index]
-                                  .name
-                                  .compareTo(pageName)
-                                  .isEven
+                              .name
+                              .compareTo(pageName)
+                              .isEven
                               ? Theme.of(context).accentColor.withOpacity(0.9)
                               : Theme.of(context).hintColor,
                         ),
@@ -192,12 +192,12 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                           listArticlePages[index].name,
                           style: TextStyle(
                               color: listArticlePages[index]
-                                      .name
-                                      .compareTo(pageName)
-                                      .isEven
+                                  .name
+                                  .compareTo(pageName)
+                                  .isEven
                                   ? Theme.of(context)
-                                      .accentColor
-                                      .withOpacity(0.9)
+                                  .accentColor
+                                  .withOpacity(0.9)
                                   : Theme.of(context).textTheme.headline6.color,
                               fontSize: 17),
                         ),
@@ -223,138 +223,140 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedSwitcher(
-        duration: Duration(milliseconds: 650),
+        duration: Duration(milliseconds: 600),
         child: loading
-            ? Loading()
+            ? Loading(key: UniqueKey(),pageName: pageName,)
             : LazyLoadScrollView(
-                onEndOfPage: () => _getMoreStoriesScrolling(),
-                scrollOffset: 5,
-                child: SingleChildScrollView(
-                  controller: _scrollController,
-                  physics: AlwaysScrollableScrollPhysics(),
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 40,
+          onEndOfPage: () => _getMoreStoriesScrolling(),
+          scrollOffset: 5,
+          child: SingleChildScrollView(
+            controller: _scrollController,
+            physics: AlwaysScrollableScrollPhysics(),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 40,
+                ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(27, 0, 0, 0),
+                    child: RichText(
+                      text: TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'HN  ',
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .headline6
+                                      .color,
+                                  fontSize: 21,
+                                  fontWeight: FontWeight.w700)),
+                          TextSpan(
+                              text: pageName,
+                              style: TextStyle(
+                                  color: Theme.of(context).hintColor,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600)),
+                        ],
                       ),
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(27, 0, 0, 0),
-                          child: RichText(
-                            text: TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: 'HN  ',
-                                    style: TextStyle(
-                                        color: Theme.of(context)
-                                            .textTheme
-                                            .headline6
-                                            .color,
-                                        fontSize: 21,
-                                        fontWeight: FontWeight.w700)),
-                                TextSpan(
-                                    text: pageName,
-                                    style: TextStyle(
-                                        color: Theme.of(context).hintColor,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600)),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: _stories.length,
-                        itemBuilder: (context, index) {
-                          return ContainerStory(
-                              key: UniqueKey(),
-                              contador: index,
-                              refreshIdLidos: refreshIdLidos,
-                              story: new Story(
-                                storyId: _stories[index].storyId,
-                                title: _stories[index].title,
-                                url: _stories[index].url,
-                                score: _stories[index].score,
-                                commentsCount: _stories[index].commentsCount,
-                                time: _stories[index].time,
-                                lido: listIdsRead
-                                        .contains(_stories[index].storyId)
-                                    ? true
-                                    : false,
-                              ));
-                        },
-                      ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-          child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Visibility(
-            visible: loadStoriesOnScroll,
-            child: PreferredSize(
-              preferredSize: Size.fromHeight(4.0),
-              child: LinearProgressIndicator(
-                valueColor: new AlwaysStoppedAnimation<Color>(
-                    Theme.of(context).accentColor.withOpacity(0.8)),
-                backgroundColor: Theme.of(context).accentColor.withOpacity(0.3),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                    icon: Icon(
-                      Icons.refresh_outlined,
-                      size: 24,
-                      color: Theme.of(context).hintColor,
-                    ),
-                    onPressed: () {
-                      //START ANIMATION
-                      setState(() {
-                        loading = true;
-                      });
-
-                      _getStoriesOnStartup();
-                      _getStoryIdsLidos();
-                    }),
-                IconButton(
-                    icon: Icon(
-                      Icons.menu_outlined,
-                      size: 25,
-                      color: Theme.of(context).hintColor,
-                    ),
-                    onPressed: () {
-                      openBottomSheet();
-                    }),
-                IconButton(
-                    icon: Icon(
-                      Icons.settings_outlined,
-                      size: 24,
-                      color: Theme.of(context).hintColor,
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) => Configs(),
-                            fullscreenDialog: true,
-                          ));
-                    }),
+                ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: _stories.length,
+                  itemBuilder: (context, index) {
+                    return ContainerStory(
+                        key: UniqueKey(),
+                        contador: index,
+                        refreshIdLidos: refreshIdLidos,
+                        story: new Story(
+                          storyId: _stories[index].storyId,
+                          title: _stories[index].title,
+                          url: _stories[index].url,
+                          score: _stories[index].score,
+                          commentsCount: _stories[index].commentsCount,
+                          time: _stories[index].time,
+                          lido: listIdsRead
+                              .contains(_stories[index].storyId)
+                              ? true
+                              : false,
+                        ));
+                  },
+                ),
               ],
             ),
           ),
-        ],
-      )),
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Visibility(
+                visible: loadStoriesOnScroll,
+                child: PreferredSize(
+                  preferredSize: Size.fromHeight(4.0),
+                  child: LinearProgressIndicator(
+                    valueColor: new AlwaysStoppedAnimation<Color>(
+                        Theme.of(context).accentColor.withOpacity(0.8)),
+                    backgroundColor: Theme.of(context).accentColor.withOpacity(0.3),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                        icon: Icon(
+                          Icons.refresh_outlined,
+                          size: 24,
+                          color: Theme.of(context).hintColor,
+                        ),
+                        onPressed: () {
+                          //START ANIMATION
+                          setState(() {
+                            loading = true;
+                          });
+
+                          _getStoriesOnStartup();
+                          _getStoryIdsLidos();
+                        }),
+                    IconButton(
+                        icon: Icon(
+                          Icons.menu_outlined,
+                          size: 25,
+                          color: Theme.of(context).hintColor,
+                        ),
+                        onPressed: () {
+                          openBottomSheet();
+                        }),
+                    IconButton(
+                        icon: Icon(
+                          Icons.settings_outlined,
+                          size: 24,
+                          color: Theme.of(context).hintColor,
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) => Configs(),
+                                fullscreenDialog: true,
+                              ));
+                        }),
+                  ],
+                ),
+              ),
+            ],
+          )),
     );
   }
 }
+
+
