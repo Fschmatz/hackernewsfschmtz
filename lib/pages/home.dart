@@ -43,9 +43,9 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   Future<void> _getStoryIdsLidos() async {
     final dbLidos = lidosDao.instance;
-    var resposta = await dbLidos.queryAllStoriesLidosIds();
-    for (int i = 0; i < resposta.length; i++) {
-      listIdsRead.add(resposta[i]['idTopStory']);
+    var resp = await dbLidos.queryAllStoriesLidosIds();
+    for (int i = 0; i < resp.length; i++) {
+      listIdsRead.add(resp[i]['idTopStory']);
     }
     setState(() {});
   }
@@ -86,12 +86,18 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   Future<void> _getStoriesSecondary() async {
     final responses =
     await Webservice().getTopStoriesScrolling(articleType, 10, 10);
-    final stories = responses.map((response) {
+    final storiesResp = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
     }).toList();
+    _stories.addAll(storiesResp);
+
+    //REMOVE DUPLICATES
+    final ids = _stories.map((e) => e.storyId).toSet();
+    _stories.retainWhere((x) => ids.remove(x.storyId));
+
     setState(() {
-      _stories.addAll(stories);
+      _stories = _stories;
       getTopStoriesSecondaryIsDone = true;
       loadStoriesOnScroll = false;
     });
@@ -107,13 +113,19 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
       if (getTopStoriesSecondaryIsDone) {
         final responses = await Webservice()
             .getTopStoriesScrolling(articleType, _stories.length, 10);
-        final stories = responses.map((response) {
+        final storiesResp = responses.map((response) {
           final json = jsonDecode(response.body);
           return Story.fromJSON(json);
         }).toList();
+        _stories.addAll(storiesResp);
+
+        //REMOVE DUPLICATES
+        final ids = _stories.map((e) => e.storyId).toSet();
+        _stories.retainWhere((x) => ids.remove(x.storyId));
+
         setState(() {
           loadStoriesOnScroll = false;
-          _stories.addAll(stories);
+          _stories = _stories;
         });
       }
     }
@@ -135,7 +147,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               child: Column(
                 children: [
                   Card(
-                      color: Theme.of(context).bottomAppBarColor,
+                      color: Theme.of(context).bottomSheetTheme.backgroundColor,
                       margin: const EdgeInsets.fromLTRB(90, 10, 90, 10),
                       elevation: 0,
                       shape: RoundedRectangleBorder(
@@ -299,7 +311,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               Visibility(
                 visible: loadStoriesOnScroll,
                 child: PreferredSize(
-                  preferredSize: Size.fromHeight(4.0),
+                  preferredSize: Size.fromHeight(3.0),
                   child: LinearProgressIndicator(
                     valueColor: new AlwaysStoppedAnimation<Color>(
                         Theme.of(context).accentColor.withOpacity(0.8)),
@@ -358,5 +370,6 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     );
   }
 }
+
 
 

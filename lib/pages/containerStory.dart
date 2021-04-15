@@ -40,19 +40,19 @@ class _ContainerStoryState extends State<ContainerStory> {
   Widget build(BuildContext context) {
     return Card(
       margin: widget.contador == 0
-          ? const EdgeInsets.fromLTRB(15, 0, 15, 8)
-          : const EdgeInsets.fromLTRB(15, 8, 15, 8),
-      elevation: 2,
+          ? const EdgeInsets.fromLTRB(15, 0, 15, 10)
+          : const EdgeInsets.fromLTRB(15, 10, 15, 10),
+      elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(15)),
+        borderRadius: BorderRadius.all(Radius.circular(12)),
         side: BorderSide(
-          color: widget.story.lido ? Colors.grey.withOpacity(0.1) : Colors.grey.withOpacity(0.3),
+          color: widget.story.lido ? Colors.grey.withOpacity(0.1) : Colors.grey.withOpacity(0.4),
           width: 1,
         ),
       ),
       child: InkWell(
         customBorder: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(12),
         ),
         onTap: () {
           if (widget.story.url != null) {

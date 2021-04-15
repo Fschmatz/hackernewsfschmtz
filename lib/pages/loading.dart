@@ -52,13 +52,13 @@ class _LoadingState extends State<Loading> {
             itemBuilder: (BuildContext context, int index) {
               return Card(
                 margin: index == 0
-                    ? const EdgeInsets.fromLTRB(15, 0, 15, 8)
-                    : const EdgeInsets.fromLTRB(15, 8, 15, 8),
-                elevation: 2,
+                    ? const EdgeInsets.fromLTRB(15, 0, 15, 10)
+                    : const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                elevation: 0,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
                   side: BorderSide(
-                    color: Colors.grey.withOpacity(0.3),
+                    color: Colors.grey.withOpacity(0.4),
                     width: 1,
                   ),
                 ),

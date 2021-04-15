@@ -21,7 +21,7 @@ ThemeData light = ThemeData(
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
     primaryColor: Color(0xFF202124),
-    accentColor: Color(0xFFFF965b),//Color(0xFFe68040) DarkOrange
+    accentColor: Color(0xFFFF965b),
     scaffoldBackgroundColor: Color(0xFF202124),
     cardTheme: CardTheme(
       color: Color(0xFF202124),
@@ -29,9 +29,9 @@ ThemeData dark = ThemeData(
     dialogTheme: DialogTheme(
       backgroundColor: Color(0xFF202124),
     ),
-    bottomAppBarColor: Color(0xFF1A1B1E), //0xFF212124
+    bottomAppBarColor: Color(0xFF18191C),
     bottomSheetTheme:
-        BottomSheetThemeData(modalBackgroundColor: Color(0xFF1A1B1E)));
+        BottomSheetThemeData(modalBackgroundColor: Color(0xFF202124)));
 
 class ThemeNotifier extends ChangeNotifier {
   final String key = 'valorTema';
