@@ -40,13 +40,13 @@ class _ContainerStoryState extends State<ContainerStory> {
   Widget build(BuildContext context) {
     return Card(
       margin: widget.contador == 0
-          ? const EdgeInsets.fromLTRB(15, 0, 15, 10)
-          : const EdgeInsets.fromLTRB(15, 10, 15, 10),
-      elevation: 0,
+          ? const EdgeInsets.fromLTRB(15, 0, 15, 9)
+          : const EdgeInsets.fromLTRB(15, 9, 15, 9),
+      elevation: 1,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(12)),
         side: BorderSide(
-          color: widget.story.lido ? Colors.grey.withOpacity(0.1) : Colors.grey.withOpacity(0.4),
+          color: widget.story.lido ? Colors.grey[600].withOpacity(0.1) : Colors.grey[600].withOpacity(0.5),
           width: 1,
         ),
       ),

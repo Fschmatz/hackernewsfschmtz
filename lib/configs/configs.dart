@@ -32,9 +32,12 @@ class _ConfigsState extends State<Configs> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Card(
-                elevation: 0,
+                elevation: 1,
                 margin: const EdgeInsets.all(2.0),
-                color: Colors.green,
+                color: Color(0xFFFF965b),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
                 child: ListTile(
                   title: Text(
                     "Flutter " +
@@ -50,15 +53,18 @@ class _ConfigsState extends State<Configs> {
                 height: 40.0,
               ),
               Card(
-                elevation: 0,
+                elevation: 1,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
                   side: BorderSide(
-                    color: Colors.grey.withOpacity(0.3),
+                    color: Colors.grey[600].withOpacity(0.5),
                     width: 1,
                   ),
                 ),
                 child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
                   leading: Icon(Icons.text_snippet_outlined),
                   trailing: Icon(Icons.keyboard_arrow_right),
                   title: Text(
@@ -81,15 +87,18 @@ class _ConfigsState extends State<Configs> {
                 height: 10,
               ),
               Card(
-                elevation: 0,
+                elevation: 1,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
                   side: BorderSide(
-                    color: Colors.grey.withOpacity(0.3),
+                    color: Colors.grey[600].withOpacity(0.5),
                     width: 1,
                   ),
                 ),
                 child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
                   leading: Icon(Icons.text_snippet_outlined),
                   trailing: Icon(Icons.keyboard_arrow_right),
                   title: Text(
@@ -113,7 +122,7 @@ class _ConfigsState extends State<Configs> {
                 padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
                 child: Text(
                   "Options: ",
-                  style: TextStyle(fontSize: 19.5),
+                  style: TextStyle(fontSize: 19),
                 ),
               ),
               const SizedBox(
@@ -123,7 +132,7 @@ class _ConfigsState extends State<Configs> {
                 contentPadding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                 title: Text(
                   "Dark Theme",
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 17.5),
                 ),
                 trailing: Consumer<ThemeNotifier>(
                   builder: (context, notifier, child) => Switch(

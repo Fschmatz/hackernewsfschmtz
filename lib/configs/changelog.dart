@@ -14,9 +14,9 @@ class Changelog extends StatelessWidget {
           Card(
             margin: EdgeInsets.fromLTRB(15, 12, 15, 5),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(12),
               side: BorderSide(
-                color: Colors.grey.withOpacity(0.3),
+                color: Colors.grey[600].withOpacity(0.5),
                 width: 1,
               ),
             ),
