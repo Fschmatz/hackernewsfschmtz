@@ -23,7 +23,6 @@ class _ConfigsState extends State<Configs> {
     return Scaffold(
         appBar: AppBar(
           title: Text("Settings"),
-          centerTitle: true,
           elevation: 0,
         ),
         body: SingleChildScrollView(

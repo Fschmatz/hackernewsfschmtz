@@ -54,7 +54,7 @@ class _LoadingState extends State<Loading> {
                 margin: index == 0
                     ? const EdgeInsets.fromLTRB(15, 0, 15, 9)
                     : const EdgeInsets.fromLTRB(15, 9, 15, 9),
-                elevation: 1,
+                elevation: 2,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(12)),
                   side: BorderSide(

@@ -147,13 +147,13 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               child: Column(
                 children: [
                   Card(
-                      color: Theme.of(context).bottomSheetTheme.backgroundColor,
+                      color: Theme.of(context).primaryColor,
                       margin: const EdgeInsets.fromLTRB(90, 10, 90, 10),
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         side: BorderSide(
-                          color: Colors.grey.withOpacity(0.3),
+                          color: Colors.grey.withOpacity(0.5),
                           width: 1,
                         ),
                       ),

@@ -42,11 +42,11 @@ class _ContainerStoryState extends State<ContainerStory> {
       margin: widget.contador == 0
           ? const EdgeInsets.fromLTRB(15, 0, 15, 9)
           : const EdgeInsets.fromLTRB(15, 9, 15, 9),
-      elevation: 1,
+      elevation: 2,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(12)),
         side: BorderSide(
-          color: widget.story.lido ? Colors.grey[600].withOpacity(0.1) : Colors.grey[600].withOpacity(0.5),
+          color: widget.story.lido ? Colors.grey[600].withOpacity(0.2) : Colors.grey[600].withOpacity(0.5),
           width: 1,
         ),
       ),
