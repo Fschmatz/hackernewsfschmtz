@@ -46,7 +46,7 @@ class _ContainerStoryState extends State<ContainerStory> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(12)),
         side: BorderSide(
-          color: widget.story.lido ? Colors.grey[600].withOpacity(0.2) : Colors.grey[600].withOpacity(0.5),
+          color: widget.story.lido ? Colors.grey[800].withOpacity(0.1) : Colors.grey[800].withOpacity(0.5),
           width: 1,
         ),
       ),

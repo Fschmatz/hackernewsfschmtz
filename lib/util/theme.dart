@@ -20,18 +20,18 @@ ThemeData light = ThemeData(
 //ESCURO
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Color(0xFF1A1A1C),
+    primaryColor: Color(0xFF1D1D1E),
     accentColor: Color(0xFFFF965b),
-    scaffoldBackgroundColor: Color(0xFF1A1A1C),
+    scaffoldBackgroundColor: Color(0xFF1D1D1E),
     cardTheme: CardTheme(
-      color: Color(0xFF242426),
+      color: Color(0xFF252526),
     ),
     dialogTheme: DialogTheme(
-      backgroundColor: Color(0xFF242426),
+      backgroundColor: Color(0xFF252526),
     ),
-    bottomAppBarColor: Color(0xFF151517),
+    bottomAppBarColor: Color(0xFF151516),
     bottomSheetTheme:
-        BottomSheetThemeData(modalBackgroundColor: Color(0xFF1A1A1C)));
+        BottomSheetThemeData(modalBackgroundColor: Color(0xFF1D1D1E)));
 
 class ThemeNotifier extends ChangeNotifier {
   final String key = 'valorTema';

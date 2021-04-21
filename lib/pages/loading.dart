@@ -58,7 +58,7 @@ class _LoadingState extends State<Loading> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(12)),
                   side: BorderSide(
-                    color: Colors.grey[600].withOpacity(0.5),
+                    color: Colors.grey[800].withOpacity(0.5),
                     width: 1,
                   ),
                 ),
@@ -79,7 +79,7 @@ class _LoadingState extends State<Loading> {
                                   borderRadius: BorderRadius.circular(5),
                                   child: Text("   ",
                                       style: TextStyle(
-                                        fontSize: 16.5,
+                                        fontSize: 16,
                                       )),
                                 ),
                                 const SizedBox(

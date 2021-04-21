@@ -153,7 +153,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         side: BorderSide(
-                          color: Colors.grey.withOpacity(0.5),
+                          color: Colors.grey[700].withOpacity(0.5),
                           width: 1,
                         ),
                       ),
