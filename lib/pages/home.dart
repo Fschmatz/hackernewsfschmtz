@@ -276,7 +276,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                 ),
               ),
               const SizedBox(
-                height: 15,
+                height: 25,
               ),
               ListView.builder(
                 physics: NeverScrollableScrollPhysics(),

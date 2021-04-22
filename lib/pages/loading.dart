@@ -42,7 +42,7 @@ class Loading extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 15,
+          height: 25,
         ),
         ListView.builder(
           physics: NeverScrollableScrollPhysics(),
