@@ -241,66 +241,67 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             : LazyLoadScrollView(
           onEndOfPage: () => _getMoreStoriesScrolling(),
           scrollOffset: 5,
-          child: SingleChildScrollView(
+          child: ListView(
             controller: _scrollController,
             physics: AlwaysScrollableScrollPhysics(),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 40,
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(27, 0, 0, 0),
-                    child: RichText(
-                      text: TextSpan(
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: 'HN  ',
-                              style: TextStyle(
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .headline6
-                                      .color,
-                                  fontSize: 21,
-                                  fontWeight: FontWeight.w700)),
-                          TextSpan(
-                              text: pageName,
-                              style: TextStyle(
-                                  color: Theme.of(context).hintColor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600)),
-                        ],
-                      ),
+            children: [
+              const SizedBox(
+                height: 15,
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(27, 0, 0, 0),
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: 'HN  ',
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    .color,
+                                fontSize: 21,
+                                fontWeight: FontWeight.w700)),
+                        TextSpan(
+                            text: pageName,
+                            style: TextStyle(
+                                color: Theme.of(context).hintColor,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600)),
+                      ],
                     ),
                   ),
                 ),
-                ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: _stories.length,
-                  itemBuilder: (context, index) {
-                    return ContainerStory(
-                        key: UniqueKey(),
-                        contador: index,
-                        refreshIdLidos: refreshIdLidos,
-                        story: new Story(
-                          storyId: _stories[index].storyId,
-                          title: _stories[index].title,
-                          url: _stories[index].url,
-                          score: _stories[index].score,
-                          commentsCount: _stories[index].commentsCount,
-                          time: _stories[index].time,
-                          lido: listIdsRead
-                              .contains(_stories[index].storyId)
-                              ? true
-                              : false,
-                        ));
-                  },
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: _stories.length,
+                itemBuilder: (context, index) {
+                  return ContainerStory(
+                      key: UniqueKey(),
+                      contador: index,
+                      refreshIdLidos: refreshIdLidos,
+                      story: new Story(
+                        storyId: _stories[index].storyId,
+                        title: _stories[index].title,
+                        url: _stories[index].url,
+                        score: _stories[index].score,
+                        commentsCount: _stories[index].commentsCount,
+                        time: _stories[index].time,
+                        lido: listIdsRead
+                            .contains(_stories[index].storyId)
+                            ? true
+                            : false,
+                      ));
+                },
+              ),
+            ],
           ),
         ),
       ),
