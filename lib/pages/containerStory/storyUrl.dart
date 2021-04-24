@@ -39,7 +39,7 @@ class StoryUrl extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 12.5,
                       color: story.lido
-                          ? Theme.of(context).disabledColor
+                          ? Theme.of(context).disabledColor.withOpacity(0.2)
                           : Theme.of(context).hintColor)),
             ),
             const SizedBox(

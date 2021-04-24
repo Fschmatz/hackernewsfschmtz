@@ -51,13 +51,13 @@ class Loading extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return Card(
               margin: index == 0
-                  ? const EdgeInsets.fromLTRB(15, 0, 15, 9)
-                  : const EdgeInsets.fromLTRB(15, 9, 15, 9),
+                  ? const EdgeInsets.fromLTRB(15, 0, 15, 10)
+                  : const EdgeInsets.fromLTRB(15, 10, 15,10),
               elevation: 2,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
+                borderRadius: BorderRadius.all(Radius.circular(15)),
                 side: BorderSide(
-                  color: Colors.grey[800].withOpacity(0.5),
+                  color: Colors.grey[850],
                   width: 1,
                 ),
               ),
@@ -189,7 +189,7 @@ class Loading extends StatelessWidget {
                                                     .hintColor,
                                               ),
                                               const SizedBox(
-                                                width: 40,
+                                                width: 48,
                                               ),
                                             ],
                                           ),

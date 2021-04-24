@@ -21,7 +21,7 @@ class TimeButtons extends StatelessWidget {
             style: TextStyle(
                 fontSize: 15,
                 color: story.lido
-                    ? Theme.of(context).disabledColor
+                    ? Theme.of(context).disabledColor.withOpacity(0.2)
                     : Theme.of(context).hintColor)),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -36,7 +36,7 @@ class TimeButtons extends StatelessWidget {
                       Icons.comment_outlined,
                       size: 18,
                       color: story.lido
-                          ? Theme.of(context).disabledColor
+                          ? Theme.of(context).disabledColor.withOpacity(0.2)
                           : Theme.of(context).hintColor,
                     ),
                     const SizedBox(
@@ -50,7 +50,7 @@ class TimeButtons extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 14.5,
                                 color: story.lido
-                                    ? Theme.of(context).disabledColor
+                                    ? Theme.of(context).disabledColor.withOpacity(0.2)
                                     : Theme.of(context).hintColor,
                               ))
                           : SizedBox.shrink(),
@@ -67,9 +67,9 @@ class TimeButtons extends StatelessWidget {
             IconButton(
                 icon: Icon(Icons.share_outlined),
                 iconSize: 20,
-                splashRadius: 26,
+                splashRadius: 30,
                 color: story.lido
-                    ? Theme.of(context).disabledColor
+                    ? Theme.of(context).disabledColor.withOpacity(0.2)
                     : Theme.of(context).hintColor,
                 onPressed: () {
                   if (story.url != null) {
