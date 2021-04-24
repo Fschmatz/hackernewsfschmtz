@@ -234,6 +234,30 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: RichText(
+          text: TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                  text: 'HN  ',
+                  style: TextStyle(
+                      color: Theme.of(context)
+                          .textTheme
+                          .headline6
+                          .color,
+                      fontSize: 21,
+                      fontWeight: FontWeight.w700)),
+              TextSpan(
+                  text: pageName,
+                  style: TextStyle(
+                      color: Theme.of(context).hintColor,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600)),
+            ],
+          ),
+        ),
+        elevation: 0,
+      ),
       body: AnimatedSwitcher(
         duration: Duration(milliseconds: 600),
         child: loading
@@ -245,39 +269,6 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             controller: _scrollController,
             physics: AlwaysScrollableScrollPhysics(),
             children: [
-              const SizedBox(
-                height: 15,
-              ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(27, 0, 0, 0),
-                  child: RichText(
-                    text: TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: 'HN  ',
-                            style: TextStyle(
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .headline6
-                                    .color,
-                                fontSize: 21,
-                                fontWeight: FontWeight.w700)),
-                        TextSpan(
-                            text: pageName,
-                            style: TextStyle(
-                                color: Theme.of(context).hintColor,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600)),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 25,
-              ),
               ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -321,7 +312,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

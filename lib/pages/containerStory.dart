@@ -39,15 +39,12 @@ class _ContainerStoryState extends State<ContainerStory> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color:  widget.story.lido ? Theme.of(context).cardTheme.color.withOpacity(0.7) : Theme.of(context).cardTheme.color,
-      margin: widget.contador == 0
-          ? const EdgeInsets.fromLTRB(15, 0, 15, 10)
-          : const EdgeInsets.fromLTRB(15, 10, 15, 10),
-      elevation: widget.story.lido ? 1 : 2,
+      margin: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+      elevation: widget.story.lido ? 0.5 : 2,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(15)),
         side: BorderSide(
-          color: widget.story.lido ? Colors.grey[800].withOpacity(0.2) : Colors.grey[850],
+          color: Colors.grey[850],
           width: 1,
         ),
       ),
@@ -76,22 +73,25 @@ class _ContainerStoryState extends State<ContainerStory> {
             }
           }
         },
-        child: Column(
-          children: [
-            StoryUrl(
-              story: widget.story,
-              markRead: _markRead,
-              refreshIdLidos: widget.refreshIdLidos,
-            ),
-            PositionPoints(
-              contador: widget.contador,
-              story: widget.story,
-            ),
-            TimeButtons(
-              story: widget.story,
-              launchBrowser: _launchBrowser,
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: Column(
+            children: [
+              StoryUrl(
+                story: widget.story,
+                markRead: _markRead,
+                refreshIdLidos: widget.refreshIdLidos,
+              ),
+              PositionPoints(
+                contador: widget.contador,
+                story: widget.story,
+              ),
+              TimeButtons(
+                story: widget.story,
+                launchBrowser: _launchBrowser,
+              ),
+            ],
+          ),
         ),
       ),
     );
