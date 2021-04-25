@@ -128,22 +128,6 @@ class StoryData extends StatelessWidget {
                     }
                   }),
             ),
-            /*IconButton(
-                icon: Icon(Icons.share_outlined),
-                iconSize: 20,
-                splashRadius: 30,
-                color: story.lido
-                    ? Theme.of(context).disabledColor.withOpacity(0.2)
-                    : Theme.of(context).hintColor,
-                onPressed: () {
-                  if (story.url != null) {
-                    Share.share(story.url);
-                  } else {
-                    // ASK/SHOW HN
-                    Share.share('https://news.ycombinator.com/item?id=' +
-                        story.storyId.toString());
-                  }
-                }),*/
             const SizedBox(
               width: 2,
             )
