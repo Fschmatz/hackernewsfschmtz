@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:hackernewsfschmtz/db/lidosDao.dart';
-import 'package:hackernewsfschmtz/pages/containerStory/positionPoints.dart';
+import 'package:hackernewsfschmtz/pages/containerStory/storyData.dart';
 import 'package:hackernewsfschmtz/pages/containerStory/storyUrl.dart';
-import 'package:hackernewsfschmtz/pages/containerStory/timeButtons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContainerStory extends StatefulWidget {
@@ -74,7 +73,7 @@ class _ContainerStoryState extends State<ContainerStory> {
           }
         },
         child: Padding(
-          padding: const EdgeInsets.all(2.0),
+          padding: const EdgeInsets.fromLTRB(3, 0, 3, 8),
           child: Column(
             children: [
               StoryUrl(
@@ -82,14 +81,8 @@ class _ContainerStoryState extends State<ContainerStory> {
                 markRead: _markRead,
                 refreshIdLidos: widget.refreshIdLidos,
               ),
-              PositionPoints(
-                contador: widget.contador,
-                story: widget.story,
-              ),
-              TimeButtons(
-                story: widget.story,
-                launchBrowser: _launchBrowser,
-              ),
+              StoryData(contador: widget.contador,
+                story: widget.story,launchBrowser: _launchBrowser)
             ],
           ),
         ),

@@ -27,7 +27,7 @@ class Loading extends StatelessWidget {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(2.0),
+                padding: const EdgeInsets.fromLTRB(3, 0, 3, 10),
                 child: Row(
                   children: [
                     Expanded(
@@ -52,7 +52,7 @@ class Loading extends StatelessWidget {
                                   height: 8,
                                 ),
                                 Visibility(
-                                  visible: index % 2 == 0,
+                                  visible: index % 3 == 0,
                                   child: SkeletonAnimation(
                                     gradientColor: Colors.white38,
                                     shimmerColor: Colors.grey.withOpacity(0.4),
@@ -81,28 +81,24 @@ class Loading extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding:
-                                    const EdgeInsets.fromLTRB(17, 0, 0, 0),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(13, 0, 0, 0),
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.start,
                                       children: [
                                         Icon(
-                                          Icons.text_snippet_outlined,
+                                          Icons.article_outlined,
                                           color: Theme.of(context)
                                               .accentColor
                                               .withOpacity(0.9),
-                                          size: 18,
+                                          size: 16.5,
                                         ),
                                         SizedBox(
                                           width: 30,
@@ -112,77 +108,73 @@ class Loading extends StatelessWidget {
                                           color: Theme.of(context)
                                               .accentColor
                                               .withOpacity(0.9),
-                                          size: 18,
+                                          size: 16,
                                         ),
                                       ],
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(19, 0, 0, 0),
-                                child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SkeletonAnimation(
-                                        gradientColor: Colors.white38,
-                                        shimmerColor:
-                                        Colors.grey.withOpacity(0.5),
-                                        shimmerDuration: 3360,
-                                        borderRadius: BorderRadius.circular(5),
-                                        child: Text(
-                                            "                               ",
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                color: Theme.of(context)
-                                                    .hintColor)),
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    SkeletonAnimation(
+                                      gradientColor: Colors.white38,
+                                      shimmerColor:
+                                      Colors.grey.withOpacity(0.5),
+                                      shimmerDuration: 3360,
+                                      borderRadius: BorderRadius.circular(5),
+                                      child: Text(
+                                          "                      ",
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              color: Theme.of(context)
+                                                  .hintColor)),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    MaterialButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5),
                                       ),
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                      child: Row(
                                         children: [
-                                          MaterialButton(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(5),
-                                            ),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.comment_outlined,
-                                                  size: 18,
-                                                  color: Theme.of(context)
-                                                      .hintColor,
-                                                ),
-                                                const SizedBox(
-                                                  width: 48,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          MaterialButton(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(5),
-                                            ),
-                                            minWidth: 0,
-                                            child: Icon(
-                                              Icons.share_outlined,
-                                              size: 20,
-                                              color:
-                                              Theme.of(context).hintColor,
-                                            ),
+                                          Icon(
+                                            Icons.comment_outlined,
+                                            size: 20,
+                                            color: Theme.of(context)
+                                                .hintColor,
                                           ),
                                           const SizedBox(
-                                            width: 6,
+                                            width: 48,
                                           ),
                                         ],
                                       ),
-                                    ]),
-                              )
-                            ],
+                                    ),
+                                    MaterialButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5),
+                                      ),
+                                      minWidth: 0,
+                                      child: Icon(
+                                        Icons.share_outlined,
+                                        size: 20,
+                                        color:
+                                        Theme.of(context).hintColor,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 6,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
+
                         ],
                       ),
                     ),
