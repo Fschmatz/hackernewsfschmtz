@@ -73,7 +73,7 @@ class StoryData extends StatelessWidget {
           children: [
             MaterialButton(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(30),
                 ),
                 child: Row(
                   children: [
@@ -107,9 +107,28 @@ class StoryData extends StatelessWidget {
                       story.storyId.toString());
                 }),
             const SizedBox(
-              width: 25,
+              width: 15,
             ),
-            IconButton(
+            Container(
+              width: 60,
+              child: MaterialButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Icon(Icons.share_outlined,size: 20,color: story.lido
+                      ? Theme.of(context).disabledColor.withOpacity(0.2)
+                      : Theme.of(context).hintColor,),
+                  onPressed: () {
+                    if (story.url != null) {
+                      Share.share(story.url);
+                    } else {
+                      // ASK/SHOW HN
+                      Share.share('https://news.ycombinator.com/item?id=' +
+                          story.storyId.toString());
+                    }
+                  }),
+            ),
+            /*IconButton(
                 icon: Icon(Icons.share_outlined),
                 iconSize: 20,
                 splashRadius: 30,
@@ -124,7 +143,7 @@ class StoryData extends StatelessWidget {
                     Share.share('https://news.ycombinator.com/item?id=' +
                         story.storyId.toString());
                   }
-                }),
+                }),*/
             const SizedBox(
               width: 2,
             )

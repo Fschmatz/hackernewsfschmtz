@@ -73,7 +73,7 @@ class _ContainerStoryState extends State<ContainerStory> {
           }
         },
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(3, 0, 3, 8),
+          padding: const EdgeInsets.fromLTRB(3, 0, 3, 10),
           child: Column(
             children: [
               StoryUrl(
