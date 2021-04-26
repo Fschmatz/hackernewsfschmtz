@@ -98,7 +98,7 @@ class Loading extends StatelessWidget {
                                           color: Theme.of(context)
                                               .accentColor
                                               .withOpacity(0.9),
-                                          size: 16.5,
+                                          size: 16,
                                         ),
                                         SizedBox(
                                           width: 30,

@@ -27,13 +27,13 @@ class StoryData extends StatelessWidget {
                     color: story.lido
                         ? Theme.of(context).accentColor.withOpacity(0.4)
                         : Theme.of(context).accentColor.withOpacity(0.9),
-                    size: 16.5,
+                    size: 16,
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
                     child: Text(" ${1 + contador}    ",
                         style: TextStyle(
-                            fontSize: 12.5,
+                            fontSize: 13,
                             color: story.lido
                                 ? Theme.of(context).accentColor.withOpacity(0.4)
                                 : Theme.of(context).accentColor.withOpacity(0.9))),
@@ -49,7 +49,7 @@ class StoryData extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
                     child: Text(" ${story.score} Points",
                         style: TextStyle(
-                            fontSize: 12.5,
+                            fontSize: 13,
                             color: story.lido
                                 ? Theme.of(context).accentColor.withOpacity(0.4)
                                 : Theme.of(context).accentColor.withOpacity(0.9))),
@@ -61,7 +61,7 @@ class StoryData extends StatelessWidget {
               ),
               Text(story.timeAgo,
                   style: TextStyle(
-                      fontSize: 13,
+                      fontSize: 13.5,
                       color: story.lido
                           ? Theme.of(context).disabledColor.withOpacity(0.2)
                           : Theme.of(context).hintColor)),
