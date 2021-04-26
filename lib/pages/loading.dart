@@ -90,8 +90,6 @@ class Loading extends StatelessWidget {
                                 Column(
                                   children: [
                                     Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.start,
                                       children: [
                                         Icon(
                                           Icons.article_outlined,
@@ -101,7 +99,7 @@ class Loading extends StatelessWidget {
                                           size: 16,
                                         ),
                                         SizedBox(
-                                          width: 30,
+                                          width: 25,
                                         ),
                                         Icon(
                                           Icons.arrow_upward_outlined,
@@ -113,20 +111,19 @@ class Loading extends StatelessWidget {
                                       ],
                                     ),
                                     const SizedBox(
-                                      height: 15,
+                                      height: 10,
                                     ),
-                                    SkeletonAnimation(
-                                      gradientColor: Colors.white38,
-                                      shimmerColor:
-                                      Colors.grey.withOpacity(0.5),
-                                      shimmerDuration: 3360,
-                                      borderRadius: BorderRadius.circular(5),
-                                      child: Text(
-                                          "                      ",
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Theme.of(context)
-                                                  .hintColor)),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.access_time_outlined,
+                                          color: Theme.of(context).hintColor,
+                                          size: 16,
+                                        ),
+                                        SizedBox(
+                                          width: 40,
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -143,7 +140,7 @@ class Loading extends StatelessWidget {
                                         children: [
                                           Icon(
                                             Icons.comment_outlined,
-                                            size: 20,
+                                            size: 21,
                                             color: Theme.of(context)
                                                 .hintColor,
                                           ),
@@ -161,7 +158,7 @@ class Loading extends StatelessWidget {
                                       minWidth: 0,
                                       child: Icon(
                                         Icons.share_outlined,
-                                        size: 20,
+                                        size: 21,
                                         color:
                                         Theme.of(context).hintColor,
                                       ),

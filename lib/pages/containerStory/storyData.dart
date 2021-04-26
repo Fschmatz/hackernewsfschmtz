@@ -29,15 +29,12 @@ class StoryData extends StatelessWidget {
                         : Theme.of(context).accentColor.withOpacity(0.9),
                     size: 16,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
-                    child: Text(" ${1 + contador}    ",
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: story.lido
-                                ? Theme.of(context).accentColor.withOpacity(0.4)
-                                : Theme.of(context).accentColor.withOpacity(0.9))),
-                  ),
+                  Text(" ${1 + contador}    ",
+                      style: TextStyle(
+                          fontSize: 13,
+                          color: story.lido
+                              ? Theme.of(context).accentColor.withOpacity(0.4)
+                              : Theme.of(context).accentColor.withOpacity(0.9))),
                   Icon(
                     Icons.arrow_upward_outlined,
                     color: story.lido
@@ -45,26 +42,34 @@ class StoryData extends StatelessWidget {
                         : Theme.of(context).accentColor.withOpacity(0.9),
                     size: 16,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
-                    child: Text(" ${story.score} Points",
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: story.lido
-                                ? Theme.of(context).accentColor.withOpacity(0.4)
-                                : Theme.of(context).accentColor.withOpacity(0.9))),
-                  ),
+                  Text(" ${story.score} Points",
+                      style: TextStyle(
+                          fontSize: 13,
+                          color: story.lido
+                              ? Theme.of(context).accentColor.withOpacity(0.4)
+                              : Theme.of(context).accentColor.withOpacity(0.9))),
                 ],
               ),
               const SizedBox(
                 height: 8,
               ),
-              Text(story.timeAgo,
-                  style: TextStyle(
-                      fontSize: 13.5,
-                      color: story.lido
-                          ? Theme.of(context).disabledColor.withOpacity(0.2)
-                          : Theme.of(context).hintColor)),
+              Row(
+                children: [
+                  Icon(
+                    Icons.access_time_outlined,
+                    color: story.lido
+                        ? Theme.of(context).disabledColor.withOpacity(0.2)
+                        : Theme.of(context).hintColor,
+                    size: 16,
+                  ),
+                  Text(" "+story.timeAgo,
+                      style: TextStyle(
+                          fontSize: 13,
+                          color: story.lido
+                              ? Theme.of(context).disabledColor.withOpacity(0.2)
+                              : Theme.of(context).hintColor)),
+                ],
+              ),
             ],
           ),
         ),
@@ -79,7 +84,7 @@ class StoryData extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.comment_outlined,
-                      size: 20,
+                      size: 21,
                       color: story.lido
                           ? Theme.of(context).disabledColor.withOpacity(0.2)
                           : Theme.of(context).hintColor,
@@ -115,7 +120,7 @@ class StoryData extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  child: Icon(Icons.share_outlined,size: 20,color: story.lido
+                  child: Icon(Icons.share_outlined,size: 21,color: story.lido
                       ? Theme.of(context).disabledColor.withOpacity(0.2)
                       : Theme.of(context).hintColor,),
                   onPressed: () {
@@ -129,7 +134,7 @@ class StoryData extends StatelessWidget {
                   }),
             ),
             const SizedBox(
-              width: 2,
+              width: 6,
             )
           ],
         ),

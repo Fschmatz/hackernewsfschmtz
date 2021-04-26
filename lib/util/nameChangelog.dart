@@ -1,13 +1,13 @@
 class NameChangelog{
 
-  static String appVersion = "3.3.4";
+  static String appVersion = "3.3.5";
   static String appName = "HackerNews Fschmtz";
 
   static String changelogCurrent = '''
    
 Current version:  
 
-3.3.4
+3.3.5
 - Hoping the Problem with Duplicate Stories has been Dealt
 - New Card Layout
 ''';
