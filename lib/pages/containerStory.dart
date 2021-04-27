@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:hackernewsfschmtz/db/lidosDao.dart';
-import 'package:hackernewsfschmtz/pages/containerStory/storyData.dart';
-import 'package:hackernewsfschmtz/pages/containerStory/storyUrl.dart';
+import 'package:hackernewsfschmtz/pages/containerStory/infoWithButtons.dart';
+import 'package:hackernewsfschmtz/pages/containerStory/titleWithUrl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContainerStory extends StatefulWidget {
@@ -76,12 +76,12 @@ class _ContainerStoryState extends State<ContainerStory> {
           padding: const EdgeInsets.fromLTRB(3, 0, 3, 10),
           child: Column(
             children: [
-              StoryUrl(
+              TitleWithUrl(
                 story: widget.story,
                 markRead: _markRead,
                 refreshIdLidos: widget.refreshIdLidos,
               ),
-              StoryData(contador: widget.contador,
+              InfoWithButtons(contador: widget.contador,
                 story: widget.story,launchBrowser: _launchBrowser)
             ],
           ),

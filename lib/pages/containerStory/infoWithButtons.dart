@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:share/share.dart';
 
-class StoryData extends StatelessWidget {
+class InfoWithButtons extends StatelessWidget {
   Story story;
   int contador;
   Function(String) launchBrowser;
 
-  StoryData({Key key, this.story, this.contador,this.launchBrowser}) : super(key: key);
+  InfoWithButtons({Key key, this.story, this.contador,this.launchBrowser}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,33 +25,33 @@ class StoryData extends StatelessWidget {
                   Icon(
                     Icons.article_outlined,
                     color: story.lido
-                        ? Theme.of(context).accentColor.withOpacity(0.4)
-                        : Theme.of(context).accentColor.withOpacity(0.9),
+                        ? Theme.of(context).disabledColor.withOpacity(0.2)
+                        : Theme.of(context).hintColor,
                     size: 16,
                   ),
                   Text(" ${1 + contador}    ",
                       style: TextStyle(
                           fontSize: 13,
                           color: story.lido
-                              ? Theme.of(context).accentColor.withOpacity(0.4)
-                              : Theme.of(context).accentColor.withOpacity(0.9))),
+                              ? Theme.of(context).disabledColor.withOpacity(0.2)
+                              : Theme.of(context).hintColor)),
                   Icon(
                     Icons.arrow_upward_outlined,
                     color: story.lido
-                        ? Theme.of(context).accentColor.withOpacity(0.4)
-                        : Theme.of(context).accentColor.withOpacity(0.9),
+                        ? Theme.of(context).disabledColor.withOpacity(0.2)
+                        : Theme.of(context).hintColor,
                     size: 16,
                   ),
                   Text(" ${story.score} Points",
                       style: TextStyle(
                           fontSize: 13,
                           color: story.lido
-                              ? Theme.of(context).accentColor.withOpacity(0.4)
-                              : Theme.of(context).accentColor.withOpacity(0.9))),
+                              ? Theme.of(context).disabledColor.withOpacity(0.2)
+                              : Theme.of(context).hintColor)),
                 ],
               ),
               const SizedBox(
-                height: 8,
+                height: 9,
               ),
               Row(
                 children: [
@@ -134,7 +134,7 @@ class StoryData extends StatelessWidget {
                   }),
             ),
             const SizedBox(
-              width: 6,
+              width: 1,
             )
           ],
         ),

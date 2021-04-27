@@ -94,8 +94,7 @@ class Loading extends StatelessWidget {
                                         Icon(
                                           Icons.article_outlined,
                                           color: Theme.of(context)
-                                              .accentColor
-                                              .withOpacity(0.9),
+                                              .hintColor,
                                           size: 16,
                                         ),
                                         SizedBox(
@@ -104,8 +103,7 @@ class Loading extends StatelessWidget {
                                         Icon(
                                           Icons.arrow_upward_outlined,
                                           color: Theme.of(context)
-                                              .accentColor
-                                              .withOpacity(0.9),
+                                              .hintColor,
                                           size: 16,
                                         ),
                                       ],
