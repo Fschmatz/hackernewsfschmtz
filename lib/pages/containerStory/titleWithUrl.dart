@@ -37,8 +37,8 @@ class TitleWithUrl extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 12.5,
                     color: story.lido
-                        ? Theme.of(context).accentColor.withOpacity(0.2)
-                        : Theme.of(context).accentColor.withOpacity(0.7))),
+                        ? Theme.of(context).accentColor.withOpacity(0.3)
+                        : Theme.of(context).accentColor.withOpacity(0.8))),
           ),
           const SizedBox(
             height: 10,
