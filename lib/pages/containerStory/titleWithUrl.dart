@@ -11,7 +11,13 @@ class TitleWithUrl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formattedUrl = Uri.parse(story.url).host;
+    String formattedUrl = " ";
+
+    if(story.url != null) {
+      formattedUrl = Uri
+          .parse(story.url)
+          .host;
+    }
 
     return Container(
       padding: const EdgeInsets.fromLTRB(13, 14, 18, 0),
@@ -32,16 +38,16 @@ class TitleWithUrl extends StatelessWidget {
           //Can be null
           Visibility(
             visible: story.url != null,
-            child: Text(formattedUrl.toString(),
+            child: Text(formattedUrl,
                 maxLines: 2,
                 style: TextStyle(
                     fontSize: 12.5,
                     color: story.lido
                         ? Theme.of(context).accentColor.withOpacity(0.3)
-                        : Theme.of(context).accentColor.withOpacity(0.8))),
+                        : Theme.of(context).accentColor.withOpacity(0.9))),
           ),
           const SizedBox(
-            height: 10,
+            height: 8,
           ),
         ],
       ),

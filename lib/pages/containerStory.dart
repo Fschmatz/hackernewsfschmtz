@@ -37,20 +37,9 @@ class _ContainerStoryState extends State<ContainerStory> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-      elevation: widget.story.lido ? 0.5 : 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(15)),
-        side: BorderSide(
-          color: Colors.grey[850],
-          width: 1,
-        ),
-      ),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
       child: InkWell(
-        customBorder: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
         onTap: () {
           if (widget.story.url != null) {
             _launchBrowser(widget.story.url);
@@ -73,7 +62,7 @@ class _ContainerStoryState extends State<ContainerStory> {
           }
         },
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(3, 0, 3, 10),
+          padding: const EdgeInsets.fromLTRB(3, 0, 0, 10),
           child: Column(
             children: [
               TitleWithUrl(

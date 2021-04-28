@@ -244,7 +244,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                       color: Theme.of(context)
                           .textTheme
                           .headline6
-                          .color,
+                          .color.withOpacity(0.9),
                       fontSize: 21,
                       fontWeight: FontWeight.w700)),
               TextSpan(
@@ -269,7 +269,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             controller: _scrollController,
             physics: AlwaysScrollableScrollPhysics(),
             children: [
-              ListView.builder(
+              ListView.separated(
+                separatorBuilder: (BuildContext context, int index) => Divider(height: 8,),
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: _stories.length,
@@ -319,8 +320,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                     IconButton(
                         icon: Icon(
                           Icons.refresh_outlined,
-                          size: 24,
-                          color: Theme.of(context).hintColor,
+                          color: Theme.of(context).textTheme.headline6.color.withOpacity(0.7),
                         ),
                         onPressed: () {
                           //START ANIMATION
@@ -334,8 +334,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                     IconButton(
                         icon: Icon(
                           Icons.menu_outlined,
-                          size: 25,
-                          color: Theme.of(context).hintColor,
+                          color: Theme.of(context).textTheme.headline6.color.withOpacity(0.7),
                         ),
                         onPressed: () {
                           openBottomSheet();
@@ -343,8 +342,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                     IconButton(
                         icon: Icon(
                           Icons.settings_outlined,
-                          size: 24,
-                          color: Theme.of(context).hintColor,
+                          color: Theme.of(context).textTheme.headline6.color.withOpacity(0.7),
                         ),
                         onPressed: () {
                           Navigator.push(

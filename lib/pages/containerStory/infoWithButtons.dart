@@ -26,7 +26,7 @@ class InfoWithButtons extends StatelessWidget {
                     Icons.article_outlined,
                     color: story.lido
                         ? Theme.of(context).disabledColor.withOpacity(0.2)
-                        : Theme.of(context).hintColor,
+                        : Theme.of(context).hintColor.withOpacity(0.5),
                     size: 16,
                   ),
                   Text(" ${1 + contador}    ",
@@ -34,12 +34,12 @@ class InfoWithButtons extends StatelessWidget {
                           fontSize: 13,
                           color: story.lido
                               ? Theme.of(context).disabledColor.withOpacity(0.2)
-                              : Theme.of(context).hintColor)),
+                              : Theme.of(context).hintColor.withOpacity(0.5))),
                   Icon(
                     Icons.arrow_upward_outlined,
                     color: story.lido
                         ? Theme.of(context).disabledColor.withOpacity(0.2)
-                        : Theme.of(context).hintColor,
+                        : Theme.of(context).hintColor.withOpacity(0.5),
                     size: 16,
                   ),
                   Text(" ${story.score} Points",
@@ -47,11 +47,11 @@ class InfoWithButtons extends StatelessWidget {
                           fontSize: 13,
                           color: story.lido
                               ? Theme.of(context).disabledColor.withOpacity(0.2)
-                              : Theme.of(context).hintColor)),
+                              : Theme.of(context).hintColor.withOpacity(0.5))),
                 ],
               ),
               const SizedBox(
-                height: 9,
+                height: 8,
               ),
               Row(
                 children: [
@@ -59,7 +59,7 @@ class InfoWithButtons extends StatelessWidget {
                     Icons.access_time_outlined,
                     color: story.lido
                         ? Theme.of(context).disabledColor.withOpacity(0.2)
-                        : Theme.of(context).hintColor,
+                        : Theme.of(context).hintColor.withOpacity(0.5),
                     size: 16,
                   ),
                   Text(" "+story.timeAgo,
@@ -67,7 +67,7 @@ class InfoWithButtons extends StatelessWidget {
                           fontSize: 13,
                           color: story.lido
                               ? Theme.of(context).disabledColor.withOpacity(0.2)
-                              : Theme.of(context).hintColor)),
+                              : Theme.of(context).hintColor.withOpacity(0.5))),
                 ],
               ),
             ],
@@ -87,7 +87,7 @@ class InfoWithButtons extends StatelessWidget {
                       size: 21,
                       color: story.lido
                           ? Theme.of(context).disabledColor.withOpacity(0.2)
-                          : Theme.of(context).hintColor,
+                          : Theme.of(context).textTheme.headline6.color.withOpacity(0.7),
                     ),
                     const SizedBox(
                       width: 10,
@@ -101,7 +101,7 @@ class InfoWithButtons extends StatelessWidget {
                             fontSize: 14.5,
                             color: story.lido
                                 ? Theme.of(context).disabledColor.withOpacity(0.2)
-                                : Theme.of(context).hintColor,
+                                : Theme.of(context).textTheme.headline6.color.withOpacity(0.7),
                           ))
                           : SizedBox.shrink(),
                     ),
@@ -115,14 +115,14 @@ class InfoWithButtons extends StatelessWidget {
               width: 15,
             ),
             Container(
-              width: 60,
+              width: 54,
               child: MaterialButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Icon(Icons.share_outlined,size: 21,color: story.lido
                       ? Theme.of(context).disabledColor.withOpacity(0.2)
-                      : Theme.of(context).hintColor,),
+                      : Theme.of(context).textTheme.headline6.color.withOpacity(0.7),),
                   onPressed: () {
                     if (story.url != null) {
                       Share.share(story.url);
@@ -133,12 +133,11 @@ class InfoWithButtons extends StatelessWidget {
                     }
                   }),
             ),
-            const SizedBox(
-              width: 1,
-            )
+
           ],
         ),
       ],
     );
   }
 }
+
