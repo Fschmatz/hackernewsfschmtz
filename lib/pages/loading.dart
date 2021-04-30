@@ -32,7 +32,7 @@ class Loading extends StatelessWidget {
                               SkeletonAnimation(
                                 gradientColor: Colors.white38,
                                 shimmerColor: Colors.grey.withOpacity(0.2),
-                                shimmerDuration: 3300,
+                                shimmerDuration: 3800,
                                 borderRadius: BorderRadius.circular(5),
                                 child: Text("   ",
                                     style: TextStyle(
@@ -47,7 +47,7 @@ class Loading extends StatelessWidget {
                                 child: SkeletonAnimation(
                                   gradientColor: Colors.white38,
                                   shimmerColor: Colors.grey.withOpacity(0.4),
-                                  shimmerDuration: 3320,
+                                  shimmerDuration: 3820,
                                   borderRadius: BorderRadius.circular(5),
                                   child: Text("   ",
                                       style: TextStyle(
@@ -61,7 +61,7 @@ class Loading extends StatelessWidget {
                               SkeletonAnimation(
                                 gradientColor: Colors.white38,
                                 shimmerColor: Colors.grey.withOpacity(0.5),
-                                shimmerDuration: 3360,
+                                shimmerDuration: 3860,
                                 borderRadius: BorderRadius.circular(5),
                                 child: Text("   ",
                                     maxLines: 2,
@@ -84,7 +84,7 @@ class Loading extends StatelessWidget {
                                     children: [
                                       Icon(
                                         Icons.article_outlined,
-                                        color: Theme.of(context).hintColor.withOpacity(0.5),
+                                        color: Theme.of(context).hintColor.withOpacity(0.6),
                                         size: 16,
                                       ),
                                       SizedBox(
@@ -92,7 +92,7 @@ class Loading extends StatelessWidget {
                                       ),
                                       Icon(
                                         Icons.arrow_upward_outlined,
-                                        color: Theme.of(context).hintColor.withOpacity(0.5),
+                                        color: Theme.of(context).hintColor.withOpacity(0.6),
                                         size: 16,
                                       ),
                                     ],
@@ -104,7 +104,7 @@ class Loading extends StatelessWidget {
                                     children: [
                                       Icon(
                                         Icons.access_time_outlined,
-                                        color: Theme.of(context).hintColor.withOpacity(0.5),
+                                        color: Theme.of(context).hintColor.withOpacity(0.6),
                                         size: 16,
                                       ),
                                       SizedBox(

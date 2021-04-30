@@ -26,20 +26,20 @@ class InfoWithButtons extends StatelessWidget {
                     Icons.article_outlined,
                     color: story.lido
                         ? Theme.of(context).disabledColor.withOpacity(0.2)
-                        : Theme.of(context).hintColor.withOpacity(0.5),
+                        : Theme.of(context).hintColor.withOpacity(0.6),
                     size: 16,
                   ),
-                  Text(" ${1 + contador}    ",
+                  Text(" ${1 + contador}   ",
                       style: TextStyle(
                           fontSize: 13,
                           color: story.lido
                               ? Theme.of(context).disabledColor.withOpacity(0.2)
-                              : Theme.of(context).hintColor.withOpacity(0.5))),
+                              : Theme.of(context).hintColor.withOpacity(0.6))),
                   Icon(
                     Icons.arrow_upward_outlined,
                     color: story.lido
                         ? Theme.of(context).disabledColor.withOpacity(0.2)
-                        : Theme.of(context).hintColor.withOpacity(0.5),
+                        : Theme.of(context).hintColor.withOpacity(0.6),
                     size: 16,
                   ),
                   Text(" ${story.score} Points",
@@ -47,7 +47,7 @@ class InfoWithButtons extends StatelessWidget {
                           fontSize: 13,
                           color: story.lido
                               ? Theme.of(context).disabledColor.withOpacity(0.2)
-                              : Theme.of(context).hintColor.withOpacity(0.5))),
+                              : Theme.of(context).hintColor.withOpacity(0.6))),
                 ],
               ),
               const SizedBox(
@@ -59,7 +59,7 @@ class InfoWithButtons extends StatelessWidget {
                     Icons.access_time_outlined,
                     color: story.lido
                         ? Theme.of(context).disabledColor.withOpacity(0.2)
-                        : Theme.of(context).hintColor.withOpacity(0.5),
+                        : Theme.of(context).hintColor.withOpacity(0.6),
                     size: 16,
                   ),
                   Text(" "+story.timeAgo,
@@ -67,7 +67,7 @@ class InfoWithButtons extends StatelessWidget {
                           fontSize: 13,
                           color: story.lido
                               ? Theme.of(context).disabledColor.withOpacity(0.2)
-                              : Theme.of(context).hintColor.withOpacity(0.5))),
+                              : Theme.of(context).hintColor.withOpacity(0.6))),
                 ],
               ),
             ],
