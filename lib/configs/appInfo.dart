@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import '../util/nameChangelog.dart';
 
-class About extends StatelessWidget {
+class AppInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("About"),
+          title: Text("App Info"),
           elevation: 0,
         ),
         body: Container(

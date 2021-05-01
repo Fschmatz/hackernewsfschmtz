@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hackernewsfschmtz/configs/about.dart';
+import 'package:hackernewsfschmtz/configs/appInfo.dart';
 import 'package:hackernewsfschmtz/configs/changelog.dart';
 import 'package:hackernewsfschmtz/util/theme.dart';
 import '../util/nameChangelog.dart';
@@ -31,7 +31,7 @@ class _ConfigsState extends State<Configs> {
             children: <Widget>[
               Card(
                 elevation: 1,
-                margin: const EdgeInsets.fromLTRB(16, 20, 16, 30),
+                margin: const EdgeInsets.fromLTRB(16, 20, 16, 25),
                 color: Color(0xFFFF965b),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -44,19 +44,30 @@ class _ConfigsState extends State<Configs> {
                   ),
                 ),
               ),
+              const Divider(),
+              ListTile(
+                leading: SizedBox(height: 0.1,),
+                title:    Text(
+                    "About".toUpperCase(),
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        color: Theme.of(context).accentColor)
+                ),
+              ),
               ListTile(
                 leading: Icon(
                   Icons.info_outline,
                 ),
                 title: Text(
-                  "About",
+                  "App Info",
                   style: TextStyle(fontSize: 17.5),
                 ),
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => About(),
+                        builder: (BuildContext context) => AppInfo(),
                         fullscreenDialog: true,
                       ));
                 },
@@ -81,26 +92,16 @@ class _ConfigsState extends State<Configs> {
                       ));
                 },
               ),
-
-              const SizedBox(
-                height: 30.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(17, 0, 5, 0),
-                child: Text(
-                  "General:",
-                  style: TextStyle(
+              const Divider(),
+              ListTile(
+                leading: SizedBox(height: 0.1,),
+                title:    Text(
+                    "General".toUpperCase(),
+                    style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
-                      color: Theme.of(context)
-                          .textTheme
-                          .headline6
-                          .color
-                          .withOpacity(0.7),)
+                      color: Theme.of(context).accentColor)
                 ),
-              ),
-              const SizedBox(
-                height: 15.0,
               ),
               Consumer<ThemeNotifier>(
                 builder: (context, notifier, child) => SwitchListTile(
@@ -108,6 +109,7 @@ class _ConfigsState extends State<Configs> {
                       "Dark Theme",
                       style: TextStyle(fontSize: 17.5),
                     ),
+                    secondary: Icon(Icons.color_lens_outlined),
                     activeColor: Colors.blue,
                     value: notifier.darkTheme,
                     onChanged: (value) {

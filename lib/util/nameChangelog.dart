@@ -4,14 +4,12 @@ class NameChangelog{
   static String appName = "HackerNews Fschmtz";
 
   static String changelogCurrent = '''
-   
-Current version:  
-
 3.3.9
 - Hoping the Problem with Duplicate Stories has been Dealt
 - Removed Cards from ListView
 - Small UI Changes
 - Formatted Url
+- New Settings Page
 ''';
 
   static String changelogsOld = '''

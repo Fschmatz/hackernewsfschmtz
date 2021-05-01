@@ -9,50 +9,45 @@ class Changelog extends StatelessWidget {
           title: Text("Changelog"),
           elevation: 0,
         ),
-        body: ListView(children: <Widget>[
-          Card(
-            margin: EdgeInsets.fromLTRB(15, 12, 15, 5),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-              side: BorderSide(
-                color: Colors.grey[600].withOpacity(0.5),
-                width: 1,
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+          child: ListView(children: <Widget>[
+            ListTile(
+              dense: true,
+              title: Text(
+                  "Current Version".toUpperCase(),
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      color: Theme.of(context).accentColor)
               ),
             ),
-            elevation: 0.0,
-            child: Container(
-              padding: EdgeInsets.fromLTRB(18, 0, 18, 5),
-              child: Text(
+            ListTile(
+              title: Text(
                 NameChangelog.changelogCurrent,
-                style: TextStyle(
-                  fontSize: 17,
-                ),
+                style: TextStyle(fontSize: 17),
               ),
             ),
-          ),
-
-          Divider(thickness: 2,),
-          Container(
-            padding: EdgeInsets.fromLTRB(20, 10, 20, 5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Previous Versions: ",
-                  textAlign: TextAlign.start,
+            Divider(),
+            ListTile(
+              dense: true,
+              title: Text(
+                  "Previous Versions".toUpperCase(),
                   style: TextStyle(
-                    fontSize: 18,
-                  ),
-                ),
-                Text(
-                  NameChangelog.changelogsOld,
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              ],
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      color: Theme.of(context).accentColor)
+              ),
             ),
-          ),
-        ]));
+            ListTile(
+              title: Text(
+                NameChangelog.changelogsOld,
+                style: TextStyle(fontSize: 17),
+              ),
+            ),
+
+
+          ]),
+        ));
   }
 }
