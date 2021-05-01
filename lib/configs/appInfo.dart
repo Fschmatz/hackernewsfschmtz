@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../util/nameChangelog.dart';
 
 class AppInfo extends StatelessWidget {
+
+  _launchGithub() async {
+    const url = 'https://github.com/Fschmatz/hackernewsfschmtz';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Error';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +31,14 @@ class AppInfo extends StatelessWidget {
                 backgroundImage: AssetImage('assets/avatar.jpg'),
               ),
             ),
-            const SizedBox(height: 5),
+            const SizedBox(height: 15),
+            Text(NameChangelog.appName,
+                style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                    color: Theme.of(context).accentColor)),
+            const SizedBox(height: 15),
+            const Divider(),
             ListTile(
               leading: SizedBox(
                 height: 0.1,
@@ -55,11 +74,30 @@ class AppInfo extends StatelessWidget {
                 height: 0.1,
               ),
               title: Text(
-                "Application created using Flutter and the Dart language, used for testing and learning.\n",
+                "Application created using Flutter and the Dart language, used for testing and learning.",
                 style: TextStyle(
                   fontSize: 16,
                 ),
               ),
+            ),
+            const Divider(),
+            ListTile(
+              leading: SizedBox(
+                height: 0.1,
+              ),
+              title: Text("Github".toUpperCase(),
+                  style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700,
+                      color: Theme.of(context).accentColor)),
+            ),
+            ListTile(
+              onTap: () {_launchGithub();},
+              leading: Icon(Icons.open_in_browser_outlined),
+              title: Text("https://github.com/Fschmatz/hackernewsfschmtz",
+                  style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      color: Colors.blue)),
             ),
             const Divider(),
             ListTile(

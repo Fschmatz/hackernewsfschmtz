@@ -9,39 +9,45 @@ class Changelog extends StatelessWidget {
           title: Text("Changelog"),
           elevation: 0,
         ),
-        body: ListView(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
-                child: Text("Current Version\n".toUpperCase(),
-                    style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700,
-                        color: Theme.of(context).accentColor)),
+        body: ListView(children: <Widget>[
+          ListTile(
+              leading: Icon(
+                Icons.article_outlined,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Text(
-                  NameChangelog.changelogCurrent,
-                  style: TextStyle(fontSize: 16),
-                ),
-              ),
-              Divider(),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                child: Text("Previous Versions\n".toUpperCase(),
-                    style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700,
-                        color: Theme.of(context).accentColor)),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Text(
-                  NameChangelog.changelogsOld,
-                  style: TextStyle(fontSize: 16),
-                ),
-              ),
-            ]));
+              title: Text("Current Version".toUpperCase(),
+                  style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700,
+                      color: Theme.of(context).accentColor))),
+          ListTile(
+            leading: SizedBox(
+              height: 0.1,
+            ),
+            title: Text(
+              NameChangelog.changelogCurrent,
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(
+              Icons.article_outlined,
+            ),
+            title: Text("Previous Versions".toUpperCase(),
+                style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    color: Theme.of(context).accentColor)),
+          ),
+          ListTile(
+            leading: SizedBox(
+              height: 0.1,
+            ),
+            title: Text(
+              NameChangelog.changelogsOld,
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
+        ]));
   }
 }
