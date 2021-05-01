@@ -32,7 +32,7 @@ class Loading extends StatelessWidget {
                               SkeletonAnimation(
                                 gradientColor: Colors.white38,
                                 shimmerColor: Colors.grey.withOpacity(0.2),
-                                shimmerDuration: 3800,
+                                shimmerDuration: 3550,
                                 borderRadius: BorderRadius.circular(5),
                                 child: Text("   ",
                                     style: TextStyle(
@@ -47,7 +47,7 @@ class Loading extends StatelessWidget {
                                 child: SkeletonAnimation(
                                   gradientColor: Colors.white38,
                                   shimmerColor: Colors.grey.withOpacity(0.4),
-                                  shimmerDuration: 3820,
+                                  shimmerDuration: 3980,
                                   borderRadius: BorderRadius.circular(5),
                                   child: Text("   ",
                                       style: TextStyle(
@@ -61,7 +61,7 @@ class Loading extends StatelessWidget {
                               SkeletonAnimation(
                                 gradientColor: Colors.white38,
                                 shimmerColor: Colors.grey.withOpacity(0.5),
-                                shimmerDuration: 3860,
+                                shimmerDuration: 4360,
                                 borderRadius: BorderRadius.circular(5),
                                 child: Text("   ",
                                     maxLines: 2,
