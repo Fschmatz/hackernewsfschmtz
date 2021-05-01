@@ -12,8 +12,7 @@ class NameChangelog{
 - New Settings Page
 ''';
 
-  static String changelogsOld = '''
-  
+  static String changelogsOld = '''  
 3.2.5
 - UI Changes
 - Small Fixes

@@ -5,14 +5,14 @@ import 'package:hackernewsfschmtz/util/theme.dart';
 import '../util/nameChangelog.dart';
 import 'package:provider/provider.dart';
 
-class Configs extends StatefulWidget {
+class Settings extends StatefulWidget {
   @override
-  _ConfigsState createState() => _ConfigsState();
+  _SettingsState createState() => _SettingsState();
 
-  Configs({Key key}) : super(key: key);
+  Settings({Key key}) : super(key: key);
 }
 
-class _ConfigsState extends State<Configs> {
+class _SettingsState extends State<Settings> {
   @override
   void initState() {
     super.initState();
@@ -50,7 +50,7 @@ class _ConfigsState extends State<Configs> {
                 title:    Text(
                     "About".toUpperCase(),
                     style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 13,
                         fontWeight: FontWeight.w700,
                         color: Theme.of(context).accentColor)
                 ),
@@ -61,7 +61,7 @@ class _ConfigsState extends State<Configs> {
                 ),
                 title: Text(
                   "App Info",
-                  style: TextStyle(fontSize: 17.5),
+                  style: TextStyle(fontSize: 16),
                 ),
                 onTap: () {
                   Navigator.push(
@@ -81,7 +81,7 @@ class _ConfigsState extends State<Configs> {
                 ),
                 title: Text(
                   "Changelog",
-                  style: TextStyle(fontSize: 17.5),
+                  style: TextStyle(fontSize: 16),
                 ),
                 onTap: () {
                   Navigator.push(
@@ -98,7 +98,7 @@ class _ConfigsState extends State<Configs> {
                 title:    Text(
                     "General".toUpperCase(),
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 13,
                       fontWeight: FontWeight.w700,
                       color: Theme.of(context).accentColor)
                 ),
@@ -107,7 +107,7 @@ class _ConfigsState extends State<Configs> {
                 builder: (context, notifier, child) => SwitchListTile(
                     title: Text(
                       "Dark Theme",
-                      style: TextStyle(fontSize: 17.5),
+                      style: TextStyle(fontSize: 16),
                     ),
                     secondary: Icon(Icons.color_lens_outlined),
                     activeColor: Colors.blue,

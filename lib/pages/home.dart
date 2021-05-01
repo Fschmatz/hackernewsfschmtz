@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hackernewsfschmtz/classes/articlePage.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:hackernewsfschmtz/classes/webservice.dart';
-import 'package:hackernewsfschmtz/configs/configs.dart';
+import 'package:hackernewsfschmtz/configs/settings.dart';
 import 'package:hackernewsfschmtz/db/lidosDao.dart';
 import 'package:hackernewsfschmtz/pages/containerStory.dart';
 import 'package:hackernewsfschmtz/pages/loading.dart';
@@ -344,7 +344,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                       Navigator.push(
                           context,
                           MaterialPageRoute<void>(
-                            builder: (BuildContext context) => Configs(),
+                            builder: (BuildContext context) => Settings(),
                             fullscreenDialog: true,
                           ));
                     }),

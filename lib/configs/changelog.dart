@@ -9,45 +9,39 @@ class Changelog extends StatelessWidget {
           title: Text("Changelog"),
           elevation: 0,
         ),
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-          child: ListView(children: <Widget>[
-            ListTile(
-              dense: true,
-              title: Text(
-                  "Current Version".toUpperCase(),
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                      color: Theme.of(context).accentColor)
+        body: ListView(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
+                child: Text("Current Version\n".toUpperCase(),
+                    style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        color: Theme.of(context).accentColor)),
               ),
-            ),
-            ListTile(
-              title: Text(
-                NameChangelog.changelogCurrent,
-                style: TextStyle(fontSize: 17),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: Text(
+                  NameChangelog.changelogCurrent,
+                  style: TextStyle(fontSize: 16),
+                ),
               ),
-            ),
-            Divider(),
-            ListTile(
-              dense: true,
-              title: Text(
-                  "Previous Versions".toUpperCase(),
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                      color: Theme.of(context).accentColor)
+              Divider(),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                child: Text("Previous Versions\n".toUpperCase(),
+                    style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        color: Theme.of(context).accentColor)),
               ),
-            ),
-            ListTile(
-              title: Text(
-                NameChangelog.changelogsOld,
-                style: TextStyle(fontSize: 17),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: Text(
+                  NameChangelog.changelogsOld,
+                  style: TextStyle(fontSize: 16),
+                ),
               ),
-            ),
-
-
-          ]),
-        ));
+            ]));
   }
 }
