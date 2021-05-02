@@ -11,8 +11,8 @@ class Changelog extends StatelessWidget {
         ),
         body: ListView(children: <Widget>[
           ListTile(
-              leading: Icon(
-                Icons.article_outlined,
+              leading: SizedBox(
+                height: 0.1,
               ),
               title: Text("Current Version".toUpperCase(),
                   style: TextStyle(
@@ -20,8 +20,8 @@ class Changelog extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                       color: Theme.of(context).accentColor))),
           ListTile(
-            leading: SizedBox(
-              height: 0.1,
+            leading: Icon(
+              Icons.article_outlined,
             ),
             title: Text(
               NameChangelog.changelogCurrent,
@@ -30,8 +30,8 @@ class Changelog extends StatelessWidget {
           ),
           Divider(),
           ListTile(
-            leading: Icon(
-              Icons.article_outlined,
+            leading: SizedBox(
+              height: 0.1,
             ),
             title: Text("Previous Versions".toUpperCase(),
                 style: TextStyle(
@@ -40,8 +40,8 @@ class Changelog extends StatelessWidget {
                     color: Theme.of(context).accentColor)),
           ),
           ListTile(
-            leading: SizedBox(
-              height: 0.1,
+            leading: Icon(
+              Icons.article_outlined,
             ),
             title: Text(
               NameChangelog.changelogsOld,

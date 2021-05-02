@@ -50,7 +50,7 @@ class AppInfo extends StatelessWidget {
                       color: Theme.of(context).accentColor)),
             ),
             ListTile(
-              leading: Icon(Icons.perm_device_info_outlined),
+              leading: Icon( Icons.info_outline),
               title: Text(
                 "HAMMERED AND REDONE: 0 Times !!!",
                 style: TextStyle(
@@ -93,7 +93,7 @@ class AppInfo extends StatelessWidget {
             ),
             ListTile(
               onTap: () {_launchGithub();},
-              leading: Icon(Icons.open_in_browser_outlined),
+              leading: Icon(Icons.open_in_new_outlined),
               title: Text("https://github.com/Fschmatz/hackernewsfschmtz",
                   style: TextStyle(
                       decoration: TextDecoration.underline,
@@ -111,7 +111,7 @@ class AppInfo extends StatelessWidget {
                       color: Theme.of(context).accentColor)),
             ),
             ListTile(
-              leading: Icon(Icons.messenger_outline_outlined),
+              leading: Icon(Icons.messenger_outline),
               title: Text(
                 "Software Engineering is a learning process, working code a side effect.",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
