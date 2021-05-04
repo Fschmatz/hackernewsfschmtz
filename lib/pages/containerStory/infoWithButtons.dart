@@ -107,6 +107,10 @@ class InfoWithButtons extends StatelessWidget {
                     ),
                   ],
                 ),
+                onLongPress: (){
+                  Share.share('https://news.ycombinator.com/item?id=' +
+                      story.storyId.toString());
+                },
                 onPressed: () {
                   launchBrowser('https://news.ycombinator.com/item?id=' +
                       story.storyId.toString());

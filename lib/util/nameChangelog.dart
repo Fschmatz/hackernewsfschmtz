@@ -1,18 +1,24 @@
 class NameChangelog{
 
-  static String appVersion = "3.3.9";
+  static String appVersion = "3.4.0";
   static String appName = "HackerNews Fschmtz";
 
   static String changelogCurrent = '''
-3.3.9
-- Hoping the Problem with Duplicate Stories has been Dealt
-- Removed Cards from ListView
+3.4.0
+- Hold Comments Button to Share Url of the Comments Page
+- Small Fixes
+''';
+
+  static String changelogsOld = '''
+3.3.5
 - Small UI Changes
 - Formatted Url
 - New Settings Page
-''';
 
-  static String changelogsOld = '''  
+3.3.0
+- Hoping the Problem with Duplicate Stories has been Dealt
+- Removed Cards from ListView
+    
 3.2.5
 - UI Changes
 - Small Fixes

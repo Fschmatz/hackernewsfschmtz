@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:hackernewsfschmtz/db/lidosDao.dart';
@@ -37,43 +38,42 @@ class _ContainerStoryState extends State<ContainerStory> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
-      child: InkWell(
-        onTap: () {
-          if (widget.story.url != null) {
-            _launchBrowser(widget.story.url);
+    return InkWell(
+      onTap: () {
+        if (widget.story.url != null) {
+          _launchBrowser(widget.story.url);
 
-            //DB
-            if (!widget.story.lido) {
-              _markRead(widget.story.storyId);
-              widget.refreshIdLidos();
-            }
-          } else {
-            // IF ASK/SHOW HN
-            _launchBrowser('https://news.ycombinator.com/item?id=' +
-                widget.story.storyId.toString());
-
-            //DB
-            if (!widget.story.lido) {
-              _markRead(widget.story.storyId);
-              widget.refreshIdLidos();
-            }
+          //DB
+          if (!widget.story.lido) {
+            _markRead(widget.story.storyId);
+            widget.refreshIdLidos();
           }
-        },
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(3, 0, 0, 10),
-          child: Column(
-            children: [
-              TitleWithUrl(
-                story: widget.story,
-                markRead: _markRead,
-                refreshIdLidos: widget.refreshIdLidos,
-              ),
-              InfoWithButtons(contador: widget.contador,
-                story: widget.story,launchBrowser: _launchBrowser)
-            ],
-          ),
+        } else {
+          // IF ASK/SHOW HN
+          _launchBrowser('https://news.ycombinator.com/item?id=' +
+              widget.story.storyId.toString());
+
+          //DB
+          if (!widget.story.lido) {
+            _markRead(widget.story.storyId);
+            widget.refreshIdLidos();
+          }
+        }
+      },
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(6, 0, 0, 13),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+
+          children: [
+            TitleWithUrl(
+              story: widget.story,
+              markRead: _markRead,
+              refreshIdLidos: widget.refreshIdLidos,
+            ),
+            InfoWithButtons(contador: widget.contador,
+              story: widget.story,launchBrowser: _launchBrowser)
+          ],
         ),
       ),
     );
