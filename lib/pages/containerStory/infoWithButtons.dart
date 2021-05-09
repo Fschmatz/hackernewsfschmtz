@@ -119,7 +119,7 @@ class InfoWithButtons extends StatelessWidget {
               width: 15,
             ),
             Container(
-              width: 54,
+              width: 50,
               child: MaterialButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
@@ -137,6 +137,7 @@ class InfoWithButtons extends StatelessWidget {
                     }
                   }),
             ),
+            SizedBox(width: 7,)
 
           ],
         ),
