@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../util/nameChangelog.dart';
+import '../util/changelog.dart';
 
-class AppInfo extends StatelessWidget {
+class AppInfoPage extends StatelessWidget {
 
   _launchGithub() async {
     const url = 'https://github.com/Fschmatz/hackernewsfschmtz';
@@ -32,7 +32,7 @@ class AppInfo extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           Center(
-            child: Text(NameChangelog.appName +" "+ NameChangelog.appVersion,
+            child: Text(Changelog.appName +" "+ Changelog.appVersion,
                 style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
@@ -115,7 +115,7 @@ class AppInfo extends StatelessWidget {
             leading: Icon(Icons.messenger_outline),
             title: Text(
               "Software Engineering is a learning process, working code a side effect.",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+              style: TextStyle(fontSize: 16),
             ),
           ),
         ]));

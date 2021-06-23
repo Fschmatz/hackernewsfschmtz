@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:hackernewsfschmtz/configs/appInfo.dart';
-import 'package:hackernewsfschmtz/configs/changelog.dart';
+import 'package:hackernewsfschmtz/configs/appInfoPage.dart';
+import 'package:hackernewsfschmtz/configs/changelogPage.dart';
 import 'package:hackernewsfschmtz/util/theme.dart';
-import '../util/nameChangelog.dart';
+import '../util/changelog.dart';
 import 'package:provider/provider.dart';
 
-class Settings extends StatefulWidget {
+class SettingsPage extends StatefulWidget {
   @override
-  _SettingsState createState() => _SettingsState();
+  _SettingsPageState createState() => _SettingsPageState();
 
-  Settings({Key key}) : super(key: key);
+  SettingsPage({Key key}) : super(key: key);
 }
 
-class _SettingsState extends State<Settings> {
+class _SettingsPageState extends State<SettingsPage> {
   @override
   void initState() {
     super.initState();
@@ -38,7 +38,7 @@ class _SettingsState extends State<Settings> {
                 ),
                 child: ListTile(
                   title: Text(
-                    NameChangelog.appName + " " + NameChangelog.appVersion,
+                    Changelog.appName + " " + Changelog.appVersion,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 17.5, color: Colors.black),
                   ),
@@ -67,7 +67,7 @@ class _SettingsState extends State<Settings> {
                   Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => AppInfo(),
+                        builder: (BuildContext context) => AppInfoPage(),
                         fullscreenDialog: true,
                       ));
                 },
@@ -77,7 +77,7 @@ class _SettingsState extends State<Settings> {
               ),
               ListTile(
                 leading: Icon(
-                  Icons.text_snippet_outlined,
+                  Icons.article_outlined,
                 ),
                 title: Text(
                   "Changelog",
@@ -87,7 +87,7 @@ class _SettingsState extends State<Settings> {
                   Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => Changelog(),
+                        builder: (BuildContext context) => ChangelogPage(),
                         fullscreenDialog: true,
                       ));
                 },

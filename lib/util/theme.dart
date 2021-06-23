@@ -8,7 +8,7 @@ ThemeData light = ThemeData(
     accentColor: Colors.orange[800], //0xFF01A173
     scaffoldBackgroundColor: Color(0xFFF1F1F9), //0xFFF5F5FE
     cardTheme: CardTheme(
-      color: Color(0xFFF5F5FE),
+      color: Color(0xFFF1F1F1),
     ),
     dialogTheme: DialogTheme(
       backgroundColor: Color(0xFFF9F9FF),
@@ -24,7 +24,7 @@ ThemeData dark = ThemeData(
     accentColor: Color(0xFFFF965b),
     scaffoldBackgroundColor: Color(0xFF202022),
     cardTheme: CardTheme(
-      color: Color(0xFF272729),
+      color: Color(0xFF2A2A2C),
     ),
     dialogTheme: DialogTheme(
       backgroundColor: Color(0xFF272729),

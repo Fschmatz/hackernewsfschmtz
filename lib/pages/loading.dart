@@ -118,36 +118,50 @@ class Loading extends StatelessWidget {
                                 mainAxisAlignment:
                                 MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  MaterialButton(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                      BorderRadius.circular(5),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.comment_outlined,
-                                          size: 21,
-                                          color: Theme.of(context).textTheme.headline6.color.withOpacity(0.7),
+                                  Container(
+                                    width: 50,
+                                    child: TextButton(
+                                      onPressed: () {},
+                                      child: Icon(
+                                        Icons.comment_outlined,
+                                        size: 21,
+                                        color: Theme.of(context).textTheme.headline6.color.withOpacity(0.7),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        elevation: 0,
+                                        primary: Theme.of(context).cardTheme.color,
+                                        onPrimary: Theme.of(context).accentColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(50.0),
                                         ),
-                                        const SizedBox(
-                                          width: 48,
-                                        ),
-                                      ],
+                                      ),
                                     ),
                                   ),
-                                  MaterialButton(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                      BorderRadius.circular(5),
+                                  const SizedBox(
+                                    width: 15,
+                                  ),
+                                  Container(
+                                    width: 50,
+                                    child: TextButton(
+                                      onPressed: () {},
+                                      child: Icon(
+                                        Icons.share_outlined,
+                                        size: 21,
+                                        color:
+                                        Theme.of(context).textTheme.headline6.color.withOpacity(0.7),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        elevation: 0,
+                                        primary: Theme.of(context).cardTheme.color,
+                                        onPrimary: Theme.of(context).accentColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(50.0),
+                                        ),
+                                      ),
                                     ),
-                                    minWidth: 0,
-                                    child: Icon(
-                                      Icons.share_outlined,
-                                      size: 21,
-                                      color:
-                                      Theme.of(context).textTheme.headline6.color.withOpacity(0.7),
-                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 16,
                                   ),
 
                                 ],

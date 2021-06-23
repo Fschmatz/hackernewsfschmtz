@@ -7,7 +7,8 @@ class InfoWithButtons extends StatelessWidget {
   int contador;
   Function(String) launchBrowser;
 
-  InfoWithButtons({Key key, this.story, this.contador,this.launchBrowser}) : super(key: key);
+  InfoWithButtons({Key key, this.story, this.contador, this.launchBrowser})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,7 @@ class InfoWithButtons extends StatelessWidget {
                         : Theme.of(context).hintColor.withOpacity(0.6),
                     size: 16,
                   ),
-                  Text(" "+story.timeAgo,
+                  Text(" " + story.timeAgo,
                       style: TextStyle(
                           fontSize: 13,
                           color: story.lido
@@ -76,73 +77,115 @@ class InfoWithButtons extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            MaterialButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.comment_outlined,
-                      size: 21,
-                      color: story.lido
-                          ? Theme.of(context).disabledColor.withOpacity(0.2)
-                          : Theme.of(context).textTheme.headline6.color.withOpacity(0.7),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Visibility(
-                      visible: story.commentsCount != null,
-                      maintainState: true,
-                      child: story.commentsCount != 0
-                          ? Text(story.commentsCount.toString(),
-                          style: TextStyle(
-                            fontSize: 14.5,
-                            color: story.lido
-                                ? Theme.of(context).disabledColor.withOpacity(0.2)
-                                : Theme.of(context).textTheme.headline6.color.withOpacity(0.7),
-                          ))
-                          : SizedBox.shrink(),
-                    ),
-                  ],
-                ),
-                onLongPress: (){
+            Container(
+              width: story.commentsCount == 0
+                  ? 50
+                  : story.commentsCount.toDouble() > 99
+                      ? (story.commentsCount.toDouble() > 999 ? 95 : 85)
+                      : 75,
+              child: TextButton(
+                onLongPress: () {
+                  print(story.commentsCount.toDouble());
                   Share.share('https://news.ycombinator.com/item?id=' +
                       story.storyId.toString());
                 },
                 onPressed: () {
                   launchBrowser('https://news.ycombinator.com/item?id=' +
                       story.storyId.toString());
-                }),
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.comment_outlined,
+                      size: 21,
+                      color: story.lido
+                          ? Theme.of(context).disabledColor.withOpacity(0.2)
+                          : Theme.of(context)
+                              .textTheme
+                              .headline6
+                              .color
+                              .withOpacity(0.7),
+                    ),
+                    Visibility(
+                      visible: story.commentsCount == null,
+                      child: const SizedBox(
+                        width: 10,
+                      ),
+                    ),
+                    Visibility(
+                      visible: story.commentsCount != null,
+                      maintainState: true,
+                      child: story.commentsCount != 0
+                          ? Text('  '+story.commentsCount.toString(),
+                              style: TextStyle(
+                                fontSize: 14.5,
+                                color: story.lido
+                                    ? Theme.of(context)
+                                        .disabledColor
+                                        .withOpacity(0.2)
+                                    : Theme.of(context)
+                                        .textTheme
+                                        .headline6
+                                        .color
+                                        .withOpacity(0.7),
+                              ))
+                          : SizedBox.shrink(),
+                    ),
+                  ],
+                ),
+                style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  primary: Theme.of(context).cardTheme.color,
+                  onPrimary: Theme.of(context).accentColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                ),
+              ),
+            ),
             const SizedBox(
               width: 15,
             ),
             Container(
               width: 50,
-              child: MaterialButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Icon(Icons.share_outlined,size: 21,color: story.lido
+              child: TextButton(
+                onPressed: () {
+                  if (story.url != null) {
+                    Share.share(story.url);
+                  } else {
+                    // ASK/SHOW HN
+                    Share.share('https://news.ycombinator.com/item?id=' +
+                        story.storyId.toString());
+                  }
+                },
+                child: Icon(
+                  Icons.share_outlined,
+                  size: 21,
+                  color: story.lido
                       ? Theme.of(context).disabledColor.withOpacity(0.2)
-                      : Theme.of(context).textTheme.headline6.color.withOpacity(0.7),),
-                  onPressed: () {
-                    if (story.url != null) {
-                      Share.share(story.url);
-                    } else {
-                      // ASK/SHOW HN
-                      Share.share('https://news.ycombinator.com/item?id=' +
-                          story.storyId.toString());
-                    }
-                  }),
+                      : Theme.of(context)
+                          .textTheme
+                          .headline6
+                          .color
+                          .withOpacity(0.7),
+                ),
+                style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  primary: Theme.of(context).cardTheme.color,
+                  onPrimary: Theme.of(context).accentColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                ),
+              ),
             ),
-            SizedBox(width: 7,)
-
+            const SizedBox(
+              width: 16,
+            ),
           ],
         ),
       ],
     );
   }
 }
-

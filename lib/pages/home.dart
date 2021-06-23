@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:hackernewsfschmtz/classes/articlePage.dart';
+import 'package:hackernewsfschmtz/classes/articlePages.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:hackernewsfschmtz/classes/webservice.dart';
-import 'package:hackernewsfschmtz/configs/settings.dart';
+import 'package:hackernewsfschmtz/configs/settingsPage.dart';
 import 'package:hackernewsfschmtz/db/lidosDao.dart';
 import 'package:hackernewsfschmtz/pages/containerStory.dart';
 import 'package:hackernewsfschmtz/pages/loading.dart';
@@ -17,7 +17,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   List<Story> _stories = [];
-  List<ArticlePage> listArticlePages = new ArticlePage().getArticlePages();
+  List<ArticlePages> listArticlePages = new ArticlePages().getArticlePages();
   bool loading = true;
   bool loadStoriesOnScroll = false;
   bool getTopStoriesSecondaryIsDone = false;
@@ -52,7 +52,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     _getStoryIdsLidos();
   }
 
-  changeArticlePage(ArticlePage article) {
+  changeArticlePage(ArticlePages article) {
     setState(() {
       loading = true;
       pageName = article.name;
@@ -249,35 +249,39 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                 : LazyLoadScrollView(
                     onEndOfPage: () => _getMoreStoriesScrolling(),
                     scrollOffset: 50,
-                    child: ListView(
-                      physics: AlwaysScrollableScrollPhysics(),
-                      children: [
-                        ListView.separated(
-                          separatorBuilder: (BuildContext context, int index) =>
-                              const Divider(),
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: _stories.length,
-                          itemBuilder: (context, index) {
-                            return ContainerStory(
-                                key: UniqueKey(),
-                                contador: index,
-                                refreshIdLidos: refreshIdLidos,
-                                story: new Story(
-                                  storyId: _stories[index].storyId,
-                                  title: _stories[index].title,
-                                  url: _stories[index].url,
-                                  score: _stories[index].score,
-                                  commentsCount: _stories[index].commentsCount,
-                                  time: _stories[index].time,
-                                  lido: listIdsRead
-                                          .contains(_stories[index].storyId)
-                                      ? true
-                                      : false,
-                                ));
-                          },
-                        ),
-                      ],
+                    child: RefreshIndicator(
+                      onRefresh: _getStoriesOnStartup,
+                      color: Theme.of(context).accentColor,
+                      child: ListView(
+                        physics: AlwaysScrollableScrollPhysics(),
+                        children: [
+                          ListView.separated(
+                            separatorBuilder: (BuildContext context, int index) =>
+                                const Divider(),
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: _stories.length,
+                            itemBuilder: (context, index) {
+                              return ContainerStory(
+                                  key: UniqueKey(),
+                                  contador: index,
+                                  refreshIdLidos: refreshIdLidos,
+                                  story: new Story(
+                                    storyId: _stories[index].storyId,
+                                    title: _stories[index].title,
+                                    url: _stories[index].url,
+                                    score: _stories[index].score,
+                                    commentsCount: _stories[index].commentsCount == null ? 0 : _stories[index].commentsCount,
+                                    time: _stories[index].time,
+                                    lido: listIdsRead
+                                            .contains(_stories[index].storyId)
+                                        ? true
+                                        : false,
+                                  ));
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
           ),
@@ -346,7 +350,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                   Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => Settings(),
+                        builder: (BuildContext context) => SettingsPage(),
                         fullscreenDialog: true,
                       ));
                 }),

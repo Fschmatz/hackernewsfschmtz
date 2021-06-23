@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../util/nameChangelog.dart';
+import '../util/changelog.dart';
 
-class Changelog extends StatelessWidget {
+class ChangelogPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +24,7 @@ class Changelog extends StatelessWidget {
               Icons.article_outlined,
             ),
             title: Text(
-              NameChangelog.changelogCurrent,
+              Changelog.changelogCurrent,
               style: TextStyle(fontSize: 16),
             ),
           ),
@@ -44,7 +44,7 @@ class Changelog extends StatelessWidget {
               Icons.article_outlined,
             ),
             title: Text(
-              NameChangelog.changelogsOld,
+              Changelog.changelogsOld,
               style: TextStyle(fontSize: 16),
             ),
           ),

@@ -1,13 +1,14 @@
-class NameChangelog{
+class Changelog{
 
-  static String appVersion = "3.4.1";
+  static String appVersion = "3.4.2";
   static String appName = "HackerNews Fschmtz";
 
   static String changelogCurrent = '''
-3.4.1
-- Hold Comments Button to Share Url of the Comments Page
+3.4.2
+- Hold Comments Button to Share the Url of the Comments Page
 - Small Fixes
 - Stack on Home
+- Small UI Changes
 ''';
 
   static String changelogsOld = '''
