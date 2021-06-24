@@ -83,9 +83,9 @@ class InfoWithButtons extends StatelessWidget {
                   : story.commentsCount.toDouble() > 99
                       ? (story.commentsCount.toDouble() > 999 ? 95 : 85)
                       : 75,
+              height: 40,
               child: TextButton(
                 onLongPress: () {
-                  print(story.commentsCount.toDouble());
                   Share.share('https://news.ycombinator.com/item?id=' +
                       story.storyId.toString());
                 },
@@ -149,6 +149,7 @@ class InfoWithButtons extends StatelessWidget {
             ),
             Container(
               width: 50,
+              height: 40,
               child: TextButton(
                 onPressed: () {
                   if (story.url != null) {

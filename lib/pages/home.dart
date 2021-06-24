@@ -62,7 +62,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   //LOAD STORIES STARTUP
   Future<void> _getStoriesOnStartup() async {
-    final responses = await Webservice().getTopStories(articleType, 10);
+    final responses = await Webservice().getTopStories(articleType, 15);
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
@@ -77,7 +77,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   //LOAD STORIES SECONDARY
   Future<void> _getStoriesSecondary() async {
     final responses =
-        await Webservice().getTopStoriesScrolling(articleType, 10, 10);
+        await Webservice().getTopStoriesScrolling(articleType, 15, 15);
     final storiesResp = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);

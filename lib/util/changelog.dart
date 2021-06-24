@@ -1,17 +1,20 @@
 class Changelog{
 
-  static String appVersion = "3.4.2";
+  static String appVersion = "3.5.0";
   static String appName = "HackerNews Fschmtz";
 
   static String changelogCurrent = '''
-3.4.2
+3.5.0
+- Swipe Down to Refresh
 - Hold Comments Button to Share the Url of the Comments Page
-- Small Fixes
-- Stack on Home
 - Small UI Changes
 ''';
 
   static String changelogsOld = '''
+3.4.2
+- Small Fixes
+- Stack on Home
+
 3.3.5
 - Small UI Changes
 - Formatted Url
