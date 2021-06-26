@@ -30,7 +30,7 @@ class InfoWithButtons extends StatelessWidget {
                         : Theme.of(context).hintColor.withOpacity(0.6),
                     size: 16,
                   ),
-                  Text(" ${1 + contador}   ",
+                  Text(" ${1 + contador}    ",
                       style: TextStyle(
                           fontSize: 13,
                           color: story.lido
@@ -52,7 +52,7 @@ class InfoWithButtons extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 8,
+                height: 5,
               ),
               Row(
                 children: [
@@ -83,7 +83,6 @@ class InfoWithButtons extends StatelessWidget {
                   : story.commentsCount.toDouble() > 99
                       ? (story.commentsCount.toDouble() > 999 ? 95 : 85)
                       : 75,
-              height: 40,
               child: TextButton(
                 onLongPress: () {
                   Share.share('https://news.ycombinator.com/item?id=' +
@@ -119,7 +118,7 @@ class InfoWithButtons extends StatelessWidget {
                       child: story.commentsCount != 0
                           ? Text('  '+story.commentsCount.toString(),
                               style: TextStyle(
-                                fontSize: 14.5,
+                                fontSize: 14,
                                 color: story.lido
                                     ? Theme.of(context)
                                         .disabledColor
@@ -149,7 +148,6 @@ class InfoWithButtons extends StatelessWidget {
             ),
             Container(
               width: 50,
-              height: 40,
               child: TextButton(
                 onPressed: () {
                   if (story.url != null) {
