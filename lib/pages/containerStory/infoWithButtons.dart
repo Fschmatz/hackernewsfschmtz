@@ -83,6 +83,7 @@ class InfoWithButtons extends StatelessWidget {
                   : story.commentsCount.toDouble() > 99
                       ? (story.commentsCount.toDouble() > 999 ? 95 : 85)
                       : 75,
+              height: 40,
               child: TextButton(
                 onLongPress: () {
                   Share.share('https://news.ycombinator.com/item?id=' +
@@ -112,24 +113,27 @@ class InfoWithButtons extends StatelessWidget {
                         width: 10,
                       ),
                     ),
-                    Visibility(
-                      visible: story.commentsCount != null,
-                      maintainState: true,
-                      child: story.commentsCount != 0
-                          ? Text('  '+story.commentsCount.toString(),
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: story.lido
-                                    ? Theme.of(context)
-                                        .disabledColor
-                                        .withOpacity(0.2)
-                                    : Theme.of(context)
-                                        .textTheme
-                                        .headline6
-                                        .color
-                                        .withOpacity(0.7),
-                              ))
-                          : SizedBox.shrink(),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 1),
+                      child: Visibility(
+                        visible: story.commentsCount != null,
+                        maintainState: true,
+                        child: story.commentsCount != 0
+                            ? Text('  '+story.commentsCount.toString(),
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: story.lido
+                                      ? Theme.of(context)
+                                          .disabledColor
+                                          .withOpacity(0.2)
+                                      : Theme.of(context)
+                                          .textTheme
+                                          .headline6
+                                          .color
+                                          .withOpacity(0.7),
+                                ))
+                            : SizedBox.shrink(),
+                      ),
                     ),
                   ],
                 ),
@@ -148,6 +152,7 @@ class InfoWithButtons extends StatelessWidget {
             ),
             Container(
               width: 50,
+              height: 40,
               child: TextButton(
                 onPressed: () {
                   if (story.url != null) {

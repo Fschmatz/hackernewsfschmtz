@@ -120,6 +120,7 @@ class Loading extends StatelessWidget {
                                 children: [
                                   Container(
                                     width: 50,
+                                    height: 40,
                                     child: TextButton(
                                       onPressed: () {},
                                       child: Icon(
@@ -142,6 +143,7 @@ class Loading extends StatelessWidget {
                                   ),
                                   Container(
                                     width: 50,
+                                    height: 40,
                                     child: TextButton(
                                       onPressed: () {},
                                       child: Icon(
