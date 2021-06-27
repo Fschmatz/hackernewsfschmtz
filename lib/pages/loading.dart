@@ -98,7 +98,7 @@ class Loading extends StatelessWidget {
                                     ],
                                   ),
                                   const SizedBox(
-                                    height: 5,
+                                    height: 8,
                                   ),
                                   Row(
                                     children: [

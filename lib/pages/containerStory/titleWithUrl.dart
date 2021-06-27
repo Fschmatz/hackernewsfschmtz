@@ -32,7 +32,7 @@ class TitleWithUrl extends StatelessWidget {
                       : Theme.of(context).textTheme.headline6.color)),
 
           const SizedBox(
-            height: 8,
+            height: 10,
           ),
 
           //Can be null
@@ -47,7 +47,7 @@ class TitleWithUrl extends StatelessWidget {
                         : Theme.of(context).accentColor.withOpacity(0.9))),
           ),
           const SizedBox(
-            height: 8,
+            height: 12,
           ),
         ],
       ),

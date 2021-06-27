@@ -43,16 +43,31 @@ class InfoWithButtons extends StatelessWidget {
                         : Theme.of(context).hintColor.withOpacity(0.6),
                     size: 16,
                   ),
-                  Text(" ${story.score} Points",
-                      style: TextStyle(
-                          fontSize: 13,
-                          color: story.lido
-                              ? Theme.of(context).disabledColor.withOpacity(0.2)
-                              : Theme.of(context).hintColor.withOpacity(0.6))),
+                  story.score == 1
+                      ? Text(" ${story.score} Point",
+                          style: TextStyle(
+                              fontSize: 13,
+                              color: story.lido
+                                  ? Theme.of(context)
+                                      .disabledColor
+                                      .withOpacity(0.2)
+                                  : Theme.of(context)
+                                      .hintColor
+                                      .withOpacity(0.6)))
+                      : Text(" ${story.score} Points",
+                          style: TextStyle(
+                              fontSize: 13,
+                              color: story.lido
+                                  ? Theme.of(context)
+                                      .disabledColor
+                                      .withOpacity(0.2)
+                                  : Theme.of(context)
+                                      .hintColor
+                                      .withOpacity(0.6))),
                 ],
               ),
               const SizedBox(
-                height: 5,
+                height: 8,
               ),
               Row(
                 children: [
@@ -119,9 +134,9 @@ class InfoWithButtons extends StatelessWidget {
                         visible: story.commentsCount != null,
                         maintainState: true,
                         child: story.commentsCount != 0
-                            ? Text('  '+story.commentsCount.toString(),
+                            ? Text('  ' + story.commentsCount.toString(),
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 13.5,
                                   color: story.lido
                                       ? Theme.of(context)
                                           .disabledColor
