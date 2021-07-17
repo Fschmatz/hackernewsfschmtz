@@ -20,7 +20,7 @@ ThemeData light = ThemeData(
 //ESCURO
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Color(0xFF202022),//0xFF1C1C1D
+    primaryColor: Color(0xFF202022),
     accentColor: Color(0xFFFF965b),
     scaffoldBackgroundColor: Color(0xFF202022),
     cardTheme: CardTheme(

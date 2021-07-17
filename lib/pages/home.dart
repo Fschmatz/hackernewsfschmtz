@@ -77,7 +77,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   //LOAD STORIES SECONDARY
   Future<void> _getStoriesSecondary() async {
     final responses =
-        await Webservice().getTopStoriesScrolling(articleType, 15, 15);
+    await Webservice().getTopStoriesScrolling(articleType, 15, 15);
     final storiesResp = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
@@ -158,7 +158,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                   const Divider(),
                   ListView.separated(
                     separatorBuilder: (BuildContext context, int index) =>
-                        const Divider(),
+                    const Divider(),
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: listArticlePages.length,
@@ -172,9 +172,9 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                         leading: Icon(
                           Icons.article_outlined,
                           color: listArticlePages[index]
-                                  .name
-                                  .compareTo(pageName)
-                                  .isEven
+                              .name
+                              .compareTo(pageName)
+                              .isEven
                               ? Theme.of(context).accentColor.withOpacity(0.9)
                               : Theme.of(context).hintColor,
                         ),
@@ -182,12 +182,12 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                           listArticlePages[index].name,
                           style: TextStyle(
                               color: listArticlePages[index]
-                                      .name
-                                      .compareTo(pageName)
-                                      .isEven
+                                  .name
+                                  .compareTo(pageName)
+                                  .isEven
                                   ? Theme.of(context)
-                                      .accentColor
-                                      .withOpacity(0.9)
+                                  .accentColor
+                                  .withOpacity(0.9)
                                   : Theme.of(context).textTheme.headline6.color,
                               fontSize: 17),
                         ),
@@ -230,133 +230,131 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                   text: pageName,
                   style: TextStyle(
                       color: Theme.of(context).hintColor,
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.w600)),
             ],
           ),
         ),
         elevation: 0,
       ),
-      body: Stack(
-        children: [
-          AnimatedSwitcher(
-            duration: Duration(milliseconds: 600),
-            child: loading
-                ? Loading(
-                    key: UniqueKey(),
-                    pageName: pageName,
-                  )
-                : LazyLoadScrollView(
-                    onEndOfPage: () => _getMoreStoriesScrolling(),
-                    scrollOffset: 50,
-                    child: RefreshIndicator(
-                      onRefresh: _getStoriesOnStartup,
-                      color: Theme.of(context).accentColor,
-                      child: ListView(
-                        physics: AlwaysScrollableScrollPhysics(),
-                        children: [
-                          ListView.separated(
-                            separatorBuilder: (BuildContext context, int index) =>
-                                const Divider(),
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: _stories.length,
-                            itemBuilder: (context, index) {
-                              return ContainerStory(
-                                  key: UniqueKey(),
-                                  contador: index,
-                                  refreshIdLidos: refreshIdLidos,
-                                  story: new Story(
-                                    storyId: _stories[index].storyId,
-                                    title: _stories[index].title,
-                                    url: _stories[index].url,
-                                    score: _stories[index].score,
-                                    commentsCount: _stories[index].commentsCount == null ? 0 : _stories[index].commentsCount,
-                                    time: _stories[index].time,
-                                    lido: listIdsRead
-                                            .contains(_stories[index].storyId)
-                                        ? true
-                                        : false,
-                                  ));
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-          ),
-          loadStoriesOnScroll
-              ? Align(
-                  alignment: Alignment.bottomCenter,
-                  child: PreferredSize(
-                    preferredSize: Size.fromHeight(2),
-                    child: LinearProgressIndicator(
-                      valueColor: new AlwaysStoppedAnimation<Color>(
-                          Theme.of(context).accentColor.withOpacity(0.8)),
-                      backgroundColor:
+      body: AnimatedSwitcher(
+        duration: Duration(milliseconds: 600),
+        child: loading
+            ? Loading(
+          key: UniqueKey(),
+          pageName: pageName,
+        )
+            : LazyLoadScrollView(
+          onEndOfPage: () => _getMoreStoriesScrolling(),
+          isLoading: loadStoriesOnScroll,
+          child: RefreshIndicator(
+            onRefresh: _getStoriesOnStartup,
+            color: Theme.of(context).accentColor,
+            child: ListView(
+              physics: AlwaysScrollableScrollPhysics(),
+              children: [
+                ListView.separated(
+                  separatorBuilder: (BuildContext context, int index) =>
+                  const Divider(),
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: _stories.length,
+                  itemBuilder: (context, index) {
+                    return ContainerStory(
+                        key: UniqueKey(),
+                        contador: index,
+                        refreshIdLidos: refreshIdLidos,
+                        story: new Story(
+                          storyId: _stories[index].storyId,
+                          title: _stories[index].title,
+                          url: _stories[index].url,
+                          score: _stories[index].score,
+                          commentsCount: _stories[index].commentsCount == null ? 0 : _stories[index].commentsCount,
+                          time: _stories[index].time,
+                          lido: listIdsRead
+                              .contains(_stories[index].storyId)
+                              ? true
+                              : false,
+                        ));
+                  },
+                ),
+                Visibility(
+                    visible: loadStoriesOnScroll,
+                    child:  Align(
+                      alignment: Alignment.bottomCenter,
+                      child: PreferredSize(
+                        preferredSize: Size.fromHeight(2),
+                        child: LinearProgressIndicator(
+                          valueColor: new AlwaysStoppedAnimation<Color>(
+                              Theme.of(context).accentColor.withOpacity(0.8)),
+                          backgroundColor:
                           Theme.of(context).accentColor.withOpacity(0.3),
-                    ),
-                  ),
+                        ),
+                      ),
+                    )
                 )
-              : const SizedBox.shrink()
-        ],
+              ],
+            ),
+          ),
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
           child: Padding(
-        padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-                icon: Icon(
-                  Icons.refresh_outlined,
-                  color: Theme.of(context)
-                      .textTheme
-                      .headline6
-                      .color
-                      .withOpacity(0.7),
-                ),
-                onPressed: () {
-                  //START ANIMATION
-                  setState(() {
-                    loading = true;
-                  });
+            padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                    icon: Icon(
+                      Icons.refresh_outlined,
+                      color: Theme.of(context)
+                          .textTheme
+                          .headline6
+                          .color
+                          .withOpacity(0.8),
+                    ),
+                    onPressed: () {
+                      //START ANIMATION
+                      setState(() {
+                        loading = true;
+                      });
 
-                  _getStoriesOnStartup();
-                  _getStoryIdsLidos();
-                }),
-            IconButton(
-                icon: Icon(
-                  Icons.menu_outlined,
-                  color: Theme.of(context)
-                      .textTheme
-                      .headline6
-                      .color
-                      .withOpacity(0.7),
-                ),
-                onPressed: () {
-                  openBottomSheet();
-                }),
-            IconButton(
-                icon: Icon(
-                  Icons.settings_outlined,
-                  color: Theme.of(context)
-                      .textTheme
-                      .headline6
-                      .color
-                      .withOpacity(0.7),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => SettingsPage(),
-                        fullscreenDialog: true,
-                      ));
-                }),
-          ],
-        ),
-      )),
+                      _getStoriesOnStartup();
+                      _getStoryIdsLidos();
+                    }),
+                IconButton(
+                    icon: Icon(
+                      Icons.menu_outlined,
+                      color: Theme.of(context)
+                          .textTheme
+                          .headline6
+                          .color
+                          .withOpacity(0.8),
+                    ),
+                    onPressed: () {
+                      openBottomSheet();
+                    }),
+                IconButton(
+                    icon: Icon(
+                      Icons.settings_outlined,
+                      color: Theme.of(context)
+                          .textTheme
+                          .headline6
+                          .color
+                          .withOpacity(0.8),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) => SettingsPage(),
+                            fullscreenDialog: true,
+                          ));
+                    }),
+              ],
+            ),
+          )),
     );
   }
 }
+
