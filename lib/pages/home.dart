@@ -247,6 +247,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             : LazyLoadScrollView(
           onEndOfPage: () => _getMoreStoriesScrolling(),
           isLoading: loadStoriesOnScroll,
+          scrollOffset: 25,
           child: RefreshIndicator(
             onRefresh: _getStoriesOnStartup,
             color: Theme.of(context).accentColor,
@@ -280,17 +281,11 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                 ),
                 Visibility(
                     visible: loadStoriesOnScroll,
-                    child:  Align(
-                      alignment: Alignment.bottomCenter,
-                      child: PreferredSize(
-                        preferredSize: Size.fromHeight(2),
-                        child: LinearProgressIndicator(
-                          valueColor: new AlwaysStoppedAnimation<Color>(
-                              Theme.of(context).accentColor.withOpacity(0.8)),
-                          backgroundColor:
-                          Theme.of(context).accentColor.withOpacity(0.3),
-                        ),
-                      ),
+                    child:  LinearProgressIndicator(
+                      valueColor: new AlwaysStoppedAnimation<Color>(
+                          Theme.of(context).accentColor.withOpacity(0.8)),
+                      backgroundColor:
+                      Theme.of(context).accentColor.withOpacity(0.3),
                     )
                 )
               ],
