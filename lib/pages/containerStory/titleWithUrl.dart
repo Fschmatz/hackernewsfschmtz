@@ -20,7 +20,7 @@ class TitleWithUrl extends StatelessWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.fromLTRB(13, 14, 18, 0),
+      padding: const EdgeInsets.fromLTRB(13, 0, 18, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

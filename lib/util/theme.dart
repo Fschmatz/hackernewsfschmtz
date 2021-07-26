@@ -5,8 +5,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 ThemeData light = ThemeData(
     brightness: Brightness.light,
     primaryColor: Color(0xFFFFFFFF),
-    accentColor: Colors.orange[800], //0xFF01A173
-    scaffoldBackgroundColor: Color(0xFFFFFFFF), //0xFFF5F5FE
+    accentColor: Colors.orange[800],
+    //0xFF01A173
+    scaffoldBackgroundColor: Color(0xFFFFFFFF),
+    //0xFFF5F5FE
     cardTheme: CardTheme(
       color: Color(0xFFF1F1F1),
     ),
@@ -14,6 +16,9 @@ ThemeData light = ThemeData(
       backgroundColor: Color(0xFFF9F9F9),
     ),
     bottomAppBarColor: Color(0xFFE6E6E6),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: Color(0xFFE6E6E6),
+    ),
     bottomSheetTheme:
         BottomSheetThemeData(modalBackgroundColor: Color(0xFFF5F5F5)));
 
@@ -30,6 +35,11 @@ ThemeData dark = ThemeData(
       backgroundColor: Color(0xFF272729),
     ),
     bottomAppBarColor: Color(0xFF151517),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      showSelectedLabels: false,
+      showUnselectedLabels: true,
+      backgroundColor: Color(0xFF151517),
+    ),
     bottomSheetTheme:
         BottomSheetThemeData(modalBackgroundColor: Color(0xFF202022)));
 
