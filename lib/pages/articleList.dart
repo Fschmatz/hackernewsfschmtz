@@ -131,13 +131,8 @@ class _ArticleListState extends State<ArticleList>
           text: TextSpan(
             children: <TextSpan>[
               TextSpan(
-                  text: 'HN  ',
+                  text: 'HN',
                   style: TextStyle(
-                      color: Theme.of(context)
-                          .textTheme
-                          .headline6
-                          .color
-                          .withOpacity(0.9),
                       fontSize: 20,
                       fontWeight: FontWeight.w700)),
             ],
@@ -152,7 +147,7 @@ class _ArticleListState extends State<ArticleList>
                     .textTheme
                     .headline6
                     .color
-                    .withOpacity(0.8),
+                    .withOpacity(0.7),
               ),
               onPressed: () {
 
@@ -174,7 +169,7 @@ class _ArticleListState extends State<ArticleList>
                     .textTheme
                     .headline6
                     .color
-                    .withOpacity(0.8),
+                    .withOpacity(0.7),
               ),
               onPressed: () {
                 Navigator.push(

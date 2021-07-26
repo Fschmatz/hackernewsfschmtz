@@ -50,6 +50,10 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
+
+    TextStyle styleFontNavBar =
+    TextStyle(fontSize: 14.5, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor);
+
     return Scaffold(
       body: SafeArea(child: _articlesList[_currentIndex]),
       bottomNavigationBar: Container(
@@ -64,9 +68,9 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               hoverColor: Theme.of(context).accentColor.withOpacity(0.4),
               color:
                   Theme.of(context).textTheme.headline6.color.withOpacity(0.7),
-              gap: 3,
+              gap: 5,
               activeColor: Theme.of(context).accentColor,
-              iconSize: 22,
+              iconSize: 24,
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               duration: Duration(milliseconds: 400),
               tabBackgroundColor:
@@ -75,24 +79,29 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                   Theme.of(context).bottomNavigationBarTheme.backgroundColor,
               tabs: [
                 GButton(
-                  icon: Icons.new_releases_outlined,
+                  icon: Icons.bar_chart_outlined,
                   text: 'Top',
+                  textStyle: styleFontNavBar,
                 ),
                 GButton(
                   icon: Icons.schedule_outlined,
                   text: 'New',
+                  textStyle: styleFontNavBar,
                 ),
                 GButton(
                   icon: Icons.star_outline,
                   text: 'Best',
+                  textStyle: styleFontNavBar,
                 ),
                 GButton(
                   icon: Icons.campaign_outlined,
                   text: 'Show',
+                  textStyle: styleFontNavBar,
                 ),
                 GButton(
-                  icon: Icons.question_answer_outlined,
+                  icon: Icons.messenger_outline_outlined,
                   text: 'Ask',
+                  textStyle: styleFontNavBar,
                 ),
               ],
               selectedIndex: _currentIndex,

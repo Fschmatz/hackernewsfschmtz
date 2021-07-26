@@ -7,7 +7,7 @@ class Changelog{
 3.6.0
 - Hide AppBar
 - NavBar
-- Changed Internal Logic(Tabs)
+- Changed Internal Logic
 ''';
 
   static String changelogsOld = '''

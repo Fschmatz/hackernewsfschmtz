@@ -8,24 +8,28 @@ class Loading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    double deviceHeight = WidgetsBinding.instance.window.physicalSize.height;
+    int valueTilesLoading = (deviceHeight / 400).round();
+
     return ListView(
       physics: NeverScrollableScrollPhysics(),
       children: [
         ListView.separated(
-          separatorBuilder: (BuildContext context, int index) => Divider(),
+          separatorBuilder: (BuildContext context, int index) => Divider(height: 0,),
           physics: NeverScrollableScrollPhysics(),
-          itemCount: 5,
+          itemCount: valueTilesLoading,
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
-              padding: const EdgeInsets.fromLTRB(6, 0, 3, 10),
+              padding: EdgeInsets.fromLTRB(6, index == 0 ? 0 : 19, 3, 10),
               child: Row(
                 children: [
                   Expanded(
                     child: Column(
                       children: [
                         Container(
-                          padding: const EdgeInsets.fromLTRB(18, 15, 18, 20),
+                          padding: EdgeInsets.fromLTRB(18, index == 0 ? 10 : 15, 18, 20),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
