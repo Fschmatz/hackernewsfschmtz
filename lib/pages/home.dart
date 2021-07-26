@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:hackernewsfschmtz/classes/articlePages.dart';
 import 'package:hackernewsfschmtz/pages/articleList.dart';
 
 class Home extends StatefulWidget {
@@ -9,11 +8,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
-  List<ArticlePages> listArticlePages = new ArticlePages().getArticlePages();
-  List<int> listIdsRead = [];
-  String articleType;
-  String pageName;
-  int indexAtual = 0;
 
   //always start with TopStories
   int _currentIndex = 0;
@@ -68,7 +62,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               hoverColor: Theme.of(context).accentColor.withOpacity(0.4),
               color:
                   Theme.of(context).textTheme.headline6.color.withOpacity(0.7),
-              gap: 5,
+              gap: 8,
               activeColor: Theme.of(context).accentColor,
               iconSize: 24,
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -102,6 +96,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                   icon: Icons.messenger_outline_outlined,
                   text: 'Ask',
                   textStyle: styleFontNavBar,
+                  iconSize: 22,
                 ),
               ],
               selectedIndex: _currentIndex,

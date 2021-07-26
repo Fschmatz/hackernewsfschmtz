@@ -20,8 +20,8 @@ class ArticleList extends StatefulWidget {
   _ArticleListState createState() => _ArticleListState();
 }
 
-class _ArticleListState extends State<ArticleList>
-    with AutomaticKeepAliveClientMixin {
+class _ArticleListState extends State<ArticleList> {
+
   List<Story> _stories = [];
   List<ArticlePages> listArticlePages = new ArticlePages().getArticlePages();
   bool loading = true;
@@ -29,17 +29,13 @@ class _ArticleListState extends State<ArticleList>
   bool getTopStoriesSecondaryIsDone = false;
   List<int> listIdsRead = [];
   String articleType;
-  String pageName;
+
 
   final controllerScrollHideAppbar = ScrollController();
 
   @override
-  bool get wantKeepAlive => true;
-
-  @override
   void initState() {
     articleType = listArticlePages[widget.paginaAtual].maskLink;
-    pageName = listArticlePages[widget.paginaAtual].name;
 
     _getStoryIdsLidos();
     _getStoriesOnStartup();
@@ -127,17 +123,10 @@ class _ArticleListState extends State<ArticleList>
     return Scaffold(
       appBar: ScrollAppBar(
         controller: controllerScrollHideAppbar,
-        title: RichText(
-          text: TextSpan(
-            children: <TextSpan>[
-              TextSpan(
-                  text: 'HN',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700)),
-            ],
-          ),
-        ),
+        title: Text('HN',
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+            )),
         elevation: 0,
         actions: [
           IconButton(
@@ -158,10 +147,10 @@ class _ArticleListState extends State<ArticleList>
 
                 _getStoriesOnStartup();
                 _getStoryIdsLidos();
-
-
               }),
-          SizedBox(width: 15,),
+          SizedBox(
+            width: 15,
+          ),
           IconButton(
               icon: Icon(
                 Icons.settings_outlined,
@@ -186,7 +175,6 @@ class _ArticleListState extends State<ArticleList>
         child: loading
             ? Loading(
                 key: UniqueKey(),
-                pageName: pageName,
               )
             : LazyLoadScrollView(
                 onEndOfPage: () => _getMoreStoriesScrolling(),
@@ -201,7 +189,9 @@ class _ArticleListState extends State<ArticleList>
                     children: [
                       ListView.separated(
                         separatorBuilder: (BuildContext context, int index) =>
-                            const Divider(height: 0,),
+                            const Divider(
+                          height: 0,
+                        ),
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: _stories.length,

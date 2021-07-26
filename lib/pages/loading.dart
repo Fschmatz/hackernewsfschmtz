@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:skeleton_text/skeleton_text.dart';
 
 class Loading extends StatelessWidget {
-
-  String pageName;
-  Loading({Key key,this.pageName}) : super(key: key);
+  Loading({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     double deviceHeight = WidgetsBinding.instance.window.physicalSize.height;
     int valueTilesLoading = (deviceHeight / 400).round();
 
@@ -16,7 +13,9 @@ class Loading extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       children: [
         ListView.separated(
-          separatorBuilder: (BuildContext context, int index) => Divider(height: 0,),
+          separatorBuilder: (BuildContext context, int index) => Divider(
+            height: 0,
+          ),
           physics: NeverScrollableScrollPhysics(),
           itemCount: valueTilesLoading,
           shrinkWrap: true,
@@ -29,7 +28,8 @@ class Loading extends StatelessWidget {
                     child: Column(
                       children: [
                         Container(
-                          padding: EdgeInsets.fromLTRB(18, index == 0 ? 10 : 15, 18, 20),
+                          padding: EdgeInsets.fromLTRB(
+                              18, index == 0 ? 10 : 15, 18, 20),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
@@ -79,8 +79,7 @@ class Loading extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(13, 0, 0, 0),
                           child: Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
                                 children: [
@@ -88,7 +87,9 @@ class Loading extends StatelessWidget {
                                     children: [
                                       Icon(
                                         Icons.article_outlined,
-                                        color: Theme.of(context).hintColor.withOpacity(0.6),
+                                        color: Theme.of(context)
+                                            .hintColor
+                                            .withOpacity(0.6),
                                         size: 16,
                                       ),
                                       SizedBox(
@@ -96,7 +97,9 @@ class Loading extends StatelessWidget {
                                       ),
                                       Icon(
                                         Icons.arrow_upward_outlined,
-                                        color: Theme.of(context).hintColor.withOpacity(0.6),
+                                        color: Theme.of(context)
+                                            .hintColor
+                                            .withOpacity(0.6),
                                         size: 16,
                                       ),
                                     ],
@@ -108,7 +111,9 @@ class Loading extends StatelessWidget {
                                     children: [
                                       Icon(
                                         Icons.access_time_outlined,
-                                        color: Theme.of(context).hintColor.withOpacity(0.6),
+                                        color: Theme.of(context)
+                                            .hintColor
+                                            .withOpacity(0.6),
                                         size: 16,
                                       ),
                                       SizedBox(
@@ -120,7 +125,7 @@ class Loading extends StatelessWidget {
                               ),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Container(
                                     width: 50,
@@ -130,14 +135,21 @@ class Loading extends StatelessWidget {
                                       child: Icon(
                                         Icons.comment_outlined,
                                         size: 21,
-                                        color: Theme.of(context).textTheme.headline6.color.withOpacity(0.7),
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .headline6
+                                            .color
+                                            .withOpacity(0.7),
                                       ),
                                       style: ElevatedButton.styleFrom(
                                         elevation: 0,
-                                        primary: Theme.of(context).cardTheme.color,
-                                        onPrimary: Theme.of(context).accentColor,
+                                        primary:
+                                            Theme.of(context).cardTheme.color,
+                                        onPrimary:
+                                            Theme.of(context).accentColor,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(50.0),
+                                          borderRadius:
+                                              BorderRadius.circular(50.0),
                                         ),
                                       ),
                                     ),
@@ -153,15 +165,21 @@ class Loading extends StatelessWidget {
                                       child: Icon(
                                         Icons.share_outlined,
                                         size: 21,
-                                        color:
-                                        Theme.of(context).textTheme.headline6.color.withOpacity(0.7),
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .headline6
+                                            .color
+                                            .withOpacity(0.7),
                                       ),
                                       style: ElevatedButton.styleFrom(
                                         elevation: 0,
-                                        primary: Theme.of(context).cardTheme.color,
-                                        onPrimary: Theme.of(context).accentColor,
+                                        primary:
+                                            Theme.of(context).cardTheme.color,
+                                        onPrimary:
+                                            Theme.of(context).accentColor,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(50.0),
+                                          borderRadius:
+                                              BorderRadius.circular(50.0),
                                         ),
                                       ),
                                     ),
@@ -169,13 +187,11 @@ class Loading extends StatelessWidget {
                                   const SizedBox(
                                     width: 16,
                                   ),
-
                                 ],
                               ),
                             ],
                           ),
                         ),
-
                       ],
                     ),
                   ),
@@ -186,8 +202,5 @@ class Loading extends StatelessWidget {
         ),
       ],
     );
-
   }
 }
-
-//margin: const EdgeInsets.fromLTRB(15, 10, 15,10),
