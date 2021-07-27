@@ -29,30 +29,30 @@ class _ArticleListState extends State<ArticleList> {
   bool getTopStoriesSecondaryIsDone = false;
   List<int> listIdsRead = [];
   String articleType;
-
-
   final controllerScrollHideAppbar = ScrollController();
 
   @override
   void initState() {
     articleType = listArticlePages[widget.paginaAtual].maskLink;
 
-    _getStoryIdsLidos();
+    _getStoryIdsRead().then((value) => _getStoriesSecondary());
     _getStoriesOnStartup();
     super.initState();
   }
 
-  Future<void> _getStoryIdsLidos() async {
+
+  void refreshIdRead() {
+    _getStoryIdsRead();
+  }
+
+
+  Future<void> _getStoryIdsRead() async {
     final dbLidos = lidosDao.instance;
     var resp = await dbLidos.queryAllStoriesLidosIds();
     for (int i = 0; i < resp.length; i++) {
       listIdsRead.add(resp[i]['idTopStory']);
     }
     setState(() {});
-  }
-
-  void refreshIdLidos() {
-    _getStoryIdsLidos();
   }
 
   //LOAD STORIES STARTUP
@@ -66,7 +66,6 @@ class _ArticleListState extends State<ArticleList> {
       loading = false;
       _stories = stories;
     });
-    _getStoriesSecondary();
   }
 
   //LOAD STORIES SECONDARY
@@ -129,7 +128,9 @@ class _ArticleListState extends State<ArticleList> {
             )),
         elevation: 0,
         actions: [
-          IconButton(
+
+          //NEEDED?
+          /*IconButton(
               icon: Icon(
                 Icons.refresh_outlined,
                 color: Theme.of(context)
@@ -139,18 +140,17 @@ class _ArticleListState extends State<ArticleList> {
                     .withOpacity(0.7),
               ),
               onPressed: () {
-
                 //START ANIMATION
                 setState(() {
                   loading = true;
                 });
-
                 _getStoriesOnStartup();
                 _getStoryIdsLidos();
               }),
           SizedBox(
             width: 15,
-          ),
+          ),*/
+
           IconButton(
               icon: Icon(
                 Icons.settings_outlined,
@@ -179,7 +179,7 @@ class _ArticleListState extends State<ArticleList> {
             : LazyLoadScrollView(
                 onEndOfPage: () => _getMoreStoriesScrolling(),
                 isLoading: loadStoriesOnScroll,
-                scrollOffset: 25,
+                scrollOffset: 20,
                 child: RefreshIndicator(
                   onRefresh: _getStoriesOnStartup,
                   color: Theme.of(context).accentColor,
@@ -199,7 +199,7 @@ class _ArticleListState extends State<ArticleList> {
                           return ContainerStory(
                               key: UniqueKey(),
                               contador: index,
-                              refreshIdLidos: refreshIdLidos,
+                              refreshIdLidos: refreshIdRead,
                               story: new Story(
                                 storyId: _stories[index].storyId,
                                 title: _stories[index].title,
