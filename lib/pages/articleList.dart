@@ -21,7 +21,6 @@ class ArticleList extends StatefulWidget {
 }
 
 class _ArticleListState extends State<ArticleList> {
-
   List<Story> _stories = [];
   List<ArticlePages> listArticlePages = new ArticlePages().getArticlePages();
   bool loading = true;
@@ -35,16 +34,14 @@ class _ArticleListState extends State<ArticleList> {
   void initState() {
     articleType = listArticlePages[widget.paginaAtual].maskLink;
 
-    _getStoryIdsRead().then((value) => _getStoriesSecondary());
+    _getStoryIdsRead();
     _getStoriesOnStartup();
     super.initState();
   }
 
-
   void refreshIdRead() {
     _getStoryIdsRead();
   }
-
 
   Future<void> _getStoryIdsRead() async {
     final dbLidos = lidosDao.instance;
@@ -66,6 +63,7 @@ class _ArticleListState extends State<ArticleList> {
       loading = false;
       _stories = stories;
     });
+    _getStoriesSecondary();
   }
 
   //LOAD STORIES SECONDARY
@@ -120,17 +118,16 @@ class _ArticleListState extends State<ArticleList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ScrollAppBar(
-        controller: controllerScrollHideAppbar,
-        title: Text('HN',
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-            )),
-        elevation: 0,
-        actions: [
-
-          //NEEDED?
-          /*IconButton(
+        appBar: ScrollAppBar(
+          controller: controllerScrollHideAppbar,
+          title: Text('HN',
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+              )),
+          elevation: 0,
+          actions: [
+            //NEEDED?
+            /*IconButton(
               icon: Icon(
                 Icons.refresh_outlined,
                 color: Theme.of(context)
@@ -151,85 +148,95 @@ class _ArticleListState extends State<ArticleList> {
             width: 15,
           ),*/
 
-          IconButton(
-              icon: Icon(
-                Icons.settings_outlined,
-                color: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    .color
-                    .withOpacity(0.7),
-              ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (BuildContext context) => SettingsPage(),
-                      fullscreenDialog: true,
-                    ));
-              }),
-        ],
-      ),
-      body: AnimatedSwitcher(
-        duration: Duration(milliseconds: 600),
-        child: loading
-            ? Loading(
-                key: UniqueKey(),
-              )
-            : LazyLoadScrollView(
-                onEndOfPage: () => _getMoreStoriesScrolling(),
-                isLoading: loadStoriesOnScroll,
-                scrollOffset: 20,
-                child: RefreshIndicator(
-                  onRefresh: _getStoriesOnStartup,
-                  color: Theme.of(context).accentColor,
-                  child: ListView(
-                    controller: controllerScrollHideAppbar,
-                    physics: AlwaysScrollableScrollPhysics(),
-                    children: [
-                      ListView.separated(
-                        separatorBuilder: (BuildContext context, int index) =>
-                            const Divider(
-                          height: 0,
-                        ),
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: _stories.length,
-                        itemBuilder: (context, index) {
-                          return ContainerStory(
-                              key: UniqueKey(),
-                              contador: index,
-                              refreshIdLidos: refreshIdRead,
-                              story: new Story(
-                                storyId: _stories[index].storyId,
-                                title: _stories[index].title,
-                                url: _stories[index].url,
-                                score: _stories[index].score,
-                                commentsCount:
-                                    _stories[index].commentsCount == null
-                                        ? 0
-                                        : _stories[index].commentsCount,
-                                time: _stories[index].time,
-                                lido: listIdsRead
-                                        .contains(_stories[index].storyId)
-                                    ? true
-                                    : false,
-                              ));
-                        },
-                      ),
-                      Visibility(
-                          visible: loadStoriesOnScroll,
-                          child: LinearProgressIndicator(
-                            valueColor: new AlwaysStoppedAnimation<Color>(
-                                Theme.of(context).accentColor.withOpacity(0.8)),
-                            backgroundColor:
-                                Theme.of(context).accentColor.withOpacity(0.3),
-                          ))
-                    ],
-                  ),
+            IconButton(
+                icon: Icon(
+                  Icons.settings_outlined,
+                  color: Theme.of(context)
+                      .textTheme
+                      .headline6
+                      .color
+                      .withOpacity(0.7),
                 ),
-              ),
-      ),
-    );
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => SettingsPage(),
+                        fullscreenDialog: true,
+                      ));
+                }),
+          ],
+        ),
+        body: AnimatedSwitcher(
+          duration: Duration(milliseconds: 600),
+          child: loading
+              ? Loading(
+                  key: UniqueKey(),
+                )
+              : LazyLoadScrollView(
+                  scrollOffset: 15,
+                  onEndOfPage: _getMoreStoriesScrolling,
+                  isLoading: loadStoriesOnScroll,
+                  child: RefreshIndicator(
+                      onRefresh: _getStoriesOnStartup,
+                      color: Theme.of(context).accentColor,
+                      child: ListView(
+                        controller: controllerScrollHideAppbar,
+                        physics: AlwaysScrollableScrollPhysics(),
+                        children: [
+                          ListView.separated(
+                            separatorBuilder:
+                                (BuildContext context, int index) =>
+                                    const Divider(
+                              height: 0,
+                            ),
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: _stories.length,
+                            itemBuilder: (context, index) {
+                              return ContainerStory(
+                                  key: UniqueKey(),
+                                  contador: index,
+                                  refreshIdLidos: refreshIdRead,
+                                  story: new Story(
+                                    storyId: _stories[index].storyId,
+                                    title: _stories[index].title,
+                                    url: _stories[index].url,
+                                    score: _stories[index].score,
+                                    commentsCount:
+                                        _stories[index].commentsCount == null
+                                            ? 0
+                                            : _stories[index].commentsCount,
+                                    time: _stories[index].time,
+                                    lido: listIdsRead
+                                            .contains(_stories[index].storyId)
+                                        ? true
+                                        : false,
+                                  ));
+                            },
+                          ),
+                          loadLine(context, loadStoriesOnScroll),
+                        ],
+                      )),
+                ),
+        ));
   }
+}
+
+Widget loadLine(BuildContext ctx, bool loading) {
+  return Column(children: [
+    const Divider(
+      height: 0,
+    ),
+    const SizedBox(
+      height: 16,
+    ),
+    loading
+        ? LinearProgressIndicator(
+            valueColor: new AlwaysStoppedAnimation<Color>(
+                Theme.of(ctx).accentColor.withOpacity(0.8)),
+            backgroundColor: Theme.of(ctx).accentColor.withOpacity(0.3),
+          )
+        : SizedBox.shrink(),
+  ]);
 }

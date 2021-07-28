@@ -37,7 +37,7 @@ class Loading extends StatelessWidget {
                                 gradientColor: Colors.white38,
                                 shimmerColor: Colors.grey.withOpacity(0.2),
                                 shimmerDuration: 3550,
-                                borderRadius: BorderRadius.circular(5),
+                                borderRadius: BorderRadius.circular(8),
                                 child: Text("   ",
                                     style: TextStyle(
                                       fontSize: 16,
@@ -52,7 +52,7 @@ class Loading extends StatelessWidget {
                                   gradientColor: Colors.white38,
                                   shimmerColor: Colors.grey.withOpacity(0.4),
                                   shimmerDuration: 3980,
-                                  borderRadius: BorderRadius.circular(5),
+                                  borderRadius: BorderRadius.circular(8),
                                   child: Text("   ",
                                       style: TextStyle(
                                         fontSize: 16,
@@ -66,7 +66,7 @@ class Loading extends StatelessWidget {
                                 gradientColor: Colors.white38,
                                 shimmerColor: Colors.grey.withOpacity(0.5),
                                 shimmerDuration: 4360,
-                                borderRadius: BorderRadius.circular(5),
+                                borderRadius: BorderRadius.circular(8),
                                 child: Text("   ",
                                     maxLines: 2,
                                     style: TextStyle(

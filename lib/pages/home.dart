@@ -66,7 +66,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               activeColor: Theme.of(context).accentColor,
               iconSize: 24,
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              duration: Duration(milliseconds: 400),
+              duration: Duration(milliseconds: 500),
               tabBackgroundColor:
                   Theme.of(context).accentColor.withOpacity(0.3),
               backgroundColor:
