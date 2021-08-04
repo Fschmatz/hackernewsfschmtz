@@ -29,7 +29,7 @@ class Loading extends StatelessWidget {
                       children: [
                         Container(
                           padding: EdgeInsets.fromLTRB(
-                              18, index == 0 ? 10 : 15, 18, 20),
+                              18, index == 0 ? 10 : 0, 18, 20),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
@@ -77,7 +77,7 @@ class Loading extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(13, 0, 0, 0),
+                          padding: const EdgeInsets.fromLTRB(13, 0, 0, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
