@@ -126,28 +126,6 @@ class _ArticleListState extends State<ArticleList> {
               )),
           elevation: 0,
           actions: [
-            //NEEDED?
-            /*IconButton(
-              icon: Icon(
-                Icons.refresh_outlined,
-                color: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    .color
-                    .withOpacity(0.7),
-              ),
-              onPressed: () {
-                //START ANIMATION
-                setState(() {
-                  loading = true;
-                });
-                _getStoriesOnStartup();
-                _getStoryIdsLidos();
-              }),
-          SizedBox(
-            width: 15,
-          ),*/
-
             IconButton(
                 icon: Icon(
                   Icons.settings_outlined,

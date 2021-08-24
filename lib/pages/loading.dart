@@ -21,7 +21,7 @@ class Loading extends StatelessWidget {
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
-              padding: EdgeInsets.fromLTRB(6, index == 0 ? 0 : 19, 3, 10),
+              padding: EdgeInsets.fromLTRB(6, index == 0 ? 0 : 20, 3, 10),
               child: Row(
                 children: [
                   Expanded(

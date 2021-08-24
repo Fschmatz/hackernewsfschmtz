@@ -1,10 +1,10 @@
 class Changelog{
 
-  static String appVersion = "4.0.0";
+  static String appVersion = "4.0.1";
   static String appName = "HackerNews Fschmtz";
 
   static String changelogCurrent = '''
-4.0.0
+4.0.1
 - Hide AppBar
 - Added NavBar
 - Changed Internal Logic
