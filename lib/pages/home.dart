@@ -62,7 +62,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               hoverColor: Theme.of(context).accentColor.withOpacity(0.4),
               color:
                   Theme.of(context).textTheme.headline6.color.withOpacity(0.7),
-              gap: 8,
+              gap: 5,
               activeColor: Theme.of(context).accentColor,
               iconSize: 24,
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -81,6 +81,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                   icon: Icons.schedule_outlined,
                   text: 'New',
                   textStyle: styleFontNavBar,
+                  iconSize: 23,
                 ),
                 GButton(
                   icon: Icons.star_outline,
