@@ -25,9 +25,9 @@ ThemeData light = ThemeData(
 //ESCURO
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Color(0xFF1E1E20),
+    primaryColor: Color(0xFF202022),
     accentColor: Color(0xFFFF965b),
-    scaffoldBackgroundColor: Color(0xFF1E1E20),
+    scaffoldBackgroundColor: Color(0xFF202022),
     cardTheme: CardTheme(
       color: Color(0xFF29292B),
     ),
@@ -41,12 +41,12 @@ ThemeData dark = ThemeData(
       backgroundColor: Color(0xFF151517),
     ),
     bottomSheetTheme:
-        BottomSheetThemeData(modalBackgroundColor: Color(0xFF1E1E20)));
+        BottomSheetThemeData(modalBackgroundColor: Color(0xFF202022)));
 
 class ThemeNotifier extends ChangeNotifier {
   final String key = 'valorTema';
-  SharedPreferences prefs;
-  bool _darkTheme;
+  late SharedPreferences prefs;
+  late bool _darkTheme;
 
   bool get darkTheme => _darkTheme;
 
@@ -62,9 +62,7 @@ class ThemeNotifier extends ChangeNotifier {
   }
 
   _initPrefs() async {
-    if (prefs == null) {
-      prefs = await SharedPreferences.getInstance();
-    }
+    prefs = await SharedPreferences.getInstance();
   }
 
   _loadFromPrefs() async {

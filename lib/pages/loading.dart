@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:skeleton_text/skeleton_text.dart';
 
 class Loading extends StatelessWidget {
-  Loading({Key key}) : super(key: key);
+  Loading({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double deviceHeight = WidgetsBinding.instance.window.physicalSize.height;
+    double deviceHeight = WidgetsBinding.instance!.window.physicalSize.height;
     int valueTilesLoading = (deviceHeight / 400).round();
 
     return ListView(
@@ -137,8 +137,8 @@ class Loading extends StatelessWidget {
                                         size: 21,
                                         color: Theme.of(context)
                                             .textTheme
-                                            .headline6
-                                            .color
+                                            .headline6!
+                                            .color!
                                             .withOpacity(0.7),
                                       ),
                                       style: ElevatedButton.styleFrom(
@@ -167,8 +167,8 @@ class Loading extends StatelessWidget {
                                         size: 21,
                                         color: Theme.of(context)
                                             .textTheme
-                                            .headline6
-                                            .color
+                                            .headline6!
+                                            .color!
                                             .withOpacity(0.7),
                                       ),
                                       style: ElevatedButton.styleFrom(

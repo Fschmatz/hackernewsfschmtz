@@ -12,17 +12,14 @@ class lidosDao {
   static final columnId = 'id';
   static final columnidTopStory = 'idTopStory';
 
+  static Database? _database;
+  Future<Database> get database async =>
+      _database ??= await _initDatabase();
+
   lidosDao._privateConstructor();
   static final lidosDao instance = lidosDao._privateConstructor();
-  static Database _database;
 
-  Future<Database> get database async {
-    if (_database != null) return _database;
-    _database = await _initDatabase();
-    return _database;
-  }
-
-  _initDatabase() async {
+  Future<Database> _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, _databaseName);
     return await openDatabase(path,

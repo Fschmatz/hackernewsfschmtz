@@ -8,17 +8,14 @@ class criadorDB {
   static final _databaseName = "HN.db";
   static final _databaseVersion = 1;
 
-  criadorDB._privateConstructor(); //_privateConstructor
+  static Database? _database;
+  Future<Database> get database async =>
+      _database ??= await initDatabase();
+
+  criadorDB._privateConstructor();
   static final criadorDB instance = criadorDB._privateConstructor();
-  static Database _database;
 
-  Future<Database> get database async {
-    if (_database != null) return _database;
-    _database = await initDatabase();
-    return _database;
-  }
-
-  initDatabase() async { //_initDatabase();
+  Future<Database> initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, _databaseName);
     return await openDatabase(path,
@@ -27,7 +24,6 @@ class criadorDB {
   }
 
   Future _onCreate(Database db, int version) async {
-    print("Hello !");
 
     await db.execute('''
     

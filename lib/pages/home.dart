@@ -56,12 +56,12 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
             child: GNav(
               rippleColor: Theme.of(context).accentColor.withOpacity(0.4),
               hoverColor: Theme.of(context).accentColor.withOpacity(0.4),
               color:
-                  Theme.of(context).textTheme.headline6.color.withOpacity(0.7),
+                  Theme.of(context).textTheme.headline6!.color!.withOpacity(0.8),
               gap: 5,
               activeColor: Theme.of(context).accentColor,
               iconSize: 24,
@@ -70,7 +70,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               tabBackgroundColor:
                   Theme.of(context).accentColor.withOpacity(0.3),
               backgroundColor:
-                  Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+                  Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
               tabs: [
                 GButton(
                   icon: Icons.bar_chart_outlined,

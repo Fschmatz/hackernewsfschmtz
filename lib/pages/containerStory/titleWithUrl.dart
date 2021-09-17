@@ -6,7 +6,7 @@ class TitleWithUrl extends StatelessWidget {
   Function(int) markRead;
   Function() refreshIdLidos;
 
-  TitleWithUrl({Key key, this.story, this.markRead, this.refreshIdLidos})
+  TitleWithUrl({required Key key, required this.story, required this.markRead, required this.refreshIdLidos})
       : super(key: key);
 
   @override
@@ -15,7 +15,7 @@ class TitleWithUrl extends StatelessWidget {
 
     if(story.url != null) {
       formattedUrl = Uri
-          .parse(story.url)
+          .parse(story.url!)
           .host;
     }
 
@@ -24,12 +24,12 @@ class TitleWithUrl extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(story.title,
+          Text(story.title!,
               style: TextStyle(
                   fontSize: 16,
-                  color: story.lido
+                  color: story.lido!
                       ? Theme.of(context).disabledColor
-                      : Theme.of(context).textTheme.headline6.color)),
+                      : Theme.of(context).textTheme.headline6!.color)),
 
           const SizedBox(
             height: 10,
@@ -42,7 +42,7 @@ class TitleWithUrl extends StatelessWidget {
                 maxLines: 2,
                 style: TextStyle(
                     fontSize: 12.5,
-                    color: story.lido
+                    color: story.lido!
                         ? Theme.of(context).accentColor.withOpacity(0.3)
                         : Theme.of(context).accentColor.withOpacity(0.9))),
           ),

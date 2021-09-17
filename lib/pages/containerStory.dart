@@ -14,7 +14,7 @@ class ContainerStory extends StatefulWidget {
   int contador;
   Function() refreshIdLidos;
 
-  ContainerStory({Key key, this.story, this.contador, this.refreshIdLidos})
+  ContainerStory({required Key key, required this.story, required this.contador, required this.refreshIdLidos})
       : super(key: key);
 }
 
@@ -41,11 +41,11 @@ class _ContainerStoryState extends State<ContainerStory> {
     return InkWell(
       onTap: () {
         if (widget.story.url != null) {
-          _launchBrowser(widget.story.url);
+          _launchBrowser(widget.story.url!);
 
           //DB
-          if (!widget.story.lido) {
-            _markRead(widget.story.storyId);
+          if (!widget.story.lido!) {
+            _markRead(widget.story.storyId!);
             widget.refreshIdLidos();
           }
         } else {
@@ -54,8 +54,8 @@ class _ContainerStoryState extends State<ContainerStory> {
               widget.story.storyId.toString());
 
           //DB
-          if (!widget.story.lido) {
-            _markRead(widget.story.storyId);
+          if (!widget.story.lido!) {
+            _markRead(widget.story.storyId!);
             widget.refreshIdLidos();
           }
         }
@@ -69,10 +69,10 @@ class _ContainerStoryState extends State<ContainerStory> {
             TitleWithUrl(
               story: widget.story,
               markRead: _markRead,
-              refreshIdLidos: widget.refreshIdLidos,
+              refreshIdLidos: widget.refreshIdLidos, key: UniqueKey(),
             ),
             InfoWithButtons(contador: widget.contador,
-              story: widget.story,launchBrowser: _launchBrowser)
+              story: widget.story,launchBrowser: _launchBrowser, key: UniqueKey(),)
           ],
         ),
       ),

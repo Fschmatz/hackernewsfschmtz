@@ -1,6 +1,6 @@
 class ArticlePages {
-  final String name;
-  final String maskLink;
+  final String? name;
+  final String? maskLink;
 
   ArticlePages({this.name, this.maskLink});
 
