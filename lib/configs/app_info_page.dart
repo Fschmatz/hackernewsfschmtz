@@ -3,6 +3,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../util/changelog.dart';
 
 class AppInfoPage extends StatelessWidget {
+  const AppInfoPage({Key? key}) : super(key: key);
+
 
   _launchGithub() async {
     const url = 'https://github.com/Fschmatz/hackernewsfschmtz';
@@ -17,12 +19,12 @@ class AppInfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("App Info"),
+          title: const Text("App Info"),
           elevation: 0,
         ),
         body: ListView(children: <Widget>[
           const SizedBox(height: 20),
-          CircleAvatar(
+          const CircleAvatar(
             radius: 55,
             backgroundColor: Colors.green,
             child: CircleAvatar(
@@ -41,7 +43,7 @@ class AppInfoPage extends StatelessWidget {
           const SizedBox(height: 15),
           const Divider(),
           ListTile(
-            leading: SizedBox(
+            leading: const SizedBox(
               height: 0.1,
             ),
             title: Text("Dev".toUpperCase(),
@@ -50,7 +52,7 @@ class AppInfoPage extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                     color: Theme.of(context).accentColor)),
           ),
-          ListTile(
+          const ListTile(
             leading: Icon( Icons.info_outline),
             title: Text(
               "HAMMERED AND REDONE: 0 Times !!!",
@@ -59,7 +61,7 @@ class AppInfoPage extends StatelessWidget {
               ),
             ),
           ),
-          ListTile(
+          const ListTile(
             leading: SizedBox(
               height: 0.1,
             ),
@@ -70,7 +72,7 @@ class AppInfoPage extends StatelessWidget {
               ),
             ),
           ),
-          ListTile(
+          const ListTile(
             leading: SizedBox(
               height: 0.1,
             ),
@@ -83,7 +85,7 @@ class AppInfoPage extends StatelessWidget {
           ),
           const Divider(),
           ListTile(
-            leading: SizedBox(
+            leading: const SizedBox(
               height: 0.1,
             ),
             title: Text("Source Code".toUpperCase(),
@@ -94,15 +96,15 @@ class AppInfoPage extends StatelessWidget {
           ),
           ListTile(
             onTap: () {_launchGithub();},
-            leading: Icon(Icons.open_in_new_outlined),
-            title: Text("View on GitHub",
+            leading: const Icon(Icons.open_in_new_outlined),
+            title: const Text("View on GitHub",
                 style: TextStyle(
                     decoration: TextDecoration.underline,
                     color: Colors.blue)),
           ),
           const Divider(),
           ListTile(
-            leading: SizedBox(
+            leading: const SizedBox(
               height: 0.1,
             ),
             title: Text("Quote".toUpperCase(),
@@ -111,7 +113,7 @@ class AppInfoPage extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                     color: Theme.of(context).accentColor)),
           ),
-          ListTile(
+          const ListTile(
             leading: Icon(Icons.messenger_outline),
             title: Text(
               "Software Engineering is a learning process, working code a side effect.",

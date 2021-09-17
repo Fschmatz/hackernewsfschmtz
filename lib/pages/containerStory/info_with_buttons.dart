@@ -92,7 +92,7 @@ class InfoWithButtons extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
+            SizedBox(
               width: story.commentsCount == 0
                   ? 50
                   : story.commentsCount!.toDouble() > 99
@@ -147,7 +147,7 @@ class InfoWithButtons extends StatelessWidget {
                                           .color!
                                           .withOpacity(0.7),
                                 ))
-                            : SizedBox.shrink(),
+                            : const SizedBox.shrink(),
                       ),
                     ),
                   ],
@@ -165,7 +165,7 @@ class InfoWithButtons extends StatelessWidget {
             const SizedBox(
               width: 15,
             ),
-            Container(
+            SizedBox(
               width: 50,
               height: 40,
               child: TextButton(

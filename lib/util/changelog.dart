@@ -1,17 +1,21 @@
 class Changelog{
 
-  static String appVersion = "4.0.2";
+  static String appVersion = "4.1.0";
   static String appName = "HackerNews Fschmtz";
 
   static String changelogCurrent = '''
-4.0.2
+4.1.0
+- Dart Lints
+- Null Safety
+''';
+
+  static String changelogsOld = '''
+4.0.0
 - Hide AppBar
 - Added NavBar
 - Changed Internal Logic
 - Small Fixes
-''';
 
-  static String changelogsOld = '''
 3.5.0
 - Swipe Down to Refresh
 - Hold Comments Button to Share the Url of the Comments Page

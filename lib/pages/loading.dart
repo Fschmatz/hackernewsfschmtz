@@ -10,13 +10,13 @@ class Loading extends StatelessWidget {
     int valueTilesLoading = (deviceHeight / 400).round();
 
     return ListView(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       children: [
         ListView.separated(
-          separatorBuilder: (BuildContext context, int index) => Divider(
+          separatorBuilder: (BuildContext context, int index) => const Divider(
             height: 0,
           ),
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: valueTilesLoading,
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
@@ -38,7 +38,7 @@ class Loading extends StatelessWidget {
                                 shimmerColor: Colors.grey.withOpacity(0.2),
                                 shimmerDuration: 3550,
                                 borderRadius: BorderRadius.circular(8),
-                                child: Text("   ",
+                                child: const Text("   ",
                                     style: TextStyle(
                                       fontSize: 16,
                                     )),
@@ -53,7 +53,7 @@ class Loading extends StatelessWidget {
                                   shimmerColor: Colors.grey.withOpacity(0.4),
                                   shimmerDuration: 3980,
                                   borderRadius: BorderRadius.circular(8),
-                                  child: Text("   ",
+                                  child: const Text("   ",
                                       style: TextStyle(
                                         fontSize: 16,
                                       )),
@@ -92,7 +92,7 @@ class Loading extends StatelessWidget {
                                             .withOpacity(0.6),
                                         size: 16,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 25,
                                       ),
                                       Icon(
@@ -116,7 +116,7 @@ class Loading extends StatelessWidget {
                                             .withOpacity(0.6),
                                         size: 16,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 40,
                                       ),
                                     ],
@@ -127,7 +127,7 @@ class Loading extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: 50,
                                     height: 40,
                                     child: TextButton(
@@ -157,7 +157,7 @@ class Loading extends StatelessWidget {
                                   const SizedBox(
                                     width: 15,
                                   ),
-                                  Container(
+                                  SizedBox(
                                     width: 50,
                                     height: 40,
                                     child: TextButton(

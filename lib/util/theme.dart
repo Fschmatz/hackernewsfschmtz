@@ -4,44 +4,57 @@ import 'package:shared_preferences/shared_preferences.dart';
 //CLARO
 ThemeData light = ThemeData(
     brightness: Brightness.light,
-    primaryColor: Color(0xFFFFFFFF),
+    primaryColor: const Color(0xFFFFFFFF),
     accentColor: Colors.orange[800],
-    //0xFF01A173
-    scaffoldBackgroundColor: Color(0xFFFFFFFF),
-    //0xFFF5F5FE
-    cardTheme: CardTheme(
+    appBarTheme: const AppBarTheme(
+        color: Color(0xFFFFFFFF),
+        elevation: 0,
+        iconTheme: IconThemeData(
+            color: Color(0xFF000000)
+        ),
+        titleTextStyle: TextStyle(
+            fontSize: 20,
+            color: Color(0xFF000000))),
+    scaffoldBackgroundColor: const Color(0xFFFFFFFF),
+    cardTheme: const CardTheme(
       color: Color(0xFFF1F1F1),
     ),
-    dialogTheme: DialogTheme(
+    dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFFF9F9F9),
     ),
-    bottomAppBarColor: Color(0xFFE6E6E6),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomAppBarColor: const Color(0xFFE6E6E6),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Color(0xFFE6E6E6),
     ),
     bottomSheetTheme:
-        BottomSheetThemeData(modalBackgroundColor: Color(0xFFF5F5F5)));
+        BottomSheetThemeData(modalBackgroundColor: const Color(0xFFF5F5F5)));
 
 //ESCURO
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Color(0xFF202022),
-    accentColor: Color(0xFFFF965b),
-    scaffoldBackgroundColor: Color(0xFF202022),
-    cardTheme: CardTheme(
+    primaryColor: const Color(0xFF202022),
+    accentColor: const Color(0xFFFF965b),
+    scaffoldBackgroundColor: const Color(0xFF202022),
+    appBarTheme: const AppBarTheme(
+        color: Color(0xFF202022),
+        elevation: 0,
+        titleTextStyle: TextStyle(
+            fontSize: 20,
+            color: Color(0xFFFFFFFF))),
+    cardTheme: const CardTheme(
       color: Color(0xFF29292B),
     ),
-    dialogTheme: DialogTheme(
+    dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFF272729),
     ),
-    bottomAppBarColor: Color(0xFF151517),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomAppBarColor: const Color(0xFF151517),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       showSelectedLabels: false,
       showUnselectedLabels: true,
       backgroundColor: Color(0xFF151517),
     ),
     bottomSheetTheme:
-        BottomSheetThemeData(modalBackgroundColor: Color(0xFF202022)));
+    const BottomSheetThemeData(modalBackgroundColor: Color(0xFF202022)));
 
 class ThemeNotifier extends ChangeNotifier {
   final String key = 'valorTema';

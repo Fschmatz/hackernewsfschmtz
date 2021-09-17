@@ -3,17 +3,17 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 
-class criadorDB {
+class CriadorDB {
 
-  static final _databaseName = "HN.db";
-  static final _databaseVersion = 1;
+  static const _databaseName = "HN.db";
+  static const _databaseVersion = 1;
 
   static Database? _database;
   Future<Database> get database async =>
       _database ??= await initDatabase();
 
-  criadorDB._privateConstructor();
-  static final criadorDB instance = criadorDB._privateConstructor();
+  CriadorDB._privateConstructor();
+  static final CriadorDB instance = CriadorDB._privateConstructor();
 
   Future<Database> initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();

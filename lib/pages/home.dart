@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:hackernewsfschmtz/pages/articleList.dart';
+import 'package:hackernewsfschmtz/pages/article_list.dart';
 
 class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -11,7 +13,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   //always start with TopStories
   int _currentIndex = 0;
-  List<Widget> _articlesList = [
+  final List<Widget> _articlesList = [
     ArticleList(
       key: UniqueKey(),
       paginaAtual: 0,
@@ -65,8 +67,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               gap: 5,
               activeColor: Theme.of(context).accentColor,
               iconSize: 24,
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              duration: Duration(milliseconds: 500),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              duration: const Duration(milliseconds: 500),
               tabBackgroundColor:
                   Theme.of(context).accentColor.withOpacity(0.3),
               backgroundColor:

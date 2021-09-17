@@ -14,7 +14,7 @@ class Story {
 
 
   String get timeAgo{
-    return timeago.format(DateTime.fromMillisecondsSinceEpoch(this.time! * 1000));
+    return timeago.format(DateTime.fromMillisecondsSinceEpoch(time! * 1000));
   }
 
   factory Story.fromJSON(Map<String,dynamic> json) {

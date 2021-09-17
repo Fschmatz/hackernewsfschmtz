@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
-import 'package:hackernewsfschmtz/db/lidosDao.dart';
-import 'package:hackernewsfschmtz/pages/containerStory/infoWithButtons.dart';
-import 'package:hackernewsfschmtz/pages/containerStory/titleWithUrl.dart';
+import 'package:hackernewsfschmtz/db/lidos_dao.dart';
+import 'package:hackernewsfschmtz/pages/containerStory/info_with_buttons.dart';
+import 'package:hackernewsfschmtz/pages/containerStory/title_with_url.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContainerStory extends StatefulWidget {
@@ -20,9 +20,9 @@ class ContainerStory extends StatefulWidget {
 
 class _ContainerStoryState extends State<ContainerStory> {
   void _markRead(int idStory) async {
-    final dbLidos = lidosDao.instance;
+    final dbLidos = LidosDao.instance;
     Map<String, dynamic> row = {
-      lidosDao.columnidTopStory: idStory,
+      LidosDao.columnidTopStory: idStory,
     };
     final id = await dbLidos.insert(row);
   }

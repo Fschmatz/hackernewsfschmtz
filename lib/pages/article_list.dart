@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:hackernewsfschmtz/classes/articlePages.dart';
+import 'package:hackernewsfschmtz/classes/article_pages.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:hackernewsfschmtz/classes/webservice.dart';
-import 'package:hackernewsfschmtz/configs/settingsPage.dart';
-import 'package:hackernewsfschmtz/db/lidosDao.dart';
-import 'package:hackernewsfschmtz/pages/containerStory.dart';
+import 'package:hackernewsfschmtz/configs/settings_page.dart';
+import 'package:hackernewsfschmtz/db/lidos_dao.dart';
+import 'package:hackernewsfschmtz/pages/container_story.dart';
 import 'package:hackernewsfschmtz/pages/loading.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
@@ -22,7 +22,7 @@ class ArticleList extends StatefulWidget {
 
 class _ArticleListState extends State<ArticleList> {
   List<Story> _stories = [];
-  List<ArticlePages> listArticlePages = new ArticlePages().getArticlePages();
+  List<ArticlePages> listArticlePages = ArticlePages().getArticlePages();
   bool loading = true;
   bool loadStoriesOnScroll = false;
   bool getTopStoriesSecondaryIsDone = false;
@@ -44,7 +44,7 @@ class _ArticleListState extends State<ArticleList> {
   }
 
   Future<void> _getStoryIdsRead() async {
-    final dbLidos = lidosDao.instance;
+    final dbLidos = LidosDao.instance;
     var resp = await dbLidos.queryAllStoriesLidosIds();
     for (int i = 0; i < resp.length; i++) {
       listIdsRead.add(resp[i]['idTopStory']);
@@ -120,7 +120,7 @@ class _ArticleListState extends State<ArticleList> {
     return Scaffold(
         appBar: ScrollAppBar(
           controller: controllerScrollHideAppbar,
-          title: Text('HN',
+          title: const Text('HN',
               style: TextStyle(
                 fontWeight: FontWeight.w700,
               )),
@@ -146,7 +146,7 @@ class _ArticleListState extends State<ArticleList> {
           ],
         ),
         body: AnimatedSwitcher(
-          duration: Duration(milliseconds: 600),
+          duration: const Duration(milliseconds: 600),
           child: loading
               ? Loading(
                   key: UniqueKey(),
@@ -160,7 +160,7 @@ class _ArticleListState extends State<ArticleList> {
                       color: Theme.of(context).accentColor,
                       child: ListView(
                         controller: controllerScrollHideAppbar,
-                        physics: AlwaysScrollableScrollPhysics(),
+                        physics: const AlwaysScrollableScrollPhysics(),
                         children: [
                           ListView.separated(
                             separatorBuilder:
@@ -168,7 +168,7 @@ class _ArticleListState extends State<ArticleList> {
                                     const Divider(
                               height: 0,
                             ),
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: _stories.length,
                             itemBuilder: (context, index) {
@@ -176,15 +176,13 @@ class _ArticleListState extends State<ArticleList> {
                                   key: UniqueKey(),
                                   contador: index,
                                   refreshIdLidos: refreshIdRead,
-                                  story: new Story(
+                                  story: Story(
                                     storyId: _stories[index].storyId,
                                     title: _stories[index].title,
                                     url: _stories[index].url,
                                     score: _stories[index].score,
                                     commentsCount:
-                                        _stories[index].commentsCount == null
-                                            ? 0
-                                            : _stories[index].commentsCount,
+                                        _stories[index].commentsCount ?? 0,
                                     time: _stories[index].time,
                                     lido: listIdsRead
                                             .contains(_stories[index].storyId)
@@ -211,10 +209,10 @@ Widget loadLine(BuildContext ctx, bool loading) {
     ),
     loading
         ? LinearProgressIndicator(
-            valueColor: new AlwaysStoppedAnimation<Color>(
+            valueColor: AlwaysStoppedAnimation<Color>(
                 Theme.of(ctx).accentColor.withOpacity(0.8)),
             backgroundColor: Theme.of(ctx).accentColor.withOpacity(0.3),
           )
-        : SizedBox.shrink(),
+        : const SizedBox.shrink(),
   ]);
 }
