@@ -10,7 +10,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
-
   //always start with TopStories
   int _currentIndex = 0;
   final List<Widget> _articlesList = [
@@ -46,9 +45,10 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
-
-    TextStyle styleFontNavBar =
-    TextStyle(fontSize: 14.5, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor);
+    TextStyle styleFontNavBar = TextStyle(
+        fontSize: 14.5,
+        fontWeight: FontWeight.w600,
+        color: Theme.of(context).accentColor);
 
     return Scaffold(
       body: SafeArea(child: _articlesList[_currentIndex]),
@@ -58,19 +58,21 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 10),
             child: GNav(
               rippleColor: Theme.of(context).accentColor.withOpacity(0.4),
               hoverColor: Theme.of(context).accentColor.withOpacity(0.4),
-              color:
-                  Theme.of(context).textTheme.headline6!.color!.withOpacity(0.8),
-              gap: 5,
+              color: Theme.of(context)
+                  .textTheme
+                  .headline6!
+                  .color!
+                  .withOpacity(0.8),
+              gap: 8,
               activeColor: Theme.of(context).accentColor,
               iconSize: 24,
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               duration: const Duration(milliseconds: 500),
-              tabBackgroundColor:
-                  Theme.of(context).accentColor.withOpacity(0.3),
+              tabBackgroundColor: Theme.of(context).cardTheme.color!,
               backgroundColor:
                   Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
               tabs: [

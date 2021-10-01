@@ -17,7 +17,7 @@ ThemeData light = ThemeData(
             color: Color(0xFF000000))),
     scaffoldBackgroundColor: const Color(0xFFFFFFFF),
     cardTheme: const CardTheme(
-      color: Color(0xFFF1F1F1),
+      color: Color(0xFFF3F3F3),
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFFF9F9F9),
@@ -27,7 +27,7 @@ ThemeData light = ThemeData(
       backgroundColor: Color(0xFFE6E6E6),
     ),
     bottomSheetTheme:
-        BottomSheetThemeData(modalBackgroundColor: const Color(0xFFF5F5F5)));
+        const BottomSheetThemeData(modalBackgroundColor: Color(0xFFF5F5F5)));
 
 //ESCURO
 ThemeData dark = ThemeData(
