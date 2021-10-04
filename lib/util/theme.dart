@@ -24,7 +24,7 @@ ThemeData light = ThemeData(
     ),
     bottomAppBarColor: const Color(0xFFE6E6E6),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: Color(0xFFE6E6E6),
+      backgroundColor: Color(0xFFDEDEDE),
     ),
     bottomSheetTheme:
         const BottomSheetThemeData(modalBackgroundColor: Color(0xFFF5F5F5)));
@@ -42,7 +42,7 @@ ThemeData dark = ThemeData(
             fontSize: 20,
             color: Color(0xFFFFFFFF))),
     cardTheme: const CardTheme(
-      color: Color(0xFF29292B),
+      color: Color(0xFF2D2D2F),
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFF272729),

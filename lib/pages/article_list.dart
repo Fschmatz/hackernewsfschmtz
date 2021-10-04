@@ -6,7 +6,7 @@ import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:hackernewsfschmtz/classes/webservice.dart';
 import 'package:hackernewsfschmtz/configs/settings_page.dart';
 import 'package:hackernewsfschmtz/db/lidos_dao.dart';
-import 'package:hackernewsfschmtz/pages/container_story.dart';
+import 'package:hackernewsfschmtz/widgets/container_story.dart';
 import 'package:hackernewsfschmtz/pages/loading.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
@@ -124,7 +124,6 @@ class _ArticleListState extends State<ArticleList> {
               style: TextStyle(
                 fontWeight: FontWeight.w700,
               )),
-          elevation: 0,
           actions: [
             IconButton(
                 icon: Icon(

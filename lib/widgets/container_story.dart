@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:hackernewsfschmtz/db/lidos_dao.dart';
-import 'package:hackernewsfschmtz/pages/containerStory/info_with_buttons.dart';
-import 'package:hackernewsfschmtz/pages/containerStory/title_with_url.dart';
+import 'package:hackernewsfschmtz/widgets/info_with_buttons.dart';
+import 'package:hackernewsfschmtz/widgets/title_with_url.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContainerStory extends StatefulWidget {
