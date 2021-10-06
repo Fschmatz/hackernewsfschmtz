@@ -161,12 +161,12 @@ class _ArticleListState extends State<ArticleList> {
                         controller: controllerScrollHideAppbar,
                         physics: const AlwaysScrollableScrollPhysics(),
                         children: [
-                          ListView.separated(
-                            separatorBuilder:
+                          ListView.builder(
+                            /*separatorBuilder:
                                 (BuildContext context, int index) =>
                                     const Divider(
                               height: 0,
-                            ),
+                            ),*/
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: _stories.length,
