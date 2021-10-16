@@ -54,11 +54,29 @@ class _ArticleListState extends State<ArticleList> {
 
   //LOAD STORIES STARTUP
   Future<void> _getStoriesOnStartup() async {
-    final responses = await Webservice().getTopStories(articleType!, 15);
+    final responses =
+        await Webservice().getTopStories(articleType!, 15).timeout(
+      const Duration(seconds: 20),
+      onTimeout: () {
+        throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          behavior: SnackBarBehavior.floating,
+          content: const Text('Loading Error'),
+          duration: const Duration(seconds: 10),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          action: SnackBarAction(
+            label: 'RETRY',
+            onPressed: _getStoriesOnStartup,
+          ),
+        ));
+      },
+    );
     final stories = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
     }).toList();
+
     setState(() {
       loading = false;
       _stories = stories;
@@ -138,7 +156,9 @@ class _ArticleListState extends State<ArticleList> {
                   Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => SettingsPage(key: UniqueKey(),),
+                        builder: (BuildContext context) => SettingsPage(
+                          key: UniqueKey(),
+                        ),
                         fullscreenDialog: true,
                       ));
                 }),

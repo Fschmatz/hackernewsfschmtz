@@ -10,16 +10,13 @@ Future<void> main() async {
   final dbHelperCriadorDB = CriadorDB.instance;
   dbHelperCriadorDB.initDatabase();
 
-  //notifier usado para o tema
   runApp(ChangeNotifierProvider(
     create: (_) => ThemeNotifier(),
-
     child: Consumer<ThemeNotifier>(
       builder:(context, ThemeNotifier notifier, child){
-
         return MaterialApp(
           theme: notifier.darkTheme ? dark : light,
-          home: Home(),
+          home: const Home(),
         );
       },
     ),

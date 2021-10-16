@@ -1,13 +1,14 @@
 class Changelog{
 
-  static String appVersion = "4.1.1";
+  static String appVersion = "4.1.2";
   static String appName = "HackerNews Fschmtz";
 
   static String changelogCurrent = '''
-4.1.1
+4.1.2
 - Hide NavBar
 - Dart Lints
 - Null Safety
+- SnackBar with Retry
 ''';
 
   static String changelogsOld = '''
