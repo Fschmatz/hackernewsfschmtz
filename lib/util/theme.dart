@@ -50,11 +50,11 @@ ThemeData dark = ThemeData(
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFF272729),
     ),
-    bottomAppBarColor: const Color(0xFF131317),
+    bottomAppBarColor: const Color(0xFF121217),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       showSelectedLabels: false,
       showUnselectedLabels: true,
-      backgroundColor: Color(0xFF131317),
+      backgroundColor: Color(0xFF121217),
     ),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: const Color(0xFFF0F0F0),
