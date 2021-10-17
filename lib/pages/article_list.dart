@@ -56,7 +56,7 @@ class _ArticleListState extends State<ArticleList> {
   Future<void> _getStoriesOnStartup() async {
     final responses =
         await Webservice().getTopStories(articleType!, 15).timeout(
-      const Duration(seconds: 20),
+      const Duration(seconds: 15),
       onTimeout: () {
         throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           behavior: SnackBarBehavior.floating,

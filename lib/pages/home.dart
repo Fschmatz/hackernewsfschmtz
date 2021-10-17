@@ -12,8 +12,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   bool _showBottomBar = true;
-
+  EdgeInsetsGeometry navBarPadding = const EdgeInsets.symmetric(horizontal: 15, vertical: 8);
   int _currentIndex = 0; //always start with TopStories
+
   final List<Widget> _articlesList = [
     ArticleList(
       key: UniqueKey(),
@@ -96,27 +97,32 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                 tabs: [
                   GButton(
                     icon: Icons.bar_chart_outlined,
+                    padding: navBarPadding,
                     text: 'Top',
                     textStyle: styleFontNavBar,
                   ),
                   GButton(
                     icon: Icons.schedule_outlined,
+                    padding: navBarPadding,
                     text: 'New',
                     textStyle: styleFontNavBar,
                     iconSize: 23,
                   ),
                   GButton(
                     icon: Icons.star_outline,
+                    padding: navBarPadding,
                     text: 'Best',
                     textStyle: styleFontNavBar,
                   ),
                   GButton(
                     icon: Icons.campaign_outlined,
+                    padding: navBarPadding,
                     text: 'Show',
                     textStyle: styleFontNavBar,
                   ),
                   GButton(
                     icon: Icons.messenger_outline_outlined,
+                    padding: navBarPadding,
                     text: 'Ask',
                     textStyle: styleFontNavBar,
                     iconSize: 22,
