@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hackernewsfschmtz/pages/home.dart';
 import 'package:hackernewsfschmtz/util/theme.dart';
 import 'package:provider/provider.dart';
@@ -10,17 +11,23 @@ Future<void> main() async {
   final dbHelperCriadorDB = CriadorDB.instance;
   dbHelperCriadorDB.initDatabase();
 
-  runApp(ChangeNotifierProvider(
-    create: (_) => ThemeNotifier(),
-    child: Consumer<ThemeNotifier>(
-      builder:(context, ThemeNotifier notifier, child){
-        return MaterialApp(
-          theme: notifier.darkTheme ? dark : light,
-          home: const Home(),
-        );
-      },
-    ),
-  )
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.transparent,
+  ));
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge).then(
+        (_) => runApp(
+            ChangeNotifierProvider(
+              create: (_) => ThemeNotifier(),
+              child: Consumer<ThemeNotifier>(
+                builder:(context, ThemeNotifier notifier, child){
+                  return MaterialApp(
+                    theme: notifier.darkTheme ? dark : light,
+                    home: const Home(),
+                  );
+                },
+              ),
+            )
+        ),
   );
 }
 
