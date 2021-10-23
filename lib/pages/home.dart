@@ -68,14 +68,15 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         duration: const Duration(milliseconds: 250),
         opacity: _showBottomBar ? 1 : 0,
         child: Container(
-          height:  _showBottomBar ? 75 : 0 ,
+          height:  _showBottomBar ?  (55 + MediaQuery.of(context).padding.bottom) : 0,
           decoration: BoxDecoration(
             color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
           ),
-          child: SafeArea(
+          child: Align(
+            alignment: Alignment.topCenter,
             child: Padding(
               padding:
-                   const EdgeInsets.symmetric(horizontal: 18.0, vertical: 0),
+              const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
               child: GNav(
                 rippleColor: Theme.of(context).accentColor.withOpacity(0.4),
                 hoverColor: Theme.of(context).accentColor.withOpacity(0.4),
@@ -88,12 +89,12 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                 activeColor: Theme.of(context).accentColor,
                 iconSize: 24,
                 padding:
-                     EdgeInsets.symmetric(horizontal: 12, vertical: _showBottomBar ? 8 : 0),
+                const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
                 duration: const Duration(milliseconds: 500),
                 tabBackgroundColor:
-                    Theme.of(context).accentColor.withOpacity(0.3),
+                Theme.of(context).accentColor.withOpacity(0.3),
                 backgroundColor:
-                    Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
+                Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
                 tabs: [
                   GButton(
                     icon: Icons.bar_chart_outlined,
@@ -142,3 +143,4 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     );
   }
 }
+

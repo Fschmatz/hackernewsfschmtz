@@ -86,7 +86,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => ChangelogPage(),
+                        builder: (BuildContext context) => const ChangelogPage(),
                         fullscreenDialog: true,
                       ));
                 },

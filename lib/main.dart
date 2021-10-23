@@ -11,24 +11,21 @@ Future<void> main() async {
   final dbHelperCriadorDB = CriadorDB.instance;
   dbHelperCriadorDB.initDatabase();
 
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    systemNavigationBarContrastEnforced: false,
     systemNavigationBarColor: Colors.transparent,
   ));
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge).then(
-        (_) => runApp(
-            ChangeNotifierProvider(
-              create: (_) => ThemeNotifier(),
-              child: Consumer<ThemeNotifier>(
-                builder:(context, ThemeNotifier notifier, child){
-                  return MaterialApp(
-                    theme: notifier.darkTheme ? dark : light,
-                    home: const Home(),
-                  );
-                },
-              ),
-            )
-        ),
-  );
+
+  runApp(ChangeNotifierProvider(
+    create: (_) => ThemeNotifier(),
+    child: Consumer<ThemeNotifier>(
+      builder: (context, ThemeNotifier notifier, child) {
+        return MaterialApp(
+          theme: notifier.darkTheme ? dark : light,
+          home: const Home(),
+        );
+      },
+    ),
+  ));
 }
-
-
