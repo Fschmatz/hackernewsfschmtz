@@ -16,20 +16,20 @@ ThemeData light = ThemeData(
             color: Color(0xFF000000))),
     scaffoldBackgroundColor: const Color(0xFFFFFFFF),
     cardTheme: const CardTheme(
-      color: Color(0xFFF3F3F3),
+      color: Color(0xFFF3F3F5),
     ),
     dialogTheme: const DialogTheme(
-      backgroundColor: Color(0xFFF9F9F9),
+      backgroundColor: Color(0xFFF9F9FB),
     ),
-    bottomAppBarColor: const Color(0xFFE6E6E6),
+    bottomAppBarColor: const Color(0xFFE6E6E8),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: Color(0xFFDEDEDE),
+      backgroundColor: Color(0xFFDCDCDE),
     ),
     snackBarTheme: const SnackBarThemeData(
       actionTextColor: Color(0xFFFF965b),
     ),
     bottomSheetTheme:
-        const BottomSheetThemeData(modalBackgroundColor: Color(0xFFF5F5F5)));
+        const BottomSheetThemeData(modalBackgroundColor: Color(0xFFF5F5F7)));
 
 //ESCURO
 ThemeData dark = ThemeData(
