@@ -68,7 +68,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         duration: const Duration(milliseconds: 250),
         opacity: _showBottomBar ? 1 : 0,
         child: Container(
-          height:  _showBottomBar ?  (55 + MediaQuery.of(context).padding.bottom) : 0,
+          height:  _showBottomBar ?  (60 + MediaQuery.of(context).padding.bottom) : 0,
           decoration: BoxDecoration(
             color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
           ),
@@ -76,7 +76,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             alignment: Alignment.topCenter,
             child: Padding(
               padding:
-              const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
+              const EdgeInsets.symmetric(horizontal: 18.0, vertical: 10),
               child: GNav(
                 rippleColor: Theme.of(context).accentColor.withOpacity(0.4),
                 hoverColor: Theme.of(context).accentColor.withOpacity(0.4),
