@@ -55,7 +55,7 @@ class _ArticleListState extends State<ArticleList> {
   //LOAD STORIES STARTUP
   Future<void> _getStoriesOnStartup() async {
     final responses =
-        await Webservice().getTopStories(articleType!, 15).timeout(
+        await Webservice().getTopStories(articleType!, 20).timeout(
       const Duration(seconds: 15),
       onTimeout: () {
         throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -87,7 +87,7 @@ class _ArticleListState extends State<ArticleList> {
   //LOAD STORIES SECONDARY
   Future<void> _getStoriesSecondary() async {
     final responses =
-        await Webservice().getTopStoriesScrolling(articleType!, 15, 15);
+        await Webservice().getTopStoriesScrolling(articleType!, 20, 20);
     final storiesResp = responses.map((response) {
       final json = jsonDecode(response.body);
       return Story.fromJSON(json);
@@ -114,7 +114,7 @@ class _ArticleListState extends State<ArticleList> {
       });
       if (getTopStoriesSecondaryIsDone) {
         final responses = await Webservice()
-            .getTopStoriesScrolling(articleType!, _stories.length, 10);
+            .getTopStoriesScrolling(articleType!, _stories.length, 20);
         final storiesResp = responses.map((response) {
           final json = jsonDecode(response.body);
           return Story.fromJSON(json);
