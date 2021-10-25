@@ -33,10 +33,15 @@ class _ArticleListState extends State<ArticleList> {
   @override
   void initState() {
     articleType = listArticlePages[widget.paginaAtual].maskLink;
-
     _getStoryIdsRead();
     _getStoriesOnStartup();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controllerScrollHideAppbar.dispose();
+    super.dispose();
   }
 
   void refreshIdRead() {
@@ -182,11 +187,6 @@ class _ArticleListState extends State<ArticleList> {
                         physics: const AlwaysScrollableScrollPhysics(),
                         children: [
                           ListView.builder(
-                            /*separatorBuilder:
-                                (BuildContext context, int index) =>
-                                    const Divider(
-                              height: 0,
-                            ),*/
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: _stories.length,

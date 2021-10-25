@@ -13,9 +13,6 @@ class Loading extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       children: [
         ListView.builder(
-         /* separatorBuilder: (BuildContext context, int index) => const Divider(
-            height: 0,
-          ),*/
           physics: const NeverScrollableScrollPhysics(),
           itemCount: valueTilesLoading,
           shrinkWrap: true,
