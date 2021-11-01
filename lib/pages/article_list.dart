@@ -153,7 +153,6 @@ class _ArticleListState extends State<ArticleList> {
             ));
           },
         );
-        ;
         final storiesResp = responses.map((response) {
           final json = jsonDecode(response.body);
           return Story.fromJSON(json);
