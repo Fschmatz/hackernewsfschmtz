@@ -146,7 +146,7 @@ class Loading extends StatelessWidget {
                                             Theme.of(context).accentColor,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(50.0),
+                                              BorderRadius.circular(12.0),
                                         ),
                                       ),
                                     ),
@@ -176,7 +176,7 @@ class Loading extends StatelessWidget {
                                             Theme.of(context).accentColor,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(50.0),
+                                              BorderRadius.circular(12.0),
                                         ),
                                       ),
                                     ),

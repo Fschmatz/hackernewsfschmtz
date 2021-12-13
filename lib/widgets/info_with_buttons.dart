@@ -100,6 +100,7 @@ class InfoWithButtons extends StatelessWidget {
                       : 75,
               height: 40,
               child: TextButton(
+
                 onLongPress: () {
                   Share.share('https://news.ycombinator.com/item?id=' +
                       story.storyId.toString());
@@ -157,7 +158,7 @@ class InfoWithButtons extends StatelessWidget {
                   primary: Theme.of(context).cardTheme.color,
                   onPrimary: Theme.of(context).accentColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                 ),
               ),
@@ -194,7 +195,7 @@ class InfoWithButtons extends StatelessWidget {
                   primary: Theme.of(context).cardTheme.color,
                   onPrimary: Theme.of(context).accentColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50.0),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                 ),
               ),

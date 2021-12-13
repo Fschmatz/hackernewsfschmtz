@@ -67,7 +67,7 @@ ThemeData dark = ThemeData(
         backgroundColor: const Color(0xFF131316),
         indicatorColor: const Color(0xFFFF965b).withOpacity(0.7),
         labelTextStyle: MaterialStateProperty.all(const TextStyle(
-          color: Color(0xFFFDFDFD),
+          color: Color(0xFFF5F5F5),
         ))));
 
 class ThemeNotifier extends ChangeNotifier {
