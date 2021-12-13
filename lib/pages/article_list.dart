@@ -60,7 +60,7 @@ class _ArticleListState extends State<ArticleList> {
   //LOAD STORIES STARTUP
   Future<void> _getStoriesOnStartup() async {
     final responses =
-        await Webservice().getTopStories(articleType!, 20).timeout(
+    await Webservice().getTopStories(articleType!, 20).timeout(
       const Duration(seconds: 15),
       onTimeout: () {
         throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -82,10 +82,12 @@ class _ArticleListState extends State<ArticleList> {
       return Story.fromJSON(json);
     }).toList();
 
+    if (mounted) {
     setState(() {
       loading = false;
       _stories = stories;
     });
+  }
     _getStoriesSecondary();
   }
 
@@ -119,11 +121,13 @@ class _ArticleListState extends State<ArticleList> {
     final ids = _stories.map((e) => e.storyId).toSet();
     _stories.retainWhere((x) => ids.remove(x.storyId));
 
-    setState(() {
-      _stories = _stories;
-      getTopStoriesSecondaryIsDone = true;
-      loadStoriesOnScroll = false;
-    });
+    if (mounted) {
+      setState(() {
+        _stories = _stories;
+        getTopStoriesSecondaryIsDone = true;
+        loadStoriesOnScroll = false;
+      });
+    }
   }
 
   //LOAD STORIES SCROLLING
@@ -163,11 +167,12 @@ class _ArticleListState extends State<ArticleList> {
         final ids = _stories.map((e) => e.storyId).toSet();
         _stories.retainWhere((x) => ids.remove(x.storyId));
 
+        if (mounted) {
         setState(() {
           loadStoriesOnScroll = false;
           _stories = _stories;
         });
-      }
+      }}
     }
   }
 

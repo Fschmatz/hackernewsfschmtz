@@ -41,40 +41,41 @@ ThemeData light = ThemeData(
 //ESCURO
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: const Color(0xFF1D1D1F),
+    primaryColor: const Color(0xFF1A1A1D),
     accentColor: const Color(0xFFFF965b),
-    scaffoldBackgroundColor: const Color(0xFF1D1D1F),
+    scaffoldBackgroundColor: const Color(0xFF1A1A1D),
     appBarTheme: const AppBarTheme(
-        color: Color(0xFF1D1D1F),
+        color: Color(0xFF1A1A1D),
         elevation: 0,
         titleTextStyle: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w600,
             color: Color(0xFFFFFFFF))),
     cardTheme: const CardTheme(
-      color: Color(0xFF2D2D2F),
+      color: Color(0xFF2A2A2D),
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFF272729),
     ),
-    bottomAppBarColor: const Color(0xFF131316),
+    bottomAppBarColor: const Color(0xFF121215),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       showSelectedLabels: false,
       showUnselectedLabels: true,
-      backgroundColor: Color(0xFF131316),
+      backgroundColor: Color(0xFF121215),
     ),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: const Color(0xFFF0F0F0),
       actionTextColor: Colors.orange[800],
     ),
     navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: const Color(0xFF131316),
+        backgroundColor: const Color(0xFF121215),
         indicatorColor: const Color(0xFFFF965b),
         iconTheme: MaterialStateProperty.all(
-          const IconThemeData(color: Color(0xFFCCCCCC),)
+          const IconThemeData(color: Color(0xFFCACACA),)
         ),
         labelTextStyle: MaterialStateProperty.all(const TextStyle(
-            color: Color(0xFFCCCCCC), fontWeight: FontWeight.w500)))
+          fontSize: 16,
+            color: Color(0xFFCACACA), fontWeight: FontWeight.w500)))
 );
 
 class ThemeNotifier extends ChangeNotifier {
