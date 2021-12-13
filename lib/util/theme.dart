@@ -3,32 +3,36 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 //CLARO
 ThemeData light = ThemeData(
-    brightness: Brightness.light,
-    primaryColor: const Color(0xFFFFFFFF),
-    accentColor: Colors.orange[800],
-    appBarTheme: const AppBarTheme(
-        color: Color(0xFFFFFFFF),
-        elevation: 0,
-        iconTheme: IconThemeData(color: Color(0xFF000000)),
-        titleTextStyle: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-            color: Color(0xFF000000))),
-    scaffoldBackgroundColor: const Color(0xFFFFFFFF),
-    cardTheme: const CardTheme(
-      color: Color(0xFFF2F2F5),
-    ),
-    dialogTheme: const DialogTheme(
-      backgroundColor: Color(0xFFF8F8FB),
-    ),
-    bottomAppBarColor: const Color(0xFFE6E6E8),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: Color(0xFFDBDBDE),
-    ),
-    snackBarTheme: const SnackBarThemeData(
-      actionTextColor: Color(0xFFFF965b),
-    ),
-    );
+  brightness: Brightness.light,
+  primaryColor: const Color(0xFFFFFFFF),
+  accentColor: Colors.orange[800],
+  appBarTheme: const AppBarTheme(
+      color: Color(0xFFFFFFFF),
+      elevation: 0,
+      iconTheme: IconThemeData(color: Color(0xFF000000)),
+      titleTextStyle: TextStyle(
+          fontSize: 20, fontWeight: FontWeight.w600, color: Color(0xFF000000))),
+  scaffoldBackgroundColor: const Color(0xFFFFFFFF),
+  cardTheme: const CardTheme(
+    color: Color(0xFFF2F2F5),
+  ),
+  dialogTheme: const DialogTheme(
+    backgroundColor: Color(0xFFF8F8FB),
+  ),
+  bottomAppBarColor: const Color(0xFFE6E6E8),
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    backgroundColor: Color(0xFFDBDBDE),
+  ),
+  snackBarTheme: const SnackBarThemeData(
+    actionTextColor: Color(0xFFFF965b),
+  ),
+    navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: const Color(0xFFDBDBDE),
+        indicatorColor: Colors.orange[800]!.withOpacity(0.7),
+        labelTextStyle: MaterialStateProperty.all(const TextStyle(
+          color: Color(0xFF050505),
+        )))
+);
 
 //ESCURO
 ThemeData dark = ThemeData(
@@ -59,7 +63,12 @@ ThemeData dark = ThemeData(
       backgroundColor: const Color(0xFFF0F0F0),
       actionTextColor: Colors.orange[800],
     ),
-    );
+    navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: const Color(0xFF131316),
+        indicatorColor: const Color(0xFFFF965b).withOpacity(0.7),
+        labelTextStyle: MaterialStateProperty.all(const TextStyle(
+          color: Color(0xFFFDFDFD),
+        ))));
 
 class ThemeNotifier extends ChangeNotifier {
   final String key = 'valorTema';
