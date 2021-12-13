@@ -37,11 +37,11 @@ ThemeData light = ThemeData(
 //ESCURO
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: const Color(0xFF1A1A1D),
+    primaryColor: const Color(0xFF1D1D1F),
     accentColor: const Color(0xFFFF965b),
-    scaffoldBackgroundColor: const Color(0xFF1A1A1D),
+    scaffoldBackgroundColor: const Color(0xFF1D1D1F),
     appBarTheme: const AppBarTheme(
-        color: Color(0xFF1A1A1D),
+        color: Color(0xFF1D1D1F),
         elevation: 0,
         titleTextStyle: TextStyle(
             fontSize: 20,
@@ -67,7 +67,7 @@ ThemeData dark = ThemeData(
         backgroundColor: const Color(0xFF131316),
         indicatorColor: const Color(0xFFFF965b).withOpacity(0.7),
         labelTextStyle: MaterialStateProperty.all(const TextStyle(
-          color: Color(0xFFF5F5F5),
+          color: Color(0xFFF2F2F2),
         ))));
 
 class ThemeNotifier extends ChangeNotifier {

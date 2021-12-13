@@ -68,7 +68,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                 : 0,
             color: Theme.of(context).navigationBarTheme.backgroundColor,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: NavigationBar(
                 labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
                 animationDuration: const Duration(seconds: 1),
