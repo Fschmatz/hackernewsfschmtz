@@ -81,27 +81,27 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                 destinations: const [
                   NavigationDestination(
                     icon: Icon(Icons.bar_chart_outlined),
-                    selectedIcon: Icon(Icons.bar_chart),
+                    selectedIcon: Icon(Icons.bar_chart,color: Colors.black87,),
                     label: 'Top',
                   ),
                   NavigationDestination(
                     icon: Icon(Icons.schedule_outlined),
-                    selectedIcon: Icon(Icons.schedule),
+                    selectedIcon: Icon(Icons.schedule,color: Colors.black87,),
                     label: 'New',
                   ),
                   NavigationDestination(
                     icon: Icon(Icons.star_outline),
-                    selectedIcon: Icon(Icons.star),
+                    selectedIcon: Icon(Icons.star,color: Colors.black87,),
                     label: 'Best',
                   ),
                   NavigationDestination(
                     icon: Icon(Icons.campaign_outlined),
-                    selectedIcon: Icon(Icons.campaign),
+                    selectedIcon: Icon(Icons.campaign,color: Colors.black87,),
                     label: 'Show',
                   ),
                   NavigationDestination(
                     icon: Icon(Icons.messenger_outline_outlined),
-                    selectedIcon: Icon(Icons.messenger),
+                    selectedIcon: Icon(Icons.messenger,color: Colors.black87,),
                     label: 'Ask',
                   ),
                 ],
