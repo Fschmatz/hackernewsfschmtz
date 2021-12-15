@@ -184,13 +184,8 @@ class _ArticleListState extends State<ArticleList> {
           title: const Text('HN'),
           actions: [
             IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.settings_outlined,
-                  color: Theme.of(context)
-                      .textTheme
-                      .headline6!
-                      .color!
-                      .withOpacity(0.8),
                 ),
                 onPressed: () {
                   Navigator.push(
