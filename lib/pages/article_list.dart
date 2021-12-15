@@ -216,7 +216,7 @@ class _ArticleListState extends State<ArticleList> {
                   isLoading: loadStoriesOnScroll,
                   child: RefreshIndicator(
                       onRefresh: _getStoriesOnStartup,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.primary,
                       child: ListView(
                         controller: controllerScrollHideAppbar,
                         physics: const AlwaysScrollableScrollPhysics(),
@@ -264,8 +264,8 @@ Widget loadLine(BuildContext ctx, bool loading) {
     loading
         ? LinearProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(
-                Theme.of(ctx).accentColor.withOpacity(0.8)),
-            backgroundColor: Theme.of(ctx).accentColor.withOpacity(0.3),
+                Theme.of(ctx).colorScheme.primary.withOpacity(0.8)),
+            backgroundColor: Theme.of(ctx).colorScheme.primary.withOpacity(0.3),
           )
         : const SizedBox.shrink(),
   ]);

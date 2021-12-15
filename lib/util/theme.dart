@@ -5,7 +5,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 ThemeData light = ThemeData(
     brightness: Brightness.light,
     primaryColor: const Color(0xFFFFFFFF),
-    accentColor: Colors.orange[800],
+    colorScheme: ColorScheme.light(
+      primary:  Colors.orange[800]!,
+      primaryVariant:  Colors.orange[800]!,
+      onSecondary: Color(0xFF050505),
+      secondary: Colors.orange[800]!,
+    ),
     appBarTheme: const AppBarTheme(
         color: Color(0xFFFFFFFF),
         elevation: 0,
@@ -35,18 +40,23 @@ ThemeData light = ThemeData(
             const IconThemeData(color: Color(0xFF050505),)
         ),
         labelTextStyle: MaterialStateProperty.all(const TextStyle(
-
             color: Color(0xFF050505), fontWeight: FontWeight.w500))));
 
 //ESCURO
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
     primaryColor: const Color(0xFF1A1A1D),
-    accentColor: const Color(0xFFFF965b),
     scaffoldBackgroundColor: const Color(0xFF1A1A1D),
+    colorScheme: const ColorScheme.dark(
+      primary:  Color(0xFFFF965b),
+      primaryVariant:  Color(0xFFFF965b),
+      onSecondary: Color(0xFFCACACA),
+      secondary: Color(0xFFFF965b),
+    ),
     appBarTheme: const AppBarTheme(
         color: Color(0xFF1A1A1D),
         elevation: 0,
+        iconTheme: IconThemeData(color: Color(0xFFCACACA)),
         titleTextStyle: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w600,
@@ -74,7 +84,6 @@ ThemeData dark = ThemeData(
           const IconThemeData(color: Color(0xFFCACACA),)
         ),
         labelTextStyle: MaterialStateProperty.all(const TextStyle(
-          fontSize: 16,
             color: Color(0xFFCACACA), fontWeight: FontWeight.w500)))
 );
 

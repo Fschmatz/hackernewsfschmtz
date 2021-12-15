@@ -133,17 +133,14 @@ class Loading extends StatelessWidget {
                                         Icons.comment_outlined,
                                         size: 21,
                                         color: Theme.of(context)
-                                            .textTheme
-                                            .headline6!
-                                            .color!
-                                            .withOpacity(0.7),
+                                            .colorScheme.onSecondary,
                                       ),
                                       style: ElevatedButton.styleFrom(
                                         elevation: 0,
                                         primary:
                                             Theme.of(context).cardTheme.color,
                                         onPrimary:
-                                            Theme.of(context).accentColor,
+                                            Theme.of(context).colorScheme.primary,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(12.0),
@@ -163,17 +160,14 @@ class Loading extends StatelessWidget {
                                         Icons.share_outlined,
                                         size: 21,
                                         color: Theme.of(context)
-                                            .textTheme
-                                            .headline6!
-                                            .color!
-                                            .withOpacity(0.7),
+                                            .colorScheme.onSecondary,
                                       ),
                                       style: ElevatedButton.styleFrom(
                                         elevation: 0,
                                         primary:
                                             Theme.of(context).cardTheme.color,
                                         onPrimary:
-                                            Theme.of(context).accentColor,
+                                            Theme.of(context).colorScheme.primary,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(12.0),

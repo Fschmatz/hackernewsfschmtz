@@ -19,7 +19,7 @@ class ChangelogPage extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w700,
-                      color: Theme.of(context).accentColor))),
+                      color: Theme.of(context).colorScheme.primary))),
           ListTile(
             leading: const Icon(
               Icons.article_outlined,
@@ -38,7 +38,7 @@ class ChangelogPage extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
-                    color: Theme.of(context).accentColor)),
+                    color: Theme.of(context).colorScheme.primary)),
           ),
           ListTile(
             leading: const Icon(

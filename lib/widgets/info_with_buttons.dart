@@ -118,10 +118,7 @@ class InfoWithButtons extends StatelessWidget {
                       color: story.lido!
                           ? Theme.of(context).disabledColor.withOpacity(0.2)
                           : Theme.of(context)
-                              .textTheme
-                              .headline6!
-                              .color!
-                              .withOpacity(0.7),
+                          .colorScheme.onSecondary,
                     ),
                     Visibility(
                       visible: story.commentsCount == null,
@@ -143,10 +140,7 @@ class InfoWithButtons extends StatelessWidget {
                                           .disabledColor
                                           .withOpacity(0.2)
                                       : Theme.of(context)
-                                          .textTheme
-                                          .headline6!
-                                          .color!
-                                          .withOpacity(0.7),
+                                      .colorScheme.onSecondary,
                                 ))
                             : const SizedBox.shrink(),
                       ),
@@ -156,7 +150,7 @@ class InfoWithButtons extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
                   primary: Theme.of(context).cardTheme.color,
-                  onPrimary: Theme.of(context).accentColor,
+                  onPrimary: Theme.of(context).colorScheme.primary,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12.0),
                   ),
@@ -185,15 +179,12 @@ class InfoWithButtons extends StatelessWidget {
                   color: story.lido!
                       ? Theme.of(context).disabledColor.withOpacity(0.2)
                       : Theme.of(context)
-                          .textTheme
-                          .headline6!
-                          .color!
-                          .withOpacity(0.7),
+                          .colorScheme.onSecondary,
                 ),
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
                   primary: Theme.of(context).cardTheme.color,
-                  onPrimary: Theme.of(context).accentColor,
+                  onPrimary: Theme.of(context).colorScheme.primary,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12.0),
                   ),
