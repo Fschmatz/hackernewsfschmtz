@@ -4,11 +4,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 //CLARO
 ThemeData light = ThemeData(
     brightness: Brightness.light,
+    primaryColorBrightness: Brightness.dark,
     primaryColor: const Color(0xFFFFFFFF),
     colorScheme: ColorScheme.light(
       primary:  Colors.orange[800]!,
       primaryVariant:  Colors.orange[800]!,
-      onSecondary: Color(0xFF050505),
+      onSecondary: const Color(0xFF050505),
       secondary: Colors.orange[800]!,
     ),
     appBarTheme: const AppBarTheme(
@@ -21,21 +22,21 @@ ThemeData light = ThemeData(
             color: Color(0xFF000000))),
     scaffoldBackgroundColor: const Color(0xFFFFFFFF),
     cardTheme: const CardTheme(
-      color: Color(0xFFF2F2F5),
+      color: Color(0xFFF3F2F2),
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFFF8F8FB),
     ),
     bottomAppBarColor: const Color(0xFFE6E6E8),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: Color(0xFFDBDBDE),
+      backgroundColor: Color(0xFFE1E0E0),
     ),
     snackBarTheme: const SnackBarThemeData(
       actionTextColor: Color(0xFFFF965b),
     ),
     navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: const Color(0xFFDBDBDE),
-        indicatorColor: Colors.orange[800]!.withOpacity(0.7),
+        backgroundColor: const Color(0xFFE1E0E0),
+        indicatorColor: Colors.orange[800]!,
         iconTheme: MaterialStateProperty.all(
             const IconThemeData(color: Color(0xFF050505),)
         ),
@@ -45,6 +46,7 @@ ThemeData light = ThemeData(
 //ESCURO
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
+    primaryColorBrightness: Brightness.light,
     primaryColor: const Color(0xFF1A1A1D),
     scaffoldBackgroundColor: const Color(0xFF1A1A1D),
     colorScheme: const ColorScheme.dark(

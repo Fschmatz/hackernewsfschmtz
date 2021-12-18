@@ -71,7 +71,6 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: NavigationBar(
                 labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-                animationDuration: const Duration(seconds: 1),
                 selectedIndex: _currentIndex,
                 onDestinationSelected: (index) {
                   setState(() {
