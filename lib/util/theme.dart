@@ -47,8 +47,8 @@ ThemeData light = ThemeData(
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
     primaryColorBrightness: Brightness.light,
-    primaryColor: const Color(0xFF1A1A1D),
-    scaffoldBackgroundColor: const Color(0xFF1A1A1D),
+    primaryColor: const Color(0xFF1D1D1F),
+    scaffoldBackgroundColor: const Color(0xFF1D1D1F),
     colorScheme: const ColorScheme.dark(
       primary:  Color(0xFFFF965b),
       primaryVariant:  Color(0xFFFF965b),
@@ -56,15 +56,15 @@ ThemeData dark = ThemeData(
       secondary: Color(0xFFFF965b),
     ),
     appBarTheme: const AppBarTheme(
-        color: Color(0xFF1A1A1D),
+        color: Color(0xFF1D1D1F),
         elevation: 0,
-        iconTheme: IconThemeData(color: Color(0xFFCACACA)),
+        iconTheme: IconThemeData(color: Color(0xFFF5F5F5)),
         titleTextStyle: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w600,
             color: Color(0xFFFFFFFF))),
     cardTheme: const CardTheme(
-      color: Color(0xFF2A2A2D),
+      color: Color(0xFF2D2D2F),
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFF272729),
@@ -83,10 +83,10 @@ ThemeData dark = ThemeData(
         backgroundColor: const Color(0xFF121215),
         indicatorColor: const Color(0xFFFF965b),
         iconTheme: MaterialStateProperty.all(
-          const IconThemeData(color: Color(0xFFCACACA),)
+          const IconThemeData(color: Color(0xFFEAEAEA),)
         ),
         labelTextStyle: MaterialStateProperty.all(const TextStyle(
-            color: Color(0xFFCACACA), fontWeight: FontWeight.w500)))
+            color: Color(0xFFEAEAEA), fontWeight: FontWeight.w500)))
 );
 
 class ThemeNotifier extends ChangeNotifier {
