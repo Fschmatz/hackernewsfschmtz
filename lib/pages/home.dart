@@ -11,30 +11,28 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   bool _showBottomBar = true;
-  EdgeInsetsGeometry navBarPadding =
-      const EdgeInsets.symmetric(horizontal: 15, vertical: 8);
   int _currentIndex = 0; //always start with TopStories
 
   final List<Widget> _articlesList = [
     ArticleList(
       key: UniqueKey(),
-      paginaAtual: 0,
+      page: 'topstories',
     ),
     ArticleList(
       key: UniqueKey(),
-      paginaAtual: 1,
+      page: 'newstories',
     ),
     ArticleList(
       key: UniqueKey(),
-      paginaAtual: 2,
+      page: 'beststories',
     ),
     ArticleList(
       key: UniqueKey(),
-      paginaAtual: 3,
+      page: 'showstories',
     ),
     ArticleList(
       key: UniqueKey(),
-      paginaAtual: 4,
+      page: 'askstories',
     )
   ];
 

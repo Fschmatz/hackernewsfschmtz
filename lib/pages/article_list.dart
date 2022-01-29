@@ -1,51 +1,105 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:hackernewsfschmtz/classes/article_pages.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
-import 'package:hackernewsfschmtz/classes/webservice.dart';
+import 'package:hackernewsfschmtz/classes/web_service.dart';
 import 'package:hackernewsfschmtz/configs/settings_page.dart';
 import 'package:hackernewsfschmtz/db/lidos_dao.dart';
 import 'package:hackernewsfschmtz/widgets/container_story.dart';
 import 'package:hackernewsfschmtz/pages/loading.dart';
+import 'package:http/http.dart' as http;
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
 
 class ArticleList extends StatefulWidget {
-  int paginaAtual;
+  String page;
 
-  ArticleList({required Key key, required this.paginaAtual}) : super(key: key);
+  ArticleList({required Key key, required this.page}) : super(key: key);
 
   @override
   _ArticleListState createState() => _ArticleListState();
 }
 
 class _ArticleListState extends State<ArticleList> {
-  List<Story> _stories = [];
-  List<ArticlePages> listArticlePages = ArticlePages().getArticlePages();
+  List<dynamic> _storiesIds = [];
+  List<Story> _storiesList = [];
   bool loading = true;
   bool loadStoriesOnScroll = false;
   bool getTopStoriesSecondaryIsDone = false;
+  String urlPageApi = '';
   List<int> listIdsRead = [];
-  String? articleType;
-  final controllerScrollHideAppbar = ScrollController();
+  final scrollControllerAppbar = ScrollController();
 
   @override
   void initState() {
-    articleType = listArticlePages[widget.paginaAtual].maskLink;
+    urlPageApi =
+        "https://hacker-news.firebaseio.com/v0/${widget.page}.json?print=pretty";
     _getStoryIdsRead();
-    _getStoriesOnStartup();
+    _getStoriesIds()
+        .then((value) => _populateStories(0, 20, true))
+        .then((value) => _populateStories(20, 20, false));
     super.initState();
   }
 
   @override
   void dispose() {
-    controllerScrollHideAppbar.dispose();
+    scrollControllerAppbar.dispose();
     super.dispose();
   }
 
-  void refreshIdRead() {
-    _getStoryIdsRead();
+  Future<void> _getStoriesIds() async {
+    final response = await http.get(Uri.parse(urlPageApi)).timeout(
+      const Duration(seconds: 10),
+      onTimeout: () {
+        throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          behavior: SnackBarBehavior.floating,
+          content: const Text('Loading Error'),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          action: SnackBarAction(
+            label: 'RETRY',
+            onPressed: _getStoriesIds,
+          ),
+        ));
+      },
+    );
+    if (response.statusCode == 200) {
+      _storiesIds = jsonDecode(response.body);
+    }
+  }
+
+  Future<void> _populateStories(
+      int skipValue, int takeValue, bool start) async {
+    final responses =
+        await WebService().getStoriesList(_storiesIds, skipValue, takeValue);
+    final stories = responses.map((response) {
+      final json = jsonDecode(response.body);
+      return Story.fromJSON(json);
+    }).toList();
+
+    if (start) {
+      if (mounted) {
+        setState(() {
+          loading = false;
+          _storiesList = stories;
+        });
+      }
+    } else if (!getTopStoriesSecondaryIsDone) {
+      getTopStoriesSecondaryIsDone = true;
+      setState(() {
+        loadStoriesOnScroll = false;
+        _storiesList += stories;
+      });
+    }
+    else if (!loadStoriesOnScroll) {
+      if (getTopStoriesSecondaryIsDone) {
+        setState(() {
+          loadStoriesOnScroll = false;
+          _storiesList += stories;
+        });
+      }
+    }
   }
 
   Future<void> _getStoryIdsRead() async {
@@ -54,133 +108,14 @@ class _ArticleListState extends State<ArticleList> {
     for (int i = 0; i < resp.length; i++) {
       listIdsRead.add(resp[i]['idTopStory']);
     }
-    setState(() {});
-  }
-
-  //LOAD STORIES STARTUP
-  Future<void> _getStoriesOnStartup() async {
-    final responses =
-    await Webservice().getTopStories(articleType!, 20).timeout(
-      const Duration(seconds: 15),
-      onTimeout: () {
-        throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          behavior: SnackBarBehavior.floating,
-          content: const Text('Loading Error'),
-          duration: const Duration(seconds: 10),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          action: SnackBarAction(
-            label: 'RETRY',
-            onPressed: _getStoriesOnStartup,
-          ),
-        ));
-      },
-    );
-    final stories = responses.map((response) {
-      final json = jsonDecode(response.body);
-      return Story.fromJSON(json);
-    }).toList();
-
-    if (mounted) {
-    setState(() {
-      loading = false;
-      _stories = stories;
-    });
-  }
-    _getStoriesSecondary();
-  }
-
-  //LOAD STORIES SECONDARY
-  Future<void> _getStoriesSecondary() async {
-    final responses =
-        await Webservice().getTopStoriesScrolling(articleType!, 20, 20).timeout(
-      const Duration(seconds: 15),
-      onTimeout: () {
-        throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          behavior: SnackBarBehavior.floating,
-          content: const Text('Loading Error'),
-          duration: const Duration(seconds: 10),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          action: SnackBarAction(
-            label: 'RETRY',
-            onPressed: _getStoriesSecondary,
-          ),
-        ));
-      },
-    );
-    final storiesResp = responses.map((response) {
-      final json = jsonDecode(response.body);
-      return Story.fromJSON(json);
-    }).toList();
-    _stories.addAll(storiesResp);
-
-    //REMOVE DUPLICATES
-    final ids = _stories.map((e) => e.storyId).toSet();
-    _stories.retainWhere((x) => ids.remove(x.storyId));
-
-    if (mounted) {
-      setState(() {
-        _stories = _stories;
-        getTopStoriesSecondaryIsDone = true;
-        loadStoriesOnScroll = false;
-      });
-    }
-  }
-
-  //LOAD STORIES SCROLLING
-  Future<void> _getMoreStoriesScrolling() async {
-    if (loadStoriesOnScroll == false) {
-      //bottom animation start
-      setState(() {
-        loadStoriesOnScroll = true;
-      });
-      if (getTopStoriesSecondaryIsDone) {
-        final responses = await Webservice()
-            .getTopStoriesScrolling(articleType!, _stories.length, 20)
-            .timeout(
-          const Duration(seconds: 15),
-          onTimeout: () {
-            throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              behavior: SnackBarBehavior.floating,
-              content: const Text('Loading Error'),
-              duration: const Duration(seconds: 10),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              action: SnackBarAction(
-                label: 'RETRY',
-                onPressed: _getMoreStoriesScrolling,
-              ),
-            ));
-          },
-        );
-        final storiesResp = responses.map((response) {
-          final json = jsonDecode(response.body);
-          return Story.fromJSON(json);
-        }).toList();
-        _stories.addAll(storiesResp);
-
-        //REMOVE DUPLICATES
-        final ids = _stories.map((e) => e.storyId).toSet();
-        _stories.retainWhere((x) => ids.remove(x.storyId));
-
-        if (mounted) {
-        setState(() {
-          loadStoriesOnScroll = false;
-          _stories = _stories;
-        });
-      }}
-    }
+    setState(() => listIdsRead);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: ScrollAppBar(
-          controller: controllerScrollHideAppbar,
+          controller: scrollControllerAppbar,
           title: const Text('HN'),
           actions: [
             IconButton(
@@ -206,62 +141,49 @@ class _ArticleListState extends State<ArticleList> {
                   key: UniqueKey(),
                 )
               : LazyLoadScrollView(
-                  scrollOffset: 15,
-                  onEndOfPage: _getMoreStoriesScrolling,
+                  scrollOffset: 50,
+                  onEndOfPage: () => _populateStories(_storiesList.length, 20, false),
                   isLoading: loadStoriesOnScroll,
                   child: RefreshIndicator(
-                      onRefresh: _getStoriesOnStartup,
+                      onRefresh: () => _populateStories(0, 20, true),
                       color: Theme.of(context).colorScheme.primary,
                       child: ListView(
-                        controller: controllerScrollHideAppbar,
+                        controller: scrollControllerAppbar,
                         physics: const AlwaysScrollableScrollPhysics(),
                         children: [
                           ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: _stories.length,
+                            itemCount: _storiesList.length,
                             itemBuilder: (context, index) {
                               return ContainerStory(
                                   key: UniqueKey(),
                                   contador: index,
-                                  refreshIdLidos: refreshIdRead,
+                                  refreshIdLidos: _getStoryIdsRead,
                                   story: Story(
-                                    storyId: _stories[index].storyId,
-                                    title: _stories[index].title,
-                                    url: _stories[index].url,
-                                    score: _stories[index].score,
+                                    storyId: _storiesList[index].storyId,
+                                    title: _storiesList[index].title,
+                                    url: _storiesList[index].url,
+                                    score: _storiesList[index].score,
                                     commentsCount:
-                                        _stories[index].commentsCount ?? 0,
-                                    time: _stories[index].time,
-                                    lido: listIdsRead
-                                            .contains(_stories[index].storyId)
+                                        _storiesList[index].commentsCount ?? 0,
+                                    time: _storiesList[index].time,
+                                    lido: listIdsRead.contains(
+                                            _storiesList[index].storyId)
                                         ? true
                                         : false,
                                   ));
                             },
                           ),
-                          loadLine(context, loadStoriesOnScroll),
+                          LinearProgressIndicator(
+                            minHeight: 5,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                Theme.of(context).colorScheme.primary.withOpacity(0.8)),
+                            backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+                          ),
                         ],
                       )),
                 ),
         ));
   }
-}
-
-Widget loadLine(BuildContext ctx, bool loading) {
-  return Column(children: [
-    const Divider(
-      height: 0,
-    ),
-    const SizedBox(
-      height: 16,
-    ),
-    loading
-        ? LinearProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(
-                Theme.of(ctx).colorScheme.primary.withOpacity(0.8)),
-            backgroundColor: Theme.of(ctx).colorScheme.primary.withOpacity(0.3),
-          )
-        : const SizedBox.shrink(),
-  ]);
 }
