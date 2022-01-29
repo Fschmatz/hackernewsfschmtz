@@ -132,16 +132,16 @@ class InfoWithButtons extends StatelessWidget {
                           maintainState: true,
                           child: story.commentsCount != 0
                               ? Text('  ' + story.commentsCount.toString(),
-                              style: TextStyle(
-                                fontSize: 13.5,
-                                color: story.lido!
-                                    ? Theme.of(context)
-                                    .disabledColor
-                                    .withOpacity(0.2)
-                                    : Theme.of(context)
-                                    .colorScheme
-                                    .onSecondary,
-                              ))
+                                  style: TextStyle(
+                                    fontSize: 13.5,
+                                    color: story.lido!
+                                        ? Theme.of(context)
+                                            .disabledColor
+                                            .withOpacity(0.2)
+                                        : Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary,
+                                  ))
                               : const SizedBox.shrink(),
                         ),
                       ),
@@ -152,7 +152,6 @@ class InfoWithButtons extends StatelessWidget {
                   launchBrowser('https://news.ycombinator.com/item?id=' +
                       story.storyId.toString());
                 },
-
               ),
             ),
             const SizedBox(
