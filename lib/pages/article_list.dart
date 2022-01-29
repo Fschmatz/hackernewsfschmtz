@@ -59,7 +59,7 @@ class _ArticleListState extends State<ArticleList> {
           ),
           action: SnackBarAction(
             label: 'RETRY',
-            onPressed: _getStoriesIds,
+            onPressed: () {_getStoriesIds().then((value) => _populateStories(0, 20, true));},
           ),
         ));
       },
