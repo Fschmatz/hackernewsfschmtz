@@ -48,7 +48,7 @@ class Loading extends StatelessWidget {
                                 child: SkeletonAnimation(
                                   gradientColor: Colors.white38,
                                   shimmerColor: Colors.grey.withOpacity(0.4),
-                                  shimmerDuration: 3980,
+                                  shimmerDuration: 3880,
                                   borderRadius: BorderRadius.circular(8),
                                   child: const Text("   ",
                                       style: TextStyle(
@@ -62,7 +62,7 @@ class Loading extends StatelessWidget {
                               SkeletonAnimation(
                                 gradientColor: Colors.white38,
                                 shimmerColor: Colors.grey.withOpacity(0.5),
-                                shimmerDuration: 4360,
+                                shimmerDuration: 4260,
                                 borderRadius: BorderRadius.circular(8),
                                 child: Text("   ",
                                     maxLines: 2,
@@ -124,54 +124,37 @@ class Loading extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  SizedBox(
-                                    width: 50,
-                                    height: 40,
-                                    child: TextButton(
-                                      onPressed: () {},
+                                  Chip(
+                                    elevation: 0,
+                                    backgroundColor: Theme.of(context).cardTheme.color,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    label: SizedBox(
+                                      height: 30,
                                       child: Icon(
                                         Icons.comment_outlined,
                                         size: 21,
                                         color: Theme.of(context)
                                             .colorScheme.onSecondary,
                                       ),
-                                      style: ElevatedButton.styleFrom(
-                                        elevation: 0,
-                                        primary:
-                                            Theme.of(context).cardTheme.color,
-                                        onPrimary:
-                                            Theme.of(context).colorScheme.primary,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                      ),
                                     ),
                                   ),
                                   const SizedBox(
                                     width: 15,
                                   ),
-                                  SizedBox(
-                                    width: 50,
-                                    height: 40,
-                                    child: TextButton(
-                                      onPressed: () {},
+                                  Chip(
+                                    elevation: 0,
+                                    backgroundColor: Theme.of(context).cardTheme.color,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    label: SizedBox(
+                                      height: 30,
                                       child: Icon(
                                         Icons.share_outlined,
                                         size: 21,
-                                        color: Theme.of(context)
-                                            .colorScheme.onSecondary,
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        elevation: 0,
-                                        primary:
-                                            Theme.of(context).cardTheme.color,
-                                        onPrimary:
-                                            Theme.of(context).colorScheme.primary,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
+                                        color: Theme.of(context).colorScheme.onSecondary,
                                       ),
                                     ),
                                   ),
