@@ -108,7 +108,7 @@ class InfoWithButtons extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12.0),
                 ),
                 label: SizedBox(
-                  height: 30,
+                  height: 32,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -164,7 +164,7 @@ class InfoWithButtons extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12.0),
               ),
               label: SizedBox(
-                height: 30,
+                height: 32,
                 child: Icon(
                   Icons.share_outlined,
                   size: 21,

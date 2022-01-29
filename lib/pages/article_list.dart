@@ -141,7 +141,6 @@ class _ArticleListState extends State<ArticleList> {
                   key: UniqueKey(),
                 )
               : LazyLoadScrollView(
-                  scrollOffset: 50,
                   onEndOfPage: () => _populateStories(_storiesList.length, 20, false),
                   isLoading: loadStoriesOnScroll,
                   child: RefreshIndicator(

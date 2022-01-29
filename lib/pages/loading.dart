@@ -131,7 +131,7 @@ class Loading extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     label: SizedBox(
-                                      height: 30,
+                                      height: 32,
                                       child: Icon(
                                         Icons.comment_outlined,
                                         size: 21,
@@ -150,7 +150,7 @@ class Loading extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     label: SizedBox(
-                                      height: 30,
+                                      height: 32,
                                       child: Icon(
                                         Icons.share_outlined,
                                         size: 21,
