@@ -36,8 +36,7 @@ class _ArticleListState extends State<ArticleList> {
         "https://hacker-news.firebaseio.com/v0/${widget.page}.json?print=pretty";
     _getStoryIdsRead();
     _getStoriesIds()
-        .then((value) => _populateStories(0, 20, true))
-        .then((value) => _populateStories(20, 20, false));
+        .then((value) => _populateStories(0, 20, true));
     super.initState();
   }
 
@@ -59,7 +58,9 @@ class _ArticleListState extends State<ArticleList> {
           ),
           action: SnackBarAction(
             label: 'RETRY',
-            onPressed: () {_getStoriesIds().then((value) => _populateStories(0, 20, true));},
+            onPressed: () {
+              _getStoriesIds().then((value) => _populateStories(0, 20, true));
+            },
           ),
         ));
       },
@@ -71,34 +72,36 @@ class _ArticleListState extends State<ArticleList> {
 
   Future<void> _populateStories(
       int skipValue, int takeValue, bool start) async {
-    final responses =
-        await WebService().getStoriesList(_storiesIds, skipValue, takeValue);
-    final stories = responses.map((response) {
-      final json = jsonDecode(response.body);
-      return Story.fromJSON(json);
-    }).toList();
+    if(_storiesList.length < _storiesIds.length) {
+      final responses =
+      await WebService().getStoriesList(_storiesIds, skipValue, takeValue);
+      final stories = responses.map((response) {
+        final json = jsonDecode(response.body);
+        return Story.fromJSON(json);
+      }).toList();
 
-    if (start) {
-      if (mounted) {
-        setState(() {
-          loading = false;
-          _storiesList = stories;
-        });
-      }
-    } else if (!getTopStoriesSecondaryIsDone) {
-      getTopStoriesSecondaryIsDone = true;
-      setState(() {
-        loadStoriesOnScroll = false;
-        _storiesList += stories;
-      });
-    }
-    else if (!loadStoriesOnScroll) {
-      if (getTopStoriesSecondaryIsDone) {
+      if (start) {
+        if (mounted) {
+          setState(() {
+            loading = false;
+            _storiesList = stories;
+          });
+        }
+      } else {
         setState(() {
           loadStoriesOnScroll = false;
           _storiesList += stories;
         });
       }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        behavior: SnackBarBehavior.floating,
+        content: const Text('No more stories to load'),
+        duration: const Duration(seconds: 10),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ));
     }
   }
 
@@ -141,8 +144,10 @@ class _ArticleListState extends State<ArticleList> {
                   key: UniqueKey(),
                 )
               : LazyLoadScrollView(
-                  onEndOfPage: () => _populateStories(_storiesList.length, 20, false),
+                  onEndOfPage: () =>
+                      _populateStories(_storiesList.length, 20, false),
                   isLoading: loadStoriesOnScroll,
+                  scrollOffset: 200,
                   child: RefreshIndicator(
                       onRefresh: () => _populateStories(0, 20, true),
                       color: Theme.of(context).colorScheme.primary,
@@ -177,8 +182,14 @@ class _ArticleListState extends State<ArticleList> {
                           LinearProgressIndicator(
                             minHeight: 5,
                             valueColor: AlwaysStoppedAnimation<Color>(
-                                Theme.of(context).colorScheme.primary.withOpacity(0.8)),
-                            backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+                                Theme.of(context)
+                                    .colorScheme
+                                    .primary
+                                    .withOpacity(0.8)),
+                            backgroundColor: Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withOpacity(0.3),
                           ),
                         ],
                       )),

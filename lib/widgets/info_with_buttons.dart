@@ -7,11 +7,7 @@ class InfoWithButtons extends StatelessWidget {
   int contador;
   Function(String) launchBrowser;
 
-  InfoWithButtons(
-      {required Key key,
-      required this.story,
-      required this.contador,
-      required this.launchBrowser})
+  InfoWithButtons({required Key key, required this.story, required this.contador, required this.launchBrowser})
       : super(key: key);
 
   @override
@@ -96,19 +92,21 @@ class InfoWithButtons extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            GestureDetector(
-              onLongPress: () {
-                Share.share('https://news.ycombinator.com/item?id=' +
-                    story.storyId.toString());
-              },
-              child: ActionChip(
-                elevation: 0,
-                backgroundColor: Theme.of(context).cardTheme.color,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-                label: SizedBox(
-                  height: 32,
+            SizedBox(
+
+              height: 40,
+              child: TextButton(
+
+                onLongPress: () {
+                  Share.share('https://news.ycombinator.com/item?id=' +
+                      story.storyId.toString());
+                },
+                onPressed: () {
+                  launchBrowser('https://news.ycombinator.com/item?id=' +
+                      story.storyId.toString());
+                },
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: story.commentsCount != 0 ? 5 : 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -117,7 +115,8 @@ class InfoWithButtons extends StatelessWidget {
                         size: 21,
                         color: story.lido!
                             ? Theme.of(context).disabledColor.withOpacity(0.2)
-                            : Theme.of(context).colorScheme.onSecondary,
+                            : Theme.of(context)
+                            .colorScheme.onSecondary,
                       ),
                       Visibility(
                         visible: story.commentsCount == null,
@@ -139,8 +138,7 @@ class InfoWithButtons extends StatelessWidget {
                                             .disabledColor
                                             .withOpacity(0.2)
                                         : Theme.of(context)
-                                            .colorScheme
-                                            .onSecondary,
+                                        .colorScheme.onSecondary,
                                   ))
                               : const SizedBox.shrink(),
                         ),
@@ -148,40 +146,49 @@ class InfoWithButtons extends StatelessWidget {
                     ],
                   ),
                 ),
-                onPressed: () {
-                  launchBrowser('https://news.ycombinator.com/item?id=' +
-                      story.storyId.toString());
-                },
+                style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  primary: Theme.of(context).cardTheme.color,
+                  onPrimary: Theme.of(context).colorScheme.primary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                ),
               ),
             ),
             const SizedBox(
               width: 15,
             ),
-            ActionChip(
-              elevation: 0,
-              backgroundColor: Theme.of(context).cardTheme.color,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              label: SizedBox(
-                height: 32,
+            SizedBox(
+
+              height: 40,
+              child: TextButton(
+                onPressed: () {
+                  if (story.url != null) {
+                    Share.share(story.url!);
+                  } else {
+                    // ASK/SHOW HN
+                    Share.share('https://news.ycombinator.com/item?id=' +
+                        story.storyId.toString());
+                  }
+                },
                 child: Icon(
                   Icons.share_outlined,
                   size: 21,
                   color: story.lido!
                       ? Theme.of(context).disabledColor.withOpacity(0.2)
-                      : Theme.of(context).colorScheme.onSecondary,
+                      : Theme.of(context)
+                          .colorScheme.onSecondary,
+                ),
+                style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  primary: Theme.of(context).cardTheme.color,
+                  onPrimary: Theme.of(context).colorScheme.primary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
                 ),
               ),
-              onPressed: () {
-                if (story.url != null) {
-                  Share.share(story.url!);
-                } else {
-                  // ASK/SHOW HN
-                  Share.share('https://news.ycombinator.com/item?id=' +
-                      story.storyId.toString());
-                }
-              },
             ),
             const SizedBox(
               width: 16,
