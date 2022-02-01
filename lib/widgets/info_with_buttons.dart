@@ -7,7 +7,11 @@ class InfoWithButtons extends StatelessWidget {
   int contador;
   Function(String) launchBrowser;
 
-  InfoWithButtons({required Key key, required this.story, required this.contador, required this.launchBrowser})
+  InfoWithButtons(
+      {required Key key,
+      required this.story,
+      required this.contador,
+      required this.launchBrowser})
       : super(key: key);
 
   @override
@@ -93,10 +97,8 @@ class InfoWithButtons extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
-
               height: 40,
               child: TextButton(
-
                 onLongPress: () {
                   Share.share('https://news.ycombinator.com/item?id=' +
                       story.storyId.toString());
@@ -106,7 +108,8 @@ class InfoWithButtons extends StatelessWidget {
                       story.storyId.toString());
                 },
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: story.commentsCount != 0 ? 5 : 0),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: story.commentsCount != 0 ? 7 : 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -115,8 +118,7 @@ class InfoWithButtons extends StatelessWidget {
                         size: 21,
                         color: story.lido!
                             ? Theme.of(context).disabledColor.withOpacity(0.2)
-                            : Theme.of(context)
-                            .colorScheme.onSecondary,
+                            : Theme.of(context).colorScheme.onSecondary,
                       ),
                       Visibility(
                         visible: story.commentsCount == null,
@@ -133,12 +135,14 @@ class InfoWithButtons extends StatelessWidget {
                               ? Text('  ' + story.commentsCount.toString(),
                                   style: TextStyle(
                                     fontSize: 13.5,
+                                    fontWeight: FontWeight.normal,
                                     color: story.lido!
                                         ? Theme.of(context)
                                             .disabledColor
                                             .withOpacity(0.2)
                                         : Theme.of(context)
-                                        .colorScheme.onSecondary,
+                                            .colorScheme
+                                            .onSecondary,
                                   ))
                               : const SizedBox.shrink(),
                         ),
@@ -160,7 +164,6 @@ class InfoWithButtons extends StatelessWidget {
               width: 15,
             ),
             SizedBox(
-
               height: 40,
               child: TextButton(
                 onPressed: () {
@@ -177,8 +180,7 @@ class InfoWithButtons extends StatelessWidget {
                   size: 21,
                   color: story.lido!
                       ? Theme.of(context).disabledColor.withOpacity(0.2)
-                      : Theme.of(context)
-                          .colorScheme.onSecondary,
+                      : Theme.of(context).colorScheme.onSecondary,
                 ),
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
