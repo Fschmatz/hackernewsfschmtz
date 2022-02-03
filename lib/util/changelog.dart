@@ -4,7 +4,7 @@ class Changelog{
   static String appName = "HackerNews Fschmtz";
 
   static String changelogCurrent = '''
-4.2.1
+4.2.2
 - API Changes
 - Bug Fixes
 - Added System Theme
