@@ -35,8 +35,7 @@ class _ArticleListState extends State<ArticleList> {
     urlPageApi =
         "https://hacker-news.firebaseio.com/v0/${widget.page}.json?print=pretty";
     _getStoryIdsRead();
-    _getStoriesIds()
-        .then((value) => _populateStories(0, 20, true));
+    _getStoriesIds().then((value) => _populateStories(0, 20, true));
     super.initState();
   }
 
@@ -72,9 +71,24 @@ class _ArticleListState extends State<ArticleList> {
 
   Future<void> _populateStories(
       int skipValue, int takeValue, bool start) async {
-    if(_storiesList.length < _storiesIds.length) {
-      final responses =
-      await WebService().getStoriesList(_storiesIds, skipValue, takeValue);
+    if (_storiesList.length < _storiesIds.length) {
+      final responses = await WebService()
+          .getStoriesList(_storiesIds, skipValue, takeValue)
+          .timeout(const Duration(seconds: 10), onTimeout: () {
+        throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          behavior: SnackBarBehavior.floating,
+          content: const Text('Loading Error'),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          action: SnackBarAction(
+            label: 'RETRY',
+            onPressed: () {
+              _populateStories(_storiesList.length, 20, false);
+            },
+          ),
+        ));
+      });
       final stories = responses.map((response) {
         final json = jsonDecode(response.body);
         return Story.fromJSON(json);

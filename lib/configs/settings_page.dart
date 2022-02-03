@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hackernewsfschmtz/configs/app_info_page.dart';
 import 'package:hackernewsfschmtz/configs/changelog_page.dart';
-import 'package:hackernewsfschmtz/util/theme.dart';
+import 'package:hackernewsfschmtz/util/dialog_select_theme.dart';
 import '../util/changelog.dart';
-import 'package:provider/provider.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -100,19 +99,18 @@ class _SettingsPageState extends State<SettingsPage> {
                       fontWeight: FontWeight.w700,
                       color: Theme.of(context).colorScheme.primary)),
             ),
-            Consumer<ThemeNotifier>(
-              builder: (context, notifier, child) => SwitchListTile(
-                  title: const Text(
-                    "Dark Theme",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  secondary: const Icon(Icons.brightness_6_outlined),
-                  activeColor: Colors.blue,
-                  value: notifier.darkTheme,
-                  onChanged: (value) {
-                    notifier.toggleTheme();
+            ListTile(
+              onTap: () => showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const DialogSelectTheme();
                   }),
-            ),
+              leading: const Icon(Icons.brightness_6_outlined),
+              title: const Text(
+                "App Theme",
+                style: TextStyle(fontSize: 16),
+              ),
+            )
           ],
         ));
   }
