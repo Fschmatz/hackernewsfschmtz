@@ -18,15 +18,19 @@ class _SettingsPageState extends State<SettingsPage> {
     super.initState();
   }
 
-  String getThemeStringFormatted(){
-    String theme =  EasyDynamicTheme.of(context).themeMode.toString().replaceAll('ThemeMode.', '');
-    if(theme == 'system'){theme = 'system default';}
+  String getThemeStringFormatted() {
+    String theme = EasyDynamicTheme.of(context)
+        .themeMode
+        .toString()
+        .replaceAll('ThemeMode.', '');
+    if (theme == 'system') {
+      theme = 'system default';
+    }
     return theme.replaceFirst(theme[0], theme[0].toUpperCase());
   }
 
   @override
   Widget build(BuildContext context) {
-
     Color appAccent = Theme.of(context).colorScheme.primary;
 
     return Scaffold(
@@ -121,11 +125,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 style: TextStyle(fontSize: 16),
               ),
               subtitle: Text(
-                  getThemeStringFormatted(),),
-              /*trailing: Text(
-                  getThemeStringFormatted(),
-                style: TextStyle(fontSize: 16),
-              ),*/
+                getThemeStringFormatted(),
+              ),
             )
           ],
         ));
