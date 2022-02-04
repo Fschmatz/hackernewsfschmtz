@@ -18,6 +18,7 @@ class _DialogSelectThemeState extends State<DialogSelectTheme> {
   Widget build(BuildContext context) {
 
     ThemeMode? currentTheme = EasyDynamicTheme.of(context).themeMode;
+    Color appAccent = Theme.of(context).colorScheme.primary;
 
     return AlertDialog(
       shape: RoundedRectangleBorder(
@@ -32,6 +33,7 @@ class _DialogSelectThemeState extends State<DialogSelectTheme> {
         child: Column(
           children: [
             RadioListTile(
+              activeColor: appAccent,
               key: UniqueKey(),
               value: 0,
               groupValue: currentTheme.toString() == _themes[0] ? 0 : null,
@@ -41,6 +43,7 @@ class _DialogSelectThemeState extends State<DialogSelectTheme> {
               },
             ),
             RadioListTile(
+              activeColor: appAccent,
               key: UniqueKey(),
               value: 1,
               groupValue: currentTheme.toString() == _themes[1] ? 1 : null,
@@ -50,10 +53,11 @@ class _DialogSelectThemeState extends State<DialogSelectTheme> {
               },
             ),
             RadioListTile(
+              activeColor: appAccent,
               key: UniqueKey(),
               value: 2,
               groupValue: currentTheme.toString() == _themes[2] ? 2 : null,
-              title: const Text('System'),
+              title: const Text('System default'),
               onChanged : (v) => {
                 EasyDynamicTheme.of(context).changeTheme(dynamic: true)
               },

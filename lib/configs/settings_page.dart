@@ -1,3 +1,4 @@
+import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:hackernewsfschmtz/configs/app_info_page.dart';
 import 'package:hackernewsfschmtz/configs/changelog_page.dart';
@@ -17,8 +18,17 @@ class _SettingsPageState extends State<SettingsPage> {
     super.initState();
   }
 
+  String getThemeStringFormatted(){
+    String theme =  EasyDynamicTheme.of(context).themeMode.toString().replaceAll('ThemeMode.', '');
+    if(theme == 'system'){theme = 'system default';}
+    return theme.replaceFirst(theme[0], theme[0].toUpperCase());
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    Color appAccent = Theme.of(context).colorScheme.primary;
+
     return Scaffold(
         appBar: AppBar(
           title: const Text("Settings"),
@@ -28,7 +38,7 @@ class _SettingsPageState extends State<SettingsPage> {
             Card(
               elevation: 1,
               margin: const EdgeInsets.fromLTRB(16, 20, 16, 25),
-              color: const Color(0xFFFF965b),
+              color: appAccent,
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(12)),
               ),
@@ -110,6 +120,12 @@ class _SettingsPageState extends State<SettingsPage> {
                 "App Theme",
                 style: TextStyle(fontSize: 16),
               ),
+              subtitle: Text(
+                  getThemeStringFormatted(),),
+              /*trailing: Text(
+                  getThemeStringFormatted(),
+                style: TextStyle(fontSize: 16),
+              ),*/
             )
           ],
         ));
