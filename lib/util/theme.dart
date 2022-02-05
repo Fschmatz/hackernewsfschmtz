@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 ThemeData light = ThemeData(
+    useMaterial3: true,
     brightness: Brightness.light,
-    primaryColorBrightness: Brightness.dark,
     primaryColor: const Color(0xFFFFFFFF),
     colorScheme: ColorScheme.light(
-      primary:  Colors.orange[800]!,
-      primaryVariant:  Colors.orange[800]!,
+      primary: Colors.orange[800]!,
       onSecondary: const Color(0xFF050505),
       secondary: Colors.orange[800]!,
     ),
@@ -35,20 +34,19 @@ ThemeData light = ThemeData(
     navigationBarTheme: NavigationBarThemeData(
         backgroundColor: const Color(0xFFE1E0E0),
         indicatorColor: Colors.orange[800]!,
-        iconTheme: MaterialStateProperty.all(
-            const IconThemeData(color: Color(0xFF050505),)
-        ),
+        iconTheme: MaterialStateProperty.all(const IconThemeData(
+          color: Color(0xFF050505),
+        )),
         labelTextStyle: MaterialStateProperty.all(const TextStyle(
             color: Color(0xFF050505), fontWeight: FontWeight.w500))));
 
 ThemeData dark = ThemeData(
+    useMaterial3: true,
     brightness: Brightness.dark,
-    primaryColorBrightness: Brightness.light,
     primaryColor: const Color(0xFF1B1B1F),
     scaffoldBackgroundColor: const Color(0xFF1B1B1F),
     colorScheme: const ColorScheme.dark(
-      primary:  Color(0xFFFF965b),
-      primaryVariant:  Color(0xFFFF965b),
+      primary: Color(0xFFFF965b),
       onSecondary: Color(0xFFCACACA),
       secondary: Color(0xFFFF965b),
     ),
@@ -62,7 +60,7 @@ ThemeData dark = ThemeData(
             color: Color(0xFFFFFFFF))),
     cardTheme: const CardTheme(
       color: Color(0xFF2A2A2F),
-    ),    
+    ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFF272729),
     ),
@@ -79,9 +77,9 @@ ThemeData dark = ThemeData(
     navigationBarTheme: NavigationBarThemeData(
         backgroundColor: const Color(0xFF121216),
         indicatorColor: const Color(0xFFFF965b),
-        iconTheme: MaterialStateProperty.all(
-          const IconThemeData(color: Color(0xFFEAEAEA),)
-        ),
+        iconTheme: MaterialStateProperty.all(const IconThemeData(
+          color: Color(0xFFEAEAEA),
+        )),
         labelTextStyle: MaterialStateProperty.all(const TextStyle(
             color: Color(0xFFEAEAEA), fontWeight: FontWeight.w500)))
 );

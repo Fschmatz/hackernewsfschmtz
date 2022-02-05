@@ -161,7 +161,7 @@ class _ArticleListState extends State<ArticleList> {
                   onEndOfPage: () =>
                       _populateStories(_storiesList.length, 20, false),
                   isLoading: loadStoriesOnScroll,
-                  scrollOffset: 200,
+                  scrollOffset: 300,
                   child: RefreshIndicator(
                       onRefresh: () => _populateStories(0, 20, true),
                       color: Theme.of(context).colorScheme.primary,

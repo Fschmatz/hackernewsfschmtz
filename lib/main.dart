@@ -2,7 +2,6 @@ import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:hackernewsfschmtz/app.dart';
 import 'package:hackernewsfschmtz/util/theme.dart';
-import 'package:provider/provider.dart';
 import './db/criador_db.dart';
 
 Future<void> main() async {
@@ -13,13 +12,13 @@ Future<void> main() async {
 
   runApp(
     EasyDynamicThemeWidget(
-      child: const MyApp(),
+      child: const StartAppTheme(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class StartAppTheme extends StatelessWidget {
+  const StartAppTheme({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
