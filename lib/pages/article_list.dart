@@ -34,9 +34,14 @@ class _ArticleListState extends State<ArticleList> {
   void initState() {
     urlPageApi =
         "https://hacker-news.firebaseio.com/v0/${widget.page}.json?print=pretty";
-    _getStoryIdsRead();
-    _getStoriesIds().then((value) => _populateStories(0, 20, true));
+    appStartFunctions();
     super.initState();
+  }
+
+  Future<void> appStartFunctions() async {
+    await _getStoryIdsRead();
+    await _getStoriesIds();
+    _populateStories(0, 20, true);
   }
 
   @override
@@ -58,7 +63,7 @@ class _ArticleListState extends State<ArticleList> {
           action: SnackBarAction(
             label: 'RETRY',
             onPressed: () {
-              _getStoriesIds().then((value) => _populateStories(0, 20, true));
+              appStartFunctions;
             },
           ),
         ));
@@ -163,7 +168,7 @@ class _ArticleListState extends State<ArticleList> {
                   isLoading: loadStoriesOnScroll,
                   scrollOffset: 300,
                   child: RefreshIndicator(
-                      onRefresh: () => _populateStories(0, 20, true),
+                      onRefresh: () => appStartFunctions(),
                       color: Theme.of(context).colorScheme.primary,
                       child: ListView(
                         controller: scrollControllerAppbar,
