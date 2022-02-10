@@ -168,7 +168,12 @@ class _ArticleListState extends State<ArticleList> {
                   isLoading: loadStoriesOnScroll,
                   scrollOffset: 300,
                   child: RefreshIndicator(
-                      onRefresh: appStartFunctions,
+                      onRefresh: ()  async {
+                          setState(() {
+                            loading = true;
+                          });
+                          appStartFunctions();
+                        },
                       color: Theme.of(context).colorScheme.primary,
                       child: ListView(
                         controller: scrollControllerAppbar,

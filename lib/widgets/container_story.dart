@@ -19,6 +19,7 @@ class ContainerStory extends StatefulWidget {
 }
 
 class _ContainerStoryState extends State<ContainerStory> {
+
   void _markRead(int idStory) async {
     final dbLidos = LidosDao.instance;
     Map<String, dynamic> row = {

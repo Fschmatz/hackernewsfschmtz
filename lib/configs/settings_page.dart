@@ -59,6 +59,32 @@ class _SettingsPageState extends State<SettingsPage> {
               leading: const SizedBox(
                 height: 0.1,
               ),
+              title: Text("General".toUpperCase(),
+                  style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700,
+                      color: Theme.of(context).colorScheme.primary)),
+            ),
+            ListTile(
+              onTap: () => showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const DialogSelectTheme();
+                  }),
+              leading: const Icon(Icons.brightness_6_outlined),
+              title: const Text(
+                "App Theme",
+                style: TextStyle(fontSize: 16),
+              ),
+              subtitle: Text(
+                getThemeStringFormatted(),
+              ),
+            ),
+            const Divider(),
+            ListTile(
+              leading: const SizedBox(
+                height: 0.1,
+              ),
               title: Text("About".toUpperCase(),
                   style: TextStyle(
                       fontSize: 13,
@@ -102,32 +128,6 @@ class _SettingsPageState extends State<SettingsPage> {
                     ));
               },
             ),
-            const Divider(),
-            ListTile(
-              leading: const SizedBox(
-                height: 0.1,
-              ),
-              title: Text("General".toUpperCase(),
-                  style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      color: Theme.of(context).colorScheme.primary)),
-            ),
-            ListTile(
-              onTap: () => showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return const DialogSelectTheme();
-                  }),
-              leading: const Icon(Icons.brightness_6_outlined),
-              title: const Text(
-                "App Theme",
-                style: TextStyle(fontSize: 16),
-              ),
-              subtitle: Text(
-                getThemeStringFormatted(),
-              ),
-            )
           ],
         ));
   }
