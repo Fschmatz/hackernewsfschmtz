@@ -135,7 +135,7 @@ class InfoWithButtons extends StatelessWidget {
                               ? Text('  ' + story.commentsCount.toString(),
                                   style: TextStyle(
                                     fontSize: 13.5,
-                                    fontWeight: FontWeight.normal,
+                                    fontWeight: FontWeight.w400,
                                     color: story.lido!
                                         ? Theme.of(context)
                                             .disabledColor
