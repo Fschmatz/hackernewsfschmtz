@@ -1,10 +1,11 @@
-class Changelog{
+class AppDetails{
 
-  static String appVersion = "4.2.5";
-  static String appName = "HackerNews Fschmtz";
+  static String appVersion = "4.2.6";
+  static String appName = "HackerNews Fschmatz";
+  static String repositoryLink = 'https://github.com/Fschmatz/hackernewsfschmtz';
 
   static String changelogCurrent = '''
-4.2.5
+4.2.6
 - API Changes
 - Bug Fixes
 - Added System Theme

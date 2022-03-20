@@ -23,6 +23,9 @@ ThemeData light = ThemeData(
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFFF8F8FB),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(28)),
+      ),
     ),
     bottomAppBarColor: const Color(0xFFE6E6E8),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -63,6 +66,9 @@ ThemeData dark = ThemeData(
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFF272729),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(28)),
+      ),
     ),
     bottomAppBarColor: const Color(0xFF131418),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
