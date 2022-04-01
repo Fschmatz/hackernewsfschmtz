@@ -4,6 +4,7 @@ ThemeData light = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
     primaryColor: const Color(0xFFFFFFFF),
+    scaffoldBackgroundColor: const Color(0xFFFFFFFF),
     colorScheme: ColorScheme.light(
       primary: Colors.orange[800]!,
       onSecondary: const Color(0xFF050505),
@@ -17,7 +18,6 @@ ThemeData light = ThemeData(
             fontSize: 22,
             fontWeight: FontWeight.w400,
             color: Color(0xFF000000))),
-    scaffoldBackgroundColor: const Color(0xFFFFFFFF),
     cardTheme: const CardTheme(
       color: Color(0xFFF1F0F0),
     ),
@@ -32,7 +32,7 @@ ThemeData light = ThemeData(
       backgroundColor: Color(0xFFE1E0E0),
     ),
     snackBarTheme: const SnackBarThemeData(
-      actionTextColor: Color(0xFFFF965b),
+      actionTextColor: Color(0xfffd9961),
     ),
     navigationBarTheme: NavigationBarThemeData(
         backgroundColor: const Color(0xFFE1E0E0),
@@ -49,9 +49,9 @@ ThemeData dark = ThemeData(
     primaryColor: const Color(0xFF1A1B1F),
     scaffoldBackgroundColor: const Color(0xFF1A1B1F),
     colorScheme: const ColorScheme.dark(
-      primary: Color(0xFFFF965b),
+      primary: Color(0xfffd9961),
       onSecondary: Color(0xFFCACACA),
-      secondary: Color(0xFFFF965b),
+      secondary: Color(0xfffd9961),
     ),
     appBarTheme: const AppBarTheme(
         color: Color(0xFF1A1B1F),
@@ -62,7 +62,7 @@ ThemeData dark = ThemeData(
             fontWeight: FontWeight.w400,
             color: Color(0xFFFFFFFF))),
     cardTheme: const CardTheme(
-      color: Color(0xFF28292E),
+      color: Color(0xFF292A30),
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFF272729),
@@ -70,22 +70,23 @@ ThemeData dark = ThemeData(
         borderRadius: BorderRadius.all(Radius.circular(28)),
       ),
     ),
-    bottomAppBarColor: const Color(0xFF131418),
+    bottomAppBarColor: const Color(0xFF232429),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       showSelectedLabels: false,
       showUnselectedLabels: true,
-      backgroundColor: Color(0xFF131418),
+      backgroundColor: Color(0xFF232429),
     ),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: const Color(0xFFF0F0F0),
       actionTextColor: Colors.orange[800],
     ),
     navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: const Color(0xFF131418),
-        indicatorColor: const Color(0xFFFF965b),
+        backgroundColor: const Color(0xFF232429),
+        indicatorColor: const Color(0xffe59061),
         iconTheme: MaterialStateProperty.all(const IconThemeData(
           color: Color(0xFFEAEAEA),
         )),
         labelTextStyle: MaterialStateProperty.all(const TextStyle(
             color: Color(0xFFEAEAEA), fontWeight: FontWeight.w500)))
 );
+

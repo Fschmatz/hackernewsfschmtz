@@ -12,15 +12,14 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
 
   @override
-  void initState() {   
+  void initState() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
 
-    final Color bottomOverlayColor =
-    Theme.of(context).bottomNavigationBarTheme.backgroundColor!;
     final Color topOverlayColor =
     Theme.of(context).appBarTheme.backgroundColor!;
     final Brightness iconBrightness =
@@ -31,9 +30,9 @@ class _AppState extends State<App> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle(
           statusBarIconBrightness: iconBrightness,
-          systemNavigationBarColor: bottomOverlayColor,
           statusBarColor: topOverlayColor,
           systemStatusBarContrastEnforced: false,
+          systemNavigationBarColor: Colors.transparent,
           systemNavigationBarIconBrightness: iconBrightness,
         ),
         child: const Home()
