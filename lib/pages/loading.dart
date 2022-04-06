@@ -147,7 +147,7 @@ class Loading extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(
+                                 /* const SizedBox(
                                     width: 15,
                                   ),
                                   SizedBox(
@@ -172,7 +172,7 @@ class Loading extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                  ),
+                                  ),*/
                                   const SizedBox(
                                     width: 16,
                                   ),

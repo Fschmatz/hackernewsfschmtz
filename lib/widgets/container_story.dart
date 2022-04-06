@@ -4,6 +4,7 @@ import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:hackernewsfschmtz/db/lidos_dao.dart';
 import 'package:hackernewsfschmtz/widgets/info_with_buttons.dart';
 import 'package:hackernewsfschmtz/widgets/title_with_url.dart';
+import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContainerStory extends StatefulWidget {
@@ -59,6 +60,15 @@ class _ContainerStoryState extends State<ContainerStory> {
             _markRead(widget.story.storyId!);
             widget.refreshIdLidos();
           }
+        }
+      },
+      onLongPress: () {
+        if (widget.story.url != null) {
+          Share.share(widget.story.url!);
+        } else {
+          // ASK/SHOW HN
+          Share.share('https://news.ycombinator.com/item?id=' +
+              widget.story.storyId.toString());
         }
       },
       child: Padding(

@@ -160,7 +160,7 @@ class InfoWithButtons extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
+            /*const SizedBox(
               width: 15,
             ),
             SizedBox(
@@ -191,7 +191,7 @@ class InfoWithButtons extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
+            ),*/
             const SizedBox(
               width: 16,
             ),
