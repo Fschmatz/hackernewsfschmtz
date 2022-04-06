@@ -12,6 +12,6 @@ Application used to view the website https://news.ycombinator.com/news
 
 
 Links and comments are opened externally via the browser.
-<br><br>
-<img src="https://user-images.githubusercontent.com/21291813/151475587-1a3f5e56-7b24-4bcc-9b4f-b296b6ccdd84.png" width="30%"></img> 
+<br/><br/>
+<img src="https://user-images.githubusercontent.com/21291813/161392686-e142fe97-c11c-4b31-bd7f-5770cc7434fe.png" width="30%"></img> 
 
