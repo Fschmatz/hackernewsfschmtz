@@ -9,9 +9,9 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
+class _HomeState extends State<Home> {
   bool _showBottomBar = true;
-  int _currentIndex = 0; //always start with TopStories
+  int _currentIndex = 0; //Start with TopStories
 
   final List<Widget> _articlesList = [
     ArticleList(
@@ -35,9 +35,6 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
       page: 'askstories',
     )
   ];
-
-  @override
-  bool get wantKeepAlive => true;
 
   @override
   void initState() {

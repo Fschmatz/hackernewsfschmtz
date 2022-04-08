@@ -19,7 +19,7 @@ ThemeData light = ThemeData(
             fontWeight: FontWeight.w400,
             color: Color(0xFF000000))),
     cardTheme: const CardTheme(
-      color: Color(0xFFF1F0F0),
+      color: Color(0xFFF4F4F4),
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFFF8F8FB),
@@ -27,15 +27,15 @@ ThemeData light = ThemeData(
         borderRadius: BorderRadius.all(Radius.circular(28)),
       ),
     ),
-    bottomAppBarColor: const Color(0xFFE6E6E8),
+    bottomAppBarColor: const Color(0xFFE9E9E9),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: Color(0xFFE1E0E0),
+      backgroundColor: Color(0xFFE9E9E9),
     ),
     snackBarTheme: const SnackBarThemeData(
       actionTextColor: Color(0xfffd9961),
     ),
     navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: const Color(0xFFE1E0E0),
+        backgroundColor: const Color(0xFFE9E9E9),
         indicatorColor: Colors.orange[800]!,
         iconTheme: MaterialStateProperty.all(const IconThemeData(
           color: Color(0xFF050505),

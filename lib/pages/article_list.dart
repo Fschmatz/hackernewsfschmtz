@@ -138,7 +138,7 @@ class _ArticleListState extends State<ArticleList> {
     return Scaffold(
         appBar: ScrollAppBar(
           controller: scrollControllerAppbar,
-          title: const Text('Hacker News'),
+          title: const Text('HN'),
           actions: [
             IconButton(
                 icon: const Icon(
