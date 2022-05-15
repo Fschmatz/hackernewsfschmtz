@@ -41,7 +41,7 @@ class TitleWithUrl extends StatelessWidget {
             child: Text(formattedUrl,
                 maxLines: 2,
                 style: TextStyle(
-                    fontSize: 12.5,
+                    fontSize: 12,
                     color: story.lido!
                         ? Theme.of(context).colorScheme.primary.withOpacity(0.3)
                         : Theme.of(context).colorScheme.primary.withOpacity(0.9))),

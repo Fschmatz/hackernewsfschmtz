@@ -31,6 +31,7 @@ class Loading extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               SkeletonAnimation(
+                                key: UniqueKey(),
                                 gradientColor: Colors.white38,
                                 shimmerColor: Colors.grey.withOpacity(0.2),
                                 shimmerDuration: 3550,
@@ -46,6 +47,7 @@ class Loading extends StatelessWidget {
                               Visibility(
                                 visible: index % 2 == 0,
                                 child: SkeletonAnimation(
+                                  key: UniqueKey(),
                                   gradientColor: Colors.white38,
                                   shimmerColor: Colors.grey.withOpacity(0.4),
                                   shimmerDuration: 3980,
@@ -60,6 +62,7 @@ class Loading extends StatelessWidget {
                                 height: 8,
                               ),
                               SkeletonAnimation(
+                                key: UniqueKey(),
                                 gradientColor: Colors.white38,
                                 shimmerColor: Colors.grey.withOpacity(0.5),
                                 shimmerDuration: 4360,
@@ -87,7 +90,7 @@ class Loading extends StatelessWidget {
                                         color: Theme.of(context)
                                             .hintColor
                                             .withOpacity(0.6),
-                                        size: 16,
+                                        size: 15,
                                       ),
                                       const SizedBox(
                                         width: 25,
@@ -97,7 +100,7 @@ class Loading extends StatelessWidget {
                                         color: Theme.of(context)
                                             .hintColor
                                             .withOpacity(0.6),
-                                        size: 16,
+                                        size: 15,
                                       ),
                                     ],
                                   ),
@@ -111,7 +114,7 @@ class Loading extends StatelessWidget {
                                         color: Theme.of(context)
                                             .hintColor
                                             .withOpacity(0.6),
-                                        size: 16,
+                                        size: 15,
                                       ),
                                       const SizedBox(
                                         width: 40,
@@ -147,32 +150,7 @@ class Loading extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                 /* const SizedBox(
-                                    width: 15,
-                                  ),
-                                  SizedBox(
-                                    height: 40,
-                                    child: TextButton(
-                                      onPressed: () {},
-                                      child: Icon(
-                                        Icons.share_outlined,
-                                        size: 21,
-                                        color: Theme.of(context)
-                                            .colorScheme.onSecondary,
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        elevation: 0,
-                                        primary:
-                                            Theme.of(context).cardTheme.color,
-                                        onPrimary:
-                                            Theme.of(context).colorScheme.primary,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                      ),
-                                    ),
-                                  ),*/
+
                                   const SizedBox(
                                     width: 16,
                                   ),

@@ -82,11 +82,11 @@ ThemeData dark = ThemeData(
     ),
     navigationBarTheme: NavigationBarThemeData(
         backgroundColor: const Color(0xFF232429),
-        indicatorColor: const Color(0xffe59061),
+        indicatorColor: const Color(0xffa65e37),
         iconTheme: MaterialStateProperty.all(const IconThemeData(
-          color: Color(0xFFEAEAEA),
+          color: Color(0xFFE8E7E6),
         )),
         labelTextStyle: MaterialStateProperty.all(const TextStyle(
-            color: Color(0xFFEAEAEA), fontWeight: FontWeight.w500)))
+            color: Color(0xFFE8E7E6), fontWeight: FontWeight.w500)))
 );
 

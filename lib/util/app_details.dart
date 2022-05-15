@@ -1,11 +1,11 @@
 class AppDetails{
 
-  static String appVersion = "4.2.8";
+  static String appVersion = "4.2.9";
   static String appName = "Hacker News Fschmatz";
   static String repositoryLink = 'https://github.com/Fschmatz/hackernewsfschmtz';
 
   static String changelogCurrent = '''
-4.2.8
+4.2.9
 - API Changes
 - Hold to Share
 - Bug Fixes

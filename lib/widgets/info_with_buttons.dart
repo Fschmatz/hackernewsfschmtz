@@ -32,11 +32,11 @@ class InfoWithButtons extends StatelessWidget {
                     color: story.lido!
                         ? Theme.of(context).disabledColor.withOpacity(0.2)
                         : Theme.of(context).hintColor.withOpacity(0.6),
-                    size: 16,
+                    size: 15,
                   ),
                   Text(" ${1 + contador}    ",
                       style: TextStyle(
-                          fontSize: 13,
+                          fontSize: 12,
                           color: story.lido!
                               ? Theme.of(context).disabledColor.withOpacity(0.2)
                               : Theme.of(context).hintColor.withOpacity(0.6))),
@@ -45,12 +45,12 @@ class InfoWithButtons extends StatelessWidget {
                     color: story.lido!
                         ? Theme.of(context).disabledColor.withOpacity(0.2)
                         : Theme.of(context).hintColor.withOpacity(0.6),
-                    size: 16,
+                    size: 15,
                   ),
                   story.score == 1
                       ? Text(" ${story.score} Point",
                           style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 12,
                               color: story.lido!
                                   ? Theme.of(context)
                                       .disabledColor
@@ -60,7 +60,7 @@ class InfoWithButtons extends StatelessWidget {
                                       .withOpacity(0.6)))
                       : Text(" ${story.score} Points",
                           style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 12,
                               color: story.lido!
                                   ? Theme.of(context)
                                       .disabledColor
@@ -80,11 +80,11 @@ class InfoWithButtons extends StatelessWidget {
                     color: story.lido!
                         ? Theme.of(context).disabledColor.withOpacity(0.2)
                         : Theme.of(context).hintColor.withOpacity(0.6),
-                    size: 16,
+                    size: 15,
                   ),
                   Text(" " + story.timeAgo,
                       style: TextStyle(
-                          fontSize: 13,
+                          fontSize: 12,
                           color: story.lido!
                               ? Theme.of(context).disabledColor.withOpacity(0.2)
                               : Theme.of(context).hintColor.withOpacity(0.6))),
@@ -160,38 +160,6 @@ class InfoWithButtons extends StatelessWidget {
                 ),
               ),
             ),
-            /*const SizedBox(
-              width: 15,
-            ),
-            SizedBox(
-              height: 40,
-              child: TextButton(
-                onPressed: () {
-                  if (story.url != null) {
-                    Share.share(story.url!);
-                  } else {
-                    // ASK/SHOW HN
-                    Share.share('https://news.ycombinator.com/item?id=' +
-                        story.storyId.toString());
-                  }
-                },
-                child: Icon(
-                  Icons.share_outlined,
-                  size: 21,
-                  color: story.lido!
-                      ? Theme.of(context).disabledColor.withOpacity(0.2)
-                      : Theme.of(context).colorScheme.onSecondary,
-                ),
-                style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  primary: Theme.of(context).cardTheme.color,
-                  onPrimary: Theme.of(context).colorScheme.primary,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                ),
-              ),
-            ),*/
             const SizedBox(
               width: 16,
             ),

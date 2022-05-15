@@ -24,7 +24,7 @@ class _ArticleListState extends State<ArticleList> {
   List<dynamic> _storiesIds = [];
   List<Story> _storiesList = [];
   bool loading = true;
-  bool loadStoriesOnScroll = false;
+  bool loadStoriesOnScroll = true;
   bool getTopStoriesSecondaryIsDone = false;
   String urlPageApi = '';
   List<int> listIdsRead = [];
@@ -100,16 +100,15 @@ class _ArticleListState extends State<ArticleList> {
       }).toList();
 
       if (start) {
-        if (mounted) {
-          setState(() {
-            loading = false;
-            _storiesList = stories;
-          });
-        }
+        setState(() {
+          _storiesList = stories;
+          loading = false;
+          loadStoriesOnScroll = false;
+        });
       } else {
         setState(() {
-          loadStoriesOnScroll = false;
           _storiesList += stories;
+          loadStoriesOnScroll = false;
         });
       }
     } else {
@@ -147,11 +146,10 @@ class _ArticleListState extends State<ArticleList> {
                 onPressed: () {
                   Navigator.push(
                       context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => SettingsPage(
-                          key: UniqueKey(),
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => const SettingsPage(
+
                         ),
-                        fullscreenDialog: true,
                       ));
                 }),
           ],
@@ -166,14 +164,9 @@ class _ArticleListState extends State<ArticleList> {
                   onEndOfPage: () =>
                       _populateStories(_storiesList.length, 20, false),
                   isLoading: loadStoriesOnScroll,
-                  scrollOffset: 300,
+                  scrollOffset: 100,
                   child: RefreshIndicator(
-                      onRefresh: ()  async {
-                          setState(() {
-                            loading = true;
-                          });
-                          appStartFunctions();
-                        },
+                      onRefresh: () => appStartFunctions(),
                       color: Theme.of(context).colorScheme.primary,
                       child: ListView(
                         controller: scrollControllerAppbar,
@@ -214,7 +207,7 @@ class _ArticleListState extends State<ArticleList> {
                                 .colorScheme
                                 .primary
                                 .withOpacity(0.3),
-                          ),
+                          )
                         ],
                       )),
                 ),

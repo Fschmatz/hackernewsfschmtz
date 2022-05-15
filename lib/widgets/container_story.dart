@@ -80,10 +80,13 @@ class _ContainerStoryState extends State<ContainerStory> {
             TitleWithUrl(
               story: widget.story,
               markRead: _markRead,
-              refreshIdLidos: widget.refreshIdLidos, key: UniqueKey(),
+              refreshIdLidos: widget.refreshIdLidos,
+              key: UniqueKey(),
             ),
-            InfoWithButtons(contador: widget.contador,
-              story: widget.story,launchBrowser: _launchBrowser, key: UniqueKey(),)
+           InfoWithButtons(contador: widget.contador,
+              story: widget.story,
+             launchBrowser: _launchBrowser,
+             key: UniqueKey(),)
           ],
         ),
       ),
