@@ -24,7 +24,7 @@ class _ArticleListState extends State<ArticleList> {
   List<dynamic> _storiesIds = [];
   List<Story> _storiesList = [];
   bool loading = true;
-  bool loadStoriesOnScroll = true;
+  bool loadingStoriesOnScroll = true;
   bool getTopStoriesSecondaryIsDone = false;
   String urlPageApi = '';
   List<int> listIdsRead = [];
@@ -76,6 +76,9 @@ class _ArticleListState extends State<ArticleList> {
 
   Future<void> _populateStories(
       int skipValue, int takeValue, bool start) async {
+
+    loadingStoriesOnScroll = true;
+
     if (_storiesList.length < _storiesIds.length) {
       final responses = await WebService()
           .getStoriesList(_storiesIds, skipValue, takeValue)
@@ -103,12 +106,10 @@ class _ArticleListState extends State<ArticleList> {
         setState(() {
           _storiesList = stories;
           loading = false;
-          loadStoriesOnScroll = false;
         });
       } else {
         setState(() {
           _storiesList += stories;
-          loadStoriesOnScroll = false;
         });
       }
     } else {
@@ -121,6 +122,7 @@ class _ArticleListState extends State<ArticleList> {
         ),
       ));
     }
+    loadingStoriesOnScroll = false;
   }
 
   Future<void> _getStoryIdsRead() async {
@@ -147,9 +149,7 @@ class _ArticleListState extends State<ArticleList> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (BuildContext context) => const SettingsPage(
-
-                        ),
+                        builder: (BuildContext context) => const SettingsPage(),
                       ));
                 }),
           ],
@@ -163,8 +163,8 @@ class _ArticleListState extends State<ArticleList> {
               : LazyLoadScrollView(
                   onEndOfPage: () =>
                       _populateStories(_storiesList.length, 20, false),
-                  isLoading: loadStoriesOnScroll,
-                  scrollOffset: 100,
+                  isLoading: loadingStoriesOnScroll,
+                  scrollOffset: 500,
                   child: RefreshIndicator(
                       onRefresh: () => appStartFunctions(),
                       color: Theme.of(context).colorScheme.primary,
