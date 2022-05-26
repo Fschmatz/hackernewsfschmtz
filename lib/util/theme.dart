@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 ThemeData light = ThemeData(
-    useMaterial3: true,
+    //useMaterial3: true,
     brightness: Brightness.light,
     primaryColor: const Color(0xFFFFFFFF),
     scaffoldBackgroundColor: const Color(0xFFFFFFFF),
@@ -44,7 +44,7 @@ ThemeData light = ThemeData(
             color: Color(0xFF050505), fontWeight: FontWeight.w500))));
 
 ThemeData dark = ThemeData(
-    useMaterial3: true,
+    //useMaterial3: true,
     brightness: Brightness.dark,
     primaryColor: const Color(0xFF1A1B1F),
     scaffoldBackgroundColor: const Color(0xFF1A1B1F),
@@ -82,7 +82,7 @@ ThemeData dark = ThemeData(
     ),
     navigationBarTheme: NavigationBarThemeData(
         backgroundColor: const Color(0xFF232429),
-        indicatorColor: const Color(0xffa65e37),
+        indicatorColor: const Color(0xffa8623d),
         iconTheme: MaterialStateProperty.all(const IconThemeData(
           color: Color(0xFFE8E7E6),
         )),

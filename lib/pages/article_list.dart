@@ -38,7 +38,12 @@ class _ArticleListState extends State<ArticleList> {
     super.initState();
   }
 
-  Future<void> appStartFunctions() async {
+  Future<void> appStartFunctions([bool showAnimation = false]) async {
+    if(showAnimation){
+      setState((){
+        loading = true;
+      });
+    }
     await _getStoryIdsRead();
     await _getStoriesIds();
     _populateStories(0, 20, true);
@@ -166,7 +171,7 @@ class _ArticleListState extends State<ArticleList> {
                   isLoading: loadingStoriesOnScroll,
                   scrollOffset: 500,
                   child: RefreshIndicator(
-                      onRefresh: () => appStartFunctions(),
+                      onRefresh: () => appStartFunctions(true),
                       color: Theme.of(context).colorScheme.primary,
                       child: ListView(
                         controller: scrollControllerAppbar,

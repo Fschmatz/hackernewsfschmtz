@@ -6,7 +6,7 @@ class Loading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double deviceHeight = WidgetsBinding.instance!.window.physicalSize.height;
+    double deviceHeight = WidgetsBinding.instance.window.physicalSize.height;
     int valueTilesLoading = (deviceHeight / 400).round();
 
     return ListView(
