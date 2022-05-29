@@ -1,15 +1,16 @@
 class AppDetails{
 
-  static String appVersion = "4.2.9";
+  static String appVersion = "4.2.10";
   static String appName = "Hacker News Fschmatz";
   static String repositoryLink = 'https://github.com/Fschmatz/hackernewsfschmtz';
 
   static String changelogCurrent = '''
-4.2.9
+4.2.10
 - API Changes
 - Hold to Share
 - Bug Fixes
 - Added System Theme
+- Flutter 3 Update
 ''';
 
   static String changelogsOld = '''

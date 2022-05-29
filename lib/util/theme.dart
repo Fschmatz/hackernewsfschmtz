@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
 ThemeData light = ThemeData(
-    //useMaterial3: true,
+    useMaterial3: true,
+    textTheme: const TextTheme(
+      titleMedium: TextStyle(fontWeight: FontWeight.w400),
+    ),
     brightness: Brightness.light,
     primaryColor: const Color(0xFFFFFFFF),
     scaffoldBackgroundColor: const Color(0xFFFFFFFF),
     colorScheme: ColorScheme.light(
-      primary: Colors.orange[800]!,
+      primary: Colors.orange.shade800,
       onSecondary: const Color(0xFF050505),
-      secondary: Colors.orange[800]!,
+      secondary: Colors.orange.shade800,
     ),
     appBarTheme: const AppBarTheme(
+        surfaceTintColor: Color(0xFFFFFFFF),
         color: Color(0xFFFFFFFF),
         elevation: 0,
         iconTheme: IconThemeData(color: Color(0xFF000000)),
@@ -36,7 +40,7 @@ ThemeData light = ThemeData(
     ),
     navigationBarTheme: NavigationBarThemeData(
         backgroundColor: const Color(0xFFE9E9E9),
-        indicatorColor: Colors.orange[800]!,
+        indicatorColor: Colors.orange.shade800,
         iconTheme: MaterialStateProperty.all(const IconThemeData(
           color: Color(0xFF050505),
         )),
@@ -44,7 +48,10 @@ ThemeData light = ThemeData(
             color: Color(0xFF050505), fontWeight: FontWeight.w500))));
 
 ThemeData dark = ThemeData(
-    //useMaterial3: true,
+    useMaterial3: true,
+    textTheme: const TextTheme(
+      titleMedium: TextStyle(fontWeight: FontWeight.w400),
+    ),
     brightness: Brightness.dark,
     primaryColor: const Color(0xFF1A1B1F),
     scaffoldBackgroundColor: const Color(0xFF1A1B1F),
@@ -54,6 +61,7 @@ ThemeData dark = ThemeData(
       secondary: Color(0xfffd9961),
     ),
     appBarTheme: const AppBarTheme(
+        surfaceTintColor: Color(0xFF1A1B1F),
         color: Color(0xFF1A1B1F),
         elevation: 0,
         iconTheme: IconThemeData(color: Color(0xFFFFFFFF)),
@@ -82,7 +90,7 @@ ThemeData dark = ThemeData(
     ),
     navigationBarTheme: NavigationBarThemeData(
         backgroundColor: const Color(0xFF232429),
-        indicatorColor: const Color(0xffa8623d),
+        indicatorColor: const Color(0xffa6633f),
         iconTheme: MaterialStateProperty.all(const IconThemeData(
           color: Color(0xFFE8E7E6),
         )),
