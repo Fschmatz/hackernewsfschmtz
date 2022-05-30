@@ -56,52 +56,46 @@ class _HomeState extends State<Home> {
           child: SafeArea(child: _articlesList[_currentIndex])),
       bottomNavigationBar: AnimatedOpacity(
           duration: const Duration(milliseconds: 250),
-          opacity: _showBottomBar ? 1 : 0,
-          child: Container(
-            height: _showBottomBar
-                ? (80 + MediaQuery.of(context).padding.bottom)
-                : 0,
-            color: Theme.of(context).navigationBarTheme.backgroundColor,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: NavigationBar(
-                labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-                selectedIndex: _currentIndex,
-                onDestinationSelected: (index) {
-                  setState(() {
-                    _currentIndex = index;
-                  });
-                },
-                destinations: const [
-                  NavigationDestination(
-                    icon: Icon(Icons.bar_chart_outlined),
-                    selectedIcon: Icon(Icons.bar_chart),
-                    label: 'Top',
-                  ),
-                  NavigationDestination(
-                    icon: Icon(Icons.schedule_outlined),
-                    selectedIcon: Icon(Icons.schedule),
-                    label: 'New',
-                  ),
-                  NavigationDestination(
-                    icon: Icon(Icons.star_outline),
-                    selectedIcon: Icon(Icons.star),
-                    label: 'Best',
-                  ),
-                  NavigationDestination(
-                    icon: Icon(Icons.campaign_outlined),
-                    selectedIcon: Icon(Icons.campaign),
-                    label: 'Show',
-                  ),
-                  NavigationDestination(
-                    icon: Icon(Icons.messenger_outline_outlined),
-                    selectedIcon: Icon(Icons.messenger),
-                    label: 'Ask',
-                  ),
-                ],
-              ),
-            ),
-          )),
+          opacity: (_showBottomBar) ? 1 : 0,
+          child: (_showBottomBar)
+              ? NavigationBar(
+                  labelBehavior:
+                      NavigationDestinationLabelBehavior.onlyShowSelected,
+                  selectedIndex: _currentIndex,
+                  onDestinationSelected: (index) {
+                    setState(() {
+                      _currentIndex = index;
+                    });
+                  },
+                  destinations: const [
+                    NavigationDestination(
+                      icon: Icon(Icons.bar_chart_outlined),
+                      selectedIcon: Icon(Icons.bar_chart),
+                      label: 'Top',
+                    ),
+                    NavigationDestination(
+                      icon: Icon(Icons.schedule_outlined),
+                      selectedIcon: Icon(Icons.schedule),
+                      label: 'New',
+                    ),
+                    NavigationDestination(
+                      icon: Icon(Icons.star_outline),
+                      selectedIcon: Icon(Icons.star),
+                      label: 'Best',
+                    ),
+                    NavigationDestination(
+                      icon: Icon(Icons.campaign_outlined),
+                      selectedIcon: Icon(Icons.campaign),
+                      label: 'Show',
+                    ),
+                    NavigationDestination(
+                      icon: Icon(Icons.messenger_outline_outlined),
+                      selectedIcon: Icon(Icons.messenger),
+                      label: 'Ask',
+                    ),
+                  ],
+                )
+              : null),
     );
   }
 }
