@@ -97,7 +97,7 @@ class InfoWithButtons extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
-              height: 40,
+              height: 38,
               child: TextButton(
                 onLongPress: () {
                   Share.share('https://news.ycombinator.com/item?id=' +
@@ -107,59 +107,55 @@ class InfoWithButtons extends StatelessWidget {
                   launchBrowser('https://news.ycombinator.com/item?id=' +
                       story.storyId.toString());
                 },
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: story.commentsCount != 0 ? 7 : 0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.comment_outlined,
-                        size: 21,
-                        color: story.lido!
-                            ? Theme.of(context).disabledColor.withOpacity(0.2)
-                            : Theme.of(context).colorScheme.onSecondary,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.mode_comment_outlined,
+                      size: 20,
+                      color: story.lido!
+                          ? Theme.of(context).disabledColor.withOpacity(0.2)
+                          : Theme.of(context).colorScheme.onSecondary,
+                    ),
+                    Visibility(
+                      visible: story.commentsCount == null,
+                      child: const SizedBox(
+                        width: 8,
                       ),
-                      Visibility(
-                        visible: story.commentsCount == null,
-                        child: const SizedBox(
-                          width: 10,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 1),
-                        child: Visibility(
-                          visible: story.commentsCount != null,
-                          maintainState: true,
-                          child: story.commentsCount != 0
-                              ? Text('  ' + story.commentsCount.toString(),
-                                  style: TextStyle(
-                                    fontSize: 13.5,
-                                    fontWeight: FontWeight.w400,
-                                    color: story.lido!
-                                        ? Theme.of(context)
-                                            .disabledColor
-                                            .withOpacity(0.2)
-                                        : Theme.of(context)
-                                            .colorScheme
-                                            .onSecondary,
-                                  ))
-                              : const SizedBox.shrink(),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Visibility(
+                      visible: story.commentsCount != null,
+                      maintainState: true,
+                      child: story.commentsCount != 0
+                          ? Text('  ' + story.commentsCount.toString(),
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: story.lido!
+                                    ? Theme.of(context)
+                                        .disabledColor
+                                        .withOpacity(0.2)
+                                    : Theme.of(context)
+                                        .colorScheme
+                                        .onSecondary,
+                              ))
+                          : const SizedBox.shrink(),
+                    ),
+                  ],
                 ),
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
+                  primary: Theme.of(context).cardTheme.color,
+                  onPrimary:
+                  Theme.of(context).textTheme.headline6!.color!.withOpacity(0.8),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25.0),
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
               ),
             ),
             const SizedBox(
-              width: 10,
+              width: 16,
             ),
           ],
         ),

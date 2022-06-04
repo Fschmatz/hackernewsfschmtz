@@ -128,27 +128,30 @@ class Loading extends StatelessWidget {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   SizedBox(
-                                    height: 40,
+                                    height: 38,
                                     child: TextButton(
                                       onPressed: () {},
                                       child: Icon(
-                                        Icons.comment_outlined,
-                                        size: 21,
+                                        Icons.mode_comment_outlined,
+                                        size: 20,
                                         color: Theme.of(context)
                                             .colorScheme.onSecondary,
                                       ),
                                       style: ElevatedButton.styleFrom(
                                         elevation: 0,
+                                        primary:
+                                            Theme.of(context).cardTheme.color,
+                                        onPrimary:
+                                            Theme.of(context).colorScheme.primary,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(25.0),
+                                              BorderRadius.circular(8.0),
                                         ),
                                       ),
                                     ),
                                   ),
-
                                   const SizedBox(
-                                    width: 10,
+                                    width: 16,
                                   ),
                                 ],
                               ),
