@@ -1,141 +1,141 @@
 class AppDetails{
 
-  static String appVersion = "4.2.10";
+  static String appVersion = "4.2.11";
   static String appName = "Hacker News Fschmatz";
   static String repositoryLink = 'https://github.com/Fschmatz/hackernewsfschmtz';
 
   static String changelogCurrent = '''
-4.2.10
-- API Changes
-- Hold to Share
-- Bug Fixes
-- Added System Theme
-- Flutter 3 Update
+4.2.11
+- API changes
+- Hold to share
+- Bug fixes
+- Added system theme
+- Flutter 3
 ''';
 
   static String changelogsOld = '''
 4.1.7
-- Material You NavBar
-- Hide NavBar
-- Dart Lints
-- Null Safety
-- SnackBar with Retry
+- Material You navbar
+- Hide navbar
+- Dart lints
+- Null safety
+- Snackbar with retry
 
 4.0.0
-- Hide AppBar
-- Added NavBar
-- Changed Internal Logic
-- Small Fixes
+- Hide appbar
+- Added navbar
+- Changed internal logic
+- Small fixes
 
 3.5.0
-- Swipe Down to Refresh
-- Hold Comments Button to Share the Url of the Comments Page
-- Small UI Changes
+- Swipe down to refresh
+- Hold comments button to share the url of the comments page
+- Small UI changes
 
 3.4.2
-- Small Fixes
-- Stack on Home
+- Small fixes
+- Stack on home
 
 3.3.5
-- Small UI Changes
-- Formatted Url
-- New Settings Page
+- Small UI changes
+- Formatted url
+- New settings page
 
 3.3.0
-- Hoping the Problem with Duplicate Stories has been Dealt
-- Removed Cards from ListView
+- Hoping the problem with duplicate stories has been dealt
+- Removed cards from listview
     
 3.2.5
-- UI Changes
-- Small Fixes
+- UI changes
+- Small fixes
 
 3.1.1
-- Bug Fix
+- Bug fix
 
 3.1.0
-- Small UI Changes
-- Small Fixes
+- Small UI changes
+- Small fixes
 
 3.0.1
-- Small Changes
+- Small changes
 
 3.0.0
-- Added New Stories Page
-- Added Best Stories Page
-- Added Ask HN Stories Page
-- Added Show HN Stories Page
-- Small UI Changes
+- Added new stories page
+- Added best stories page
+- Added ask hn stories page
+- Added show hn stories page
+- Small UI changes
 
 2.2.2
-- HotFix
+- Hotfix
 
 2.2.1
-- Changed Timers to Functions to end cases of double articles
-- Small UI Changes  
+- Changed timers to functions to end cases of double articles
+- Small UI changes  
 
 2.1.0
-- Removed Timers
-- Small Changes
+- Removed timers
+- Small changes
 
 2.0.0
-- Internal Logic Changes
-- Even More UI Changes
+- Internal logic changes
+- Even more UI changes
 
 1.9.1
-- More UI Changes
+- More UI changes
 
 1.9.0
-- UI Changes
-- Small Fixes
+- UI changes
+- Small fixes
 
 1.8.2
-- Fix Share Bug
+- Fix share bug
 
 1.8.1
-- New Story Card(Again!)
-- Small Fixes
+- New story card(again!)
+- Small fixes
 
 1.8.0
-- Added SingleChildScrollView (Scrolling Improvements)
-- Small Fixes
+- Added singlechildscrollview (scrolling improvements)
+- Small fixes
 
 1.7.1
 - Fixes
 
 1.7.0
-- Internal Logic Changes
-- Small Fixes
-- Changed Chrome Custom Tabs for Url Launcher
+- Internal logic changes
+- Small fixes
+- Changed chrome custom tabs for url launcher
 
 1.6.4
-- ContainerStory separated and Organized
+- Containerstory separated and organized
 
 1.6.3
-- Small Fixes
+- Small fixes
 
 1.6.2
-- Small Fixes
-- Small Colors Changes Read/Unread
+- Small fixes
+- Small colors changes read/unread
 
 1.6.1
 - Fixes
-- StatefulWidget for Story
+- Statefulwidget for story
 
 1.6.0
-- Mark as Read
-- Database Read (Only 40 Rows)
+- Mark as read
+- Database read (only 40 rows)
 
 1.5.1
 - Fixes
 
 1.5.0
-- App in English
-- Added TimeAgo
+- App in english
+- Added timeago
 - Fixes
 
 1.4.5
-- Score on Home
-- Number of Comments on Home
+- Score on home
+- Number of comments on home
 - Fixes
 
 1.4.4
@@ -144,66 +144,66 @@ class AppDetails{
 
 1.4.3
 - Fixes
-- Ask HN now opens the Comments
+- Ask hn now opens the comments
 
 1.4.2
-- Hide AppBar
+- Hide appbar
 - Fixes
 
 1.4.1
-- StatelessWidget for Story
-- Removed BouncePhysics
+- Statelesswidget for story
+- Removed bouncephysics
 
 1.4.0
-- LazyLoadScrollView implemented
-- Removed ScrollListener
-  (Note: Flutter has performance problems,
-  with ScrollListener in Listview.builder / separated
-  and use of Physics)
+- Lazyloadscrollview implemented
+- Removed scrolllistener
+  (note: flutter has performance problems,
+  with scrolllistener in listview.bUIlder / separated
+  and use of physics)
   
 1.3.4
-- Fixed BottomLoading animation
-- Bouncing Physics
+- Fixed bottomloading animation
+- Bouncing physics
 
 1.3.3
-- Timer Secondary getTopStories
+- Timer secondary gettopstories
 - Fixes
 
 1.3.2
-- Implemented Secondary getTopStories 
-- Removed TapDown
+- Implemented secondary gettopstories 
+- Removed tapdown
 
 1.3.1
-- Bottom ProgressBar for Scroll
+- Bottom progressbar for scroll
 
 1.3.0
 - Home classes separated
-- Refresh Dialog Loading
-- Removed Gesture Detector for Performance
+- Refresh dialog loading
+- Removed gesture detector for performance
 
 1.2.1
-- Fixed Null link error
+- Fixed null link error
 
 1.2.0
-- SkeletonAnimation
+- Skeleton animation
 - Fixes
 
 1.1.1
 - Fixes
-- AnimatedSwitcher
+- Animatedswitcher
 
 1.1.0
-- TopBar Hide / Unhide
+- Topbar hide / unhide
 - Fixes
-- New Icon
+- New icon
 
 1.0.0
-- Layout Changes
-- Card Removed
+- Layout changes
+- Card removed
 - Fixes
   
 0.1.1
-- ScrollController
+- Scrollcontroller
 - Fixes
 
 0.1.0
@@ -215,31 +215,31 @@ class AppDetails{
 
 0.0.8
 - Fixes
-- Chrome Custom Tabs
+- Chrome custom tabs
 
 0.0.7
 - Fixes
-- Tests with LazyLoading
+- Tests with lazyloading
 
 0.0.6
 - Open links in the browser
 
 0.0.5
-- New Card
-- Flutter Share
+- New card
+- Flutter share
 
 0.0.4
 - Fixes
 
 0.0.3
 - Fixes
-- Add Internet to the manifest
+- Add internet to the manifest
 
 0.0.2
 - Fixes
 
 0.0.1
-- Project Start                                  
+- Project start                                  
 
       (ಠ‿ಠ)  
 ''';

@@ -152,16 +152,16 @@ class InfoWithButtons extends StatelessWidget {
                 ),
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
-                  primary: Theme.of(context).cardTheme.color,
+                  //primary: Theme.of(context).cardTheme.color,
                   onPrimary: Theme.of(context).colorScheme.primary,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
+                    borderRadius: BorderRadius.circular(25.0),
                   ),
                 ),
               ),
             ),
             const SizedBox(
-              width: 16,
+              width: 10,
             ),
           ],
         ),
