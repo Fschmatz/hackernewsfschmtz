@@ -152,8 +152,6 @@ class InfoWithButtons extends StatelessWidget {
                 ),
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
-                  //primary: Theme.of(context).cardTheme.color,
-                  onPrimary: Theme.of(context).colorScheme.primary,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25.0),
                   ),
