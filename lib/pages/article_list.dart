@@ -99,7 +99,6 @@ class _ArticleListState extends State<ArticleList> {
             },
           ),
         ));
-
       });
       final stories = responses.map((response) {
         final json = jsonDecode(response.body);
@@ -121,7 +120,6 @@ class _ArticleListState extends State<ArticleList> {
           borderRadius: BorderRadius.circular(10),
         ),
       ));
-
     }
     loadingStoriesOnScroll.value = false;
   }
@@ -170,7 +168,12 @@ class _ArticleListState extends State<ArticleList> {
                           controller: scrollControllerAppbar,
                           physics: const AlwaysScrollableScrollPhysics(),
                           children: [
-                            ListView.builder(
+                            ListView.separated(
+                              separatorBuilder:
+                                  (BuildContext context, int index) =>
+                                      const SizedBox(
+                                height: 30,
+                              ),
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: _storiesList.length,
