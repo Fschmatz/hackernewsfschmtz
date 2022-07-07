@@ -58,13 +58,19 @@ class _ArticleListState extends State<ArticleList> {
     final response = await http.get(Uri.parse(urlPageApi)).timeout(
       const Duration(seconds: 10),
       onTimeout: () {
-        throw Get.snackbar('Error', 'Loading timeout',
-            snackPosition: SnackPosition.BOTTOM,
-            mainButton: TextButton(
-                onPressed: () {
-                  appStartFunctions;
-                },
-                child: const Text("RETRY")));
+        throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          behavior: SnackBarBehavior.floating,
+          content: const Text('Loading Error'),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          action: SnackBarAction(
+            label: 'RETRY',
+            onPressed: () {
+              appStartFunctions;
+            },
+          ),
+        ));
       },
     );
     if (response.statusCode == 200) {
@@ -80,13 +86,20 @@ class _ArticleListState extends State<ArticleList> {
       final responses = await WebService()
           .getStoriesList(_storiesIds, skipValue, takeValue)
           .timeout(const Duration(seconds: 10), onTimeout: () {
-        throw Get.snackbar('Error', 'Loading timeout',
-            snackPosition: SnackPosition.BOTTOM,
-            mainButton: TextButton(
-                onPressed: () {
-                  _populateStories(_storiesList.length, 20, false);
-                },
-                child: const Text("RETRY")));
+        throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          behavior: SnackBarBehavior.floating,
+          content: const Text('Loading Error'),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          action: SnackBarAction(
+            label: 'RETRY',
+            onPressed: () {
+              _populateStories(_storiesList.length, 20, false);
+            },
+          ),
+        ));
+
       });
       final stories = responses.map((response) {
         final json = jsonDecode(response.body);
@@ -100,11 +113,15 @@ class _ArticleListState extends State<ArticleList> {
         _storiesList.addAll(stories);
       }
     } else {
-      Get.snackbar(
-        'Error',
-        'No more stories to load',
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        behavior: SnackBarBehavior.floating,
+        content: const Text('No more stories to load'),
+        duration: const Duration(seconds: 10),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ));
+
     }
     loadingStoriesOnScroll.value = false;
   }

@@ -97,7 +97,7 @@ class InfoWithButtons extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
-              height: 38,
+              height: 40,
               child: TextButton(
                 onLongPress: () {
                   Share.share('https://news.ycombinator.com/item?id=' +

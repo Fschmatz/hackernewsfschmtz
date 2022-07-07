@@ -50,7 +50,7 @@ ThemeData dark = ThemeData(
     primaryColor: const Color(0xFF1B1B1D),
     scaffoldBackgroundColor: const Color(0xFF1B1B1D),
     colorScheme: const ColorScheme.dark(
-      primary: Color(0xfffd9961),
+      primary: Color(0xfffa9e6a),
       onSecondary: Color(0xFFCACACA),
       secondary: Color(0xfffd9961),
     ),
@@ -59,25 +59,25 @@ ThemeData dark = ThemeData(
         color: Color(0xFF1B1B1D),
        ),
     cardTheme: const CardTheme(
-      surfaceTintColor: Color(0xFF29292B),
-      color: Color(0xFF29292B),
+      surfaceTintColor: Color(0xFF29292D),
+      color: Color(0xFF29292D),
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFF272729),
     ),
-    bottomAppBarColor: const Color(0xFF242426),
+    bottomAppBarColor: const Color(0xFF242427),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       showSelectedLabels: false,
       showUnselectedLabels: true,
-      backgroundColor: Color(0xFF242426),
+      backgroundColor: Color(0xFF242427),
     ),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: const Color(0xFFF0F0F0),
       actionTextColor: Colors.orange[800],
     ),
     navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: const Color(0xFF242426),
-        indicatorColor: const Color(0xffa6633f),
+        backgroundColor: const Color(0xFF242427),
+        indicatorColor: const Color(0xffa85d35),
         iconTheme: MaterialStateProperty.all(const IconThemeData(
           color: Color(0xFFE8E7E6),
         )),

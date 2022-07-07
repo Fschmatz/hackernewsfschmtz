@@ -39,36 +39,33 @@ class _HomeState extends State<Home> {
       key: UniqueKey(),
       page: 'askstories',
     )
-  ].obs;
+  ];
 
   void refreshHome() {
-    _articlesList = [
-      ArticleList(
-        key: UniqueKey(),
-        page: 'topstories',
-      ),
-      ArticleList(
-        key: UniqueKey(),
-        page: 'newstories',
-      ),
-      ArticleList(
-        key: UniqueKey(),
-        page: 'beststories',
-      ),
-      ArticleList(
-        key: UniqueKey(),
-        page: 'showstories',
-      ),
-      ArticleList(
-        key: UniqueKey(),
-        page: 'askstories',
-      )
-    ];
-  }
-
-  @override
-  void initState() {
-    super.initState();
+    setState(() {
+      _articlesList = [
+        ArticleList(
+          key: UniqueKey(),
+          page: 'topstories',
+        ),
+        ArticleList(
+          key: UniqueKey(),
+          page: 'newstories',
+        ),
+        ArticleList(
+          key: UniqueKey(),
+          page: 'beststories',
+        ),
+        ArticleList(
+          key: UniqueKey(),
+          page: 'showstories',
+        ),
+        ArticleList(
+          key: UniqueKey(),
+          page: 'askstories',
+        )
+      ];
+    });
   }
 
   @override
@@ -97,12 +94,11 @@ class _HomeState extends State<Home> {
                     selectedIndex:
                         bottomNavigationController.currentIndex.value,
                     onDestinationSelected: (index) {
-                      bottomNavigationController.changeIndex(index);
-
-                      //Refresh page if same index
                       if (index ==
                           bottomNavigationController.currentIndex.value) {
                         refreshHome();
+                      } else {
+                        bottomNavigationController.changeIndex(index);
                       }
                     },
                     destinations: const [

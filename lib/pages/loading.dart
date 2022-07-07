@@ -125,7 +125,7 @@ class Loading extends StatelessWidget {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   SizedBox(
-                                    height: 38,
+                                    height: 40,
                                     child: TextButton(
                                       onPressed: () {},
                                       child: Padding(
