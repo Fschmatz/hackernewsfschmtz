@@ -36,7 +36,7 @@ class LidosDao {
     return await db.query(table);
   }
 
-  Future<List<Map<String, dynamic>>> queryAllStoriesLidosIds() async {
+  Future<List<Map<String, dynamic>>> queryAllReadStoriesIds() async {
     Database db = await instance.database;
     return await db.rawQuery('SELECT idTopStory FROM $table');
   }

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../util/app_details.dart';
 
-class AppInfoPage extends StatelessWidget {
-  const AppInfoPage({Key? key}) : super(key: key);
+class AppInfo extends StatelessWidget {
+  const AppInfo({Key? key}) : super(key: key);
 
   _launchGithub() {
-    String url = AppDetails.repositoryLink;
-    launch(url);
+    launchUrl(
+      Uri.parse(AppDetails.repositoryLink),
+      mode: LaunchMode.externalApplication,
+    );
   }
 
   @override

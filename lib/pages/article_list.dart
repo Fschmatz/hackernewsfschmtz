@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 import 'package:hackernewsfschmtz/classes/web_service.dart';
-import 'package:hackernewsfschmtz/configs/settings_page.dart';
+import 'package:hackernewsfschmtz/configs/settings.dart';
 import 'package:hackernewsfschmtz/db/lidos_dao.dart';
 import 'package:hackernewsfschmtz/widgets/container_story.dart';
 import 'package:hackernewsfschmtz/pages/loading.dart';
@@ -21,12 +22,12 @@ class ArticleList extends StatefulWidget {
 }
 
 class _ArticleListState extends State<ArticleList> {
-  List<dynamic> _storiesIds = [];
-  List<Story> _storiesList = [];
-  bool loading = true;
-  bool loadingStoriesOnScroll = true;
-  bool getTopStoriesSecondaryIsDone = false;
   String urlPageApi = '';
+  List<dynamic> _storiesIds = [].obs;
+  final RxList _storiesList = [].obs;
+  RxBool loading = true.obs;
+  RxBool loadingStoriesOnScroll = true.obs;
+  RxBool getTopStoriesSecondaryIsDone = false.obs;
   List<int> listIdsRead = [];
   final scrollControllerAppbar = ScrollController();
 
@@ -39,10 +40,8 @@ class _ArticleListState extends State<ArticleList> {
   }
 
   Future<void> appStartFunctions([bool showAnimation = false]) async {
-    if(showAnimation){
-      setState((){
-        loading = true;
-      });
+    if (showAnimation) {
+      loading.value = true;
     }
     await _getStoryIdsRead();
     await _getStoriesIds();
@@ -59,19 +58,13 @@ class _ArticleListState extends State<ArticleList> {
     final response = await http.get(Uri.parse(urlPageApi)).timeout(
       const Duration(seconds: 10),
       onTimeout: () {
-        throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          behavior: SnackBarBehavior.floating,
-          content: const Text('Loading Error'),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          action: SnackBarAction(
-            label: 'RETRY',
-            onPressed: () {
-              appStartFunctions;
-            },
-          ),
-        ));
+        throw Get.snackbar('Error', 'Loading timeout',
+            snackPosition: SnackPosition.BOTTOM,
+            mainButton: TextButton(
+                onPressed: () {
+                  appStartFunctions;
+                },
+                child: const Text("RETRY")));
       },
     );
     if (response.statusCode == 200) {
@@ -81,26 +74,19 @@ class _ArticleListState extends State<ArticleList> {
 
   Future<void> _populateStories(
       int skipValue, int takeValue, bool start) async {
-
-    loadingStoriesOnScroll = true;
+    loadingStoriesOnScroll.value = true;
 
     if (_storiesList.length < _storiesIds.length) {
       final responses = await WebService()
           .getStoriesList(_storiesIds, skipValue, takeValue)
           .timeout(const Duration(seconds: 10), onTimeout: () {
-        throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          behavior: SnackBarBehavior.floating,
-          content: const Text('Loading Error'),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          action: SnackBarAction(
-            label: 'RETRY',
-            onPressed: () {
-              _populateStories(_storiesList.length, 20, false);
-            },
-          ),
-        ));
+        throw Get.snackbar('Error', 'Loading timeout',
+            snackPosition: SnackPosition.BOTTOM,
+            mainButton: TextButton(
+                onPressed: () {
+                  _populateStories(_storiesList.length, 20, false);
+                },
+                child: const Text("RETRY")));
       });
       final stories = responses.map((response) {
         final json = jsonDecode(response.body);
@@ -108,31 +94,24 @@ class _ArticleListState extends State<ArticleList> {
       }).toList();
 
       if (start) {
-        setState(() {
-          _storiesList = stories;
-          loading = false;
-        });
+        _storiesList.addAll(stories);
+        loading.value = false;
       } else {
-        setState(() {
-          _storiesList += stories;
-        });
+        _storiesList.addAll(stories);
       }
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        behavior: SnackBarBehavior.floating,
-        content: const Text('No more stories to load'),
-        duration: const Duration(seconds: 10),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-      ));
+      Get.snackbar(
+        'Error',
+        'No more stories to load',
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
-    loadingStoriesOnScroll = false;
+    loadingStoriesOnScroll.value = false;
   }
 
   Future<void> _getStoryIdsRead() async {
     final dbLidos = LidosDao.instance;
-    var resp = await dbLidos.queryAllStoriesLidosIds();
+    var resp = await dbLidos.queryAllReadStoriesIds();
     for (int i = 0; i < resp.length; i++) {
       listIdsRead.add(resp[i]['idTopStory']);
     }
@@ -151,71 +130,70 @@ class _ArticleListState extends State<ArticleList> {
                   Icons.settings_outlined,
                 ),
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => const SettingsPage(),
-                      ));
+                  Get.to(() => const Settings());
                 }),
           ],
         ),
-        body: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 600),
-          child: loading
-              ? Loading(
-                  key: UniqueKey(),
-                )
-              : LazyLoadScrollView(
-                  onEndOfPage: () =>
-                      _populateStories(_storiesList.length, 20, false),
-                  isLoading: loadingStoriesOnScroll,
-                  scrollOffset: 500,
-                  child: RefreshIndicator(
-                      onRefresh: () => appStartFunctions(true),
-                      color: Theme.of(context).colorScheme.primary,
-                      child: ListView(
-                        controller: scrollControllerAppbar,
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        children: [
-                          ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: _storiesList.length,
-                            itemBuilder: (context, index) {
-                              return ContainerStory(
-                                  key: UniqueKey(),
-                                  contador: index,
-                                  refreshIdLidos: _getStoryIdsRead,
-                                  story: Story(
-                                    storyId: _storiesList[index].storyId,
-                                    title: _storiesList[index].title,
-                                    url: _storiesList[index].url,
-                                    score: _storiesList[index].score,
-                                    commentsCount:
-                                        _storiesList[index].commentsCount ?? 0,
-                                    time: _storiesList[index].time,
-                                    lido: listIdsRead.contains(
-                                            _storiesList[index].storyId)
-                                        ? true
-                                        : false,
-                                  ));
-                            },
-                          ),
-                          LinearProgressIndicator(
-                            minHeight: 5,
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                                Theme.of(context)
-                                    .colorScheme
-                                    .primary
-                                    .withOpacity(0.8)),
-                            backgroundColor: Theme.of(context)
-                                .colorScheme
-                                .primary
-                                .withOpacity(0.3),
-                          )
-                        ],
-                      )),
-                ),
+        body: Obx(
+          () => AnimatedSwitcher(
+            duration: const Duration(milliseconds: 600),
+            child: loading.value
+                ? Loading(
+                    key: UniqueKey(),
+                  )
+                : LazyLoadScrollView(
+                    onEndOfPage: () =>
+                        _populateStories(_storiesList.length, 20, false),
+                    isLoading: loadingStoriesOnScroll.value,
+                    scrollOffset: 500,
+                    child: RefreshIndicator(
+                        onRefresh: () => appStartFunctions(true),
+                        color: Theme.of(context).colorScheme.primary,
+                        child: ListView(
+                          controller: scrollControllerAppbar,
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          children: [
+                            ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: _storiesList.length,
+                              itemBuilder: (context, index) {
+                                return ContainerStory(
+                                    key: UniqueKey(),
+                                    contador: index,
+                                    refreshIdLidos: _getStoryIdsRead,
+                                    story: Story(
+                                      storyId: _storiesList[index].storyId,
+                                      title: _storiesList[index].title,
+                                      url: _storiesList[index].url,
+                                      score: _storiesList[index].score,
+                                      commentsCount:
+                                          _storiesList[index].commentsCount ??
+                                              0,
+                                      time: _storiesList[index].time,
+                                      lido: listIdsRead.contains(
+                                              _storiesList[index].storyId)
+                                          ? true
+                                          : false,
+                                    ));
+                              },
+                            ),
+                            LinearProgressIndicator(
+                              minHeight: 5,
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                  Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withOpacity(0.8)),
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .primary
+                                  .withOpacity(0.3),
+                            )
+                          ],
+                        )),
+                  ),
+          ),
         ));
   }
 }

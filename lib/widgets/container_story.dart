@@ -21,21 +21,20 @@ class ContainerStory extends StatefulWidget {
 
 class _ContainerStoryState extends State<ContainerStory> {
 
-  void _markRead(int idStory) async {
+  void _markRead() async {
     final dbLidos = LidosDao.instance;
     Map<String, dynamic> row = {
-      LidosDao.columnidTopStory: idStory,
+      LidosDao.columnidTopStory: widget.story.storyId!,
     };
     final id = await dbLidos.insert(row);
   }
 
   //URL LAUNCHER
   _launchBrowser(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Error';
-    }
+    launchUrl(
+      Uri.parse(url),
+      mode: LaunchMode.externalApplication,
+    );
   }
 
   @override
@@ -47,7 +46,7 @@ class _ContainerStoryState extends State<ContainerStory> {
 
           //DB
           if (!widget.story.lido!) {
-            _markRead(widget.story.storyId!);
+            _markRead();
             widget.refreshIdLidos();
           }
         } else {
@@ -57,7 +56,7 @@ class _ContainerStoryState extends State<ContainerStory> {
 
           //DB
           if (!widget.story.lido!) {
-            _markRead(widget.story.storyId!);
+            _markRead();
             widget.refreshIdLidos();
           }
         }
@@ -75,11 +74,9 @@ class _ContainerStoryState extends State<ContainerStory> {
         padding: EdgeInsets.fromLTRB(5, widget.contador == 0 ? 5 : 20, 0, 22),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-
           children: [
             TitleWithUrl(
               story: widget.story,
-              markRead: _markRead,
               refreshIdLidos: widget.refreshIdLidos,
               key: UniqueKey(),
             ),

@@ -16,20 +16,14 @@ ThemeData light = ThemeData(
     appBarTheme: const AppBarTheme(
         surfaceTintColor: Color(0xFFFFFFFF),
         color: Color(0xFFFFFFFF),
-        elevation: 0,
-        iconTheme: IconThemeData(color: Color(0xFF000000)),
-        titleTextStyle: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.w400,
-            color: Color(0xFF000000))),
+       ),
     cardTheme: const CardTheme(
+      surfaceTintColor: Color(0xFFF4F4F4),
       color: Color(0xFFF4F4F4),
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFFF8F8FB),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(28)),
-      ),
+
     ),
     bottomAppBarColor: const Color(0xFFE9E9E9),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -53,43 +47,36 @@ ThemeData dark = ThemeData(
       titleMedium: TextStyle(fontWeight: FontWeight.w400),
     ),
     brightness: Brightness.dark,
-    primaryColor: const Color(0xFF1A1B1F),
-    scaffoldBackgroundColor: const Color(0xFF1A1B1F),
+    primaryColor: const Color(0xFF1B1B1D),
+    scaffoldBackgroundColor: const Color(0xFF1B1B1D),
     colorScheme: const ColorScheme.dark(
       primary: Color(0xfffd9961),
       onSecondary: Color(0xFFCACACA),
       secondary: Color(0xfffd9961),
     ),
     appBarTheme: const AppBarTheme(
-        surfaceTintColor: Color(0xFF1A1B1F),
-        color: Color(0xFF1A1B1F),
-        elevation: 0,
-        iconTheme: IconThemeData(color: Color(0xFFFFFFFF)),
-        titleTextStyle: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.w400,
-            color: Color(0xFFFFFFFF))),
+        surfaceTintColor: Color(0xFF1B1B1D),
+        color: Color(0xFF1B1B1D),
+       ),
     cardTheme: const CardTheme(
-      color: Color(0xFF292A30),
+      surfaceTintColor: Color(0xFF29292B),
+      color: Color(0xFF29292B),
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFF272729),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(28)),
-      ),
     ),
-    bottomAppBarColor: const Color(0xFF232429),
+    bottomAppBarColor: const Color(0xFF242426),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       showSelectedLabels: false,
       showUnselectedLabels: true,
-      backgroundColor: Color(0xFF232429),
+      backgroundColor: Color(0xFF242426),
     ),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: const Color(0xFFF0F0F0),
       actionTextColor: Colors.orange[800],
     ),
     navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: const Color(0xFF232429),
+        backgroundColor: const Color(0xFF242426),
         indicatorColor: const Color(0xffa6633f),
         iconTheme: MaterialStateProperty.all(const IconThemeData(
           color: Color(0xFFE8E7E6),

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hackernewsfschmtz/classes/story.dart';
 
 class TitleWithUrl extends StatelessWidget {
+
   Story story;
-  Function(int) markRead;
   Function() refreshIdLidos;
 
-  TitleWithUrl({required Key key, required this.story, required this.markRead, required this.refreshIdLidos})
+  TitleWithUrl({required Key key, required this.story, required this.refreshIdLidos})
       : super(key: key);
 
   @override
@@ -44,7 +44,7 @@ class TitleWithUrl extends StatelessWidget {
                     fontSize: 12,
                     color: story.lido!
                         ? Theme.of(context).colorScheme.primary.withOpacity(0.3)
-                        : Theme.of(context).colorScheme.primary.withOpacity(0.9))),
+                        : Theme.of(context).colorScheme.primary)),
           ),
           const SizedBox(
             height: 12,

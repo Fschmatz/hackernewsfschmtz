@@ -107,41 +107,44 @@ class InfoWithButtons extends StatelessWidget {
                   launchBrowser('https://news.ycombinator.com/item?id=' +
                       story.storyId.toString());
                 },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.mode_comment_outlined,
-                      size: 20,
-                      color: story.lido!
-                          ? Theme.of(context).disabledColor.withOpacity(0.2)
-                          : Theme.of(context).colorScheme.onSecondary,
-                    ),
-                    Visibility(
-                      visible: story.commentsCount == null,
-                      child: const SizedBox(
-                        width: 8,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.mode_comment_outlined,
+                        size: 18,
+                        color: story.lido!
+                            ? Theme.of(context).disabledColor.withOpacity(0.2)
+                            : Theme.of(context).colorScheme.onSecondary,
                       ),
-                    ),
-                    Visibility(
-                      visible: story.commentsCount != null,
-                      maintainState: true,
-                      child: story.commentsCount != 0
-                          ? Text('  ' + story.commentsCount.toString(),
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: story.lido!
-                                    ? Theme.of(context)
-                                        .disabledColor
-                                        .withOpacity(0.2)
-                                    : Theme.of(context)
-                                        .colorScheme
-                                        .onSecondary,
-                              ))
-                          : const SizedBox.shrink(),
-                    ),
-                  ],
+                      Visibility(
+                        visible: story.commentsCount == null,
+                        child: const SizedBox(
+                          width: 8,
+                        ),
+                      ),
+                      Visibility(
+                        visible: story.commentsCount != null,
+                        maintainState: true,
+                        child: story.commentsCount != 0
+                            ? Text('  ' + story.commentsCount.toString(),
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: story.lido!
+                                      ? Theme.of(context)
+                                          .disabledColor
+                                          .withOpacity(0.2)
+                                      : Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary,
+                                ))
+                            : const SizedBox.shrink(),
+                      ),
+                    ],
+                  ),
                 ),
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
@@ -149,7 +152,7 @@ class InfoWithButtons extends StatelessWidget {
                   onPrimary:
                   Theme.of(context).textTheme.headline6!.color!.withOpacity(0.8),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(25.0),
                   ),
                 ),
               ),

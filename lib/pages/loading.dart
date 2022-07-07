@@ -44,21 +44,18 @@ class Loading extends StatelessWidget {
                               const SizedBox(
                                 height: 6,
                               ),
-                              Visibility(
-                                visible: index % 2 == 0,
-                                child: SkeletonAnimation(
-                                  key: UniqueKey(),
-                                  gradientColor: Colors.white38,
-                                  shimmerColor: Colors.grey.withOpacity(0.4),
-                                  shimmerDuration: 3980,
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: const Text("   ",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                      )),
-                                ),
+                              SkeletonAnimation(
+                                key: UniqueKey(),
+                                gradientColor: Colors.white38,
+                                shimmerColor: Colors.grey.withOpacity(0.4),
+                                shimmerDuration: 3980,
+                                borderRadius: BorderRadius.circular(8),
+                                child: const Text("   ",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                    )),
                               ),
-                              const SizedBox(
+                              /*const SizedBox(
                                 height: 8,
                               ),
                               SkeletonAnimation(
@@ -72,7 +69,7 @@ class Loading extends StatelessWidget {
                                     style: TextStyle(
                                         fontSize: 12,
                                         color: Theme.of(context).hintColor)),
-                              ),
+                              ),*/
                             ],
                           ),
                         ),
@@ -131,11 +128,14 @@ class Loading extends StatelessWidget {
                                     height: 38,
                                     child: TextButton(
                                       onPressed: () {},
-                                      child: Icon(
-                                        Icons.mode_comment_outlined,
-                                        size: 20,
-                                        color: Theme.of(context)
-                                            .colorScheme.onSecondary,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                                        child: Icon(
+                                          Icons.mode_comment_outlined,
+                                          size: 18,
+                                          color: Theme.of(context)
+                                              .colorScheme.onSecondary,
+                                        ),
                                       ),
                                       style: ElevatedButton.styleFrom(
                                         elevation: 0,
@@ -145,7 +145,7 @@ class Loading extends StatelessWidget {
                                             Theme.of(context).colorScheme.primary,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(8.0),
+                                              BorderRadius.circular(25.0),
                                         ),
                                       ),
                                     ),

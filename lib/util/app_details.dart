@@ -1,19 +1,24 @@
 class AppDetails{
 
-  static String appVersion = "4.2.11";
+  static String appVersion = "4.3.0";
   static String appName = "Hacker News Fschmatz";
   static String repositoryLink = 'https://github.com/Fschmatz/hackernewsfschmtz';
 
   static String changelogCurrent = '''
+4.3.0
+- Get State Management
+- Bug fixes
+- Small UI changes
+''';
+
+  static String changelogsOld = '''
 4.2.11
 - API changes
 - Hold to share
 - Bug fixes
 - Added system theme
 - Flutter 3
-''';
 
-  static String changelogsOld = '''
 4.1.7
 - Material You navbar
 - Hide navbar

@@ -1,18 +1,19 @@
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:hackernewsfschmtz/configs/app_info_page.dart';
-import 'package:hackernewsfschmtz/configs/changelog_page.dart';
+import 'package:get/get.dart';
+import 'package:hackernewsfschmtz/configs/app_info.dart';
+import 'package:hackernewsfschmtz/configs/changelog.dart';
 import 'package:hackernewsfschmtz/util/dialog_select_theme.dart';
 import '../util/app_details.dart';
 
-class SettingsPage extends StatefulWidget {
+class Settings extends StatefulWidget {
   @override
-  _SettingsPageState createState() => _SettingsPageState();
+  _SettingsState createState() => _SettingsState();
 
-  const SettingsPage({Key? key}) : super(key: key);
+  const Settings({Key? key}) : super(key: key);
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _SettingsState extends State<Settings> {
   @override
   void initState() {
     super.initState();
@@ -62,11 +63,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       color: Theme.of(context).colorScheme.primary)),
             ),
             ListTile(
-              onTap: () => showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return const DialogSelectTheme();
-                  }),
+              onTap: () => Get.dialog(const DialogSelectTheme()),
               leading: const Icon(Icons.brightness_6_outlined),
               title: const Text(
                 "App theme",
@@ -90,11 +87,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 "App info",
               ),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => const AppInfoPage(),
-                    ));
+                Get.to(() => const AppInfo());
               },
             ),
             ListTile(
@@ -105,11 +98,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 "Changelog",
               ),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => const ChangelogPage(),
-                    ));
+                Get.to(() => const Changelog());
               },
             ),
           ],
