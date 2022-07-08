@@ -50,7 +50,7 @@ ThemeData dark = ThemeData(
     primaryColor: const Color(0xFF1B1B1D),
     scaffoldBackgroundColor: const Color(0xFF1B1B1D),
     colorScheme: const ColorScheme.dark(
-      primary: Color(0xfffaa575),
+      primary: Color(0xffefa57c),
       onSecondary: Color(0xFFCACACA),
       secondary: Color(0xfffd9961),
     ),
@@ -59,8 +59,8 @@ ThemeData dark = ThemeData(
         color: Color(0xFF1B1B1D),
        ),
     cardTheme: const CardTheme(
-      surfaceTintColor: Color(0xFF2A2A2D),
-      color: Color(0xFF2A2A2D),
+      surfaceTintColor: Color(0xFF2C2C2F),
+      color: Color(0xFF2C2C2F),
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFF272729),

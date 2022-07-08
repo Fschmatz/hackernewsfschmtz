@@ -1,14 +1,15 @@
 class AppDetails{
 
-  static String appVersion = "4.3.0";
+  static String appVersion = "4.3.1";
   static String appName = "Hacker News Fschmatz";
   static String repositoryLink = 'https://github.com/Fschmatz/hackernewsfschmtz';
 
   static String changelogCurrent = '''
-4.3.0
+4.3.1
 - Get State Management
 - Bug fixes
 - Small UI changes
+- Removed Get from article list (conflicts with lazy load)
 ''';
 
   static String changelogsOld = '''

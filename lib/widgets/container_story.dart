@@ -71,7 +71,7 @@ class _ContainerStoryState extends State<ContainerStory> {
         }
       },
       child: Padding(
-        padding: const EdgeInsets.only(left: 5),
+        padding: EdgeInsets.only(left: 5, top: (widget.contador == 0) ? 0 : 14 ,bottom: 17),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
