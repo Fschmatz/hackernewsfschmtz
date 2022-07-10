@@ -14,8 +14,19 @@ class InfoWithButtons extends StatelessWidget {
       required this.launchBrowser})
       : super(key: key);
 
+
+
   @override
   Widget build(BuildContext context) {
+
+    String formattedUrl = " ";
+
+    if(story.url != null) {
+      formattedUrl = Uri
+          .parse(story.url!)
+          .host;
+    }
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -24,6 +35,20 @@ class InfoWithButtons extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              //Can be null
+              Visibility(
+                visible: story.url != null,
+                child: Text(formattedUrl,
+                    maxLines: 2,
+                    style: TextStyle(
+                        fontSize: 12,
+                        color: story.lido!
+                            ? Theme.of(context).colorScheme.primary.withOpacity(0.3)
+                            : Theme.of(context).colorScheme.primary)),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

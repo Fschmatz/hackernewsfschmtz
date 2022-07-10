@@ -11,43 +11,21 @@ class TitleWithUrl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String formattedUrl = " ";
-
-    if(story.url != null) {
-      formattedUrl = Uri
-          .parse(story.url!)
-          .host;
-    }
 
     return Container(
       padding: const EdgeInsets.fromLTRB(13, 0, 18, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(story.title!,
+          Text(
+              story.title!,
               style: TextStyle(
                   fontSize: 16,
                   color: story.lido!
                       ? Theme.of(context).disabledColor
                       : Theme.of(context).textTheme.headline6!.color)),
-
           const SizedBox(
-            height: 10,
-          ),
-
-          //Can be null
-          Visibility(
-            visible: story.url != null,
-            child: Text(formattedUrl,
-                maxLines: 2,
-                style: TextStyle(
-                    fontSize: 12,
-                    color: story.lido!
-                        ? Theme.of(context).colorScheme.primary.withOpacity(0.3)
-                        : Theme.of(context).colorScheme.primary)),
-          ),
-          const SizedBox(
-            height: 12,
+            height: 5,
           ),
         ],
       ),

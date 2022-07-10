@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 
 ThemeData light = ThemeData(
     useMaterial3: true,
-    textTheme: const TextTheme(
-      titleMedium: TextStyle(fontWeight: FontWeight.w400),
-    ),
     brightness: Brightness.light,
     primaryColor: const Color(0xFFFFFFFF),
     scaffoldBackgroundColor: const Color(0xFFFFFFFF),
@@ -25,15 +22,15 @@ ThemeData light = ThemeData(
       backgroundColor: Color(0xFFF8F8FB),
 
     ),
-    bottomAppBarColor: const Color(0xFFE9E9E9),
+    bottomAppBarColor: const Color(0xFFF2F0F0),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: Color(0xFFE9E9E9),
+      backgroundColor: Color(0xFFF2F0F0),
     ),
     snackBarTheme: const SnackBarThemeData(
       actionTextColor: Color(0xfffd9961),
     ),
     navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: const Color(0xFFE9E9E9),
+        backgroundColor: const Color(0xFFF2F0F0),
         indicatorColor: Colors.orange.shade800,
         iconTheme: MaterialStateProperty.all(const IconThemeData(
           color: Color(0xFF050505),
@@ -43,9 +40,6 @@ ThemeData light = ThemeData(
 
 ThemeData dark = ThemeData(
     useMaterial3: true,
-    textTheme: const TextTheme(
-      titleMedium: TextStyle(fontWeight: FontWeight.w400),
-    ),
     brightness: Brightness.dark,
     primaryColor: const Color(0xFF1B1B1D),
     scaffoldBackgroundColor: const Color(0xFF1B1B1D),
@@ -59,8 +53,8 @@ ThemeData dark = ThemeData(
         color: Color(0xFF1B1B1D),
        ),
     cardTheme: const CardTheme(
-      surfaceTintColor: Color(0xFF2C2C2F),
-      color: Color(0xFF2C2C2F),
+      surfaceTintColor: Color(0xFF2A2A2D),
+      color: Color(0xFF2A2A2D),
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFF272729),
