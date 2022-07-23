@@ -59,18 +59,18 @@ ThemeData dark = ThemeData(
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFF272729),
     ),
-    bottomAppBarColor: const Color(0xFF242427),
+    bottomAppBarColor: const Color(0xFF242426),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       showSelectedLabels: false,
       showUnselectedLabels: true,
-      backgroundColor: Color(0xFF242427),
+      backgroundColor: Color(0xFF242426),
     ),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: const Color(0xFFF0F0F0),
       actionTextColor: Colors.orange[800],
     ),
     navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: const Color(0xFF242427),
+        backgroundColor: const Color(0xFF242426),
         indicatorColor: const Color(0xffa85d35),
         iconTheme: MaterialStateProperty.all(const IconThemeData(
           color: Color(0xFFE8E7E6),

@@ -125,7 +125,7 @@ class Loading extends StatelessWidget {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   SizedBox(
-                                    height: 40,
+                                    height: 38,
                                     child: TextButton(
                                       onPressed: () {},
                                       child: Padding(
@@ -133,19 +133,16 @@ class Loading extends StatelessWidget {
                                         child: Icon(
                                           Icons.mode_comment_outlined,
                                           size: 18,
-                                          color: Theme.of(context)
-                                              .colorScheme.onSecondary,
+                                          color: Theme.of(context).colorScheme.primary,
                                         ),
                                       ),
                                       style: ElevatedButton.styleFrom(
                                         elevation: 0,
-                                        primary:
-                                            Theme.of(context).cardTheme.color,
-                                        onPrimary:
-                                            Theme.of(context).colorScheme.primary,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(25.0),
+                                          side: BorderSide(
+                                            color: Theme.of(context).disabledColor.withOpacity(0.3),
+                                          ),
+                                          borderRadius: BorderRadius.circular(25.0),
                                         ),
                                       ),
                                     ),

@@ -14,17 +14,12 @@ class InfoWithButtons extends StatelessWidget {
       required this.launchBrowser})
       : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
-
     String formattedUrl = " ";
 
-    if(story.url != null) {
-      formattedUrl = Uri
-          .parse(story.url!)
-          .host;
+    if (story.url != null) {
+      formattedUrl = Uri.parse(story.url!).host;
     }
 
     return Row(
@@ -43,7 +38,10 @@ class InfoWithButtons extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 12,
                         color: story.lido!
-                            ? Theme.of(context).colorScheme.primary.withOpacity(0.3)
+                            ? Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withOpacity(0.3)
                             : Theme.of(context).colorScheme.primary)),
               ),
               const SizedBox(
@@ -122,7 +120,7 @@ class InfoWithButtons extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
-              height: 40,
+              height: 38,
               child: TextButton(
                 onLongPress: () {
                   Share.share('https://news.ycombinator.com/item?id=' +
@@ -141,8 +139,11 @@ class InfoWithButtons extends StatelessWidget {
                         Icons.mode_comment_outlined,
                         size: 18,
                         color: story.lido!
-                            ? Theme.of(context).disabledColor.withOpacity(0.2)
-                            : Theme.of(context).colorScheme.onSecondary,
+                            ? Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withOpacity(0.3)
+                            : Theme.of(context).colorScheme.primary,
                       ),
                       Visibility(
                         visible: story.commentsCount == null,
@@ -173,10 +174,12 @@ class InfoWithButtons extends StatelessWidget {
                 ),
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
-                  primary: Theme.of(context).cardTheme.color,
-                  onPrimary:
-                  Theme.of(context).textTheme.headline6!.color!.withOpacity(0.8),
                   shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: story.lido!
+                          ? Theme.of(context).disabledColor.withOpacity(0.1)
+                          : Theme.of(context).disabledColor.withOpacity(0.3),
+                    ),
                     borderRadius: BorderRadius.circular(25.0),
                   ),
                 ),
