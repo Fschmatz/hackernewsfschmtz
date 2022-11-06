@@ -25,7 +25,7 @@ class TitleWithUrl extends StatelessWidget {
                       ? Theme.of(context).disabledColor
                       : Theme.of(context).textTheme.headline6!.color)),
           const SizedBox(
-            height: 5,
+            height: 2,
           ),
         ],
       ),

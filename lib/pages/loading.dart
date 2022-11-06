@@ -18,7 +18,7 @@ class Loading extends StatelessWidget {
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
-              padding: EdgeInsets.fromLTRB(6, index == 0 ? 0 : 15, 3, 15),
+              padding: const EdgeInsets.fromLTRB(6, 10, 3, 12),
               child: Row(
                 children: [
                   Expanded(
@@ -102,7 +102,7 @@ class Loading extends StatelessWidget {
                                     ],
                                   ),
                                   const SizedBox(
-                                    height: 8,
+                                    height: 5,
                                   ),
                                   Row(
                                     children: [

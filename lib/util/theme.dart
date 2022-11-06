@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 ThemeData light = ThemeData(
     useMaterial3: true,
+    textTheme: const TextTheme(
+      titleMedium: TextStyle(fontWeight: FontWeight.w400),
+    ),
     brightness: Brightness.light,
     primaryColor: const Color(0xFFFFFFFF),
     scaffoldBackgroundColor: const Color(0xFFFFFFFF),
@@ -30,6 +33,7 @@ ThemeData light = ThemeData(
       actionTextColor: Color(0xfffd9961),
     ),
     navigationBarTheme: NavigationBarThemeData(
+        surfaceTintColor: const Color(0xFFF2F0F0),
         backgroundColor: const Color(0xFFF2F0F0),
         indicatorColor: Colors.orange.shade800,
         iconTheme: MaterialStateProperty.all(const IconThemeData(
@@ -40,17 +44,20 @@ ThemeData light = ThemeData(
 
 ThemeData dark = ThemeData(
     useMaterial3: true,
+    textTheme: const TextTheme(
+      titleMedium: TextStyle(fontWeight: FontWeight.w400),
+    ),
     brightness: Brightness.dark,
-    primaryColor: const Color(0xFF1B1B1D),
-    scaffoldBackgroundColor: const Color(0xFF1B1B1D),
+    primaryColor: const Color(0xFF1B1B1B),
+    scaffoldBackgroundColor: const Color(0xFF1B1B1B),
     colorScheme: const ColorScheme.dark(
       primary: Color(0xffefa57c),
       onSecondary: Color(0xFFCACACA),
       secondary: Color(0xfffd9961),
     ),
     appBarTheme: const AppBarTheme(
-        surfaceTintColor: Color(0xFF1B1B1D),
-        color: Color(0xFF1B1B1D),
+        surfaceTintColor: Color(0xFF1B1B1B),
+        color: Color(0xFF1B1B1B),
        ),
     cardTheme: const CardTheme(
       surfaceTintColor: Color(0xFF2A2A2D),
@@ -59,18 +66,19 @@ ThemeData dark = ThemeData(
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFF272729),
     ),
-    bottomAppBarColor: const Color(0xFF242426),
+    bottomAppBarColor: const Color(0xFF262424),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       showSelectedLabels: false,
       showUnselectedLabels: true,
-      backgroundColor: Color(0xFF242426),
+      backgroundColor: Color(0xFF262424),
     ),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: const Color(0xFFF0F0F0),
       actionTextColor: Colors.orange[800],
     ),
     navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: const Color(0xFF242426),
+        surfaceTintColor: const Color(0xFF262424),
+        backgroundColor: const Color(0xFF262424),
         indicatorColor: const Color(0xffa85d35),
         iconTheme: MaterialStateProperty.all(const IconThemeData(
           color: Color(0xFFE8E7E6),

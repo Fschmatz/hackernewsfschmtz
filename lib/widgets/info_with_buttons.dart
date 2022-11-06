@@ -45,7 +45,7 @@ class InfoWithButtons extends StatelessWidget {
                             : Theme.of(context).colorScheme.primary)),
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,7 +94,7 @@ class InfoWithButtons extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 8,
+                height: 4,
               ),
               Row(
                 children: [
