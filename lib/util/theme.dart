@@ -23,15 +23,21 @@ ThemeData light = ThemeData(
     ),
     dialogTheme: const DialogTheme(
       backgroundColor: Color(0xFFF8F8FB),
-
     ),
     bottomAppBarColor: const Color(0xFFF2F0F0),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Color(0xFFF2F0F0),
     ),
-    snackBarTheme: const SnackBarThemeData(
-      actionTextColor: Color(0xfffd9961),
-    ),
+    snackBarTheme: SnackBarThemeData(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(25.0)),
+        ),
+        backgroundColor: const Color(0xFF050505),
+        contentTextStyle: const TextStyle(
+          color: Color(0xFFE2E2E9),
+        ),
+        actionTextColor: Colors.orange.shade800,
+        behavior: SnackBarBehavior.floating),
     navigationBarTheme: NavigationBarThemeData(
         surfaceTintColor: const Color(0xFFF2F0F0),
         backgroundColor: const Color(0xFFF2F0F0),
@@ -72,10 +78,16 @@ ThemeData dark = ThemeData(
       showUnselectedLabels: true,
       backgroundColor: Color(0xFF262424),
     ),
-    snackBarTheme: SnackBarThemeData(
-      backgroundColor: const Color(0xFFF0F0F0),
-      actionTextColor: Colors.orange[800],
-    ),
+    snackBarTheme: const SnackBarThemeData(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(25.0)),
+        ),
+        backgroundColor: Color(0xFF323030),
+        contentTextStyle: TextStyle(
+          color: Color(0xFFE2E2E9),
+        ),
+        actionTextColor: Color(0xffefa57c),
+        behavior: SnackBarBehavior.floating),
     navigationBarTheme: NavigationBarThemeData(
         surfaceTintColor: const Color(0xFF262424),
         backgroundColor: const Color(0xFF262424),

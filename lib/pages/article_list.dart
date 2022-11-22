@@ -48,7 +48,7 @@ class _ArticleListState extends State<ArticleList> {
     }
     await _getStoryIdsRead();
     await _getStoriesIds();
-    _populateStories(0, 20, true);
+    _populateStories(0, 25, true);
   }
 
   @override
@@ -62,15 +62,11 @@ class _ArticleListState extends State<ArticleList> {
       const Duration(seconds: 10),
       onTimeout: () {
         throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          behavior: SnackBarBehavior.floating,
           content: const Text('Loading Error'),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
           action: SnackBarAction(
             label: 'RETRY',
             onPressed: () {
-              appStartFunctions;
+              appStartFunctions();
             },
           ),
         ));
@@ -90,15 +86,12 @@ class _ArticleListState extends State<ArticleList> {
           .getStoriesList(_storiesIds, skipValue, takeValue)
           .timeout(const Duration(seconds: 10), onTimeout: () {
         throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          behavior: SnackBarBehavior.floating,
           content: const Text('Loading Error'),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
           action: SnackBarAction(
             label: 'RETRY',
             onPressed: () {
-              _populateStories(_storiesList.length, 20, false);
+              //_populateStories(_storiesList.length, 20, false);
+              appStartFunctions(true);
             },
           ),
         ));
@@ -109,8 +102,8 @@ class _ArticleListState extends State<ArticleList> {
       }).toList();
 
       if (start) {
+        _storiesList = stories;
         setState(() {
-          _storiesList = stories;
           loading = false;
         });
       } else {
@@ -119,13 +112,9 @@ class _ArticleListState extends State<ArticleList> {
         });
       }
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        behavior: SnackBarBehavior.floating,
-        content: const Text('No more stories to load'),
-        duration: const Duration(seconds: 10),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('No more stories to load'),
+        duration: Duration(seconds: 10),
       ));
     }
     loadingStoriesOnScroll = false;
@@ -164,7 +153,7 @@ class _ArticleListState extends State<ArticleList> {
                 )
               : LazyLoadScrollView(
                   onEndOfPage: () =>
-                      _populateStories(_storiesList.length, 20, false),
+                      _populateStories(_storiesList.length, 25, false),
                   isLoading: loadingStoriesOnScroll,
                   scrollOffset: 500,
                   child: RefreshIndicator(

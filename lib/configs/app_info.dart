@@ -16,7 +16,7 @@ class AppInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("App Info"),
+          title: const Text("App info"),
         ),
         body: ListView(children: <Widget>[
           const SizedBox(height: 20),
