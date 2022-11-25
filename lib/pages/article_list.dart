@@ -10,7 +10,6 @@ import 'package:hackernewsfschmtz/pages/loading.dart';
 import 'package:http/http.dart' as http;
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
-
 import '../configs/settings.dart';
 
 class ArticleList extends StatefulWidget {
@@ -23,10 +22,10 @@ class ArticleList extends StatefulWidget {
 }
 
 class _ArticleListState extends State<ArticleList> {
-  List<dynamic> _storiesIds = [];
+  List<dynamic> _allStoriesIds = [];
   List<Story> _storiesList = [];
   bool loading = true;
-  bool loadingStoriesOnScroll = true;
+  bool loadingStoriesOnScroll = false;
   bool getTopStoriesSecondaryIsDone = false;
   String urlPageApi = '';
   List<int> listIdsRead = [];
@@ -47,8 +46,8 @@ class _ArticleListState extends State<ArticleList> {
       });
     }
     await _getStoryIdsRead();
-    await _getStoriesIds();
-    _populateStories(0, 25, true);
+    await get_allStoriesIds();
+    _populateStoriesOnStart();
   }
 
   @override
@@ -57,7 +56,7 @@ class _ArticleListState extends State<ArticleList> {
     super.dispose();
   }
 
-  Future<void> _getStoriesIds() async {
+  Future<void> get_allStoriesIds() async {
     final response = await http.get(Uri.parse(urlPageApi)).timeout(
       const Duration(seconds: 10),
       onTimeout: () {
@@ -73,51 +72,70 @@ class _ArticleListState extends State<ArticleList> {
       },
     );
     if (response.statusCode == 200) {
-      _storiesIds = jsonDecode(response.body);
+      _allStoriesIds = jsonDecode(response.body);
     }
   }
 
-  Future<void> _populateStories(
-      int skipValue, int takeValue, bool start) async {
-    loadingStoriesOnScroll = true;
+  List<dynamic> _getQuantityStoriesIDs(int start, int end) {
+    List<dynamic> quantStoryList = [];
+    quantStoryList = _allStoriesIds.sublist(start, (start + end));
+    return quantStoryList;
+  }
 
-    if (_storiesList.length < _storiesIds.length) {
-      final responses = await WebService()
-          .getStoriesList(_storiesIds, skipValue, takeValue)
-          .timeout(const Duration(seconds: 10), onTimeout: () {
-        throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: const Text('Loading Error'),
-          action: SnackBarAction(
-            label: 'RETRY',
-            onPressed: () {
-              //_populateStories(_storiesList.length, 20, false);
-              appStartFunctions(true);
-            },
-          ),
-        ));
-      });
-      final stories = responses.map((response) {
-        final json = jsonDecode(response.body);
-        return Story.fromJSON(json);
-      }).toList();
-
-      if (start) {
-        _storiesList = stories;
-        setState(() {
-          loading = false;
-        });
-      } else {
-        setState(() {
-          _storiesList += stories;
-        });
-      }
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('No more stories to load'),
-        duration: Duration(seconds: 10),
+  Future<void> _populateStoriesOnStart() async {
+    final responses = await WebService()
+        .getStoriesList(_getQuantityStoriesIDs(0, 20))
+        .timeout(const Duration(seconds: 10), onTimeout: () {
+      throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text('Loading Error'),
+        action: SnackBarAction(
+          label: 'RETRY',
+          onPressed: () {
+            _populateStoriesOnStart();
+          },
+        ),
       ));
-    }
-    loadingStoriesOnScroll = false;
+    });
+
+    final stories = responses.map((response) {
+      final json = jsonDecode(response.body);
+      return Story.fromJSON(json);
+    }).toList();
+
+    _storiesList = stories;
+    setState(() {
+      loading = false;
+    });
+  }
+
+  Future<void> _populateStoriesOnScroll() async {
+    setState(() {
+      loadingStoriesOnScroll = true;
+    });
+    final responses = await WebService()
+        .getStoriesList(((_storiesList.length + 10) < _allStoriesIds.length)
+            ? _getQuantityStoriesIDs(_storiesList.length, 10)
+            : _getQuantityStoriesIDs(_storiesList.length,
+                (_allStoriesIds.length - _storiesList.length)))
+        .timeout(const Duration(seconds: 10), onTimeout: () {
+      throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text('Loading Error'),
+        action: SnackBarAction(
+          label: 'RETRY',
+          onPressed: () {
+            _populateStoriesOnScroll();
+          },
+        ),
+      ));
+    });
+    final stories = responses.map((response) {
+      final json = jsonDecode(response.body);
+      return Story.fromJSON(json);
+    }).toList();
+    setState(() {
+      loadingStoriesOnScroll = false;
+      _storiesList += stories;
+    });
   }
 
   Future<void> _getStoryIdsRead() async {
@@ -127,6 +145,16 @@ class _ArticleListState extends State<ArticleList> {
       listIdsRead.add(resp[i]['idTopStory']);
     }
     setState(() => listIdsRead);
+  }
+
+  void showEndListSnackBar() {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text(
+        'No more stories to load',
+        textAlign: TextAlign.center,
+      ),
+      duration: Duration(seconds: 4),
+    ));
   }
 
   @override
@@ -152,10 +180,14 @@ class _ArticleListState extends State<ArticleList> {
                   key: UniqueKey(),
                 )
               : LazyLoadScrollView(
-                  onEndOfPage: () =>
-                      _populateStories(_storiesList.length, 25, false),
+                  onEndOfPage: () => {
+                    if (_storiesList.length != _allStoriesIds.length)
+                      {_populateStoriesOnScroll()}
+                    else
+                      {showEndListSnackBar()}
+                  },
                   isLoading: loadingStoriesOnScroll,
-                  scrollOffset: 500,
+                  scrollOffset: 200,
                   child: RefreshIndicator(
                       onRefresh: () => appStartFunctions(true),
                       color: Theme.of(context).colorScheme.primary,
@@ -187,18 +219,29 @@ class _ArticleListState extends State<ArticleList> {
                                   ));
                             },
                           ),
-                          LinearProgressIndicator(
-                            minHeight: 5,
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                                Theme.of(context)
-                                    .colorScheme
-                                    .primary
-                                    .withOpacity(0.8)),
-                            backgroundColor: Theme.of(context)
-                                .colorScheme
-                                .primary
-                                .withOpacity(0.3),
-                          )
+                          (loadingStoriesOnScroll)
+                              ? Column(
+                                children: [
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  LinearProgressIndicator(
+                                      minHeight: 5,
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Theme.of(context)
+                                              .colorScheme
+                                              .primary
+                                              .withOpacity(0.8)),
+                                      backgroundColor: Theme.of(context)
+                                          .colorScheme
+                                          .primary
+                                          .withOpacity(0.3),
+                                    ),
+                                ],
+                              )
+                              : const SizedBox(
+                                  height: 20,
+                                )
                         ],
                       )),
                 ),

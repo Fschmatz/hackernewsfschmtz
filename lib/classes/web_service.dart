@@ -10,11 +10,20 @@ class WebService {
     return http.get(Uri.parse(urlForStory(storyId)));
   }
 
-  Future<List<Response>> getStoriesList(
-      List<dynamic> storiesIds, int skipValue, int takeValue) async {
+  Future<List<Response>> getStoriesList(List<dynamic> storiesIds) async {
     return Future.wait(
-        storiesIds.skip(skipValue).take(takeValue).map((storyId) {
+        storiesIds.map((storyId) {
       return _getStory(storyId);
     }));
   }
 }
+
+
+/*
+Future<List<Response>> getStoriesList(
+    List<dynamic> storiesIds, int skipValue, int takeValue) async {
+  return Future.wait(
+      storiesIds.skip(skipValue).take(takeValue).map((storyId) {
+        return _getStory(storyId);
+      }));
+}*/
